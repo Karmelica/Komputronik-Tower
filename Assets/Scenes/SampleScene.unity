@@ -769,27 +769,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1042987411668133483, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_LinearDamping
-      value: 0.5
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      propertyPath: lastSegment
-      value: 
-      objectReference: {fileID: 518022752}
-    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      propertyPath: gizmoColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      propertyPath: gizmoColor.g
-      value: 0.9800043
-      objectReference: {fileID: 0}
-    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      propertyPath: gizmoColor.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: previousSegment

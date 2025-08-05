@@ -34,15 +34,13 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private void Update()
     {
-        Debug.Log(_rigidbody2D.linearVelocity);
+        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
     }
 
     private void FixedUpdate()
     {
-        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
-        
         _rigidbody2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
-        _rigidbody2D.linearVelocity = new Vector2(Mathf.Clamp(_rigidbody2D.linearVelocity.x, -20f, 20f), Mathf.Clamp(_rigidbody2D.linearVelocity.y, Single.MinValue, 50f));
+        _rigidbody2D.linearVelocity = new Vector2(Mathf.Clamp(_rigidbody2D.linearVelocity.x, -20f, 20f), Mathf.Clamp(_rigidbody2D.linearVelocity.y, Single.MinValue, 20f));
     }
     
     private void OnEnable()
@@ -76,7 +74,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         if (_isGrounded)
         {
-            _rigidbody2D.AddForce(Vector2.up * jumpForce * (_rigidbody2D.linearVelocity.x > 1 ? _rigidbody2D.linearVelocity.x * 0.3f : 1f), ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(Vector2.up * jumpForce * (_rigidbody2D.linearVelocity.x > 3 ? _rigidbody2D.linearVelocity.x * 0.3f : 1f), ForceMode2D.Impulse);
             _isGrounded = false;
         }
     }
