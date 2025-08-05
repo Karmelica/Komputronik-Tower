@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
+    public int seed;
+    
     [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
     [SerializeField] private GameObject segmentPrefab;
     public float segmentHeight = 10f; // Height offset for new segments
@@ -11,6 +13,12 @@ public class SegmentGen : MonoBehaviour
     [SerializeField] private Vector2 gizmoSize = new (5f, 10f);
     [SerializeField] private Color gizmoColor = Color.green;
 
+    private System.Random rng;
+
+    private void Awake()
+    {
+        rng = new System.Random(seed);
+    }
     
     private void Start()
     {
@@ -28,6 +36,8 @@ public class SegmentGen : MonoBehaviour
             Vector3 newPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
             previousSegment.GetComponent<Collider2D>().enabled = false;
             previousSegment = Instantiate(segmentPrefab, newPosition, Quaternion.identity);
+            var segmentScript = previousSegment.GetComponent<SegmentScript>();
+            segmentScript.InitializeSegment(rng);
         }
     }
 

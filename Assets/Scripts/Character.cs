@@ -34,7 +34,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private void Update()
     {
-        Debug.Log(_rigidbody2D.linearVelocity);
+        //Debug.Log(_rigidbody2D.linearVelocity);
     }
 
     private void FixedUpdate()
