@@ -26,18 +26,39 @@ public class SegmentGen : MonoBehaviour
         {
             Debug.LogError("Segment prefab is not assigned in the SegmentGen script.", this);
         }
+
+        if (previousSegment == null)
+        {
+            var segment = PoolingManager.Instance.Get<SegmentScript>("Segment");
+            segment.transform.position = new Vector3(0,0,0);
+            segment.transform.rotation = Quaternion.identity;
+            segment.InitializeSegment(rng);
+            previousSegment = segment.gameObject;
+        }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Segment"))
         {
+            GameObject segment = other.gameObject;
+            segment.GetComponent<Collider2D>().enabled = false;
+            
+            Vector3 newPosition = segment.transform.position + new Vector3(0f, segmentHeight, 0f);
+            
             // Instantiate a new segment at the position of the exiting segment
-            Vector3 newPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
-            previousSegment.GetComponent<Collider2D>().enabled = false;
-            previousSegment = Instantiate(segmentPrefab, newPosition, Quaternion.identity);
-            var segmentScript = previousSegment.GetComponent<SegmentScript>();
+            //Vector3 newPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
+            //previousSegment.GetComponent<Collider2D>().enabled = false;
+            //var segmentScript = previousSegment.GetComponent<SegmentScript>();
+            
+            SegmentScript segmentScript = PoolingManager.Instance.Get<SegmentScript>("Segment");
+            segmentScript.transform.position = newPosition;
+            segmentScript.transform.rotation = Quaternion.identity;
+            
+            segmentScript.GetComponent<Collider2D>().enabled = true;
+            
             segmentScript.InitializeSegment(rng);
+            previousSegment = segmentScript.gameObject;
         }
     }
 

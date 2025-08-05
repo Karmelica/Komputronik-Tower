@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8215ea7f0dd5ca84f84aed9d99374465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0
+  isStartingSegment: 0
   maxPlatformRange: 5
-  minPlatformRange: 0
+  minPlatformRange: -5
   platforms:
   - {fileID: 5988105551315160524}
   - {fileID: 5368744457307694014}

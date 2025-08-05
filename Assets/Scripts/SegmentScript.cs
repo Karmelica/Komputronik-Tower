@@ -1,10 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SegmentScript : MonoBehaviour
 {
     [SerializeField] private float maxPlatformRange = 5f; 
-    [SerializeField] private float minPlatformRange = 0f; 
+    [SerializeField] private float minPlatformRange = -5f;
+    [SerializeField] private float despawnOffset = 24f;
     [SerializeField] private List<GameObject> platforms;
 
     private System.Random rng;
@@ -22,5 +24,13 @@ public class SegmentScript : MonoBehaviour
     private Vector3 GetRandomPosition(Vector3 position)
     {
         return new Vector3(UnityEngine.Random.Range(minPlatformRange, maxPlatformRange), position.y, position.z); 
+    }
+    
+    private void Update()
+    {
+        if (Camera.main.transform.position.y > transform.position.y + despawnOffset)
+        {
+            PoolingManager.Instance.Return("Segment", this);
+        }
     }
 }
