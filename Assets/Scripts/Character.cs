@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 {
     private Rigidbody2D _rigidbody2D;
@@ -36,22 +38,17 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         _input.Dispose();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-            _isGrounded = true;
-    }
-    
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-            _isGrounded = false;
+        Debug.Log(_rigidbody2D.linearVelocity);
     }
 
     private void FixedUpdate()
     {
+        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+        
         _rigidbody2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
-        _rigidbody2D.linearVelocity = new Vector2(Mathf.Clamp(_rigidbody2D.linearVelocity.x, -20f, 20f), Mathf.Clamp(_rigidbody2D.linearVelocity.y, -1000f, 50f));
+        _rigidbody2D.linearVelocity = new Vector2(Mathf.Clamp(_rigidbody2D.linearVelocity.x, -20f, 20f), Mathf.Clamp(_rigidbody2D.linearVelocity.y, Single.MinValue, 50f));
     }
     
     // Invoked when "Move" action is either started, performed or canceled.
@@ -70,7 +67,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         if (_isGrounded)
         {
-            _rigidbody2D.AddForce(Vector2.up * jumpForce * (_rigidbody2D.linearVelocity.x > 0 ? _rigidbody2D.linearVelocity.x * 0.2f : 1f), ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(Vector2.up * jumpForce * (_rigidbody2D.linearVelocity.x > 1 ? _rigidbody2D.linearVelocity.x * 0.3f : 1f), ForceMode2D.Impulse);
             _isGrounded = false;
         }
     }
