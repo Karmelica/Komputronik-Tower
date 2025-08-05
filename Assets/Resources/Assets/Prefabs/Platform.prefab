@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5609149158563599893}
   - component: {fileID: 3994328798837611587}
   - component: {fileID: -4051453337507851935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformCollider: {fileID: 0}
 --- !u!50 &-4051453337507851935
 Rigidbody2D:
   serializedVersion: 5
@@ -157,7 +156,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4970742507166119051}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

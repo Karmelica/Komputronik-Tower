@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 2015945513}
   - component: {fileID: 2015945512}
   - component: {fileID: 2015945511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: gizmoColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: previousSegment
+      value: 
+      objectReference: {fileID: 518022752}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
