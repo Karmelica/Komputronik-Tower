@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
-    [SerializeField] private GameObject lastSegment; // Reference to the last segment, if needed
+    [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
     [SerializeField] private GameObject segmentPrefab;
     public float segmentHeight = 10f; // Height offset for new segments
     
@@ -25,22 +25,19 @@ public class SegmentGen : MonoBehaviour
         if (other.CompareTag("Segment"))
         {
             // Instantiate a new segment at the position of the exiting segment
-            Vector3 newPosition = lastSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
-            lastSegment.GetComponent<Collider2D>().enabled = false;
-            lastSegment = Instantiate(segmentPrefab, newPosition, Quaternion.identity);
-            
-            // Optionally destroy the old segment
-            //Destroy(other.gameObject);
+            Vector3 newPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
+            previousSegment.GetComponent<Collider2D>().enabled = false;
+            previousSegment = Instantiate(segmentPrefab, newPosition, Quaternion.identity);
         }
     }
 
     private void OnDrawGizmos()
     {
         // Show where new segments will be spawned
-        if (segmentPrefab != null && lastSegment != null)
+        if (segmentPrefab != null && previousSegment != null)
         {
             Gizmos.color = gizmoColor;
-            Vector3 newSegmentPosition = lastSegment.transform.position + new Vector3(0, segmentHeight, 0);
+            Vector3 newSegmentPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0);
             Vector3 gizmoDrawSize = new Vector3(gizmoSize.x, gizmoSize.y, 1f);
             Gizmos.DrawWireCube(newSegmentPosition, gizmoDrawSize);
         }
