@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Platform : MonoBehaviour
 {
     private Collider2D _platformCollider;
