@@ -7,7 +7,8 @@ public class SegmentGen : MonoBehaviour
     
     [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
     [SerializeField] private GameObject segmentPrefab;
-    public float segmentHeight = 10f; // Height offset for new segments
+    
+    public float segmentHeight = 24f; // Height offset for new segments
     
     /*[Header("Gizmo Settings")]
     [SerializeField] private Vector2 gizmoSize = new (5f, 10f);
@@ -33,6 +34,7 @@ public class SegmentGen : MonoBehaviour
             segment.transform.position = new Vector3(0,0,0);
             segment.transform.rotation = Quaternion.identity;
             segment.InitializeSegment(rng);
+            
             previousSegment = segment.gameObject;
         }
     }
@@ -56,7 +58,7 @@ public class SegmentGen : MonoBehaviour
             previousSegment = segmentScript.gameObject;
         }
     }
-
+    
     /*private void OnDrawGizmos()
     {
         // Show where new segments will be spawned

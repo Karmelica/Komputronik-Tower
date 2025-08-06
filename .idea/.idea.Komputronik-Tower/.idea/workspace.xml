@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="84a9be97-be41-4bc3-b9ca-ebaf001bb865" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Komputronik-Tower/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Komputronik-Tower/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Physics Material 2D.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/New Physics Material 2D.physicsMaterial2D" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Segment.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Segment.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentGen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentGen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SegmentScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SegmentScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-6000.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +101,7 @@
       <updated>1754389576320</updated>
       <workItem from="1754389578540" duration="7461000" />
       <workItem from="1754468070861" duration="301000" />
+      <workItem from="1754493225539" duration="6067000" />
     </task>
     <servers />
   </component>
