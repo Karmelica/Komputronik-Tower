@@ -10,6 +10,11 @@ public class Platform : MonoBehaviour
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     private bool _isGravityEnabled;
+
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
     private Transform _cameraTransform;
     
     private void Start()
@@ -19,6 +24,11 @@ public class Platform : MonoBehaviour
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
             Debug.LogError("No Rigidbody2D component found on the character.", this);
+    }
+
+    private void OnEnable()
+    {
+        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
     }
 
     private void Update()
