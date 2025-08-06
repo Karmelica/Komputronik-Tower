@@ -47,7 +47,6 @@ public class Platform : MonoBehaviour
             _platformCollider.enabled = true;
             StartCoroutine(EnableGravity());
         }
-        
     }
     
     private IEnumerator EnableGravity()
