@@ -18,8 +18,10 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         if(other.gameObject.CompareTag("Wall"))
         {
-            if(rb2D.linearVelocity.y > 0f)
+            if (CheckVelocity(rb2D, 0f))
+            {
                 rb2D.AddForce(new Vector2(0, rb2D.linearVelocity.y * 0.1f), ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -62,51 +64,49 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>().x;
-        //Debug.Log($"OnMove: {context.ReadValue<Vector2>().x}");
+    }
+    
+    void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
+    {
+        if (_isGrounded)
+        {
+            float velocityBoost = CheckVelocity(rb2D, 3f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.3f : 1f;
+            rb2D.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
+            _isGrounded = false;
+        }
+    }
+
+    private bool CheckVelocity(Rigidbody2D rb2D, float velocity)
+    {
+        return Mathf.Abs(rb2D.linearVelocity.x) >= velocity;
     }
     
     public void OnCrouch(InputAction.CallbackContext context)
     {
         return;
     }
-
-    void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
-    {
-        if (_isGrounded)
-        {
-            rb2D.AddForce(Vector2.up * jumpForce * (rb2D.linearVelocity.x > 3 ? rb2D.linearVelocity.x * 0.3f : 1f), ForceMode2D.Impulse);
-            _isGrounded = false;
-        }
-    }
-
     public void OnPrevious(InputAction.CallbackContext context)
     {
         return;
     }
-
     public void OnNext(InputAction.CallbackContext context)
     {
         return;
     }
-
     public void OnSprint(InputAction.CallbackContext context)
     {
         return;
     }
-    
     public void OnLook(InputAction.CallbackContext context)
     {
         return;
     }
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         return;
     }
-
     public void OnInteract(InputAction.CallbackContext context)
     {
         return;
     }
-
 }
