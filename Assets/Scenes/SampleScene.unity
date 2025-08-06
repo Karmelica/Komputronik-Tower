@@ -1018,6 +1018,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: segmentHeight
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: previousSegment
       value: 
       objectReference: {fileID: 0}
