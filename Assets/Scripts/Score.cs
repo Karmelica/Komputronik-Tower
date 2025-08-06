@@ -18,7 +18,7 @@ public class Score : MonoBehaviour
         {
             Debug.LogError("No Rigidbody2D component found on the player.", this);
         }
-        highestYPosition = player.transform.position.y;
+        ResetScore();
     }
 
     private void Update()
@@ -29,7 +29,20 @@ public class Score : MonoBehaviour
             multiplier = Mathf.Clamp(multiplier, 1f, 20f);
             score += (player.transform.position.y - highestYPosition) * multiplier; // Adjust the multiplier as needed
             highestYPosition = player.transform.position.y;
+            
+            // Aktualizuj wynik w HighScoreManager
+            if (HighScoreManager.Instance != null)
+            {
+                HighScoreManager.Instance.UpdateScore(score);
+            }
         }
         scoreText.text = score.ToString("F0"); // Display score as an integer
+    }
+    
+    // Metoda do resetowania wyniku (np. przy rozpoczęciu nowej gry)
+    public void ResetScore()
+    {
+        score = 0;
+        highestYPosition = player.transform.position.y;
     }
 }
