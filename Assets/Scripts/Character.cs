@@ -3,17 +3,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-
 public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 {
+    public float jumpForce = 5f;
+    [SerializeField, Min(0)] private float moveSpeed = 20f;
+    
     [HideInInspector] public Rigidbody2D rb2D;
     private InputSystemActions _input;
     private InputSystemActions.PlayerActions _playerInput;
     
     private float _moveInput;
     private bool _isGrounded = true;
-    public float jumpForce = 5f;
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Wall"))
@@ -42,7 +43,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private void FixedUpdate()
     {
         rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
-        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -20f, 20f), Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, 20f));
+        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed), Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
     }
     
     private void OnEnable()

@@ -46,11 +46,6 @@ public class SegmentGen : MonoBehaviour
             
             Vector3 newPosition = segment.transform.position + new Vector3(0f, segmentHeight, 0f);
             
-            // Instantiate a new segment at the position of the exiting segment
-            //Vector3 newPosition = previousSegment.transform.position + new Vector3(0, segmentHeight, 0); // Adjust the Y offset as needed
-            //previousSegment.GetComponent<Collider2D>().enabled = false;
-            //var segmentScript = previousSegment.GetComponent<SegmentScript>();
-            
             SegmentScript segmentScript = PoolingManager.Instance.Get<SegmentScript>("Segment");
             segmentScript.transform.position = newPosition;
             segmentScript.transform.rotation = Quaternion.identity;
