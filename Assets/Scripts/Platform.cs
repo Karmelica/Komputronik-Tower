@@ -15,9 +15,11 @@ public class Platform : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
+    private Transform _cameraTransform;
     
     private void Start()
     {
+        _cameraTransform = Camera.main.transform;
         if (!TryGetComponent<Collider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
@@ -31,11 +33,11 @@ public class Platform : MonoBehaviour
 
     private void Update()
     {
-        if (Camera.main.transform.position.y - 1f <= transform.position.y)
+        if (_cameraTransform.position.y - 1f < transform.position.y)
         {
             _platformCollider.enabled = false;
         }
-        else
+        else if (_cameraTransform.transform.position.y - 1.1f >= transform.position.y)
         {
             _platformCollider.enabled = true;
             StartCoroutine(EnableGravity());
