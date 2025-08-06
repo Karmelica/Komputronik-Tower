@@ -10,10 +10,12 @@ public class Platform : MonoBehaviour
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     private bool _isGravityEnabled;
+    private float _posY;
 
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _posY = transform.localPosition.y;
     }
     private Transform _cameraTransform;
     
@@ -28,7 +30,10 @@ public class Platform : MonoBehaviour
 
     private void OnEnable()
     {
+        _isGravityEnabled = false;
         _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        _rigidbody2D.gravityScale = 0f;
+        transform.localPosition = new Vector3(transform.localPosition.x, _posY, transform.localPosition.z);
     }
 
     private void Update()
@@ -51,8 +56,9 @@ public class Platform : MonoBehaviour
         _isGravityEnabled = true;
         yield return new WaitForSeconds(10f);
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         _rigidbody2D.gravityScale = 1f;
-        yield return new WaitForSeconds(10f);
-        gameObject.SetActive(false);
+        //yield return new WaitForSeconds(10f);
+        //gameObject.SetActive(false);
     }
 }

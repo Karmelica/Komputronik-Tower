@@ -14,10 +14,10 @@ public class SegmentScript : MonoBehaviour
     public void InitializeSegment(System.Random rng)
     {
         this.rng = rng;
-        
-        for (int i = 0; i < platforms.Count; i++)
+
+        foreach (var platform in platforms)
         {
-            platforms[i].transform.position = GetRandomPosition(platforms[i].transform.position);
+            platform.transform.position = GetRandomPosition(platform.transform.position);
         }
     }
     
