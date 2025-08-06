@@ -573,7 +573,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 86b50000
     m_LastClickedID: 46470
-    m_ExpandedIDs: 000000005ab40000
+    m_ExpandedIDs: 00000000f6b60000f8b60000fab60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -602,7 +602,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a2a40000
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005ab40000
+    m_ExpandedIDs: 00000000f6b60000f8b60000fab60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 800, y: 600}
+  m_TargetSize: {x: 960, y: 540}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -717,10 +717,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -400
-    m_HBaseRangeMax: 400
-    m_VBaseRangeMin: -300
-    m_VBaseRangeMax: 300
+    m_HBaseRangeMin: -480
+    m_HBaseRangeMax: 480
+    m_VBaseRangeMin: -270
+    m_VBaseRangeMax: 270
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -740,7 +740,7 @@ MonoBehaviour:
       y: 21
       width: 875
       height: 456
-    m_Scale: {x: 0.76, y: 0.76}
+    m_Scale: {x: 0.84444445, y: 0.84444445}
     m_Translation: {x: 437.5, y: 228}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -748,12 +748,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -575.6579
-      y: -300
-      width: 1151.3158
-      height: 600
+      x: -518.0921
+      y: -270
+      width: 1036.1842
+      height: 540
     m_MinimalGUI: 1
-  m_defaultScale: 0.76
+  m_defaultScale: 0.84444445
   m_LastWindowPixelSize: {x: 875, y: 477}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -1382,7 +1382,7 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -6.867068, y: -7.0078044, z: -10.635857}
+    m_Target: {x: -0.29683384, y: 10.734383, z: 0.05669873}
     speed: 2
     m_Value: {x: -6.867068, y: -7.0078044, z: -10.635857}
   m_RenderMode: 0
@@ -1434,7 +1434,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 18.241304
+    m_Target: 44.213963
     speed: 2
     m_Value: 18.241304
   m_Ortho:

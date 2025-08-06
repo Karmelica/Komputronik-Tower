@@ -9,9 +9,9 @@ public class SegmentGen : MonoBehaviour
     [SerializeField] private GameObject segmentPrefab;
     public float segmentHeight = 10f; // Height offset for new segments
     
-    [Header("Gizmo Settings")]
+    /*[Header("Gizmo Settings")]
     [SerializeField] private Vector2 gizmoSize = new (5f, 10f);
-    [SerializeField] private Color gizmoColor = Color.green;
+    [SerializeField] private Color gizmoColor = Color.green;*/
 
     private System.Random rng;
 
@@ -36,7 +36,7 @@ public class SegmentGen : MonoBehaviour
             previousSegment = segment.gameObject;
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Segment"))
@@ -57,7 +57,7 @@ public class SegmentGen : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         // Show where new segments will be spawned
         if (segmentPrefab != null && previousSegment != null)
@@ -67,5 +67,5 @@ public class SegmentGen : MonoBehaviour
             Vector3 gizmoDrawSize = new Vector3(gizmoSize.x, gizmoSize.y, 1f);
             Gizmos.DrawWireCube(newSegmentPosition, gizmoDrawSize);
         }
-    }
+    }*/
 }
