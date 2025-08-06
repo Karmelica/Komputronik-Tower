@@ -8,7 +8,7 @@ public class SegmentScript : MonoBehaviour
     [SerializeField] private float minPlatformRange = -5f;
     [SerializeField] private float despawnOffset = 24f;
     [SerializeField] private List<GameObject> platforms;
-
+    
     private System.Random rng;
 
     public void InitializeSegment(System.Random rng)
@@ -23,7 +23,8 @@ public class SegmentScript : MonoBehaviour
     
     private Vector3 GetRandomPosition(Vector3 position)
     {
-        return new Vector3(UnityEngine.Random.Range(minPlatformRange, maxPlatformRange), position.y, position.z); 
+        float range = (float)(rng.NextDouble() * (maxPlatformRange - minPlatformRange) + minPlatformRange);
+        return new Vector3(range, position.y, position.z);
     }
     
     private void Update()
