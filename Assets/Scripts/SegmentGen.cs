@@ -44,7 +44,7 @@ public class SegmentGen : MonoBehaviour
         if (other.CompareTag("Segment"))
         {
             GameObject segment = other.gameObject;
-            segment.GetComponent<Collider2D>().enabled = false;
+            //segment.GetComponent<Collider2D>().enabled = false;
             
             Vector3 newPosition = segment.transform.position + new Vector3(0f, segmentHeight, 0f);
             
