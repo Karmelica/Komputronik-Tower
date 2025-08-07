@@ -141,7 +141,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 
     private void FixedUpdate()
     {
-        preCollistionVelocity = rb2D.linearVelocity;
+        _preCollisionVelocity = rb2D.linearVelocity;
 
         if (!CanMove) return;
         rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
