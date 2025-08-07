@@ -25,21 +25,19 @@ public class Score : MonoBehaviour
     {
         if (player.transform.position.y > highestYPosition)
         {
-            multiplier = _playerRb2D.linearVelocity.magnitude; // Example multiplier based on velocity, adjust as needed
-            multiplier = Mathf.Clamp(multiplier, 1f, 20f);
-            score += (player.transform.position.y - highestYPosition) * multiplier; // Adjust the multiplier as needed
+            multiplier = _playerRb2D.linearVelocity.magnitude * highestYPosition / 1000f;
+            multiplier = Mathf.Clamp(multiplier, 0.1f, 100f);
+            score += (player.transform.position.y - highestYPosition) * multiplier;
             highestYPosition = player.transform.position.y;
             
-            // Aktualizuj wynik w HighScoreManager
             if (HighScoreManager.Instance != null)
             {
                 HighScoreManager.Instance.UpdateScore(score);
             }
         }
-        scoreText.text = score.ToString("F0"); // Display score as an integer
+        scoreText.text = score.ToString("F0");
     }
     
-    // Metoda do resetowania wyniku (np. przy rozpoczęciu nowej gry)
     public void ResetScore()
     {
         score = 0;

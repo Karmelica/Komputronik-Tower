@@ -657,7 +657,7 @@ MonoBehaviour:
   pools:
   - poolKey: Segment
     poolObject: {fileID: 2685432862969191356, guid: 41bca464a1aec4d478a7fdc0beafb35d, type: 3}
-    initialSize: 3
+    initialSize: 4
     parent: {fileID: 0}
 --- !u!1 &672212155
 GameObject:

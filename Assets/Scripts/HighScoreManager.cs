@@ -144,12 +144,14 @@ public class HighScoreManager : MonoBehaviour
     {
         if (loginPanel != null) loginPanel.SetActive(true);
         if (gameUI != null) gameUI.SetActive(false);
+        Character.CanMove = !loginPanel.activeInHierarchy;
     }
 
     private void ShowGameUI()
     {
         if (loginPanel != null) loginPanel.SetActive(false);
         if (gameUI != null) gameUI.SetActive(true);
+        Character.CanMove = !loginPanel.activeInHierarchy;
     }
 
     private static bool IsEmailValid(string email)
