@@ -3028,8 +3028,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: bounceX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: bounceBoostX
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: bounceBoostY
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: wallBoostTimeWindow
@@ -3037,7 +3045,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: bounceSpeedTreshhold
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: playerBoostTimeWindow
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: verticalBounceMultiplier
