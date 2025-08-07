@@ -18,12 +18,12 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [SerializeField] float bounceBoostX = 8f;
     [SerializeField] float bounceBoostY = 1.5f;
     
-    [Header("Wall Boost Timer Settings")]
+    [Header("Timer Settings")]
     [SerializeField] private float wallBoostTimeWindow = 0.2f;
+    [SerializeField] private float playerBoostTimeWindow = 0.2f;
     
     [Header("Minimum Bounce Speed")]
     [SerializeField, Min(0f)] float bounceSpeedTreshhold = 3f;
-    
     
     [HideInInspector] public Rigidbody2D rb2D;
     private InputSystemActions _input;
@@ -31,29 +31,33 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private float _moveInput;
     private bool _isGrounded = true;
+    
+    private Vector2 _preCollisionVelocity;
 
-    private float wallBoostTimer = 0f;
-    private Vector2 lastWallNormal;
-    private bool canWallBoost = false;
-    private Vector2 preCollistionVelocity;
+    private float _playerBoostTimer = 0f;
+    private bool _inputInRange = false;
+    
+    private float _wallBoostTimer = 0f;
+    private bool _canWallBoost = false;
+    private Vector2 _lastWallNormal;
     
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Wall")) return;
         
         ContactPoint2D contact = other.contacts[0];
-        lastWallNormal = contact.normal;
-        wallBoostTimer = wallBoostTimeWindow;
+        _lastWallNormal = contact.normal;
+        _wallBoostTimer = wallBoostTimeWindow;
         
-        canWallBoost = rb2D.linearVelocity.y >= 0f && Mathf.Abs(preCollistionVelocity.x) >= bounceSpeedTreshhold;
+        _canWallBoost = rb2D.linearVelocity.y >= 0f && Mathf.Abs(_preCollisionVelocity.x) >= bounceSpeedTreshhold;
         
         GiveVelocityBounce(contact.normal, bounceX, bounceY);
     }
 
     private void GiveVelocityBounce(Vector2 contactNormal, float horizontalMultiplier, float verticalMultiplier)
     {
-        Vector2 velocity = rb2D.linearVelocity;
-        Vector2 reflectedVelocity = Vector2.Reflect(contactNormal, velocity);
+        Vector2 velocity = _preCollisionVelocity;
+        Vector2 reflectedVelocity = Vector2.Reflect(velocity, contactNormal);
         
         float verticalBounce = velocity.y > 0f ? velocity.y * verticalMultiplier : velocity.y;
         
@@ -66,14 +70,14 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>().x;
-
-        if (canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(lastWallNormal.x)))
+        
+        if (_inputInRange && _canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
         {
-            GiveVelocityBounce(-lastWallNormal, bounceBoostX, bounceBoostY);
+            GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
+            _canWallBoost = false;
+            _wallBoostTimer = 0f;
+            _playerBoostTimer = 0f;
         }
-
-        canWallBoost = false;
-        wallBoostTimer = 0f;
     }
 
     void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
@@ -107,21 +111,36 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         
-        if (wallBoostTimer > 0)
+        // timer for boost
+        if (_wallBoostTimer > 0)
         {
-            wallBoostTimer -= Time.deltaTime;
-            if (wallBoostTimer <= 0)
+            _wallBoostTimer -= Time.deltaTime;
+            if (_wallBoostTimer <= 0)
             {
-                canWallBoost = false;
+                _canWallBoost = false;
             }
         }
 
-        Debug.Log(canWallBoost);
+        // buffer timer for player
+        if (_moveInput != 0)
+        {
+            _playerBoostTimer = playerBoostTimeWindow;
+        }
+
+        if (_playerBoostTimer > 0)
+        {
+            _inputInRange = true;
+            _playerBoostTimer -= Time.deltaTime;
+            if (_playerBoostTimer <= 0)
+            {
+                _inputInRange = false;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        preCollistionVelocity = rb2D.linearVelocity;
+        _preCollisionVelocity = rb2D.linearVelocity;
         
         rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
         rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed), Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
