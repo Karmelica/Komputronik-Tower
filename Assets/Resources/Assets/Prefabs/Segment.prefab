@@ -285,7 +285,7 @@ MonoBehaviour:
   minPlatformRange: -5
   minPlatformLength: 5
   maxPlatformLength: 10
-  despawnOffset: 60
+  despawnOffset: 100
   platforms:
   - {fileID: 5988105551315160524}
   - {fileID: 4992911502203251379}
