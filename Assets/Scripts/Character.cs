@@ -31,6 +31,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private float _moveInput;
     private bool _isGrounded = true;
+    public static bool CanMove = true;
 
     private float wallBoostTimer = 0f;
     private Vector2 lastWallNormal;
@@ -67,6 +68,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         _moveInput = context.ReadValue<Vector2>().x;
 
+        // if(Mathf.Abs(rb2D.linearVelocity.x) > 0f) Debug.Log(Mathf.Abs(rb2D.linearVelocity.x));
         if (canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(lastWallNormal.x)))
         {
             GiveVelocityBounce(-lastWallNormal, bounceBoostX, bounceBoostY);
@@ -78,9 +80,9 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 
     void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
     {
-        if (_isGrounded)
+        if (_isGrounded && CanMove)
         {
-            float velocityBoost = CheckVelocity(rb2D, 3f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.3f : 1f;
+            float velocityBoost = CheckVelocity(rb2D, 6f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.33f : 2f;
             rb2D.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
             _isGrounded = false;
         }
@@ -122,9 +124,11 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private void FixedUpdate()
     {
         preCollistionVelocity = rb2D.linearVelocity;
-        
+
+        if (!CanMove) return;
         rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
-        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed), Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
+        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed),
+            Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
     }
     
     private void OnEnable()

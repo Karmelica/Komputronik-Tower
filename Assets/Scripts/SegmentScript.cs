@@ -6,6 +6,8 @@ public class SegmentScript : MonoBehaviour
 {
     [SerializeField] private float maxPlatformRange = 5f; 
     [SerializeField] private float minPlatformRange = -5f;
+    [SerializeField] private float minPlatformLength = 6f;
+    [SerializeField] private float maxPlatformLength = 10f;
     [SerializeField] private float despawnOffset = 24f;
     [SerializeField] private List<GameObject> platforms;
     
@@ -18,6 +20,7 @@ public class SegmentScript : MonoBehaviour
         foreach (var platform in platforms)
         {
             platform.transform.position = GetRandomPosition(platform.transform.position);
+            platform.transform.localScale = GetRandomScale(platform.transform.localScale);
         }
     }
     
@@ -25,6 +28,12 @@ public class SegmentScript : MonoBehaviour
     {
         float range = (float)(rng.NextDouble() * (maxPlatformRange - minPlatformRange) + minPlatformRange);
         return new Vector3(range, position.y, position.z);
+    }
+    
+    private Vector3 GetRandomScale(Vector3 scale)
+    {
+        float range = (float)(rng.NextDouble() * (maxPlatformLength - minPlatformLength) + minPlatformLength);
+        return new Vector3(range, scale.y, scale.z);
     }
     
     private void Update()
