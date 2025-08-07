@@ -30,10 +30,7 @@ public class Platform : MonoBehaviour
 
     private void OnEnable()
     {
-        _isGravityEnabled = false;
-        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-        _rigidbody2D.gravityScale = 0f;
-        transform.localPosition = new Vector3(transform.localPosition.x, _posY, transform.localPosition.z);
+        DisableGravity();
     }
 
     private void Update()
@@ -48,16 +45,26 @@ public class Platform : MonoBehaviour
             StartCoroutine(EnableGravity());
         }
     }
+
+    private void DisableGravity()
+    {
+        StopAllCoroutines();
+        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        _rigidbody2D.gravityScale = 0f;
+        transform.localPosition = new Vector3(transform.localPosition.x, _posY, transform.localPosition.z);
+        _platformCollider.enabled = false;
+        _isGravityEnabled = false;
+    }
     
     private IEnumerator EnableGravity()
     {
         if (_isGravityEnabled) yield break; // Prevent multiple calls
         _isGravityEnabled = true;
         yield return new WaitForSeconds(10f);
+        _platformCollider.enabled = false;
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        _rigidbody2D.gravityScale = 1f;
-        //yield return new WaitForSeconds(10f);
-        //gameObject.SetActive(false);
+        // _rigidbody2D.gravityScale = 1f;
+        // yield return new WaitForSeconds(3f);
     }
 }

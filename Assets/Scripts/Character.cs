@@ -33,6 +33,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool _isGrounded = true;
     
     private Vector2 _preCollisionVelocity;
+    public static bool CanMove = true;
 
     private float _playerBoostTimer = 0f;
     private bool _inputInRange = false;
@@ -82,9 +83,9 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 
     void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
     {
-        if (_isGrounded)
+        if (_isGrounded && CanMove)
         {
-            float velocityBoost = CheckVelocity(rb2D, 3f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.3f : 1f;
+            float velocityBoost = CheckVelocity(rb2D, 6f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.33f : 2f;
             rb2D.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
             _isGrounded = false;
         }
@@ -140,10 +141,12 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 
     private void FixedUpdate()
     {
-        _preCollisionVelocity = rb2D.linearVelocity;
-        
+        preCollistionVelocity = rb2D.linearVelocity;
+
+        if (!CanMove) return;
         rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
-        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed), Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
+        rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed),
+            Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
     }
     
     private void OnEnable()

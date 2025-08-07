@@ -283,6 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPlatformRange: 5
   minPlatformRange: -5
+  minPlatformLength: 5
+  maxPlatformLength: 10
   despawnOffset: 60
   platforms:
   - {fileID: 5988105551315160524}
