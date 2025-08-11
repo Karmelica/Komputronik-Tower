@@ -25,6 +25,8 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [Header("Minimum Bounce Speed")]
     [SerializeField, Min(0f)] float bounceSpeedTreshhold = 3f;
     
+    [SerializeField] private SegmentDetectorScript segmentDetector;
+    
     [HideInInspector] public Rigidbody2D rb2D;
     private InputSystemActions _input;
     private InputSystemActions.PlayerActions _playerInput;
@@ -110,6 +112,12 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private void Update()
     {
+        if (segmentDetector.segments.Count <= 0)
+        {
+            Debug.Log("You Died!");
+            return;
+        }
+        
         _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         
         // timer for boost
