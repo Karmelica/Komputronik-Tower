@@ -85,12 +85,12 @@ public class Score : MonoBehaviour
         }
         
         Character.CanMove = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
     
     private void UpdateScoreDisplay()
     {
-        if (scoreText != null)
+        if (scoreText)
         {
             scoreText.text = $"Wynik: {currentScore:F0}";
         }

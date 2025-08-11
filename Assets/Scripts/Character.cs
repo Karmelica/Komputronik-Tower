@@ -109,7 +109,12 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         _input.Player.SetCallbacks(this);
         _playerInput = _input.Player;
     }
-    
+
+    private void Start()
+    {
+        CanMove = true;
+    }
+
     private void Update()
     {
         if (segmentDetector.segments.Count <= 0)

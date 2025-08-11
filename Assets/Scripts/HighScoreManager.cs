@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Linq;
-using System;
 using Dan.Main;
 
 public class HighScoreManager : MonoBehaviour
@@ -12,22 +10,19 @@ public class HighScoreManager : MonoBehaviour
 
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
-    [SerializeField] private TextMeshProUGUI highScoreText;
+    [SerializeField] private List<TextMeshProUGUI> highScoreText;
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private GameObject gameUI;
 
     private string currentPlayerEmail = "";
     private string currentPlayerName = "";
 
-    private const string CURRENT_PLAYER_KEY = "CurrentPlayer";
-    private const string PLAYER_NAME_KEY = "PlayerName";
-
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -44,7 +39,12 @@ public class HighScoreManager : MonoBehaviour
     {
         LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, leaderboard =>
         {
-            if (leaderboard.Length > 0) highScoreText.text = leaderboard[0].Extra + ": " + leaderboard[0].Score.ToString();
+            int loopLenght = leaderboard.Length < highScoreText.Count ? leaderboard.Length : highScoreText.Count;
+            for (int i  = 0; i < loopLenght; i++)
+            {
+                highScoreText[i].text = leaderboard[i].Extra + ": " + leaderboard[i].Score.ToString();
+            }
+            
         });
     }
 
@@ -80,21 +80,22 @@ public class HighScoreManager : MonoBehaviour
         currentPlayerName = name;
 
         NewLeaderboardEntry(currentPlayerName, currentPlayerEmail, Score.Instance.GetCurrentScore());
+        ShowGameUI();
         Score.Instance.RestartGame();
     }
 
     public void ShowSaveHighscorePanel()
     {
+        Character.CanMove = false;
         if (saveScorePanel != null) saveScorePanel.SetActive(true);
         if (gameUI != null) gameUI.SetActive(false);
-        Character.CanMove = !saveScorePanel.activeInHierarchy;
     }
 
     private void ShowGameUI()
     {
+        Character.CanMove = true;
         if (saveScorePanel != null) saveScorePanel.SetActive(false);
         if (gameUI != null) gameUI.SetActive(true);
-        Character.CanMove = !saveScorePanel.activeInHierarchy;
     }
 
     private static bool IsEmailValid(string email)
