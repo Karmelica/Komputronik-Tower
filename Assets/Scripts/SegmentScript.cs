@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SegmentScript : MonoBehaviour
 {
+    public static event Action<SegmentScript> OnSegmentDeactivation;
+    
     [SerializeField] private float maxPlatformRange = 5f; 
     [SerializeField] private float minPlatformRange = -5f;
     [SerializeField] private float minPlatformLength = 6f;
@@ -40,6 +42,7 @@ public class SegmentScript : MonoBehaviour
     {
         if (Camera.main.transform.position.y > transform.position.y + despawnOffset)
         {
+            OnSegmentDeactivation?.Invoke(this);
             PoolingManager.Instance.Return("Segment", this);
         }
     }

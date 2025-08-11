@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
+    private readonly HashSet<SegmentScript> _segments = new();
+    
     public int seed;
     
     [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
@@ -15,7 +18,7 @@ public class SegmentGen : MonoBehaviour
     [SerializeField] private Color gizmoColor = Color.green;*/
 
     private System.Random rng;
-
+    
     private void Awake()
     {
         rng = new System.Random(seed);
@@ -43,8 +46,12 @@ public class SegmentGen : MonoBehaviour
     {
         if (other.CompareTag("Segment"))
         {
+            SegmentScript segScript = other.GetComponent<SegmentScript>();
+            if (segScript == null || _segments.Contains(segScript)) return;
+            
+            _segments.Add(other.GetComponent<SegmentScript>());
+            
             GameObject segment = other.gameObject;
-            //segment.GetComponent<Collider2D>().enabled = false;
             
             Vector3 newPosition = segment.transform.position + new Vector3(0f, segmentHeight, 0f);
             
@@ -52,11 +59,26 @@ public class SegmentGen : MonoBehaviour
             segmentScript.transform.position = newPosition;
             segmentScript.transform.rotation = Quaternion.identity;
             
-            segmentScript.GetComponent<Collider2D>().enabled = true;
-            
             segmentScript.InitializeSegment(rng);
             previousSegment = segmentScript.gameObject;
         }
+    }
+    private void RemoveSegment(SegmentScript segment)
+    {
+        if (_segments.Contains(segment))
+        {
+            _segments.Remove(segment);
+        }
+    }
+    
+    private void OnEnable()
+    {
+        SegmentScript.OnSegmentDeactivation += RemoveSegment;
+    }
+
+    private void OnDisable()
+    {
+        SegmentScript.OnSegmentDeactivation -= RemoveSegment;
     }
     
     /*private void OnDrawGizmos()
