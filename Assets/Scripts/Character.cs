@@ -114,7 +114,8 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         if (segmentDetector.segments.Count <= 0)
         {
-            Debug.Log("You Died!");
+            //Debug.Log("You Died!");
+            HighScoreManager.Instance.ShowSaveHighscorePanel();
             return;
         }
         

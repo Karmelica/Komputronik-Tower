@@ -3,43 +3,24 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System;
-
-[System.Serializable]
-public class PlayerScore
-{
-    public string email;
-    public string name;
-    public float score;
-    public string date;
-
-    public PlayerScore(string email, string name, float score)
-    {
-        this.email = email;
-        this.name = name;
-        this.score = score;
-        this.date = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-    }
-}
+using Dan.Main;
 
 public class HighScoreManager : MonoBehaviour
 {
     public static HighScoreManager Instance;
+    private string publicLeaderboardKey = "88e3d223505ea86807694065498f0b36ec49e2f3ea09970d31d77d5af4d5807b";
 
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TextMeshProUGUI highScoreText;
-    [SerializeField] private TextMeshProUGUI currentPlayerText;
-    [SerializeField] private TextMeshProUGUI leaderboardText;
-    [SerializeField] private GameObject loginPanel;
+    [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private GameObject gameUI;
-    [SerializeField] private GameObject leaderboardPanel;
 
     private string currentPlayerEmail = "";
     private string currentPlayerName = "";
 
     private const string CURRENT_PLAYER_KEY = "CurrentPlayer";
     private const string PLAYER_NAME_KEY = "PlayerName";
-    private const string LEADERBOARD_KEY = "Leaderboard";
 
     private void Awake()
     {
@@ -47,7 +28,6 @@ public class HighScoreManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadCurrentPlayer();
         }
         else if (Instance != this)
         {
@@ -57,18 +37,23 @@ public class HighScoreManager : MonoBehaviour
 
     private void Start()
     {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
-        {
-            ShowLoginPanel();
-        }
-        else
-        {
-            ShowGameUI();
-            UpdateHighScoreDisplay();
-        }
+        GetLeaderboard();
     }
 
-    public void LoginPlayer()
+    public void GetLeaderboard()
+    {
+        LeaderboardCreator.GetLeaderboard(publicLeaderboardKey, leaderboard =>
+        {
+            if (leaderboard.Length > 0) highScoreText.text = leaderboard[0].Extra + ": " + leaderboard[0].Score.ToString();
+        });
+    }
+
+    public void NewLeaderboardEntry(string playerName, string playerEmail, int score)
+    {
+        LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, playerEmail, score, playerName);
+    }
+
+    public void SaveNewScore()
     {
         string email = emailInputField.text.Trim();
         string name = nameInputField.text.Trim();
@@ -84,221 +69,32 @@ public class HighScoreManager : MonoBehaviour
             Debug.LogWarning("Nieprawidłowy format email!");
             return;
         }
+        
+        if(string.IsNullOrEmpty(name))
+        {
+            Debug.LogWarning("Nazwa gracza nie może być pusta!");
+            return;
+        }
 
         currentPlayerEmail = email;
-        currentPlayerName = string.IsNullOrEmpty(name) ? email : name;
+        currentPlayerName = name;
 
-        SaveCurrentPlayer();
-        ShowGameUI();
-        UpdateHighScoreDisplay();
+        NewLeaderboardEntry(currentPlayerName, currentPlayerEmail, Score.Instance.GetCurrentScore());
+        Score.Instance.RestartGame();
     }
 
-    public void LogoutPlayer()
+    public void ShowSaveHighscorePanel()
     {
-        currentPlayerEmail = "";
-        currentPlayerName = "";
-        PlayerPrefs.DeleteKey(CURRENT_PLAYER_KEY);
-        PlayerPrefs.DeleteKey(PLAYER_NAME_KEY);
-        PlayerPrefs.Save();
-        ShowLoginPanel();
-    }
-
-    public void UpdateScore(float newScore)
-    {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
-            return;
-
-        float currentHighScore = GetPlayerHighScore(currentPlayerEmail);
-        
-        if (newScore > currentHighScore)
-        {
-            SavePlayerHighScore(currentPlayerEmail, newScore, currentPlayerName);
-            UpdateLeaderboard(currentPlayerEmail, currentPlayerName, newScore);
-            UpdateHighScoreDisplay();
-            
-            // Pokaż komunikat o nowym rekordzie
-            Debug.Log($"Nowy rekord! {newScore:F0} punktów!");
-        }
-    }
-
-    public void ShowLeaderboard()
-    {
-        if (leaderboardPanel != null)
-        {
-            leaderboardPanel.SetActive(true);
-            UpdateLeaderboardDisplay();
-        }
-    }
-
-    public void HideLeaderboard()
-    {
-        if (leaderboardPanel != null)
-        {
-            leaderboardPanel.SetActive(false);
-        }
-    }
-
-    private void UpdateLeaderboard(string playerEmail, string playerName, float score)
-    {
-        List<PlayerScore> leaderboard = GetLeaderboard();
-        
-        // Usuń poprzedni wynik tego gracza
-        leaderboard.RemoveAll(p => p.email == playerEmail);
-        
-        // Dodaj nowy wynik
-        leaderboard.Add(new PlayerScore(playerEmail, playerName, score));
-        
-        // Sortuj malejąco i pozostaw tylko top 10
-        leaderboard = leaderboard.OrderByDescending(p => p.score).Take(10).ToList();
-        
-        SaveLeaderboard(leaderboard);
-    }
-
-    private List<PlayerScore> GetLeaderboard()
-    {
-        string json = PlayerPrefs.GetString(LEADERBOARD_KEY, "");
-        if (string.IsNullOrEmpty(json))
-        {
-            return new List<PlayerScore>();
-        }
-
-        try
-        {
-            PlayerScoreList list = JsonUtility.FromJson<PlayerScoreList>(json);
-            return list.scores ?? new List<PlayerScore>();
-        }
-        catch
-        {
-            return new List<PlayerScore>();
-        }
-    }
-
-    private void SaveLeaderboard(List<PlayerScore> leaderboard)
-    {
-        PlayerScoreList list = new PlayerScoreList { scores = leaderboard };
-        string json = JsonUtility.ToJson(list);
-        PlayerPrefs.SetString(LEADERBOARD_KEY, json);
-        PlayerPrefs.Save();
-    }
-
-    private void UpdateLeaderboardDisplay()
-    {
-        if (leaderboardText == null) return;
-
-        List<PlayerScore> leaderboard = GetLeaderboard();
-        string displayText = "🏆 RANKING GRACZY 🏆\n\n";
-
-        if (leaderboard.Count == 0)
-        {
-            displayText += "Brak wyników";
-        }
-        else
-        {
-            for (int i = 0; i < leaderboard.Count; i++)
-            {
-                PlayerScore player = leaderboard[i];
-                string medal = i == 0 ? "🥇" : i == 1 ? "🥈" : i == 2 ? "🥉" : $"{i + 1}.";
-                displayText += $"{medal} {player.name}: {player.score:F0} pkt\n";
-            }
-        }
-
-        leaderboardText.text = displayText;
-    }
-
-    public float GetPlayerHighScore(string playerEmail)
-    {
-        return PlayerPrefs.GetFloat($"HighScore_{playerEmail}", 0f);
-    }
-
-    public string GetPlayerName(string playerEmail)
-    {
-        return PlayerPrefs.GetString($"Name_{playerEmail}", playerEmail);
-    }
-
-    private void SavePlayerHighScore(string playerEmail, float score, string playerName)
-    {
-        PlayerPrefs.SetFloat($"HighScore_{playerEmail}", score);
-        PlayerPrefs.SetString($"Name_{playerEmail}", playerName);
-        PlayerPrefs.Save();
-    }
-
-    private void SaveCurrentPlayer()
-    {
-        PlayerPrefs.SetString(CURRENT_PLAYER_KEY, currentPlayerEmail);
-        PlayerPrefs.SetString(PLAYER_NAME_KEY, currentPlayerName);
-        PlayerPrefs.Save();
-    }
-
-    private void LoadCurrentPlayer()
-    {
-        currentPlayerEmail = PlayerPrefs.GetString(CURRENT_PLAYER_KEY, "");
-        currentPlayerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "");
-    }
-
-    private void UpdateHighScoreDisplay()
-    {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
-            return;
-
-        float highScore = GetPlayerHighScore(currentPlayerEmail);
-        int ranking = GetPlayerRanking(currentPlayerEmail);
-        
-        if (highScoreText != null)
-        {
-            string rankText = ranking > 0 ? $" (#{ranking})" : "";
-            highScoreText.text = $"Najlepszy wynik: {highScore:F0}{rankText}";
-        }
-        
-        if (currentPlayerText != null)
-            currentPlayerText.text = $"Gracz: {currentPlayerName}";
-    }
-
-    private int GetPlayerRanking(string playerEmail)
-    {
-        List<PlayerScore> leaderboard = GetLeaderboard();
-        for (int i = 0; i < leaderboard.Count; i++)
-        {
-            if (leaderboard[i].email == playerEmail)
-            {
-                return i + 1;
-            }
-        }
-        return 0;
-    }
-
-    public void ClearAllData()
-    {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            // W przeglądarce wyczyść tylko dane gry, nie wylogowuj
-            PlayerPrefs.DeleteKey(LEADERBOARD_KEY);
-            
-            // Wyczyść wszystkie wyniki graczy
-            List<PlayerScore> leaderboard = GetLeaderboard();
-            foreach (var player in leaderboard)
-            {
-                PlayerPrefs.DeleteKey($"HighScore_{player.email}");
-                PlayerPrefs.DeleteKey($"Name_{player.email}");
-            }
-            
-            PlayerPrefs.Save();
-            UpdateHighScoreDisplay();
-            Debug.Log("Wszystkie wyniki zostały wyczyszczone!");
-        }
-    }
-
-    private void ShowLoginPanel()
-    {
-        if (loginPanel != null) loginPanel.SetActive(true);
+        if (saveScorePanel != null) saveScorePanel.SetActive(true);
         if (gameUI != null) gameUI.SetActive(false);
-        Character.CanMove = !loginPanel.activeInHierarchy;
+        Character.CanMove = !saveScorePanel.activeInHierarchy;
     }
 
     private void ShowGameUI()
     {
-        if (loginPanel != null) loginPanel.SetActive(false);
+        if (saveScorePanel != null) saveScorePanel.SetActive(false);
         if (gameUI != null) gameUI.SetActive(true);
-        Character.CanMove = !loginPanel.activeInHierarchy;
+        Character.CanMove = !saveScorePanel.activeInHierarchy;
     }
 
     private static bool IsEmailValid(string email)
@@ -313,10 +109,4 @@ public class HighScoreManager : MonoBehaviour
             return false;
         }
     }
-}
-
-[System.Serializable]
-public class PlayerScoreList
-{
-    public List<PlayerScore> scores;
 }

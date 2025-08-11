@@ -1712,7 +1712,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1681474383}
         m_TargetAssemblyTypeName: HighScoreManager, Assembly-CSharp
-        m_MethodName: LoginPlayer
+        m_MethodName: SaveNewScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

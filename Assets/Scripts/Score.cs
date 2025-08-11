@@ -1,5 +1,6 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
@@ -49,21 +50,15 @@ public class Score : MonoBehaviour
         scoreMultiplier = multiplier;
     }
     
-    public float GetCurrentScore()
+    public int GetCurrentScore()
     {
-        return currentScore;
+        return (int)currentScore;
     }
     
     public void GameOver()
     {
         // Zatrzymaj dodawanie punktów
         Character.CanMove = false;
-        
-        // Zapisz wynik do HighScoreManager
-        if (HighScoreManager.Instance != null)
-        {
-            HighScoreManager.Instance.UpdateScore(currentScore);
-        }
         
         // Pokaż panel końca gry
         if (gameOverPanel != null)
@@ -90,6 +85,7 @@ public class Score : MonoBehaviour
         }
         
         Character.CanMove = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
     private void UpdateScoreDisplay()
