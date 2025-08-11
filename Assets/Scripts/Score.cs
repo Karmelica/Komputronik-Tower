@@ -1,46 +1,102 @@
-using System;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private float score = 0;
-    private float multiplier = 1f;
-    private Rigidbody2D _playerRb2D;
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private Character player;
+    [SerializeField] private TextMeshProUGUI gameOverScoreText;
+    [SerializeField] private GameObject gameOverPanel;
     
-    private float highestYPosition = 0f;
-
+    private float currentScore = 0f;
+    private float scoreMultiplier = 1f;
+    
+    public static Score Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     private void Start()
     {
-        if(!player.TryGetComponent<Rigidbody2D>(out _playerRb2D))
-        {
-            Debug.LogError("No Rigidbody2D component found on the player.", this);
-        }
-        ResetScore();
-    }
-
-    private void Update()
-    {
-        if (player.transform.position.y > highestYPosition)
-        {
-            multiplier = _playerRb2D.linearVelocity.magnitude * highestYPosition / 1000f;
-            multiplier = Mathf.Clamp(multiplier, 0.1f, 100f);
-            score += (player.transform.position.y - highestYPosition) * multiplier;
-            highestYPosition = player.transform.position.y;
-            
-            if (HighScoreManager.Instance != null)
-            {
-                HighScoreManager.Instance.UpdateScore(score);
-            }
-        }
-        scoreText.text = score.ToString("F0");
+        UpdateScoreDisplay();
     }
     
-    public void ResetScore()
+    private void Update()
     {
-        score = 0;
-        highestYPosition = player.transform.position.y;
+        // Zwiększaj wynik w czasie (punkty za przetrwanie)
+        if (Character.CanMove)
+        {
+            AddScore(Time.deltaTime * 10f * scoreMultiplier);
+        }
+    }
+    
+    public void AddScore(float points)
+    {
+        currentScore += points;
+        UpdateScoreDisplay();
+    }
+    
+    public void SetScoreMultiplier(float multiplier)
+    {
+        scoreMultiplier = multiplier;
+    }
+    
+    public float GetCurrentScore()
+    {
+        return currentScore;
+    }
+    
+    public void GameOver()
+    {
+        // Zatrzymaj dodawanie punktów
+        Character.CanMove = false;
+        
+        // Zapisz wynik do HighScoreManager
+        if (HighScoreManager.Instance != null)
+        {
+            HighScoreManager.Instance.UpdateScore(currentScore);
+        }
+        
+        // Pokaż panel końca gry
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        
+        // Zaktualizuj wyświetlany wynik końcowy
+        if (gameOverScoreText != null)
+        {
+            gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
+        }
+    }
+    
+    public void RestartGame()
+    {
+        currentScore = 0f;
+        scoreMultiplier = 1f;
+        UpdateScoreDisplay();
+        
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+        
+        Character.CanMove = true;
+    }
+    
+    private void UpdateScoreDisplay()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"Wynik: {currentScore:F0}";
+        }
     }
 }
