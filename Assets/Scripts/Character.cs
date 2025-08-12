@@ -33,6 +33,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private float _moveInput;
     private bool _isGrounded = true;
+    private bool _gameOver;
     
     private Vector2 _preCollisionVelocity;
     public static bool CanMove = true;
@@ -120,7 +121,9 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         if (segmentDetector.segments.Count <= 0)
         {
             //Debug.Log("You Died!");
-            HighScoreManager.Instance.ShowSaveHighscorePanel();
+            if (_gameOver) return;
+            _gameOver = true;
+            HighScoreManager.Instance.GameOver();
             return;
         }
         
