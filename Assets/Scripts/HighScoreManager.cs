@@ -299,6 +299,7 @@ public class HighScoreManager : MonoBehaviour
         if (loginPanel != null) loginPanel.SetActive(false);
         if (gameUI != null) gameUI.SetActive(true);
         Character.CanMove = !loginPanel.activeInHierarchy;
+        Time.timeScale = 1f;
     }
 
     private static bool IsEmailValid(string email)
