@@ -114,15 +114,16 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private void Start()
     {
         CanMove = true;
+        _gameOver = false;
     }
 
     private void Update()
     {
         if (segmentDetector.segments.Count <= 0)
         {
-            //Debug.Log("You Died!");
             if (_gameOver) return;
             _gameOver = true;
+            Debug.Log("You Died!");
             HighScoreManager.Instance.GameOver();
             return;
         }
