@@ -40,14 +40,19 @@ public class HighScoreManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
-        
+    }
+    
+    private void Start()
+    {
+        Time.timeScale = 1f;
         PrefsCheck();
+        UpdateScoreDisplay();
     }
     
     private void Update()
@@ -166,7 +171,7 @@ public class HighScoreManager : MonoBehaviour
     
     private void ShowSavePlayerPanel()
     {
-        Debug.Log("Wyświetlanie panelu zapisu danych gracza.");
+        Debug.Log("3. Wyświetlanie panelu zapisu danych gracza.");
         Character.CanMove = false;
         Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(false);
@@ -176,7 +181,7 @@ public class HighScoreManager : MonoBehaviour
 
     private void ShowGameUI()
     {
-        Debug.Log("Wyświetlanie panelu gry.");
+        Debug.Log("4. Wyświetlanie panelu gry.");
         Character.CanMove = true;
         Time.timeScale = 1f;
         if (gameOverPanel) gameOverPanel.SetActive(false);
@@ -186,7 +191,7 @@ public class HighScoreManager : MonoBehaviour
     
     private void ShowGameOverPanel()
     {
-        Debug.Log("Wyświetlanie panelu końca gry.");
+        Debug.Log("5. Wyświetlanie panelu końca gry.");
         Character.CanMove = false;
         Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(true);
@@ -221,7 +226,6 @@ public class HighScoreManager : MonoBehaviour
         currentScore = 0f;
         scoreMultiplier = 1f;
         SceneManager.LoadScene(0);
-        PrefsCheck();
     }
     
     #endregion
