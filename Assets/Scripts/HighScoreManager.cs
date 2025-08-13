@@ -1,307 +1,280 @@
-﻿using System.Collections.Generic;
+using System;using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Linq;
-using System;
-
-[System.Serializable]
-public class PlayerScore
-{
-    public string email;
-    public string name;
-    public float score;
-    public string date;
-
-    public PlayerScore(string email, string name, float score)
-    {
-        this.email = email;
-        this.name = name;
-        this.score = score;
-        this.date = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-    }
-}
+using Dan.Main;
+using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour
 {
+    #region Variables
+    
     public static HighScoreManager Instance;
+    private const string PublicLeaderboardKey = "88e3d223505ea86807694065498f0b36ec49e2f3ea09970d31d77d5af4d5807b";
 
+    [Header("Login Panel")]
+    [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
-    [SerializeField] private TextMeshProUGUI highScoreText;
-    [SerializeField] private TextMeshProUGUI currentPlayerText;
-    [SerializeField] private TextMeshProUGUI leaderboardText;
-    [SerializeField] private GameObject loginPanel;
-    [SerializeField] private GameObject gameUI;
-    [SerializeField] private GameObject leaderboardPanel;
 
     private string currentPlayerEmail = "";
     private string currentPlayerName = "";
+    
+    [Header("Game UI")]
+    [SerializeField] private GameObject gameUI;
+    [SerializeField] private List<TextMeshProUGUI> highScoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    
+    private float currentScore = 0f;
+    private float scoreMultiplier = 1f;
 
-    private const string CURRENT_PLAYER_KEY = "CurrentPlayer";
-    private const string PLAYER_NAME_KEY = "PlayerName";
-    private const string LEADERBOARD_KEY = "Leaderboard";
-
+    [Header("Game Over Panel")]
+    [SerializeField] private TextMeshProUGUI gameOverScoreText;
+    [SerializeField] private GameObject gameOverPanel;
+    
+    #endregion
+    
+    #region Unity Methods
+    
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadCurrentPlayer();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0) // Jeśli to scena główna
+        {
+            PrefsCheck();
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     private void Start()
     {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
+        PrefsCheck();
+    }
+    
+    private void Update()
+    
+    {
+        // Zwiększaj wynik w czasie (punkty za przetrwanie)
+        if (Character.CanMove)
         {
-            ShowLoginPanel();
+            AddScore(Time.deltaTime * 10f * scoreMultiplier);
+        }
+    }
+    
+    #endregion
+
+    #region Leaderboard Management
+
+    private void GetLeaderboard()
+    {
+        LeaderboardCreator.GetLeaderboard(PublicLeaderboardKey, leaderboard =>
+        {
+            int loopLenght = leaderboard.Length < highScoreText.Count ? leaderboard.Length : highScoreText.Count;
+            for (int i  = 0; i < loopLenght; i++)
+            {
+                highScoreText[i].text = leaderboard[i].Username + ": " + leaderboard[i].Score;
+            }
+        });
+    }
+
+    public void NewLeaderboardEntry(string playerName, string playerEmail, int score)
+    {
+        LeaderboardCreator.UploadNewEntry(PublicLeaderboardKey, playerName, score, playerEmail);
+    }
+    
+    #endregion
+    
+    #region PlayerPrefs
+
+    private void PrefsCheck()
+    {
+        if(PlayerPrefs.HasKey("PlayerEmail"))
+        {
+            LoadPlayerPrefs();
+            //GetLeaderboard();
+            ShowPanel(GameState.Playing);
         }
         else
         {
-            ShowGameUI();
-            UpdateHighScoreDisplay();
+            ShowPanel(GameState.Login);
         }
+        
+        UpdateScoreDisplay();
+    }
+    
+    private void SavePlayerPrefs()
+    {
+        PlayerPrefs.SetString("PlayerEmail", currentPlayerEmail);
+        PlayerPrefs.SetString("PlayerName", currentPlayerName);
+        PlayerPrefs.Save();
+    }
+    
+    private void LoadPlayerPrefs()
+    {
+        currentPlayerEmail = PlayerPrefs.GetString("PlayerEmail");
+        currentPlayerName = PlayerPrefs.GetString("PlayerName");
+    }
+    
+    private void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteKey("PlayerEmail");
+        PlayerPrefs.DeleteKey("PlayerName");
+        PlayerPrefs.Save();
     }
 
-    public void LoginPlayer()
-    {
-        string email = emailInputField.text.Trim();
-        string name = nameInputField.text.Trim();
+    #endregion
+    
+    #region Score Management
 
-        if (string.IsNullOrEmpty(email))
+    private void AddScore(float points)
+    {
+        currentScore += points;
+        UpdateScoreDisplay();
+    }
+    
+    private void UpdateScoreDisplay()
+    {
+        if (scoreText)
+        {
+            scoreText.text = $"Wynik: {currentScore:F0}";
+        }
+    }
+    
+    #endregion
+    
+    #region UI Interaction
+
+    private void ShowPanel(GameState gameState)
+    {
+        switch (gameState)
+        {
+            case GameState.Login:
+                ShowSavePlayerPanel();
+                break;
+            case GameState.Playing:
+                ShowGameUI();
+                break;
+            case GameState.GameOver:
+                ShowGameOverPanel();
+                break;
+            default:
+                Debug.LogWarning("Nieznany stan gry!");
+                break;
+        }
+    }
+    
+    private void ShowSavePlayerPanel()
+    {
+        Character.CanMove = false;
+        if (gameOverPanel) gameOverPanel.SetActive(false);
+        if (saveScorePanel) saveScorePanel.SetActive(true);
+        if (gameUI) gameUI.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    private void ShowGameUI()
+    {
+        Character.CanMove = true;
+        if (gameOverPanel) gameOverPanel.SetActive(false);
+        if (saveScorePanel) saveScorePanel.SetActive(false);
+        if (gameUI) gameUI.SetActive(true);
+        Time.timeScale = 1f;
+    }
+    
+    private void ShowGameOverPanel()
+    {
+        Character.CanMove = false;
+        if (gameOverPanel) gameOverPanel.SetActive(true);
+        if (saveScorePanel) saveScorePanel.SetActive(false);
+        if (gameUI) gameUI.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public void DeletePlayerDataAndRestart()
+    {
+        DeletePlayerPrefs();
+        RestartGame();
+    }
+    
+    #endregion
+    
+    #region Game Over Management
+    
+    public void GameOver()
+    {
+        // Zatrzymaj dodawanie punktów
+        Character.CanMove = false;
+        
+        // Pokaż panel końca gry
+        ShowPanel(GameState.GameOver);
+        
+        // Zaktualizuj wyświetlany wynik końcowy
+        if (gameOverScoreText)
+        {
+            gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
+        }
+        
+        NewLeaderboardEntry(currentPlayerName, currentPlayerEmail, Mathf.RoundToInt(currentScore));
+    }
+
+    public void RestartGame()
+    {
+        currentScore = 0f;
+        scoreMultiplier = 1f;
+        SceneManager.LoadScene(0);
+    }
+    
+    #endregion
+    
+    #region Player Data Management
+    
+    public void SetPlayerData()
+    {
+        string playerEmail = emailInputField.text.Trim();
+        string playerName = nameInputField.text.Trim();
+
+        if (string.IsNullOrEmpty(playerEmail))
         {
             Debug.LogWarning("Email nie może być pusty!");
             return;
         }
 
-        if (!IsEmailValid(email))
+        if (!IsEmailValid(playerEmail))
         {
             Debug.LogWarning("Nieprawidłowy format email!");
             return;
         }
-
-        currentPlayerEmail = email;
-        currentPlayerName = string.IsNullOrEmpty(name) ? email : name;
-
-        SaveCurrentPlayer();
-        ShowGameUI();
-        UpdateHighScoreDisplay();
-    }
-
-    public void LogoutPlayer()
-    {
-        currentPlayerEmail = "";
-        currentPlayerName = "";
-        PlayerPrefs.DeleteKey(CURRENT_PLAYER_KEY);
-        PlayerPrefs.DeleteKey(PLAYER_NAME_KEY);
-        PlayerPrefs.Save();
-        ShowLoginPanel();
-    }
-
-    public void UpdateScore(float newScore)
-    {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
+        
+        if(string.IsNullOrEmpty(playerName))
+        {
+            Debug.LogWarning("Nazwa gracza nie może być pusta!");
             return;
+        }
 
-        float currentHighScore = GetPlayerHighScore(currentPlayerEmail);
+        currentPlayerEmail = playerEmail;
+        currentPlayerName = playerName;
         
-        if (newScore > currentHighScore)
-        {
-            SavePlayerHighScore(currentPlayerEmail, newScore, currentPlayerName);
-            UpdateLeaderboard(currentPlayerEmail, currentPlayerName, newScore);
-            UpdateHighScoreDisplay();
-            
-            // Pokaż komunikat o nowym rekordzie
-            Debug.Log($"Nowy rekord! {newScore:F0} punktów!");
-        }
-    }
-
-    public void ShowLeaderboard()
-    {
-        if (leaderboardPanel != null)
-        {
-            leaderboardPanel.SetActive(true);
-            UpdateLeaderboardDisplay();
-        }
-    }
-
-    public void HideLeaderboard()
-    {
-        if (leaderboardPanel != null)
-        {
-            leaderboardPanel.SetActive(false);
-        }
-    }
-
-    private void UpdateLeaderboard(string playerEmail, string playerName, float score)
-    {
-        List<PlayerScore> leaderboard = GetLeaderboard();
+        SavePlayerPrefs();
         
-        // Usuń poprzedni wynik tego gracza
-        leaderboard.RemoveAll(p => p.email == playerEmail);
-        
-        // Dodaj nowy wynik
-        leaderboard.Add(new PlayerScore(playerEmail, playerName, score));
-        
-        // Sortuj malejąco i pozostaw tylko top 10
-        leaderboard = leaderboard.OrderByDescending(p => p.score).Take(10).ToList();
-        
-        SaveLeaderboard(leaderboard);
+        ShowPanel(GameState.Playing);
     }
-
-    private List<PlayerScore> GetLeaderboard()
-    {
-        string json = PlayerPrefs.GetString(LEADERBOARD_KEY, "");
-        if (string.IsNullOrEmpty(json))
-        {
-            return new List<PlayerScore>();
-        }
-
-        try
-        {
-            PlayerScoreList list = JsonUtility.FromJson<PlayerScoreList>(json);
-            return list.scores ?? new List<PlayerScore>();
-        }
-        catch
-        {
-            return new List<PlayerScore>();
-        }
-    }
-
-    private void SaveLeaderboard(List<PlayerScore> leaderboard)
-    {
-        PlayerScoreList list = new PlayerScoreList { scores = leaderboard };
-        string json = JsonUtility.ToJson(list);
-        PlayerPrefs.SetString(LEADERBOARD_KEY, json);
-        PlayerPrefs.Save();
-    }
-
-    private void UpdateLeaderboardDisplay()
-    {
-        if (leaderboardText == null) return;
-
-        List<PlayerScore> leaderboard = GetLeaderboard();
-        string displayText = "🏆 RANKING GRACZY 🏆\n\n";
-
-        if (leaderboard.Count == 0)
-        {
-            displayText += "Brak wyników";
-        }
-        else
-        {
-            for (int i = 0; i < leaderboard.Count; i++)
-            {
-                PlayerScore player = leaderboard[i];
-                string medal = i == 0 ? "🥇" : i == 1 ? "🥈" : i == 2 ? "🥉" : $"{i + 1}.";
-                displayText += $"{medal} {player.name}: {player.score:F0} pkt\n";
-            }
-        }
-
-        leaderboardText.text = displayText;
-    }
-
-    public float GetPlayerHighScore(string playerEmail)
-    {
-        return PlayerPrefs.GetFloat($"HighScore_{playerEmail}", 0f);
-    }
-
-    public string GetPlayerName(string playerEmail)
-    {
-        return PlayerPrefs.GetString($"Name_{playerEmail}", playerEmail);
-    }
-
-    private void SavePlayerHighScore(string playerEmail, float score, string playerName)
-    {
-        PlayerPrefs.SetFloat($"HighScore_{playerEmail}", score);
-        PlayerPrefs.SetString($"Name_{playerEmail}", playerName);
-        PlayerPrefs.Save();
-    }
-
-    private void SaveCurrentPlayer()
-    {
-        PlayerPrefs.SetString(CURRENT_PLAYER_KEY, currentPlayerEmail);
-        PlayerPrefs.SetString(PLAYER_NAME_KEY, currentPlayerName);
-        PlayerPrefs.Save();
-    }
-
-    private void LoadCurrentPlayer()
-    {
-        currentPlayerEmail = PlayerPrefs.GetString(CURRENT_PLAYER_KEY, "");
-        currentPlayerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "");
-    }
-
-    private void UpdateHighScoreDisplay()
-    {
-        if (string.IsNullOrEmpty(currentPlayerEmail))
-            return;
-
-        float highScore = GetPlayerHighScore(currentPlayerEmail);
-        int ranking = GetPlayerRanking(currentPlayerEmail);
-        
-        if (highScoreText != null)
-        {
-            string rankText = ranking > 0 ? $" (#{ranking})" : "";
-            highScoreText.text = $"Najlepszy wynik: {highScore:F0}{rankText}";
-        }
-        
-        if (currentPlayerText != null)
-            currentPlayerText.text = $"Gracz: {currentPlayerName}";
-    }
-
-    private int GetPlayerRanking(string playerEmail)
-    {
-        List<PlayerScore> leaderboard = GetLeaderboard();
-        for (int i = 0; i < leaderboard.Count; i++)
-        {
-            if (leaderboard[i].email == playerEmail)
-            {
-                return i + 1;
-            }
-        }
-        return 0;
-    }
-
-    public void ClearAllData()
-    {
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
-        {
-            // W przeglądarce wyczyść tylko dane gry, nie wylogowuj
-            PlayerPrefs.DeleteKey(LEADERBOARD_KEY);
-            
-            // Wyczyść wszystkie wyniki graczy
-            List<PlayerScore> leaderboard = GetLeaderboard();
-            foreach (var player in leaderboard)
-            {
-                PlayerPrefs.DeleteKey($"HighScore_{player.email}");
-                PlayerPrefs.DeleteKey($"Name_{player.email}");
-            }
-            
-            PlayerPrefs.Save();
-            UpdateHighScoreDisplay();
-            Debug.Log("Wszystkie wyniki zostały wyczyszczone!");
-        }
-    }
-
-    private void ShowLoginPanel()
-    {
-        if (loginPanel != null) loginPanel.SetActive(true);
-        if (gameUI != null) gameUI.SetActive(false);
-        Character.CanMove = !loginPanel.activeInHierarchy;
-    }
-
-    private void ShowGameUI()
-    {
-        if (loginPanel != null) loginPanel.SetActive(false);
-        if (gameUI != null) gameUI.SetActive(true);
-        Character.CanMove = !loginPanel.activeInHierarchy;
-        Time.timeScale = 1f;
-    }
-
+    
     private static bool IsEmailValid(string email)
     {
         try
@@ -314,10 +287,13 @@ public class HighScoreManager : MonoBehaviour
             return false;
         }
     }
+    
+    #endregion
 }
 
-[System.Serializable]
-public class PlayerScoreList
+public enum GameState
 {
-    public List<PlayerScore> scores;
+    Login,
+    Playing,
+    GameOver
 }

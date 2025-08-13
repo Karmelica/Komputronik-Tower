@@ -8,11 +8,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     [Header("Mobile Controllers")]
     [SerializeField] private GameObject mobileMoveController;
     [SerializeField] private GameObject mobileJumpController;
-
-    [Header("Initialization Text")]
-    [SerializeField] private GameObject startText;
     
-    public bool gameStarted = false;
     private bool usingTouch;
     
     private void Start()
