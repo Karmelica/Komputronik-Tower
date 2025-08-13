@@ -41,25 +41,13 @@ public class HighScoreManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
-    }
-    
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-    
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == 0) // Jeśli to scena główna
-        {
-            PrefsCheck();
-        }
+        
+        PrefsCheck();
     }
     
     private void Update()
@@ -233,6 +221,7 @@ public class HighScoreManager : MonoBehaviour
         currentScore = 0f;
         scoreMultiplier = 1f;
         SceneManager.LoadScene(0);
+        PrefsCheck();
     }
     
     #endregion
