@@ -37,6 +37,10 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool _isGrounded = true;
     private bool _gameOver;
     
+    // Dodana zmienna do obsługi opóźnienia sprawdzania segmentów
+    private float _gameStartDelay = 1f;
+    private float _gameStartTimer = 0f;
+    
     private Vector2 _preCollisionVelocity;
     public static bool CanMove = true;
 
@@ -102,20 +106,28 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         CanMove = true;
         _gameOver = false;
+        _gameStartTimer = _gameStartDelay;
     }
 
     private void Update()
     {
-        if (segmentDetector.segments.Count <= 0)
+        // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
+        if (_gameStartTimer <= 0 && segmentDetector.segments.Count <= 0)
         {
-            if (_gameOver) return;
-            _gameOver = true;
-            Debug.Log("You Died!");
-            HighScoreManager.Instance.GameOver();
-            return;
+            if (!_gameOver)
+            {
+                _gameOver = true;
+                Debug.Log("You Died!");
+                HighScoreManager.Instance.GameOver();
+            }
         }
         
         _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+        
+        if (_gameStartTimer > 0)
+        {
+            _gameStartTimer -= Time.deltaTime;
+        }
         
         // timer for boost
         if (_wallBoostTimer > 0)
