@@ -41,29 +41,12 @@ public class HighScoreManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
-    }
-    
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == 0) // Jeśli to scena główna
-        {
-            PrefsCheck();
-        }
-    }
-    
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void Start()
-    {
+        
         PrefsCheck();
     }
     
@@ -106,12 +89,14 @@ public class HighScoreManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("PlayerEmail"))
         {
+            Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
             LoadPlayerPrefs();
-            //GetLeaderboard();
+            GetLeaderboard();
             ShowPanel(GameState.Playing);
         }
         else
         {
+            Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
             ShowPanel(GameState.Login);
         }
         
@@ -181,36 +166,34 @@ public class HighScoreManager : MonoBehaviour
     
     private void ShowSavePlayerPanel()
     {
+        Debug.Log("Wyświetlanie panelu zapisu danych gracza.");
         Character.CanMove = false;
+        Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(false);
         if (saveScorePanel) saveScorePanel.SetActive(true);
         if (gameUI) gameUI.SetActive(false);
-        Time.timeScale = 0f;
     }
 
     private void ShowGameUI()
     {
+        Debug.Log("Wyświetlanie panelu gry.");
         Character.CanMove = true;
+        Time.timeScale = 1f;
         if (gameOverPanel) gameOverPanel.SetActive(false);
         if (saveScorePanel) saveScorePanel.SetActive(false);
         if (gameUI) gameUI.SetActive(true);
-        Time.timeScale = 1f;
     }
     
     private void ShowGameOverPanel()
     {
+        Debug.Log("Wyświetlanie panelu końca gry.");
         Character.CanMove = false;
+        Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(true);
         if (saveScorePanel) saveScorePanel.SetActive(false);
         if (gameUI) gameUI.SetActive(false);
-        Time.timeScale = 0f;
     }
 
-    public void DeletePlayerDataAndRestart()
-    {
-        DeletePlayerPrefs();
-        RestartGame();
-    }
     
     #endregion
     
@@ -238,6 +221,7 @@ public class HighScoreManager : MonoBehaviour
         currentScore = 0f;
         scoreMultiplier = 1f;
         SceneManager.LoadScene(0);
+        PrefsCheck();
     }
     
     #endregion
@@ -273,6 +257,12 @@ public class HighScoreManager : MonoBehaviour
         SavePlayerPrefs();
         
         ShowPanel(GameState.Playing);
+    }
+    
+    public void DeletePlayerDataAndRestart()
+    {
+        DeletePlayerPrefs();
+        RestartGame();
     }
     
     private static bool IsEmailValid(string email)
