@@ -16,7 +16,7 @@ public class DeviceRecognitionScript : MonoBehaviour
         mobileMoveController.SetActive(false);
         mobileJumpController.SetActive(false);
         //startText.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     private void Update()

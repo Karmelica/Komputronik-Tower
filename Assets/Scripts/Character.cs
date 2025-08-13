@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 {
+    #region Variables
+    
     [Header("Movement Settings")]
     [SerializeField] public float jumpForce = 5f;
     [SerializeField, Min(0)] private float moveSpeed = 20f;
@@ -45,18 +47,10 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool _canWallBoost = false;
     private Vector2 _lastWallNormal;
     
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (!other.gameObject.CompareTag("Wall")) return;
-        
-        ContactPoint2D contact = other.contacts[0];
-        _lastWallNormal = contact.normal;
-        _wallBoostTimer = wallBoostTimeWindow;
-        
-        _canWallBoost = rb2D.linearVelocity.y >= 0f && Mathf.Abs(_preCollisionVelocity.x) >= bounceSpeedTreshhold;
-        
-        GiveVelocityBounce(contact.normal, bounceX, bounceY);
-    }
+
+    #endregion
+
+    #region Velocity
 
     private void GiveVelocityBounce(Vector2 contactNormal, float horizontalMultiplier, float verticalMultiplier)
     {
@@ -70,33 +64,26 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
             verticalBounce);
     }
     
-    // Invoked when "Move" action is either started, performed or canceled.
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        _moveInput = context.ReadValue<Vector2>().x;
-        
-        if (_inputInRange && _canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
-        {
-            GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
-            _canWallBoost = false;
-            _wallBoostTimer = 0f;
-            _playerBoostTimer = 0f;
-        }
-    }
-
-    void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
-    {
-        if (_isGrounded && CanMove)
-        {
-            float velocityBoost = CheckVelocity(rb2D, 6f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.33f : 2f;
-            rb2D.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
-            _isGrounded = false;
-        }
-    }
-    
     private bool CheckVelocity(Rigidbody2D body, float velocity)
     {
         return Mathf.Abs(body.linearVelocity.x) >= velocity;
+    }
+
+    #endregion
+
+    #region Unity Methods
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!other.gameObject.CompareTag("Wall")) return;
+        
+        ContactPoint2D contact = other.contacts[0];
+        _lastWallNormal = contact.normal;
+        _wallBoostTimer = wallBoostTimeWindow;
+        
+        _canWallBoost = rb2D.linearVelocity.y >= 0f && Mathf.Abs(_preCollisionVelocity.x) >= bounceSpeedTreshhold;
+        
+        GiveVelocityBounce(contact.normal, bounceX, bounceY);
     }
     
     private void Awake()
@@ -182,7 +169,35 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         _input.Dispose();
     }
     
+
+    #endregion
+    
     #region InputActionRegion
+    
+    // Invoked when "Move" action is either started, performed or canceled.
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _moveInput = context.ReadValue<Vector2>().x;
+        
+        if (_inputInRange && _canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
+        {
+            GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
+            _canWallBoost = false;
+            _wallBoostTimer = 0f;
+            _playerBoostTimer = 0f;
+        }
+    }
+    
+    void InputSystemActions.IPlayerActions.OnJump(InputAction.CallbackContext context)
+    {
+        if (_isGrounded && CanMove)
+        {
+            float velocityBoost = CheckVelocity(rb2D, 6f) ? Mathf.Abs(rb2D.linearVelocity.x) * 0.33f : 2f;
+            rb2D.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
+            _isGrounded = false;
+        }
+    }
+    
     public void OnCrouch(InputAction.CallbackContext context)
     {
         return;
@@ -202,12 +217,12 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnTouch(InputAction.CallbackContext context)
     {
-        //throw new NotImplementedException();
+        return;
     }
 
     public void OnAnyKey(InputAction.CallbackContext context)
     {
-        //throw new NotImplementedException();
+        return;
     }
 
     public void OnLook(InputAction.CallbackContext context)
