@@ -1,71 +1,72 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-
+[RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
+    [SerializeField] private PlatformSO platformSo;
+    
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
-    private bool _isGravityEnabled;
-    private float _posY;
-    private bool _isFalling;
-
-    private Transform _cameraTransform;
+    private float _initialPosition;
+    
     private Coroutine _gravityCoroutine;
+    private PlatformEffector2D effector2D;
 
     private void Awake()
     {
-        _cameraTransform = Camera.main.transform;
         if (!TryGetComponent<Collider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
             Debug.LogError("No Rigidbody2D component found on the character.", this);
-        _posY = transform.localPosition.y;
+        _initialPosition = transform.localPosition.y;
+        
+        // new material instance
+        PhysicsMaterial2D material = new PhysicsMaterial2D
+        {
+            friction = platformSo.friction,
+            bounciness = platformSo.bounciness
+        };
+        
+        _platformCollider.sharedMaterial = material;
     }
-    
+
     private void OnEnable()
     {
         DisableGravity();
+        StartCoroutine(EnableGravity(10f));
     }
-
-    private void Update()
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-            if (_cameraTransform.position.y - 1f < transform.position.y) {
-                _platformCollider.enabled = false;
-            }
-            else if (_cameraTransform.transform.position.y - 1.1f >= transform.position.y && !_isFalling) {
-                _platformCollider.enabled = true;
-                if (!_isGravityEnabled)
-                    _gravityCoroutine = StartCoroutine(EnableGravity());
-            }
+        if (!collision.gameObject.CompareTag("Player")) return;
+        
+        ContactPoint2D contact = collision.GetContact(0);
+        if (contact.normal.y < -0.5f) // Platform's top is being hit
+        {
+            StartCoroutine(EnableGravity(platformSo.durationToFall));
+        }
     }
-
+    
     private void DisableGravity()
     {
         if(_gravityCoroutine != null) {
             StopCoroutine(_gravityCoroutine);
             _gravityCoroutine = null;
         }
-        _isFalling = false;
         _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         _rigidbody2D.gravityScale = 0f;
-        transform.localPosition = new Vector3(transform.localPosition.x, _posY, transform.localPosition.z);
-        _platformCollider.enabled = false;
-        _isGravityEnabled = false;
+        transform.localPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
     }
     
-    private IEnumerator EnableGravity()
+    private IEnumerator EnableGravity(float timeToFall)
     {
-        _isGravityEnabled = true;
-        yield return new WaitForSeconds(10f);
-        _isFalling = true;
+        yield return new WaitForSeconds(timeToFall);
         _platformCollider.enabled = false;
         _rigidbody2D.gravityScale = 1f;
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        // yield return new WaitForSeconds(3f);
     }
 }
