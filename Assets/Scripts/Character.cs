@@ -199,6 +199,17 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         return;
     }
+
+    public void OnTouch(InputAction.CallbackContext context)
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void OnAnyKey(InputAction.CallbackContext context)
+    {
+        //throw new NotImplementedException();
+    }
+
     public void OnLook(InputAction.CallbackContext context)
     {
         return;
