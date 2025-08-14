@@ -1128,6 +1128,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1441882650526033418, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9.399902
+      objectReference: {fileID: 0}
     - target: {fileID: 2622622600549763426, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1459,6 +1463,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: jumpForce
+      value: 5.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: bounceBoostX
       value: 1.5
       objectReference: {fileID: 0}
@@ -1500,6 +1508,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
