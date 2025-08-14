@@ -5,6 +5,7 @@ public class PlatformSO : ScriptableObject
 {
     [Header("Platform Settings")]
     public Sprite sprite;
+    public Color debugColor;
     public float durationToFall;
     
     [Header("Material settigns")]

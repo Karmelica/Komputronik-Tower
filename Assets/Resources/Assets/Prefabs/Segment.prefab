@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &467179871916249421
 Transform:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &6279893274483375412
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -309,6 +309,14 @@ MonoBehaviour:
   - {fileID: 267768522844245221}
   - {fileID: 4652565933952731247}
   - {fileID: 7418308592967569297}
+  spawnPoints: []
+  platformTypes:
+  - platformType: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+    spawningChance: 50
+  - platformType: {fileID: 11400000, guid: f59d48a7ec49e7f418b427cece4fc0b8, type: 2}
+    spawningChance: 30
+  - platformType: {fileID: 11400000, guid: 2aa74e1c410c3e3499e5ce466f14951a, type: 2}
+    spawningChance: 15
 --- !u!1 &932029065129086651
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &522031751110912905
 Transform:
   m_ObjectHideFlags: 0
@@ -439,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &1316606777495681058
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -516,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5891607489018436197
 Transform:
   m_ObjectHideFlags: 0
@@ -626,7 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &7992085253086421926
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -759,7 +767,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -893,7 +901,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -971,7 +979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8853221006833214099
 Transform:
   m_ObjectHideFlags: 0
@@ -1081,7 +1089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &1008937728698364529
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1158,7 +1166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &327158656853189041
 Transform:
   m_ObjectHideFlags: 0
@@ -1268,7 +1276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &5063400832479695201
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1345,7 +1353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4785953778375839969
 Transform:
   m_ObjectHideFlags: 0
@@ -1455,7 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &4646739880514474563
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1532,7 +1540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5079423722673910334
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,7 +1650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &1634843764067491088
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1775,7 +1783,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2040,7 +2048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &422937057021513173
 Transform:
   m_ObjectHideFlags: 0
@@ -2150,7 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &2704306882518004433
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2283,7 +2291,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2361,7 +2369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8847580857772526493
 Transform:
   m_ObjectHideFlags: 0
@@ -2471,7 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &6684184873133240648
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2548,7 +2556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5850348583058950689
 Transform:
   m_ObjectHideFlags: 0
@@ -2658,7 +2666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformSo: {fileID: 0}
 --- !u!70 &2670951028846188437
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
