@@ -52,6 +52,7 @@ public class HighScoreManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         PrefsCheck();
+        GetLeaderboard();
         UpdateScoreDisplay();
     }
     
