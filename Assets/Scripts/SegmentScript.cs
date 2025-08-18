@@ -86,5 +86,5 @@ public class SegmentScript : MonoBehaviour
 public class PlatformType
 {
     public PlatformSO platformType;
-    [ProgressBar(0,100)] public int spawningChance;
+    [Range(0, 100)] public int spawningChance;
 }
