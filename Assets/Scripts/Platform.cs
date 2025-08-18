@@ -82,6 +82,7 @@ public class Platform : MonoBehaviour
         _rigidbody2D.gravityScale = 0f;
         
         transform.localPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
     
     private IEnumerator EnableGravity(float timeToFall)
