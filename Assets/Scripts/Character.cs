@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Math = Unity.Mathematics.Geometry.Math;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
@@ -176,15 +177,13 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
                 _inputInRange = false;
             }
         }
-
-        Debug.Log(currentBoostValue);
         
         if (_isGrounded && rb2D.linearVelocityY <= 0)
         {
             currentBoostValue = 0;
         }
         
-        _animator.SetFloat("Velocity", Mathf.Abs(rb2D.linearVelocity.x));
+        _animator.SetFloat("Velocity", rb2D.linearVelocity.x);
     }
 
     private void FixedUpdate()

@@ -9,7 +9,7 @@ public class Platform : MonoBehaviour
 {
     public PlatformSO platformSo;
     
-    [SerializeField] private bool fallOnCollision = true;
+    [SerializeField] private bool shakeOnCollision = true;
     
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
@@ -58,10 +58,11 @@ public class Platform : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         if (contact.normal.y < -0.5f) // Platform's top is being hit
         {
-            if (!fallOnCollision) return;
-            
             StartCoroutine(EnableGravity(platformSo.durationToFall));
-            StartShake(platformSo.durationToFall);
+            if (shakeOnCollision)
+            {
+                StartShake(platformSo.durationToFall);
+            }
         }
     }
 
