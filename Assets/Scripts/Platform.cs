@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,6 +9,8 @@ public class Platform : MonoBehaviour
 {
     public PlatformSO platformSo;
     
+    [SerializeField] private bool fallOnCollision = true;
+    
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
@@ -15,7 +18,7 @@ public class Platform : MonoBehaviour
     
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D effector2D;
-
+    
     private void Awake()
     {
         if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
@@ -55,8 +58,16 @@ public class Platform : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         if (contact.normal.y < -0.5f) // Platform's top is being hit
         {
+            if (!fallOnCollision) return;
+            
             StartCoroutine(EnableGravity(platformSo.durationToFall));
+            StartShake(platformSo.durationToFall);
         }
+    }
+
+    private void StartShake(float time)
+    {
+        transform.DOShakeRotation(time, 0.8f, 8);
     }
     
     private void DisableGravity()
@@ -71,15 +82,16 @@ public class Platform : MonoBehaviour
         _rigidbody2D.gravityScale = 0f;
         
         transform.localPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
+        transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
     
     private IEnumerator EnableGravity(float timeToFall)
     {
         yield return new WaitForSeconds(timeToFall);
-        _platformCollider.enabled = false;
-        
-        _rigidbody2D.gravityScale = 1f;
+        _rigidbody2D.gravityScale = 1.5f;
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        
+        _platformCollider.enabled = false;
     }
 }

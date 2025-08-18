@@ -1277,6 +1277,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: seed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: gizmoSize.x
+      value: 67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: lastSegment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: finalSegment
+      value: 
+      objectReference: {fileID: 1989397852544320890, guid: 71b66878ea0e75c428fd5b25a447f803, type: 3}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: gizmoColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: gizmoColor.g
+      value: 0.9800043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: gizmoColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: segmentLimit
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: segmentHeight
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: previousSegment
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: useSegmentLimit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: lowerColliderScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702241552387243518, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: m_Name
+      value: SegmentGenerator
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

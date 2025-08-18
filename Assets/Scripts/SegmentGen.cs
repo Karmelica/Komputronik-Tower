@@ -1,16 +1,23 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
-    private readonly HashSet<SegmentScript> _segments = new();
-    
+    [Header("Generation Seed")]
     public int seed;
     
+    [Header("Generation Settings")]
+    [SerializeField] private bool useSegmentLimit;
+    [SerializeField, ShowIf("useSegmentLimit")] private int segmentLimit = 5;
+    [SerializeField, ShowIf("useSegmentLimit")] private GameObject finalSegment;
+    
+    [Header("Dependencies")]
     [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
     [SerializeField] private GameObject segmentPrefab;
     
+    [Header("Segment Settings")]
     public float segmentHeight = 24f; // Height offset for new segments
     
     /*[Header("Gizmo Settings")]
@@ -18,6 +25,11 @@ public class SegmentGen : MonoBehaviour
     [SerializeField] private Color gizmoColor = Color.green;*/
 
     private System.Random rng;
+    private readonly HashSet<SegmentScript> _segments = new();
+    private bool _canGenerate;
+
+    [SerializeField, ShowIf("useSegmentLimit")]
+    private int segmentPassed;
     
     private void Awake()
     {
@@ -49,17 +61,22 @@ public class SegmentGen : MonoBehaviour
             SegmentScript segScript = other.GetComponent<SegmentScript>();
             if (segScript == null || _segments.Contains(segScript)) return;
             
-            _segments.Add(other.GetComponent<SegmentScript>());
+            _segments.Add(segScript);
+            segmentPassed++;
             
-            GameObject segment = other.gameObject;
-            
-            Vector3 newPosition = segment.transform.position + new Vector3(0f, segmentHeight, 0f);
+            Vector3 newPosition = segScript.transform.position + new Vector3(0f, segmentHeight, 0f);
+
+            if (useSegmentLimit && segmentPassed >= segmentLimit)
+            {
+                Instantiate(finalSegment, newPosition, Quaternion.identity);
+                return;
+            }
             
             SegmentScript segmentScript = PoolingManager.Instance.Get<SegmentScript>("Segment");
             segmentScript.transform.position = newPosition;
             segmentScript.transform.rotation = Quaternion.identity;
-            
             segmentScript.InitializeSegment(rng);
+            
             previousSegment = segmentScript.gameObject;
         }
     }

@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  fallOnCollision: 1
 --- !u!251 &7866067232057804438
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -146,10 +147,10 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 130.75
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 0
 --- !u!70 &7442060174602704001
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
