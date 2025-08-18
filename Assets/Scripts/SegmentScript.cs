@@ -23,6 +23,7 @@ public class SegmentScript : MonoBehaviour
     {
         this.rng = rng;
         
+        if (platforms.Count == 0) return;
         foreach (var platform in platforms)
         {
             PlatformType chosenPlatform = InitializePlatforms(rng);
