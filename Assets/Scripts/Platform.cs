@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -56,7 +57,13 @@ public class Platform : MonoBehaviour
         if (contact.normal.y < -0.5f) // Platform's top is being hit
         {
             StartCoroutine(EnableGravity(platformSo.durationToFall));
+            StartShake(platformSo.durationToFall);
         }
+    }
+
+    private void StartShake(float time)
+    {
+        transform.DOShakeRotation(time, 0.8f, 8);
     }
     
     private void DisableGravity()
@@ -76,10 +83,10 @@ public class Platform : MonoBehaviour
     private IEnumerator EnableGravity(float timeToFall)
     {
         yield return new WaitForSeconds(timeToFall);
-        _platformCollider.enabled = false;
-        
-        _rigidbody2D.gravityScale = 1f;
+        _rigidbody2D.gravityScale = 1.5f;
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        
+        _platformCollider.enabled = false;
     }
 }
