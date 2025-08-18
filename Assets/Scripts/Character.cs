@@ -221,8 +221,17 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>().x;
+
+        switch (_moveInput)
+        {
+            case < 0f:
+                _spriteRenderer.flipX = true;
+                break;
+            case > 0f:
+                _spriteRenderer.flipX = false;
+                break;
+        }
         
-        _spriteRenderer.flipX = _moveInput < 0f;
         if (_inputInRange && _canWallBoost && CheckBoostIndex() && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
         {
             GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
