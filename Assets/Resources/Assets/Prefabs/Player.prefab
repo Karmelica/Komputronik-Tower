@@ -168,6 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 5
+  moveSpeed: 20
+  bounceX: 5
+  bounceY: 0.5
+  bounceBoostX: 8
+  bounceBoostY: 1.5
+  maxBoosts: 2
+  wallBoostTimeWindow: 0.2
+  playerBoostTimeWindow: 0.2
+  bounceSpeedTreshhold: 3
+  segmentDetector: {fileID: 0}
+  rb2D: {fileID: 0}
+  currentBoostValue: 0
 --- !u!1 &7702241552387243518
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,8 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f66ed0fd7696448a25cbfacfa31c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: 0
   previousSegment: {fileID: 0}
   segmentPrefab: {fileID: 801729709675963615, guid: 41bca464a1aec4d478a7fdc0beafb35d, type: 3}
   segmentHeight: 24
-  gizmoSize: {x: 67, y: 24}
-  gizmoColor: {r: 0, g: 0.9800043, b: 1, a: 1}

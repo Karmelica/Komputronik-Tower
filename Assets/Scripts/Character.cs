@@ -19,6 +19,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [Header("Wall boost Settings")]
     [SerializeField] float bounceBoostX = 8f;
     [SerializeField] float bounceBoostY = 1.5f;
+    [SerializeField] private int maxBoosts = 2;
     
     [Header("Timer Settings")]
     [SerializeField] private float wallBoostTimeWindow = 0.2f;
@@ -50,6 +51,8 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private float _wallBoostTimer = 0f;
     private bool _canWallBoost = false;
     private Vector2 _lastWallNormal;
+
+    [SerializeField] private int currentBoostValue = 0;
     
 
     #endregion
@@ -71,6 +74,15 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool CheckVelocity(Rigidbody2D body, float velocity)
     {
         return Mathf.Abs(body.linearVelocity.x) >= velocity;
+    }
+
+    private bool CheckBoostIndex()
+    {
+        if (currentBoostValue >= maxBoosts)
+        {
+            return false;
+        }
+        return true;
     }
 
     #endregion
@@ -107,6 +119,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         CanMove = true;
         _gameOver = false;
         _gameStartTimer = _gameStartDelay;
+        currentBoostValue = 0;
     }
 
     private void Update()
@@ -154,6 +167,13 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
                 _inputInRange = false;
             }
         }
+
+        Debug.Log(currentBoostValue);
+        
+        if (_isGrounded && rb2D.linearVelocityY <= 0)
+        {
+            currentBoostValue = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -191,12 +211,13 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         _moveInput = context.ReadValue<Vector2>().x;
         
-        if (_inputInRange && _canWallBoost && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
+        if (_inputInRange && _canWallBoost && CheckBoostIndex() && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
         {
             GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
             _canWallBoost = false;
             _wallBoostTimer = 0f;
             _playerBoostTimer = 0f;
+            currentBoostValue++;
         }
     }
     
