@@ -4,7 +4,12 @@ using UnityEngine;
 public class PlatformSO : ScriptableObject
 {
     [Header("Platform Settings")]
+    // docelowo miejsce na teksture
     public Sprite sprite;
+    
+    // narazie skoro nie mamy jeszcze tekstur to
+    // platformy maja swoje kolory zeby moc je od siebie rozrozniac
+    public Color debugColor;
     public float durationToFall;
     
     [Header("Material settigns")]

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cc0b3b65e8381b46ba2d72f75b881d6, type: 3}
-  m_Name: Default
+  m_Name: Sticky
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  debugColor: {r: 1, g: 1, b: 1, a: 1}
+  debugColor: {r: 0.058021523, g: 0.9433962, b: 0, a: 1}
   durationToFall: 2
-  friction: 0.8
+  friction: 0.9
   bounciness: 0

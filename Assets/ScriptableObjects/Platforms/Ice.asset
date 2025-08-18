@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cc0b3b65e8381b46ba2d72f75b881d6, type: 3}
-  m_Name: Default
+  m_Name: Ice
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  debugColor: {r: 1, g: 1, b: 1, a: 1}
-  durationToFall: 2
-  friction: 0.8
+  debugColor: {r: 0, g: 0.8648515, b: 1, a: 1}
+  durationToFall: 5
+  friction: 0.2
   bounciness: 0
