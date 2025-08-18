@@ -31,6 +31,8 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [SerializeField] private SegmentDetectorScript segmentDetector;
     
     [HideInInspector] public Rigidbody2D rb2D;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
     private InputSystemActions _input;
     private InputSystemActions.PlayerActions _playerInput;
     
@@ -108,7 +110,14 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         {
             Debug.LogError("No Rigidbody2D component found on the character.", this);
         }
-            
+        if (!TryGetComponent<Animator>(out _animator))
+        {
+            Debug.LogError("No Animator component found on the character.", this);
+        }
+        if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
+        {
+            Debug.LogError("No SpriteRenderer component found on the character.", this);
+        }
         _input = new InputSystemActions();
         _input.Player.SetCallbacks(this);
         _playerInput = _input.Player;
@@ -174,6 +183,8 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         {
             currentBoostValue = 0;
         }
+        
+        _animator.SetFloat("Velocity", Mathf.Abs(rb2D.linearVelocity.x));
     }
 
     private void FixedUpdate()
@@ -211,6 +222,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     {
         _moveInput = context.ReadValue<Vector2>().x;
         
+        _spriteRenderer.flipX = _moveInput < 0f;
         if (_inputInRange && _canWallBoost && CheckBoostIndex() && CheckVelocity(rb2D, 3f) && Mathf.Approximately(Mathf.Sign(_moveInput), Mathf.Sign(_lastWallNormal.x)))
         {
             GiveVelocityBounce(_lastWallNormal, -bounceBoostX, bounceBoostY);
