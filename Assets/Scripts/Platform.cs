@@ -9,6 +9,8 @@ public class Platform : MonoBehaviour
 {
     public PlatformSO platformSo;
     
+    [SerializeField] private bool fallOnCollision = true;
+    
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
@@ -16,7 +18,7 @@ public class Platform : MonoBehaviour
     
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D effector2D;
-
+    
     private void Awake()
     {
         if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
@@ -56,6 +58,8 @@ public class Platform : MonoBehaviour
         ContactPoint2D contact = collision.GetContact(0);
         if (contact.normal.y < -0.5f) // Platform's top is being hit
         {
+            if (!fallOnCollision) return;
+            
             StartCoroutine(EnableGravity(platformSo.durationToFall));
             StartShake(platformSo.durationToFall);
         }
