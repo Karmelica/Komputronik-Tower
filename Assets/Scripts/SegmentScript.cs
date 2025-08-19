@@ -13,6 +13,7 @@ public class SegmentScript : MonoBehaviour
     [SerializeField] private float maxPlatformLength = 10f;
     [SerializeField] private float despawnOffset = 24f;
     [SerializeField] private List<GameObject> platforms;
+    [SerializeField] private GameObject milestonePlatform;
 
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private List<PlatformType> platformTypes;
@@ -37,6 +38,8 @@ public class SegmentScript : MonoBehaviour
             
             platform.SetActive(true);
         }
+        
+        milestonePlatform.SetActive(true);
     }
 
     private PlatformType InitializePlatforms(System.Random rng)

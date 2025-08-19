@@ -164,7 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &6279893274483375412
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -343,6 +342,7 @@ MonoBehaviour:
   - {fileID: 267768522844245221}
   - {fileID: 4652565933952731247}
   - {fileID: 7418308592967569297}
+  milestonePlatform: {fileID: 6669148087850687290}
   spawnPoints: []
   platformTypes:
   - platformType: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
@@ -428,7 +428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &1316606777495681058
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -562,7 +561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &7992085253086421926
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1399,7 +1397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &1008937728698364529
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1533,7 +1530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 4262522226919739690}
-  shakeOnCollision: 1
 --- !u!70 &5063400832479695201
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1667,7 +1663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &4646739880514474563
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1888,7 +1883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 5374550638803554760}
-  shakeOnCollision: 1
 --- !u!70 &1634843764067491088
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2243,7 +2237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
   visual: {fileID: 0}
-  shakeOnCollision: 0
 --- !u!70 &1517952794328002415
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2377,7 +2370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &2704306882518004433
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2819,7 +2811,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &6684184873133240648
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2953,7 +2944,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformSo: {fileID: 0}
   visual: {fileID: 0}
-  shakeOnCollision: 1
 --- !u!70 &2670951028846188437
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
