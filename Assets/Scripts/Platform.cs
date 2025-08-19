@@ -8,8 +8,8 @@ using DG.Tweening;
 public class Platform : MonoBehaviour
 {
     public PlatformSO platformSo;
-    
-    [SerializeField] private bool shakeOnCollision = true;
+
+    [SerializeField] private GameObject visual;
     
     private Collider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
@@ -18,11 +18,16 @@ public class Platform : MonoBehaviour
     
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D effector2D;
+    private Coroutine coroutine;
     
     private void Awake()
     {
-        if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
-            Debug.Log("No sprite renderer", this);
+        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        visual = spriteRenderer.gameObject;
+        _spriteRenderer = spriteRenderer;
+        
+        /*if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
+            Debug.Log("No sprite renderer", this);*/
         if (!TryGetComponent<Collider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
@@ -47,31 +52,65 @@ public class Platform : MonoBehaviour
     {
         _spriteRenderer.color = platformSo.debugColor; 
         
-        DisableGravity();
+        DisableFall();
+        
+        //DisableGravity();
         //StartCoroutine(EnableGravity(10f));
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        //Debug.Log(collision.gameObject.name);
         
-        ContactPoint2D contact = collision.GetContact(0);
+        if (!collision.gameObject.CompareTag("PDetector")) return;
+        
+        StartCoroutine(EnableFall(platformSo.durationToFall));
+        StartShake(platformSo.durationToFall);
+        
+        /*ContactPoint2D contact = collision.GetContact(0);
         if (contact.normal.y < -0.5f) // Platform's top is being hit
         {
-            StartCoroutine(EnableGravity(platformSo.durationToFall));
-            if (shakeOnCollision)
-            {
-                StartShake(platformSo.durationToFall);
-            }
-        }
+
+        }*/
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag("PDetector")) return;
+        
+        if (coroutine != null) return;
+        coroutine = StartCoroutine(EnableFall(platformSo.durationToFall));
+        StartShake(platformSo.durationToFall);
+    }
+    
+    private IEnumerator EnableFall(float timeToFall)
+    {
+        yield return new WaitForSeconds(timeToFall);
+        _rigidbody2D.linearVelocity = new Vector2(0, -2f);
+        
+        // how long the platform will drop until disabling 
+        yield return new WaitForSeconds(5f);
+        
+        gameObject.SetActive(false);
+    }
+
+    private void DisableFall()
+    {
+        coroutine = null;
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        
+        Vector3 initialPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
+        
+        transform.localPosition = initialPosition;
+        visual.transform.localPosition = Vector3.zero;
     }
 
     private void StartShake(float time)
     {
-        transform.DOShakeRotation(time, 0.8f, 8);
+        visual.transform.DOShakePosition(1.5f, 0.01f, 10);
     }
     
-    private void DisableGravity()
+    /*private void DisableGravity()
     {
         if(_gravityCoroutine != null) {
             StopCoroutine(_gravityCoroutine);
@@ -94,5 +133,5 @@ public class Platform : MonoBehaviour
         _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         
         _platformCollider.enabled = false;
-    }
+    }*/
 }
