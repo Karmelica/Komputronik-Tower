@@ -9,8 +9,6 @@ using UnityEngine.Networking;
 public class TimeApiResponse
 {
     public string dateTime;
-    public string date;
-    public string time;
 }
 
 [Serializable]
@@ -41,9 +39,14 @@ public class GlobalTimeManager : MonoBehaviour
     
     [Header("Time Settings")]
     [SerializeField] private bool useServerTime = true;
-    [SerializeField] private int timeoutSeconds = 3;
+    [SerializeField] private int timeoutSeconds = 1;
+    [SerializeField] private List<string> timeServerUrls = new List<string>
+    {
+        "https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw",
+        "http://worldtimeapi.org/api/timezone/Europe/Warsaw",
+        "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=Europe/Warsaw"
+    };
     
-    private const string TimeServerUrl = "https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw";
     private DateTime _currentServerTime;
     private bool _timeDataLoaded;
     
@@ -67,37 +70,35 @@ public class GlobalTimeManager : MonoBehaviour
             yield break;
         }
 
-        using UnityWebRequest request = UnityWebRequest.Get(TimeServerUrl);
-        request.timeout = timeoutSeconds;
-        yield return request.SendWebRequest();
+        foreach (string url in timeServerUrls)
+        {
+            using UnityWebRequest request = UnityWebRequest.Get(url);
+            request.timeout = timeoutSeconds;
+            yield return request.SendWebRequest();
 
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            _currentServerTime = DateTime.Now;
-            _timeDataLoaded = true;
-            UpdateLevelUnlockTexts();
-            OnTimeDataLoaded?.Invoke();
-        }
-        else
-        {
-            try
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
-                DateTime serverTime = DateTime.Parse(response.dateTime);
-                _currentServerTime = serverTime;
-                _timeDataLoaded = true;
-                UpdateLevelUnlockTexts();
-                OnTimeDataLoaded?.Invoke();
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Error parsing time response: {ex.Message}");
-                _currentServerTime = DateTime.Now;
-                _timeDataLoaded = true;
-                UpdateLevelUnlockTexts();
-                OnTimeDataLoaded?.Invoke();
+                try
+                {
+                    TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
+                    DateTime serverTime = DateTime.Parse(response.dateTime);
+                    _currentServerTime = serverTime;
+                    _timeDataLoaded = true;
+                    UpdateLevelUnlockTexts();
+                    OnTimeDataLoaded?.Invoke();
+                    yield break;
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Error parsing time response from {url}: {ex.Message}");
+                }
             }
         }
+
+        _currentServerTime = DateTime.Now;
+        _timeDataLoaded = true;
+        UpdateLevelUnlockTexts();
+        OnTimeDataLoaded?.Invoke();
     }
     
     public bool IsLevelUnlocked(int levelIndex)
