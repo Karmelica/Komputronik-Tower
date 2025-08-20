@@ -10,7 +10,6 @@ public class PlatformSO : ScriptableObject
     // narazie skoro nie mamy jeszcze tekstur to
     // platformy maja swoje kolory zeby moc je od siebie rozrozniac
     public Color debugColor;
-    public float durationToFall;
     
     [Header("Material settigns")]
     [Range(0f,1f)] public float friction;
