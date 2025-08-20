@@ -148,7 +148,7 @@ public class GlobalTimeManager : MonoBehaviour
                 else
                 {
                     TimeSpan timeLeft = GetTimeUntilUnlock(i);
-                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: {timeLeft.Days}d {timeLeft.Hours}h {timeLeft.Minutes}m {timeLeft.Seconds}s";
+                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: {timeLeft.Days}d {timeLeft.Hours}h {timeLeft.Minutes}m";
                 }
             }
         }
