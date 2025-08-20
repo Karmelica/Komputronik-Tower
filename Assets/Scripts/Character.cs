@@ -5,6 +5,9 @@ using UnityEngine.Serialization;
 using Math = Unity.Mathematics.Geometry.Math;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
+
 public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
 {
     #region Variables
@@ -108,18 +111,10 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     
     private void Awake()
     {
-        if (!TryGetComponent<Rigidbody2D>(out rb2D))
-        {
-            Debug.LogError("No Rigidbody2D component found on the character.", this);
-        }
-        if (!TryGetComponent<Animator>(out _animator))
-        {
-            Debug.LogError("No Animator component found on the character.", this);
-        }
-        if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
-        {
-            Debug.LogError("No SpriteRenderer component found on the character.", this);
-        }
+        rb2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
         _input = new InputSystemActions();
         _input.Player.SetCallbacks(this);
         _playerInput = _input.Player;
