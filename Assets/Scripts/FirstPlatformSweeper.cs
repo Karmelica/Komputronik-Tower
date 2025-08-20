@@ -11,11 +11,15 @@ public class FirstPlatformSweeper : MonoBehaviour
     private bool _started = false;
     private float _graceTimer;
     private Rigidbody2D _body;
+    private Collider2D _collider;
 
     private void Awake()
     {
         _started = false;
+        _collider = GetComponent<Collider2D>();
         _body = GetComponent<Rigidbody2D>();
+        
+        _collider.enabled = false;
     }
     
     private void Update()
@@ -34,9 +38,10 @@ public class FirstPlatformSweeper : MonoBehaviour
             return;
         }
         
+        _collider.enabled = true;
         _body.linearVelocity = new Vector2(0, speed);
 
-        if (transform.position.y > startPoint.position.y)
+        if (transform.position.y > startPoint.position.y + 10f)
         {
             gameObject.SetActive(false);
         }
