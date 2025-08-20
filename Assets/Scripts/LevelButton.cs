@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -44,5 +45,10 @@ public class LevelButton : MonoBehaviour
         {
             _button.interactable = globalTimeManager.IsLevelUnlocked(levelIndex);
         }
+    }
+
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene(levelIndex + 1);
     }
 }
