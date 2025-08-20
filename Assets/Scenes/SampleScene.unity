@@ -1695,6 +1695,14 @@ PrefabInstance:
       propertyPath: acceleration
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: bounceBoostX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919833146710086930, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: bounceBoostY
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_Name
       value: Player
