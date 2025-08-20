@@ -145,8 +145,14 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
                 HighScoreManager.Instance.GameOver();
             }
         }
+
+        if (rb2D.linearVelocity.y <= 0)
+        {
+            _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+        }
         
-        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(transform.position, Vector2.down * 1.05f, Color.red);
+        Debug.Log(_isGrounded);
         
         if (_gameStartTimer > 0)
         {
