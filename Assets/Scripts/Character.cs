@@ -12,6 +12,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [Header("Movement Settings")]
     [SerializeField] public float jumpForce = 5f;
     [SerializeField, Min(0)] private float moveSpeed = 20f;
+    [SerializeField] private float acceleration = 20f;
     
     [Header("Wall bounce Settings")]
     [SerializeField] float bounceX = 5f;
@@ -191,7 +192,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         _preCollisionVelocity = rb2D.linearVelocity;
 
         if (!CanMove) return;
-        rb2D.AddForce(new Vector2(_moveInput * 20f, 0), ForceMode2D.Force);
+        rb2D.AddForce(new Vector2(_moveInput * acceleration, 0), ForceMode2D.Force);
         rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed),
             Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
     }
