@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlatformDetector : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private Character player;
+    [SerializeField] private GameObject player;
     [SerializeField] private Transform startPoint;
     
     [Header("Settings")]
