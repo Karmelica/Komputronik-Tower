@@ -10,6 +10,7 @@ public class HighScoreManager : MonoBehaviour
     #region Variables
     
     public static HighScoreManager Instance;
+    [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
     private LoginManager loginManager;
     private const string PublicLeaderboardKey = "88e3d223505ea86807694065498f0b36ec49e2f3ea09970d31d77d5af4d5807b";
     
@@ -40,6 +41,7 @@ public class HighScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        lvlIndex = SceneManager.GetActiveScene().buildIndex;
         loginManager = LoginManager.Instance;
     }
     
@@ -96,7 +98,7 @@ public class HighScoreManager : MonoBehaviour
     {
         if (scoreText)
         {
-            scoreText.text = $"Wynik: {currentScore:F0}";
+            scoreText.text = $"Wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
     }
     
@@ -153,7 +155,7 @@ public class HighScoreManager : MonoBehaviour
         // Zaktualizuj wyświetlany wynik końcowy
         if (gameOverScoreText)
         {
-            gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
+            gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
         
         NewLeaderboardEntry(loginManager.currentPlayerName, loginManager.currentPlayerEmail, Mathf.RoundToInt(currentScore));
