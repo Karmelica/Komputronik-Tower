@@ -122,6 +122,8 @@ public class CharacterMovement : MonoBehaviour
     
     private void HandleMovement()
     {
+        float currentVelocityX = _body.linearVelocity.x;
+        
         if (_moveInput != Vector2.zero)
         {
             // normalizing speed to 0 and 1
@@ -131,13 +133,26 @@ public class CharacterMovement : MonoBehaviour
             // apply normalized speed to animation curve
             float accelFactor = accelerationCurve.Evaluate(speedPercent);
             
+            bool reversing = Mathf.Sign(_moveInput.x) != Mathf.Sign(currentVelocityX) && Mathf.Abs(currentVelocityX) > 0.1f;
+
+            // faster direction change 
+            if (reversing)
+            {
+                _body.AddForce(new Vector2(_moveInput.x * acceleration * 2f, 0), ForceMode2D.Force);
+            }
+            else
+            {
+                // normal acceleration
+                _body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
+            }
+            
             // apply movement force
-            _body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
+            //_body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
         }
         else
         {
             // deacceleration
-            if (Mathf.Abs(_body.linearVelocity.x) > 0.01f)
+            /*if (Mathf.Abs(_body.linearVelocity.x) > 0.01f)
             {
                 float decelStep = deceleration * Time.fixedDeltaTime * Mathf.Sign(_body.linearVelocity.x);
                 float newVelocity = _body.linearVelocity.x - decelStep;
@@ -148,8 +163,10 @@ public class CharacterMovement : MonoBehaviour
                 }
                 
                 _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
-            }
-
+            }*/
+            
+            float newVelocity = Mathf.MoveTowards(_body.linearVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+            _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
         }
         
         // max speed clamp
@@ -208,7 +225,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && CanMove)
         {
-            float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2f;
+            float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             Debug.Log(velocityBoost);
 
             _body.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);

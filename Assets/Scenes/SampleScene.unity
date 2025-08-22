@@ -1070,15 +1070,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0482515e1943e944a9d12a8819210dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpGates:
-  - velocityThreshold: 9
-    multiplier: 100
-  - velocityThreshold: 10
-    multiplier: 0.33
-  - velocityThreshold: 15
-    multiplier: 0.43
-  - velocityThreshold: 20
-    multiplier: 0.5
   moveSpeed: 20
   jumpSpeed: 30
   jumpForce: 5
