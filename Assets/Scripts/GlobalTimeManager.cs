@@ -39,12 +39,10 @@ public class GlobalTimeManager : MonoBehaviour
     
     [Header("Time Settings")]
     [SerializeField] private bool useServerTime = true;
-    [SerializeField] private int timeoutSeconds = 1;
+    [SerializeField] private int timeoutSeconds = 5;
     [SerializeField] private List<string> timeServerUrls = new List<string>
     {
         "https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw",
-        "http://worldtimeapi.org/api/timezone/Europe/Warsaw",
-        "https://script.google.com/macros/s/AKfycbyd5AcbAnWi2Yn0xhFRbyzS4qMq1VucMVgVvhul5XqS9HkAyJY/exec?tz=Europe/Warsaw"
     };
     
     private DateTime _currentServerTime;
@@ -70,35 +68,84 @@ public class GlobalTimeManager : MonoBehaviour
             yield break;
         }
 
+        // Uruchom wszystkie zapytania równocześnie
+        var requests = new List<UnityWebRequest>();
+        bool timeReceived = false;
+
         foreach (string url in timeServerUrls)
         {
-            using UnityWebRequest request = UnityWebRequest.Get(url);
+            UnityWebRequest request = UnityWebRequest.Get(url);
             request.timeout = timeoutSeconds;
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
+            requests.Add(request);
+            
+            StartCoroutine(SendRequest(request, url, (success, serverTime) =>
             {
-                try
+                if (success && !timeReceived)
                 {
-                    TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
-                    DateTime serverTime = DateTime.Parse(response.dateTime);
+                    timeReceived = true;
                     _currentServerTime = serverTime;
                     _timeDataLoaded = true;
                     UpdateLevelUnlockTexts();
                     OnTimeDataLoaded?.Invoke();
-                    yield break;
+                    
+                    // Anuluj pozostałe zapytania
+                    foreach (var req in requests)
+                    {
+                        if (req != null && !req.isDone)
+                            req.Abort();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Debug.LogError($"Error parsing time response from {url}: {ex.Message}");
-                }
-            }
+            }));
         }
 
-        _currentServerTime = DateTime.Now;
-        _timeDataLoaded = true;
-        UpdateLevelUnlockTexts();
-        OnTimeDataLoaded?.Invoke();
+        // Czekaj na pierwszą odpowiedź lub timeout wszystkich
+        float maxWaitTime = timeoutSeconds;
+        float waitTime = 0f;
+        
+        while (!timeReceived && waitTime < maxWaitTime)
+        {
+            yield return new WaitForSeconds(0.1f);
+            waitTime += 0.1f;
+        }
+
+        // Jeśli nie otrzymano żadnej odpowiedzi, użyj czasu lokalnego
+        if (!timeReceived)
+        {
+            _currentServerTime = DateTime.Now;
+            _timeDataLoaded = true;
+            UpdateLevelUnlockTexts();
+            OnTimeDataLoaded?.Invoke();
+        }
+
+        // Wyczyść zasoby
+        foreach (var request in requests)
+        {
+            request?.Dispose();
+        }
+    }
+
+    private IEnumerator SendRequest(UnityWebRequest request, string url, Action<bool, DateTime> callback)
+    {
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            try
+            {
+                TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
+                DateTime serverTime = DateTime.Parse(response.dateTime);
+                callback(true, serverTime);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Error parsing time response from {url}: {ex.Message}");
+                callback(false, DateTime.MinValue);
+            }
+        }
+        else
+        {
+            callback(false, DateTime.MinValue);
+        }
     }
     
     public bool IsLevelUnlocked(int levelIndex)
@@ -109,13 +156,13 @@ public class GlobalTimeManager : MonoBehaviour
         return _currentServerTime >= levelUnlockDates[levelIndex].GetDateTime();
     }
     
-    public DateTime GetLevelUnlockDate(int levelIndex)
+    /*public DateTime GetLevelUnlockDate(int levelIndex)
     {
         if (levelIndex < 0 || levelIndex >= levelUnlockDates.Count)
             return DateTime.MinValue;
         
         return levelUnlockDates[levelIndex].GetDateTime();
-    }
+    }*/
     
     public TimeSpan GetTimeUntilUnlock(int levelIndex)
     {
@@ -148,7 +195,7 @@ public class GlobalTimeManager : MonoBehaviour
                 else
                 {
                     TimeSpan timeLeft = GetTimeUntilUnlock(i);
-                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: {timeLeft.Days}d {timeLeft.Hours}h {timeLeft.Minutes}m {timeLeft.Seconds}s";
+                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: {timeLeft.Days}d {timeLeft.Hours}h {timeLeft.Minutes}m";
                 }
             }
         }

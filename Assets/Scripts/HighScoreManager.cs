@@ -10,19 +10,13 @@ public class HighScoreManager : MonoBehaviour
     #region Variables
     
     public static HighScoreManager Instance;
+    [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
+    private LoginManager loginManager;
     private const string PublicLeaderboardKey = "88e3d223505ea86807694065498f0b36ec49e2f3ea09970d31d77d5af4d5807b";
-
-    [Header("Login Panel")]
-    [SerializeField] private GameObject saveScorePanel;
-    [SerializeField] private TMP_InputField emailInputField;
-    [SerializeField] private TMP_InputField nameInputField;
-
-    private string currentPlayerEmail = "";
-    private string currentPlayerName = "";
     
     [Header("Game UI")]
     [SerializeField] private GameObject gameUI;
-    [SerializeField] private List<TextMeshProUGUI> highScoreText;
+    //[SerializeField] private List<TextMeshProUGUI> highScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
     
     private float currentScore = 0f;
@@ -47,14 +41,16 @@ public class HighScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        lvlIndex = SceneManager.GetActiveScene().buildIndex;
+        loginManager = LoginManager.Instance;
     }
     
     private void Start()
     {
         Time.timeScale = 1f;
-        PrefsCheck();
-        GetLeaderboard();
+        //GetLeaderboard();
         UpdateScoreDisplay();
+        ShowPanel(GameState.Playing);
     }
     
     private void Update()
@@ -71,7 +67,7 @@ public class HighScoreManager : MonoBehaviour
 
     #region Leaderboard Management
 
-    private void GetLeaderboard()
+    /*private void GetLeaderboard()
     {
         LeaderboardCreator.GetLeaderboard(PublicLeaderboardKey, leaderboard =>
         {
@@ -81,55 +77,13 @@ public class HighScoreManager : MonoBehaviour
                 highScoreText[i].text = leaderboard[i].Username + ": " + leaderboard[i].Score;
             }
         });
-    }
+    }*/
 
     public void NewLeaderboardEntry(string playerName, string playerEmail, int score)
     {
         LeaderboardCreator.UploadNewEntry(PublicLeaderboardKey, playerName, score, playerEmail);
     }
     
-    #endregion
-    
-    #region PlayerPrefs
-
-    private void PrefsCheck()
-    {
-        if(PlayerPrefs.HasKey("PlayerEmail"))
-        {
-            Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
-            LoadPlayerPrefs();
-            GetLeaderboard();
-            ShowPanel(GameState.Playing);
-        }
-        else
-        {
-            Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
-            ShowPanel(GameState.Login);
-        }
-        
-        UpdateScoreDisplay();
-    }
-    
-    private void SavePlayerPrefs()
-    {
-        PlayerPrefs.SetString("PlayerEmail", currentPlayerEmail);
-        PlayerPrefs.SetString("PlayerName", currentPlayerName);
-        PlayerPrefs.Save();
-    }
-    
-    private void LoadPlayerPrefs()
-    {
-        currentPlayerEmail = PlayerPrefs.GetString("PlayerEmail");
-        currentPlayerName = PlayerPrefs.GetString("PlayerName");
-    }
-    
-    private void DeletePlayerPrefs()
-    {
-        PlayerPrefs.DeleteKey("PlayerEmail");
-        PlayerPrefs.DeleteKey("PlayerName");
-        PlayerPrefs.Save();
-    }
-
     #endregion
     
     #region Score Management
@@ -144,7 +98,7 @@ public class HighScoreManager : MonoBehaviour
     {
         if (scoreText)
         {
-            scoreText.text = $"Wynik: {currentScore:F0}";
+            scoreText.text = $"Wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
     }
     
@@ -152,18 +106,15 @@ public class HighScoreManager : MonoBehaviour
     
     #region UI Interaction
 
-    private void ShowPanel(GameState gameState)
+    private void ShowPanel(GameState gameState, bool show = true)
     {
         switch (gameState)
         {
-            case GameState.Login:
-                ShowSavePlayerPanel();
-                break;
             case GameState.Playing:
-                ShowGameUI();
+                ShowGameUI(show);
                 break;
             case GameState.GameOver:
-                ShowGameOverPanel();
+                ShowGameOverPanel(show);
                 break;
             default:
                 Debug.LogWarning("Nieznany stan gry!");
@@ -171,36 +122,23 @@ public class HighScoreManager : MonoBehaviour
         }
     }
     
-    private void ShowSavePlayerPanel()
-    {
-        Debug.Log("3. Wyświetlanie panelu zapisu danych gracza.");
-        Character.CanMove = false;
-        Time.timeScale = 0f;
-        if (gameOverPanel) gameOverPanel.SetActive(false);
-        if (saveScorePanel) saveScorePanel.SetActive(true);
-        if (gameUI) gameUI.SetActive(false);
-    }
-
-    private void ShowGameUI()
+    private void ShowGameUI(bool show)
     {
         Debug.Log("4. Wyświetlanie panelu gry.");
         Character.CanMove = true;
         Time.timeScale = 1f;
-        if (gameOverPanel) gameOverPanel.SetActive(false);
-        if (saveScorePanel) saveScorePanel.SetActive(false);
-        if (gameUI) gameUI.SetActive(true);
+        if (gameOverPanel) gameOverPanel.SetActive(!show);
+        if (gameUI) gameUI.SetActive(show);
     }
     
-    private void ShowGameOverPanel()
+    private void ShowGameOverPanel(bool show)
     {
         Debug.Log("5. Wyświetlanie panelu końca gry.");
         Character.CanMove = false;
         Time.timeScale = 0f;
-        if (gameOverPanel) gameOverPanel.SetActive(true);
-        if (saveScorePanel) saveScorePanel.SetActive(false);
-        if (gameUI) gameUI.SetActive(false);
+        if (gameOverPanel) gameOverPanel.SetActive(show);
+        if (gameUI) gameUI.SetActive(!show);
     }
-
     
     #endregion
     
@@ -217,79 +155,31 @@ public class HighScoreManager : MonoBehaviour
         // Zaktualizuj wyświetlany wynik końcowy
         if (gameOverScoreText)
         {
-            gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
+            gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
         
-        NewLeaderboardEntry(currentPlayerName, currentPlayerEmail, Mathf.RoundToInt(currentScore));
+        NewLeaderboardEntry(loginManager.currentPlayerName, loginManager.currentPlayerEmail, Mathf.RoundToInt(currentScore));
     }
 
     public void RestartGame()
     {
         currentScore = 0f;
         scoreMultiplier = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
     #endregion
     
-    #region Player Data Management
-    
-    public void SetPlayerData()
-    {
-        string playerEmail = emailInputField.text.Trim();
-        string playerName = nameInputField.text.Trim();
-
-        if (string.IsNullOrEmpty(playerEmail))
-        {
-            Debug.LogWarning("Email nie może być pusty!");
-            return;
-        }
-
-        if (!IsEmailValid(playerEmail))
-        {
-            Debug.LogWarning("Nieprawidłowy format email!");
-            return;
-        }
-        
-        if(string.IsNullOrEmpty(playerName))
-        {
-            Debug.LogWarning("Nazwa gracza nie może być pusta!");
-            return;
-        }
-
-        currentPlayerEmail = playerEmail;
-        currentPlayerName = playerName;
-        
-        SavePlayerPrefs();
-        
-        ShowPanel(GameState.Playing);
-    }
     
     public void DeletePlayerDataAndRestart()
     {
-        DeletePlayerPrefs();
-        RestartGame();
+        loginManager.DeletePlayerPrefs();
+        SceneManager.LoadScene(0);
     }
-    
-    private static bool IsEmailValid(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
-        }
-    }
-    
-    #endregion
 }
 
 public enum GameState
 {
-    Login,
     Playing,
     GameOver
 }

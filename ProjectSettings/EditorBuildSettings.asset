@@ -9,8 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: da11b03aacc7bd54aa6e6377cf478eb3
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Lvl1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Lvl2.unity
+    guid: ec18b295b3e61f24e9aebed40afda26a
+  - enabled: 1
+    path: Assets/Scenes/Lvl3.unity
+    guid: 445228930e1f24b42b820eadebb98979
+  - enabled: 1
+    path: Assets/Scenes/Lvl4.unity
+    guid: 97032b47d3a85a04481271bbea59419e
+  - enabled: 1
+    path: Assets/Scenes/LvlArcade.unity
+    guid: 65fee18b2aa134a48834d5cc9dc96891
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b9167651a1ceb3f4a8fcd04fbf288000, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
