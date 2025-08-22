@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     [SerializeField] private float playerBoostTimeWindow = 0.2f;
     
     [Header("Minimum Bounce Speed")]
-    [SerializeField, Min(0f)] float bounceSpeedTreshhold = 3f;
+    [SerializeField] float bounceSpeedTreshhold = 3f;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
     
@@ -73,9 +73,11 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
         
         float verticalBounce = velocity.y > 0f ? velocity.y * verticalMultiplier : velocity.y;
         
-        rb2D.linearVelocity = new Vector2(
+        /*rb2D.linearVelocity = new Vector2(
             reflectedVelocity.x * horizontalMultiplier, 
-            verticalBounce);
+            verticalBounce);*/
+        
+        rb2D.AddForce(new Vector2(reflectedVelocity.x * horizontalMultiplier, reflectedVelocity.y * verticalMultiplier), ForceMode2D.Impulse);
     }
     
     private bool CheckVelocity(Rigidbody2D body, float velocity)
@@ -168,11 +170,11 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
             _playerBoostTimer = playerBoostTimeWindow;
         }
 
-        if (_playerBoostTimer > 0)
+        if (_playerBoostTimer >= 0)
         {
             _inputInRange = true;
             _playerBoostTimer -= Time.deltaTime;
-            if (_playerBoostTimer <= 0)
+            if (_playerBoostTimer < 0)
             {
                 _inputInRange = false;
             }
@@ -189,8 +191,9 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private void FixedUpdate()
     {
         _preCollisionVelocity = rb2D.linearVelocity;
-
+        
         if (!CanMove) return;
+        
         rb2D.AddForce(new Vector2(_moveInput * acceleration, 0), ForceMode2D.Force);
         rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x, -moveSpeed, moveSpeed),
             Mathf.Clamp(rb2D.linearVelocity.y, Single.MinValue, moveSpeed));
