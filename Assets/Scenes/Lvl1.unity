@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000a997a6c2e9d6b472
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1632096637}
   previousBackground: {fileID: 0}
   backgroundPrefab: {fileID: 1078430179517777050, guid: 1c0e6f7de5bf97b408f44f0db0af1be8, type: 3}
-  backgroundHeight: 20
+  backgroundHeight: 23.75
 --- !u!58 &935338668
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1872,7 +1872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: segmentHeight
-      value: 48
+      value: 47.5
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: previousSegment
