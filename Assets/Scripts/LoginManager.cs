@@ -5,6 +5,12 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 [System.Serializable]
+public class FirebaseAuthResponse
+{
+    public string idToken;
+}
+
+[System.Serializable]
 public class PlayerEmailData
 {
     public string email;
@@ -15,6 +21,9 @@ public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
 
+    private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
+    private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
+    
     [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
@@ -115,8 +124,7 @@ public class LoginManager : MonoBehaviour
         currentPlayerName = playerName;
         
         SavePlayerPrefs();
-        ShowSavePlayerPanel(false);
-        StartCoroutine(SendEmailToFirebase(currentPlayerEmail, currentPlayerName));
+        SendPlayerEmail(currentPlayerEmail, currentPlayerName);
     }
     
     
@@ -133,27 +141,66 @@ public class LoginManager : MonoBehaviour
         }
     }
     
-    private IEnumerator SendEmailToFirebase(string email, string name)
+    public void SendPlayerEmail(string email, string playerName)
     {
-        string url = "https://addemail-zblptdvtpq-lm.a.run.app";
+        StartCoroutine(SendEmailCoroutine(email, playerName));
+    }
     
+    private IEnumerator SendEmailCoroutine(string email, string name)
+    {
+        // 1. Logowanie anonimowe i pobranie ID Token
+        string idToken = null;
+        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+
+        if (string.IsNullOrEmpty(idToken))
+        {
+            Debug.LogError("Nie udało się pobrać ID Token.");
+            yield break;
+        }
+
+        // 2. Wysyłka danych do funkcji Firebase
         PlayerEmailData data = new PlayerEmailData { email = email, name = name };
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
-        using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
+        UnityWebRequest www = new UnityWebRequest(firebaseFunctionUrl, "POST");
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + idToken);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            www.downloadHandler = new DownloadHandlerBuffer();
-            www.SetRequestHeader("Content-Type", "application/json");
-            www.SetRequestHeader("x-api-key", "0ZautH87VJrVI49dcTAyXUVOT9dGlKOJ");
+            Debug.Log("Email wysłany: " + www.downloadHandler.text);
+            ShowSavePlayerPanel(false);
+        }
+        else
+        {
+            Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+        }
+    }
+    
+    private IEnumerator GetFirebaseAnonymousToken(System.Action<string> callback)
+    {
+        string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={apiKey}";
 
-            yield return www.SendWebRequest();
+        UnityWebRequest www = UnityWebRequest.PostWwwForm(url, ""); // POST z pustym body
+        www.downloadHandler = new DownloadHandlerBuffer();
 
-            if (www.result == UnityWebRequest.Result.Success)
-                Debug.Log("Email wysłany do Firebase: " + www.downloadHandler.text);
-            else
-                Debug.LogError("Błąd wysyłki emaila: " + www.error);
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            var json = www.downloadHandler.text;
+            var response = JsonUtility.FromJson<FirebaseAuthResponse>(json);
+            callback?.Invoke(response.idToken);
+        }
+        else
+        {
+            Debug.LogError("Błąd logowania anonimowego: " + www.error + " / " + www.downloadHandler.text);
+            callback?.Invoke(null);
         }
     }
     
