@@ -1,12 +1,21 @@
-using System;
+using System.Collections;
+using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
+
+[System.Serializable]
+public class PlayerEmailData
+{
+    public string email;
+    public string name;
+}
 
 public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
-    
-    [Header("Login Panel")]
+
+    [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
@@ -107,6 +116,7 @@ public class LoginManager : MonoBehaviour
         
         SavePlayerPrefs();
         ShowSavePlayerPanel(false);
+        StartCoroutine(SendEmailToFirebase(currentPlayerEmail, currentPlayerName));
     }
     
     
@@ -120,6 +130,30 @@ public class LoginManager : MonoBehaviour
         catch
         {
             return false;
+        }
+    }
+    
+    private IEnumerator SendEmailToFirebase(string email, string name)
+    {
+        string url = "https://addemail-zblptdvtpq-lm.a.run.app";
+    
+        PlayerEmailData data = new PlayerEmailData { email = email, name = name };
+        string json = JsonUtility.ToJson(data);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
+        {
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("x-api-key", "0ZautH87VJrVI49dcTAyXUVOT9dGlKOJ");
+
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+                Debug.Log("Email wysłany do Firebase: " + www.downloadHandler.text);
+            else
+                Debug.LogError("Błąd wysyłki emaila: " + www.error);
         }
     }
     
