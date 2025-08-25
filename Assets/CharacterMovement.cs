@@ -226,11 +226,11 @@ public class CharacterMovement : MonoBehaviour
         if (_isGrounded && CanMove)
         {
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
-            Debug.Log(velocityBoost);
+            //Debug.Log(velocityBoost);
 
             _body.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
 
-            Debug.Log(_body.linearVelocity);
+            //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }
     }
