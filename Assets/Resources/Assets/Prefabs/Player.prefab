@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1194355943599964763}
   - component: {fileID: 1042987411668133483}
   - component: {fileID: 7536728025774404774}
-  - component: {fileID: 919833146710086930}
   - component: {fileID: 221835516202240357}
   m_Layer: 0
   m_Name: Player
@@ -157,31 +156,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &919833146710086930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879127709170278839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ff338bffa8afa46a438830b711749a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 5.2
-  moveSpeed: 20
-  bounceX: 0.5
-  bounceY: 0.5
-  bounceBoostX: 1.5
-  bounceBoostY: 4
-  maxBoosts: 2
-  wallBoostTimeWindow: 0.2
-  playerBoostTimeWindow: 0.3
-  bounceSpeedTreshhold: 5
-  segmentDetector: {fileID: 2975588726882583896}
-  rb2D: {fileID: 0}
-  currentBoostValue: 0
 --- !u!95 &221835516202240357
 Animator:
   serializedVersion: 7
@@ -378,6 +352,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 0
+  useSegmentLimit: 0
+  segmentLimit: 5
+  finalSegment: {fileID: 0}
   previousSegment: {fileID: 0}
   segmentPrefab: {fileID: 801729709675963615, guid: 41bca464a1aec4d478a7fdc0beafb35d, type: 3}
   segmentHeight: 48
+  segmentPassed: 0
