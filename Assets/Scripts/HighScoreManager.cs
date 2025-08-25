@@ -165,7 +165,7 @@ public class HighScoreManager : MonoBehaviour
     {
         currentScore = 0f;
         scoreMultiplier = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(lvlIndex);
     }
     
     #endregion

@@ -41,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
-    
+
     #endregion
 
     #region Unity Functions
@@ -55,10 +55,16 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         CanMove = true;
+        _gameStartTimer = 2f;
     }
     
     private void Update()
     {
+        if (_gameStartTimer > -1f)
+        {
+            _gameStartTimer -= Time.deltaTime;
+        }
+        
         // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
         if (_gameStartTimer <= 0 && segmentDetector.segments.Count <= 0)
         {
@@ -182,12 +188,12 @@ public class CharacterMovement : MonoBehaviour
         // additional gravity when jumping and falling to reach top speed quicker
         if (_body.linearVelocity.y < 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime);
         }
 
         if (_body.linearVelocity.y > 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime);
         }
     }
     
