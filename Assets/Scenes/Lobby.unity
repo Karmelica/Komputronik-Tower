@@ -4111,6 +4111,7 @@ MonoBehaviour:
   useServerTime: 1
   timeoutSeconds: 1
   timeServerUrls:
+  - https://europe-central2-tower-f191b.cloudfunctions.net/getServerTime
   - https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw
 --- !u!1 &2018269281
 GameObject:
