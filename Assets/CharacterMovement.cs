@@ -182,12 +182,12 @@ public class CharacterMovement : MonoBehaviour
         // additional gravity when jumping and falling to reach top speed quicker
         if (_body.linearVelocity.y < 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime);
         }
 
         if (_body.linearVelocity.y > 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime);
         }
     }
     
