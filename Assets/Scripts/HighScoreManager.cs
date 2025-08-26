@@ -13,6 +13,7 @@ public class HighScoreManager : MonoBehaviour
     public static HighScoreManager Instance;
     [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
     private LoginManager loginManager;
+    private string playerId;
     
     private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
@@ -46,6 +47,7 @@ public class HighScoreManager : MonoBehaviour
         }
         lvlIndex = SceneManager.GetActiveScene().buildIndex;
         loginManager = LoginManager.Instance;
+        playerId = GetOrCreatePlayerId();
     }
     
     private void Start()
@@ -90,12 +92,12 @@ public class HighScoreManager : MonoBehaviour
         // 2. Wysyłka danych do funkcji Firebase
         PlayerEmailData data = level switch
         {
-            1 => new PlayerEmailData { email = playerEmail, name = playerName, score1 = score },
-            2 => new PlayerEmailData { email = playerEmail, name = playerName, score2 = score },
-            3 => new PlayerEmailData { email = playerEmail, name = playerName, score3 = score },
-            4 => new PlayerEmailData { email = playerEmail, name = playerName, score4 = score },
-            5 => new PlayerEmailData { email = playerEmail, name = playerName, score5 = score },
-            _ => new PlayerEmailData { email = playerEmail, name = playerName }
+            1 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score1 = score },
+            2 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score2 = score },
+            3 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score3 = score },
+            4 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score4 = score },
+            5 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score5 = score },
+            _ => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName }
         };
 
         string json = JsonUtility.ToJson(data);
@@ -249,6 +251,21 @@ public class HighScoreManager : MonoBehaviour
     {
         loginManager.DeletePlayerPrefs();
         SceneManager.LoadScene(0);
+    }
+
+    private string GetOrCreatePlayerId()
+    {
+        string player = PlayerPrefs.GetString("PlayerId", "");
+        
+        if (string.IsNullOrEmpty(player))
+        {
+            // Generuj nowe ID używając System.Guid
+            player = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString("PlayerId", player);
+            PlayerPrefs.Save();
+        }
+        
+        return player;
     }
 }
 
