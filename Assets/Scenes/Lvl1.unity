@@ -1639,6 +1639,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -190
       objectReference: {fileID: 0}
+    - target: {fileID: 7719282821482594009, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_ControlPath
+      value: <Joystick>/stick/down
+      objectReference: {fileID: 0}
     - target: {fileID: 7747029680232610257, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1658,6 +1662,10 @@ PrefabInstance:
     - target: {fileID: 8117795279612024002, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -135
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325498708989974140, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_ControlPath
+      value: <Joystick>/stick
       objectReference: {fileID: 0}
     - target: {fileID: 8467516601683815046, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_Name
