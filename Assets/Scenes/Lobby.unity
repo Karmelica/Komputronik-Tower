@@ -4090,23 +4090,23 @@ MonoBehaviour:
   levelUnlockDates:
   - levelName: Level 1
     month: 8
-    day: 20
+    day: 25
     hour: 13
   - levelName: Level 2
-    month: 8
-    day: 21
+    month: 9
+    day: 7
     hour: 13
   - levelName: Level 3
-    month: 8
-    day: 22
+    month: 9
+    day: 12
     hour: 13
   - levelName: Level 4
-    month: 8
-    day: 23
+    month: 9
+    day: 17
     hour: 13
   - levelName: Level 5
-    month: 8
-    day: 24
+    month: 9
+    day: 22
     hour: 13
   useServerTime: 1
   timeoutSeconds: 1
