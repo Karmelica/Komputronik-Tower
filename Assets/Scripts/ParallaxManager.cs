@@ -1,11 +1,12 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class ParallaxManager : MonoBehaviour
 {    
     [Header("Generation Seed")]
     public int seed;
+
+    [SerializeField] private Sprite[] bcSprites;
     
     [Header("Dependencies")] 
     [SerializeField] private Transform playerTransform;
@@ -15,13 +16,13 @@ public class ParallaxManager : MonoBehaviour
     [Header("Background Settings")]
     public float backgroundHeight = 24f; // Height offset for new segments
     
-    private System.Random rng;
-    private readonly HashSet<ParalaxBc> _backgrounds = new();
+    private System.Random _rng;
+    private readonly HashSet<ParallaxBc> _backgrounds = new();
     private bool _canGenerate;
     
     private void Awake()
     {
-        rng = new System.Random(seed);
+        _rng = new System.Random(seed);
     }
     
     private void Start()
@@ -33,11 +34,11 @@ public class ParallaxManager : MonoBehaviour
 
         if (previousBackground == null)
         {
-            var background = PoolingManager.Instance.Get<ParalaxBc>("Background");
+            var background = PoolingManager.Instance.Get<ParallaxBc>("Background");
             background.transform.position = new Vector3(0,0,0);
             background.transform.rotation = Quaternion.identity;
             background.target = playerTransform;
-            background.InitializeBc();
+            background.InitializeBc(bcSprites, _rng);
             
             previousBackground = background.gameObject;
         }
@@ -47,23 +48,23 @@ public class ParallaxManager : MonoBehaviour
     {
         if (other.CompareTag("Background"))
         {
-            ParalaxBc bcScript = other.GetComponent<ParalaxBc>();
+            ParallaxBc bcScript = other.GetComponent<ParallaxBc>();
             if (bcScript == null || _backgrounds.Contains(bcScript)) return;
             
             _backgrounds.Add(bcScript);
             
             Vector3 newPosition = bcScript.OriginalPosition + new Vector3(0f, backgroundHeight, 0f);
             
-            ParalaxBc backgroundScript = PoolingManager.Instance.Get<ParalaxBc>("Background");
+            ParallaxBc backgroundScript = PoolingManager.Instance.Get<ParallaxBc>("Background");
             backgroundScript.transform.position = newPosition;
             backgroundScript.transform.rotation = Quaternion.identity;
             backgroundScript.target = playerTransform;
-            backgroundScript.InitializeBc();
+            backgroundScript.InitializeBc(bcSprites, _rng);
             
             previousBackground = backgroundScript.gameObject;
         }
     }
-    private void RemoveSegment(ParalaxBc segment)
+    private void RemoveSegment(ParallaxBc segment)
     {
         if (_backgrounds.Contains(segment))
         {
@@ -73,11 +74,11 @@ public class ParallaxManager : MonoBehaviour
     
     private void OnEnable()
     {
-        ParalaxBc.OnBackgroundDeactivation += RemoveSegment;
+        ParallaxBc.OnBackgroundDeactivation += RemoveSegment;
     }
 
     private void OnDisable()
     {
-        ParalaxBc.OnBackgroundDeactivation -= RemoveSegment;
+        ParallaxBc.OnBackgroundDeactivation -= RemoveSegment;
     }
 }
