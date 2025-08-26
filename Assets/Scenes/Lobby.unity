@@ -4109,10 +4109,9 @@ MonoBehaviour:
     day: 22
     hour: 13
   useServerTime: 1
-  timeoutSeconds: 1
+  timeoutSeconds: 10
   timeServerUrls:
   - https://getservertime-zblptdvtpq-lm.a.run.app
-  - https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw
 --- !u!1 &2018269281
 GameObject:
   m_ObjectHideFlags: 0
