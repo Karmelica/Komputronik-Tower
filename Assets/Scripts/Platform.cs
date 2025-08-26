@@ -17,8 +17,8 @@ public class Platform : MonoBehaviour
     private float _initialPosition;
     
     private Coroutine _gravityCoroutine;
-    private PlatformEffector2D effector2D;
-    private Coroutine coroutine;
+    private PlatformEffector2D _effector2D;
+    private Coroutine _coroutine;
     
     private void Awake()
     {
@@ -59,8 +59,8 @@ public class Platform : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("PDetector")) return;
         
-        if (coroutine != null) return;
-        coroutine = StartCoroutine(EnableFall());
+        if (_coroutine != null) return;
+        _coroutine = StartCoroutine(EnableFall());
         StartShake();
     }
     
@@ -77,7 +77,7 @@ public class Platform : MonoBehaviour
 
     private void DisableFall()
     {
-        coroutine = null;
+        _coroutine = null;
         _rigidbody2D.linearVelocity = Vector2.zero;
         
         Vector3 initialPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
