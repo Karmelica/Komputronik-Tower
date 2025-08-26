@@ -15,6 +15,11 @@ public class PlayerEmailData
 {
     public string email;
     public string name;
+    public int score1;
+    public int score2;
+    public int score3;
+    public int score4;
+    public int score5;
 }
 
 public class LoginManager : MonoBehaviour

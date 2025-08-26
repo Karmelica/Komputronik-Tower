@@ -1,8 +1,9 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Text;
 using UnityEngine;
 using TMPro;
-using Dan.Main;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class HighScoreManager : MonoBehaviour
@@ -12,7 +13,9 @@ public class HighScoreManager : MonoBehaviour
     public static HighScoreManager Instance;
     [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
     private LoginManager loginManager;
-    private const string PublicLeaderboardKey = "88e3d223505ea86807694065498f0b36ec49e2f3ea09970d31d77d5af4d5807b";
+    
+    private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
+    private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
     
     [Header("Game UI")]
     [SerializeField] private GameObject gameUI;
@@ -67,6 +70,77 @@ public class HighScoreManager : MonoBehaviour
 
     #region Leaderboard Management
 
+    public void NewLeaderboardEntry(string email, string playerName, int score, int level)
+    {
+        StartCoroutine(SendEmailCoroutine(email, playerName, score, level));
+    }
+    
+    private IEnumerator SendEmailCoroutine(string playerEmail, string playerName, int score, int level)
+    {
+        // 1. Logowanie anonimowe i pobranie ID Token
+        string idToken = null;
+        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+
+        if (string.IsNullOrEmpty(idToken))
+        {
+            Debug.LogError("Nie udało się pobrać ID Token.");
+            yield break;
+        }
+
+        // 2. Wysyłka danych do funkcji Firebase
+        PlayerEmailData data = level switch
+        {
+            1 => new PlayerEmailData { email = playerEmail, name = playerName, score1 = score },
+            2 => new PlayerEmailData { email = playerEmail, name = playerName, score2 = score },
+            3 => new PlayerEmailData { email = playerEmail, name = playerName, score3 = score },
+            4 => new PlayerEmailData { email = playerEmail, name = playerName, score4 = score },
+            5 => new PlayerEmailData { email = playerEmail, name = playerName, score5 = score },
+            _ => new PlayerEmailData { email = playerEmail, name = playerName }
+        };
+
+        string json = JsonUtility.ToJson(data);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        UnityWebRequest www = new UnityWebRequest(firebaseFunctionUrl, "POST");
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + idToken);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Email wysłany: " + www.downloadHandler.text);
+        }
+        else
+        {
+            Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+        }
+    }
+    
+    private IEnumerator GetFirebaseAnonymousToken(System.Action<string> callback)
+    {
+        string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={apiKey}";
+
+        UnityWebRequest www = UnityWebRequest.PostWwwForm(url, ""); // POST z pustym body
+        www.downloadHandler = new DownloadHandlerBuffer();
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            var json = www.downloadHandler.text;
+            var response = JsonUtility.FromJson<FirebaseAuthResponse>(json);
+            callback?.Invoke(response.idToken);
+        }
+        else
+        {
+            Debug.LogError("Błąd logowania anonimowego: " + www.error + " / " + www.downloadHandler.text);
+            callback?.Invoke(null);
+        }
+    }
+    
     /*private void GetLeaderboard()
     {
         LeaderboardCreator.GetLeaderboard(PublicLeaderboardKey, leaderboard =>
@@ -77,12 +151,12 @@ public class HighScoreManager : MonoBehaviour
                 highScoreText[i].text = leaderboard[i].Username + ": " + leaderboard[i].Score;
             }
         });
-    }*/
+    }
 
     public void NewLeaderboardEntry(string playerName, string playerEmail, int score)
     {
         LeaderboardCreator.UploadNewEntry(PublicLeaderboardKey, playerName, score, playerEmail);
-    }
+    }*/
     
     #endregion
     
@@ -158,7 +232,7 @@ public class HighScoreManager : MonoBehaviour
             gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
         
-        NewLeaderboardEntry(loginManager.currentPlayerName, loginManager.currentPlayerEmail, Mathf.RoundToInt(currentScore));
+        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
     }
 
     public void RestartGame()
