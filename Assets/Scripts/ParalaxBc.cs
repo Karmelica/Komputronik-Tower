@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using Random = System.Random;
 
-public class ParalaxBc : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public class ParallaxBc : MonoBehaviour
 {
     public Vector3 OriginalPosition => _originalPos;
-    public static event Action<ParalaxBc> OnBackgroundDeactivation;
+    public static event Action<ParallaxBc> OnBackgroundDeactivation;
     public Transform target;
     
     [SerializeField] private Vector2 parallaxMultiplier = new Vector2(0.5f, 0.5f);
@@ -12,6 +14,12 @@ public class ParalaxBc : MonoBehaviour
     [SerializeField] private float despawnOffset;
 
     private Vector3 _originalPos;
+    private SpriteRenderer _renderer;
+
+    private void Awake()
+    {
+        _renderer = GetComponent<SpriteRenderer>();
+    }
     
     private void LateUpdate()
     {
@@ -34,9 +42,11 @@ public class ParalaxBc : MonoBehaviour
         }
     }
 
-    public void InitializeBc()
+    public void InitializeBc(Sprite[] sprites, Random rng)
     {
         _originalPos = transform.position;
+        _renderer.sprite = sprites[rng.Next(sprites.Length)];
+        
         gameObject.SetActive(true);
     }
 }

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: d16b2caef16507249988dd36a27e76c5
+guid: 4bf082d82911c2840a18c577de7cd645
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9165657408992840508
-    second: character_idle_sheet_0
-  - first:
-      213: 3851460179329748764
-    second: character_idle_sheet_1
+      213: 4017472398795535818
+    second: left_selected_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -80,7 +77,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -113,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -125,30 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 1
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character_idle_sheet_0
+      name: left_selected_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 282
-        height: 282
+        width: 274
+        height: 548
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,30 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3b02fb0ad4f23f70800000000000000
-      internalID: 9165657408992840508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_sheet_1
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 0
-        width: 282
-        height: 282
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c1f038f80a2237530800000000000000
-      internalID: 3851460179329748764
+      spriteID: ac5f4297cdde0c730800000000000000
+      internalID: 4017472398795535818
       vertices: []
       indices: 
       edges: []
@@ -189,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 49c45e9571a4b1144b4c928eb6766e0a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -197,12 +159,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":1.0},"gridSpriteSize":{"x":282.0,"y":282.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      character_idle_sheet_0: 9165657408992840508
-      character_idle_sheet_1: 3851460179329748764
+      left_selected_0: 4017472398795535818
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

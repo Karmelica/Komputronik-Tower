@@ -24,7 +24,7 @@ public class SegmentGen : MonoBehaviour
     [SerializeField] private Vector2 gizmoSize = new (5f, 10f);
     [SerializeField] private Color gizmoColor = Color.green;*/
 
-    private System.Random rng;
+    private System.Random _rng;
     private readonly HashSet<SegmentScript> _segments = new();
     private bool _canGenerate;
 
@@ -33,7 +33,7 @@ public class SegmentGen : MonoBehaviour
     
     private void Awake()
     {
-        rng = new System.Random(seed);
+        _rng = new System.Random(seed);
     }
     
     private void Start()
@@ -48,7 +48,7 @@ public class SegmentGen : MonoBehaviour
             var segment = PoolingManager.Instance.Get<SegmentScript>("Segment");
             segment.transform.position = new Vector3(0,0,0);
             segment.transform.rotation = Quaternion.identity;
-            segment.InitializeSegment(rng);
+            segment.InitializeSegment(_rng);
             
             previousSegment = segment.gameObject;
         }
@@ -75,7 +75,7 @@ public class SegmentGen : MonoBehaviour
             SegmentScript segmentScript = PoolingManager.Instance.Get<SegmentScript>("Segment");
             segmentScript.transform.position = newPosition;
             segmentScript.transform.rotation = Quaternion.identity;
-            segmentScript.InitializeSegment(rng);
+            segmentScript.InitializeSegment(_rng);
             
             previousSegment = segmentScript.gameObject;
         }
