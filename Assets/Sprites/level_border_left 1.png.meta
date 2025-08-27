@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d61a6284f47527343995ec464ee62790
+guid: 80d8237a37ad7724599c0efaa349d70b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8357352083419279459
-    second: level_border_left_0
+      213: -1017523649267104737
+    second: level_border_left 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,24 +122,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: level_border_left_0
+      name: level_border_left 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9f4cec2f88b40c80800000000000000
-      internalID: -8357352083419279459
+      spriteID: f1400eec1a701e1f0800000000000000
+      internalID: -1017523649267104737
       vertices: []
       indices: 
       edges: []
@@ -174,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      level_border_left_0: -8357352083419279459
+      level_border_left 1_0: -1017523649267104737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
