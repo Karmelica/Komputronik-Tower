@@ -114,8 +114,7 @@ public class ComboScript : MonoBehaviour
 
     private void ResetCombo()
     {
-        Debug.Log(CalculateBonus());
-        
+        CalculateBonus();
         platformComboCount = 0;
         currentComboCount = 0;
         _currentComboTime = 0;
@@ -126,6 +125,8 @@ public class ComboScript : MonoBehaviour
     private int CalculateBonus()
     {
         int bonus = totalPlatformPassed * platformComboCount;
+        
+        Debug.Log($"total platform passed: {totalPlatformPassed}, combo: {platformComboCount}, total: {bonus}");
         return bonus;
     }
 }
