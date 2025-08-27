@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd4dfb39-a06d-48f2-a3c3-ece3498d6d37" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Komputronik tower/.idea/copilotDiffState.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/level_bg.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/level_bg.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/level_border_left.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/level_border_left.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/level_border_right.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/level_border_right.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,7 @@
       <workItem from="1756117188724" duration="1305000" />
       <workItem from="1756120820674" duration="7272000" />
       <workItem from="1756133180127" duration="3822000" />
-      <workItem from="1756199787152" duration="3609000" />
+      <workItem from="1756199787152" duration="9365000" />
     </task>
     <servers />
   </component>

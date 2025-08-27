@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using TMPro;
@@ -13,6 +14,7 @@ public class FirebaseAuthResponse
 [System.Serializable]
 public class PlayerEmailData
 {
+    public string playerID;
     public string email;
     public string name;
     public int score1;
@@ -25,6 +27,7 @@ public class PlayerEmailData
 public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
+    private string playerId;
 
     private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
@@ -49,6 +52,8 @@ public class LoginManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        
+        playerId = GetOrCreatePlayerId();
     }
 
     private void Start()
@@ -91,6 +96,21 @@ public class LoginManager : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayerEmail");
         PlayerPrefs.DeleteKey("PlayerName");
         PlayerPrefs.Save();
+    }
+    
+    private string GetOrCreatePlayerId()
+    {
+        string player = PlayerPrefs.GetString("PlayerId", "");
+        
+        if (string.IsNullOrEmpty(player))
+        {
+            // Generuj nowe ID używając System.Guid
+            player = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString("PlayerId", player);
+            PlayerPrefs.Save();
+        }
+        
+        return player;
     }
 
     #endregion
@@ -164,7 +184,7 @@ public class LoginManager : MonoBehaviour
         }
 
         // 2. Wysyłka danych do funkcji Firebase
-        PlayerEmailData data = new PlayerEmailData { email = email, name = name };
+        PlayerEmailData data = new PlayerEmailData {playerID = playerId, email = email, name = name };
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
