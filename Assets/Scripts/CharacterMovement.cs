@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     #region Variables
-    
+
+    public Collider2D LastHit;
+    public bool Grounded => _isGrounded;
     public static bool CanMove = true;
     
     [Header("Max move and jump settings")]
@@ -79,7 +81,11 @@ public class CharacterMovement : MonoBehaviour
         // sprawdzamy czy postac jest na ziemi tylko jesli opada lub velocity jest na 0
         if (_body.linearVelocity.y <= 0)
         {
-            _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+            _isGrounded = hit;
+            
+            LastHit = hit.collider;
+            //_isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         }
         
         _animator.SetFloat("Velocity", _moveInput.x);
