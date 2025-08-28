@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,11 @@ public class CharacterMovement : MonoBehaviour
     public Collider2D LastHit;
     public bool Grounded => _isGrounded;
     public static bool CanMove = true;
+
+    [SerializeField] private Transform raycastOrigin;
+    [SerializeField] private float rDistance;
+    [SerializeField] private float secondDistance;
+    [SerializeField] private float secondOffset;
     
     [Header("Max move and jump settings")]
     [SerializeField] private float moveSpeed;
@@ -81,10 +87,28 @@ public class CharacterMovement : MonoBehaviour
         // sprawdzamy czy postac jest na ziemi tylko jesli opada lub velocity jest na 0
         if (_body.linearVelocity.y <= 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
-            _isGrounded = hit;
+            Vector2 secondPos = new Vector2(raycastOrigin.position.x, raycastOrigin.position.y + secondOffset);
+            RaycastHit2D secondHit = Physics2D.Raycast(secondPos, Vector2.down, secondDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(secondPos, Vector2.down * secondDistance, Color.blue);
             
-            LastHit = hit.collider;
+            RaycastHit2D hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, rDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(raycastOrigin.position, Vector2.down * rDistance, Color.red);
+
+            if (hit.collider != null && secondHit.collider == null)
+            {
+                _isGrounded =  true;
+                LastHit = hit.collider;
+            }
+            else
+            {
+                _isGrounded = false;
+            }
+            
+            
+            //isGrounded = hit;
+            Debug.Log(_isGrounded);
+            
+            //LastHit = hit.collider;
             //_isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         }
         

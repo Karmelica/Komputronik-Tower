@@ -624,6 +624,37 @@ MonoBehaviour:
     poolObject: {fileID: 3744980825617945928, guid: 1c0e6f7de5bf97b408f44f0db0af1be8, type: 3}
     initialSize: 3
     parent: {fileID: 0}
+--- !u!1 &812283793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812283794}
+  m_Layer: 0
+  m_Name: RaycastOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812283794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812283793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1632096637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935338665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,6 +1570,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LastHit: {fileID: 0}
+  raycastOrigin: {fileID: 812283794}
+  rDistance: 0.05
+  secondDistance: -0.01
+  secondOffset: 0
   moveSpeed: 20
   jumpSpeed: 30
   jumpForce: 5
@@ -2341,6 +2376,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 935338666}
+    - targetCorrespondingSourceObject: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812283794}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       insertIndex: -1
