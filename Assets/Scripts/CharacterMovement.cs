@@ -10,6 +10,9 @@ public class CharacterMovement : MonoBehaviour
     public Collider2D LastHit;
     public bool Grounded => _isGrounded;
     public static bool CanMove = true;
+
+    [SerializeField] private Transform raycastOrigin;
+    [SerializeField] private float rDistance;
     
     [Header("Max move and jump settings")]
     [SerializeField] private float moveSpeed;
@@ -81,10 +84,24 @@ public class CharacterMovement : MonoBehaviour
         // sprawdzamy czy postac jest na ziemi tylko jesli opada lub velocity jest na 0
         if (_body.linearVelocity.y <= 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
-            _isGrounded = hit;
+            RaycastHit2D hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, rDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(raycastOrigin.position, Vector2.down * rDistance, Color.red);
+
+            if (hit.collider != null && Vector2.Dot(hit.normal, Vector2.up) > 0.9f)
+            {
+                _isGrounded =  true;
+                LastHit = hit.collider;
+            }
+            else
+            {
+                _isGrounded = false;
+            }
             
-            LastHit = hit.collider;
+            
+            //isGrounded = hit;
+            Debug.Log(_isGrounded);
+            
+            //LastHit = hit.collider;
             //_isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         }
         
