@@ -39,7 +39,7 @@ public class ComboScript : MonoBehaviour
     {
         HandleRaycastCombo();
         
-        if (_body.linearVelocity.y == 0)
+        if (_characterMovement.Grounded)
         {
             PlatformChecker();
         }

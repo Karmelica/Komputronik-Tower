@@ -1572,6 +1572,8 @@ MonoBehaviour:
   LastHit: {fileID: 0}
   raycastOrigin: {fileID: 812283794}
   rDistance: 0.05
+  secondDistance: -0.01
+  secondOffset: 0
   moveSpeed: 20
   jumpSpeed: 30
   jumpForce: 5

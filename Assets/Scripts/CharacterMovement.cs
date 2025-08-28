@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,8 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] private Transform raycastOrigin;
     [SerializeField] private float rDistance;
+    [SerializeField] private float secondDistance;
+    [SerializeField] private float secondOffset;
     
     [Header("Max move and jump settings")]
     [SerializeField] private float moveSpeed;
@@ -84,10 +87,14 @@ public class CharacterMovement : MonoBehaviour
         // sprawdzamy czy postac jest na ziemi tylko jesli opada lub velocity jest na 0
         if (_body.linearVelocity.y <= 0)
         {
+            Vector2 secondPos = new Vector2(raycastOrigin.position.x, raycastOrigin.position.y + secondOffset);
+            RaycastHit2D secondHit = Physics2D.Raycast(secondPos, Vector2.down, secondDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(secondPos, Vector2.down * secondDistance, Color.blue);
+            
             RaycastHit2D hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, rDistance, LayerMask.GetMask("Ground"));
             Debug.DrawRay(raycastOrigin.position, Vector2.down * rDistance, Color.red);
 
-            if (hit.collider != null && Vector2.Dot(hit.normal, Vector2.up) > 0.9f)
+            if (hit.collider != null && secondHit.collider == null)
             {
                 _isGrounded =  true;
                 LastHit = hit.collider;

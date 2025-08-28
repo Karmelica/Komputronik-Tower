@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 632743810037037185}
   - component: {fileID: 4615301430736699317}
   - component: {fileID: 8192079098319958926}
-  - component: {fileID: 8478304049743491467}
+  - component: {fileID: 3046311729771859079}
   m_Layer: 6
   m_Name: Platform_12
   m_TagString: Ground
@@ -183,7 +183,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &8478304049743491467
+--- !u!61 &3046311729771859079
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 4027103152166430807}
   - component: {fileID: 8940844987136254390}
   - component: {fileID: 359325872233888482}
-  - component: {fileID: 4884399052949343697}
+  - component: {fileID: 9047947060515182466}
   m_Layer: 6
   m_Name: Platform_20
   m_TagString: Ground
@@ -737,7 +737,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &4884399052949343697
+--- !u!61 &9047947060515182466
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 2315475549263618615}
   - component: {fileID: 3537809966361572425}
   - component: {fileID: 2776268809893573496}
-  - component: {fileID: 128323238071151107}
+  - component: {fileID: 3003680597947081376}
   m_Layer: 6
   m_Name: Platform_17
   m_TagString: Ground
@@ -1187,7 +1187,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &128323238071151107
+--- !u!61 &3003680597947081376
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1245,7 +1245,7 @@ GameObject:
   - component: {fileID: 2861897911900578292}
   - component: {fileID: 8324859273455729397}
   - component: {fileID: 7843639456171484009}
-  - component: {fileID: 7360919745035093473}
+  - component: {fileID: 9063787811097062376}
   m_Layer: 6
   m_Name: Platform_15
   m_TagString: Ground
@@ -1329,7 +1329,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &7360919745035093473
+--- !u!61 &9063787811097062376
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1608,7 +1608,7 @@ GameObject:
   - component: {fileID: 8178733776414218755}
   - component: {fileID: 6322091073604822850}
   - component: {fileID: 1409301557444161724}
-  - component: {fileID: 860193913260932037}
+  - component: {fileID: 1406804544353898830}
   m_Layer: 6
   m_Name: Platform_10
   m_TagString: Ground
@@ -1692,7 +1692,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &860193913260932037
+--- !u!61 &1406804544353898830
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1750,7 +1750,7 @@ GameObject:
   - component: {fileID: 7528093913626232340}
   - component: {fileID: 3439108074763533485}
   - component: {fileID: 387605015105778283}
-  - component: {fileID: 6384523804529900920}
+  - component: {fileID: 494877023992112753}
   m_Layer: 6
   m_Name: Platform_26
   m_TagString: Ground
@@ -1834,7 +1834,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &6384523804529900920
+--- !u!61 &494877023992112753
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2247,7 +2247,7 @@ GameObject:
   - component: {fileID: 8090839304916672933}
   - component: {fileID: 8512596492896671420}
   - component: {fileID: 2942822095459242796}
-  - component: {fileID: 5029957240611173126}
+  - component: {fileID: 1039907996027170957}
   m_Layer: 6
   m_Name: Platform_23
   m_TagString: Ground
@@ -2331,7 +2331,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &5029957240611173126
+--- !u!61 &1039907996027170957
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2389,7 +2389,7 @@ GameObject:
   - component: {fileID: 5751330802947354963}
   - component: {fileID: 6024641667488617563}
   - component: {fileID: 8075957430948568518}
-  - component: {fileID: 5284473107942798070}
+  - component: {fileID: 728348930476444008}
   m_Layer: 6
   m_Name: Platform_25
   m_TagString: Ground
@@ -2473,7 +2473,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &5284473107942798070
+--- !u!61 &728348930476444008
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2618,7 +2618,7 @@ GameObject:
   - component: {fileID: 6791067980799830889}
   - component: {fileID: 8085243373295856354}
   - component: {fileID: 1780875375102235115}
-  - component: {fileID: 1019309062961728877}
+  - component: {fileID: 3919081944239069193}
   m_Layer: 6
   m_Name: Platform_16
   m_TagString: Ground
@@ -2702,7 +2702,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &1019309062961728877
+--- !u!61 &3919081944239069193
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2760,7 +2760,7 @@ GameObject:
   - component: {fileID: 2080420558711114286}
   - component: {fileID: 1510351921876350584}
   - component: {fileID: 8711538664946703178}
-  - component: {fileID: 3007838809694042447}
+  - component: {fileID: 6778592472230046251}
   m_Layer: 6
   m_Name: Platform_18
   m_TagString: Ground
@@ -2844,7 +2844,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &3007838809694042447
+--- !u!61 &6778592472230046251
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2902,7 +2902,7 @@ GameObject:
   - component: {fileID: 8959943033192316704}
   - component: {fileID: 1395932463456262084}
   - component: {fileID: 5349730999551141528}
-  - component: {fileID: 7591803987499985496}
+  - component: {fileID: 5813016491168167431}
   m_Layer: 6
   m_Name: Platform_27
   m_TagString: Ground
@@ -2986,7 +2986,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &7591803987499985496
+--- !u!61 &5813016491168167431
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3265,7 +3265,7 @@ GameObject:
   - component: {fileID: 2229499128161241548}
   - component: {fileID: 8195435515438169863}
   - component: {fileID: 975818660295078898}
-  - component: {fileID: 6192844383019863385}
+  - component: {fileID: 3506951949610126816}
   m_Layer: 6
   m_Name: Platform_19
   m_TagString: Ground
@@ -3349,7 +3349,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &6192844383019863385
+--- !u!61 &3506951949610126816
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3407,7 +3407,7 @@ GameObject:
   - component: {fileID: 3821391504561104230}
   - component: {fileID: 1459935671313901784}
   - component: {fileID: 8976672614401831567}
-  - component: {fileID: 3420712798296141301}
+  - component: {fileID: 9169519491010601008}
   m_Layer: 6
   m_Name: Platform_11
   m_TagString: Ground
@@ -3491,7 +3491,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &3420712798296141301
+--- !u!61 &9169519491010601008
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4307,7 +4307,7 @@ GameObject:
   - component: {fileID: 161162697135768121}
   - component: {fileID: 2243490838050532520}
   - component: {fileID: 4325336965455475006}
-  - component: {fileID: 2531125798048684128}
+  - component: {fileID: 3557769138571065576}
   m_Layer: 6
   m_Name: Platform_21
   m_TagString: Ground
@@ -4391,7 +4391,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &2531125798048684128
+--- !u!61 &3557769138571065576
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4449,7 +4449,7 @@ GameObject:
   - component: {fileID: 6612245658334340597}
   - component: {fileID: 4721559470979175255}
   - component: {fileID: 7910745140446990347}
-  - component: {fileID: 2864868873426956875}
+  - component: {fileID: 776997238228802421}
   m_Layer: 6
   m_Name: Platform_14
   m_TagString: Ground
@@ -4533,7 +4533,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &2864868873426956875
+--- !u!61 &776997238228802421
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4725,7 +4725,7 @@ GameObject:
   - component: {fileID: 7452152386309442612}
   - component: {fileID: 718891054675109808}
   - component: {fileID: 5126088490300706542}
-  - component: {fileID: 5055475668257584903}
+  - component: {fileID: 3060750521925302717}
   m_Layer: 6
   m_Name: Platform_13
   m_TagString: Ground
@@ -4809,7 +4809,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &5055475668257584903
+--- !u!61 &3060750521925302717
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5041,7 +5041,7 @@ GameObject:
   - component: {fileID: 727626222357035359}
   - component: {fileID: 5557805931732408647}
   - component: {fileID: 2396734813780098987}
-  - component: {fileID: 1950874518021174797}
+  - component: {fileID: 8832733861765710961}
   m_Layer: 6
   m_Name: Platform_22
   m_TagString: Ground
@@ -5125,7 +5125,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &1950874518021174797
+--- !u!61 &8832733861765710961
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5444,7 +5444,7 @@ GameObject:
   - component: {fileID: 9182962984514858252}
   - component: {fileID: 1158124813503500091}
   - component: {fileID: 4538755804724839749}
-  - component: {fileID: 7291130482416000962}
+  - component: {fileID: 6188892563080930751}
   m_Layer: 6
   m_Name: Platform_24
   m_TagString: Ground
@@ -5528,7 +5528,7 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!61 &7291130482416000962
+--- !u!61 &6188892563080930751
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
