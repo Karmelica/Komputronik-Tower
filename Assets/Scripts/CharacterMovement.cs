@@ -125,6 +125,7 @@ public class CharacterMovement : MonoBehaviour
         _wasGrounded = _isGrounded;
         
         _animator.SetFloat("Velocity", _moveInput.x);
+        _animator.SetFloat("YVelocity", _body.linearVelocity.y);
     }
     
     private void FixedUpdate()
@@ -255,6 +256,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && CanMove)
         {
+            _animator.SetTrigger("Jump");
+            
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             //Debug.Log(velocityBoost);
 
