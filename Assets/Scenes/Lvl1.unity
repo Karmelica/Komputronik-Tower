@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 574128901}
   - component: {fileID: 574128902}
   m_Layer: 5
-  m_Name: PositionUI
+  m_Name: ProgressUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0482515e1943e944a9d12a8819210dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LastHit: {fileID: 0}
+  CurrentHit: {fileID: 0}
   raycastOrigin: {fileID: 812283794}
   rDistance: 0.05
   secondDistance: -0.01
@@ -1971,7 +1971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651be190cff464d4a8fc4d50148476e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOffset: -10
+  xPositionOffset: -10
+  yPositionOffset: -0.5
   platformRaycastLength: 20
   comboTimer: 3
   platformComboCount: 0
@@ -2794,7 +2795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: useSegmentLimit
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: lowerColliderScript

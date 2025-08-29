@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PositionUIScript : MonoBehaviour
+public class ProgressUIScript : MonoBehaviour
 {
     [Header("Segment Limit Offset")]
     [SerializeField] private float heightOffset;
