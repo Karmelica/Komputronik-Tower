@@ -113,7 +113,7 @@ public class HighScoreManager : MonoBehaviour
 
         if (www.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("Email wysłany: " + www.downloadHandler.text);
+            //Debug.Log("Email wysłany: " + www.downloadHandler.text);
         }
         else
         {
@@ -200,7 +200,7 @@ public class HighScoreManager : MonoBehaviour
     
     private void ShowGameUI(bool show)
     {
-        Debug.Log("4. Wyświetlanie panelu gry.");
+        //Debug.Log("4. Wyświetlanie panelu gry.");
         Character.CanMove = true;
         Time.timeScale = 1f;
         if (gameOverPanel) gameOverPanel.SetActive(!show);
@@ -209,7 +209,7 @@ public class HighScoreManager : MonoBehaviour
     
     private void ShowGameOverPanel(bool show)
     {
-        Debug.Log("5. Wyświetlanie panelu końca gry.");
+        //Debug.Log("5. Wyświetlanie panelu końca gry.");
         Character.CanMove = false;
         Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(show);

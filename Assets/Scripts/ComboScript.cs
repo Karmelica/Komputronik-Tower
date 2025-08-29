@@ -45,9 +45,11 @@ public class ComboScript : MonoBehaviour
         }
         
         ComboTimer();
-        
-        comboImage.fillAmount = _currentComboTime / comboTimer;
-        comboText.text = platformComboCount.ToString();
+
+        if(comboImage && comboText){
+            comboImage.fillAmount = _currentComboTime / comboTimer;
+            comboText.text = platformComboCount.ToString();
+        }
     }
 
     private void HandleRaycastCombo()

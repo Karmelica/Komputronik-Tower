@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - PDetector
   - Background
+  - LobbyTrigger
   layers:
   - Default
   - TransparentFX
