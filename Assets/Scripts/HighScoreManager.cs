@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 public class HighScoreManager : MonoBehaviour
 {
     #region Variables
+
+    public bool segmentLimited;
+    public bool moveStarted;
     
     public static HighScoreManager Instance;
     [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
@@ -59,12 +62,11 @@ public class HighScoreManager : MonoBehaviour
     }
     
     private void Update()
-    
     {
         // Zwiększaj wynik w czasie (punkty za przetrwanie)
-        if (Character.CanMove)
+        if (CharacterMovement.CanMove && !segmentLimited && moveStarted)
         {
-            AddScore(Time.deltaTime * 10f * scoreMultiplier);
+            AddScore(Time.deltaTime * scoreMultiplier);
         }
     }
     
@@ -164,7 +166,7 @@ public class HighScoreManager : MonoBehaviour
     
     #region Score Management
 
-    private void AddScore(float points)
+    public void AddScore(float points)
     {
         currentScore += points;
         UpdateScoreDisplay();

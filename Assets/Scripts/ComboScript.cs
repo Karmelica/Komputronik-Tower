@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboScript : MonoBehaviour
 {
     [Header("Raycast Settings")]
-    [SerializeField] private float positionOffset;
+    [SerializeField] private float xPositionOffset;
+    [SerializeField] private float yPositionOffset;
     [SerializeField] private float platformRaycastLength;
     
     [Header("Combo Settings")]
@@ -54,8 +56,15 @@ public class ComboScript : MonoBehaviour
 
     private void HandleRaycastCombo()
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(positionOffset, transform.position.y), Vector2.right, platformRaycastLength, LayerMask.GetMask("Ground"));
-        Debug.DrawRay(new Vector2(positionOffset, transform.position.y), Vector2.right * platformRaycastLength, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(xPositionOffset, transform.position.y + yPositionOffset),
+            Vector2.right, platformRaycastLength, 
+            LayerMask.GetMask("Ground"));
+        
+        Debug.DrawRay(
+            new Vector2(xPositionOffset, transform.position.y + yPositionOffset),
+            Vector2.right * platformRaycastLength, 
+            Color.red);
         
         bool isHittingPlatform = hit;
         
@@ -81,7 +90,7 @@ public class ComboScript : MonoBehaviour
 
     private void PlatformChecker()
     {
-        Collider2D currentPlatform = _characterMovement.LastHit;
+        Collider2D currentPlatform = _characterMovement.CurrentHit;
 
         if (currentPlatform == null) return;
 
@@ -116,7 +125,8 @@ public class ComboScript : MonoBehaviour
 
     private void ResetCombo()
     {
-        CalculateBonus();
+        //CalculateBonus();
+        HighScoreManager.Instance.AddScore(CalculateBonus());
         platformComboCount = 0;
         currentComboCount = 0;
         _currentComboTime = 0;
