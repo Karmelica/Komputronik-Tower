@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
+    public bool UseSegmentLimit => useSegmentLimit;
+    public int SegmentLimit => segmentLimit;
+    
     [Header("Generation Seed")]
     public int seed;
     
