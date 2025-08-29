@@ -1,6 +1,3 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +5,7 @@ public class CharacterMovement : MonoBehaviour
 {
     #region Variables
 
-    public Collider2D LastHit;
+    public Collider2D CurrentHit;
     public bool Grounded => _isGrounded;
     public static bool CanMove = true;
 
@@ -41,7 +38,9 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector2 _preCollisionVelocity;
     private Vector2 _moveInput;
+    private Collider2D _lastGroundCollider = null;
     private bool _isGrounded;
+    private bool _wasGrounded;
     
     private float _gameStartTimer;
     private bool _gameOver;
@@ -97,24 +96,35 @@ public class CharacterMovement : MonoBehaviour
             if (hit.collider != null && secondHit.collider == null)
             {
                 _isGrounded =  true;
-                LastHit = hit.collider;
+                CurrentHit = hit.collider;
             }
             else
             {
                 _isGrounded = false;
             }
             
-            
-            //isGrounded = hit;
-            Debug.Log(_isGrounded);
-            
-            //LastHit = hit.collider;
-            //_isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+            //Debug.Log(_isGrounded);
         }
+        
+        if (_isGrounded && !_wasGrounded)
+        {
+            if (_lastGroundCollider == null)
+            {
+                _lastGroundCollider = CurrentHit;
+            }
+
+            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y)
+            {
+                _lastGroundCollider = CurrentHit;
+                HighScoreManager.Instance.AddScore(10);
+            }
+        }
+        
+        _wasGrounded = _isGrounded;
         
         _animator.SetFloat("Velocity", _moveInput.x);
     }
-
+    
     private void FixedUpdate()
     {
         if (!CanMove) return;
@@ -181,26 +191,9 @@ public class CharacterMovement : MonoBehaviour
                 // normal acceleration
                 _body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
             }
-            
-            // apply movement force
-            //_body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
         }
         else
         {
-            // deacceleration
-            /*if (Mathf.Abs(_body.linearVelocity.x) > 0.01f)
-            {
-                float decelStep = deceleration * Time.fixedDeltaTime * Mathf.Sign(_body.linearVelocity.x);
-                float newVelocity = _body.linearVelocity.x - decelStep;
-
-                if (Mathf.Sign(newVelocity) != Mathf.Sign(_body.linearVelocity.x))
-                {
-                    newVelocity = 0f;
-                }
-                
-                _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
-            }*/
-            
             float newVelocity = Mathf.MoveTowards(_body.linearVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
         }
@@ -227,7 +220,6 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     
-                
     private bool CheckVelocity(Rigidbody2D body, float velocity)
     {
         return Mathf.Abs(body.linearVelocity.x) >= velocity;

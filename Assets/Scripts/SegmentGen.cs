@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
+    public bool UseSegmentLimit => useSegmentLimit;
+    public int SegmentLimit => segmentLimit;
+    
     [Header("Generation Seed")]
     public int seed;
     
@@ -33,11 +36,14 @@ public class SegmentGen : MonoBehaviour
     
     private void Awake()
     {
+        
         _rng = new System.Random(seed);
     }
     
     private void Start()
     {
+        HighScoreManager.Instance.segmentLimited = useSegmentLimit;
+        
         if (segmentPrefab == null)
         {
             Debug.LogError("Segment prefab is not assigned in the SegmentGen script.", this);

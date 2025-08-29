@@ -35,6 +35,8 @@ public class PlatformDetector : MonoBehaviour
             _graceTimer = graceTime;
         }
         
+        HighScoreManager.Instance.moveStarted =  _moveStarted;
+        
         if (_moveStarted)
         {
             if (_graceTimer > 0)
