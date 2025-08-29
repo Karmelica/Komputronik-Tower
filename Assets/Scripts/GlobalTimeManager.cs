@@ -150,19 +150,21 @@ public class GlobalTimeManager : MonoBehaviour
     
     public bool IsLevelUnlocked(int levelIndex)
     {
+        if (PlayerPrefs.GetInt("LevelsCompleted", 0) < levelIndex)
+            return false;
         if (levelIndex < 0 || levelIndex >= levelUnlockDates.Count)
             return false;
         
         return _currentServerTime >= levelUnlockDates[levelIndex].GetDateTime();
     }
     
-    /*public DateTime GetLevelUnlockDate(int levelIndex)
+    public DateTime GetLevelUnlockDate(int levelIndex)
     {
         if (levelIndex < 0 || levelIndex >= levelUnlockDates.Count)
             return DateTime.MinValue;
         
         return levelUnlockDates[levelIndex].GetDateTime();
-    }*/
+    }
     
     public TimeSpan GetTimeUntilUnlock(int levelIndex)
     {
@@ -190,12 +192,18 @@ public class GlobalTimeManager : MonoBehaviour
             {
                 if (IsLevelUnlocked(i))
                 {
-                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: ODBLOKOWANY";
+                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}";
                 }
                 else
                 {
-                    TimeSpan timeLeft = GetTimeUntilUnlock(i);
-                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}: {timeLeft.Days}d {timeLeft.Hours}h {timeLeft.Minutes}m";
+                    if(GetTimeUntilUnlock(i) == TimeSpan.Zero)
+                    {
+                        levelUnlockTimeText[i].text = "Ukończ poprzedni poziom";
+                    }
+                    else {
+                        DateTime timeUntil = GetLevelUnlockDate(i);
+                        levelUnlockTimeText[i].text = $"Wróć: {timeUntil.Day:00}/{timeUntil.Month:00} o {timeUntil.Hour:00}:{timeUntil.Minute:00}";
+                    }
                 }
             }
         }

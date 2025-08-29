@@ -72,15 +72,17 @@ public class CharacterMovement : MonoBehaviour
         {
             _gameStartTimer -= Time.deltaTime;
         }
-        
-        // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
-        if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
-        {
-            if (!_gameOver)
+
+        if(segmentDetector != null){
+            // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
+            if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
             {
-                _gameOver = true;
-                Debug.Log("You Died!");
-                HighScoreManager.Instance.GameOver();
+                if (!_gameOver)
+                {
+                    _gameOver = true;
+                    //Debug.Log("You Died!");
+                    HighScoreManager.Instance.GameOver();
+                }
             }
         }
         
@@ -106,7 +108,7 @@ public class CharacterMovement : MonoBehaviour
             
             
             //isGrounded = hit;
-            Debug.Log(_isGrounded);
+            //Debug.Log(_isGrounded);
             
             //LastHit = hit.collider;
             //_isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
