@@ -40,10 +40,7 @@ public class GlobalTimeManager : MonoBehaviour
     [Header("Time Settings")]
     [SerializeField] private bool useServerTime = true;
     [SerializeField] private int timeoutSeconds = 5;
-    [SerializeField] private List<string> timeServerUrls = new List<string>
-    {
-        "https://www.timeapi.io/api/time/current/zone?timeZone=Europe%2FWarsaw",
-    };
+    [SerializeField] private string timeServerUrl;
     
     private DateTime _currentServerTime;
     private bool _timeDataLoaded;
@@ -54,6 +51,7 @@ public class GlobalTimeManager : MonoBehaviour
     
     private void Start()
     {
+        CharacterMovement.CanMove = false;
         StartCoroutine(GetTimeFromServer());
     }
     
@@ -68,47 +66,30 @@ public class GlobalTimeManager : MonoBehaviour
             yield break;
         }
 
-        // Uruchom wszystkie zapytania równocześnie
-        var requests = new List<UnityWebRequest>();
         bool timeReceived = false;
-
-        foreach (string url in timeServerUrls)
+        
+        StartCoroutine(SendRequest((success, serverTime) =>
         {
-            UnityWebRequest request = UnityWebRequest.Get(url);
-            request.timeout = timeoutSeconds;
-            requests.Add(request);
-            
-            StartCoroutine(SendRequest(request, url, (success, serverTime) =>
+            if (success && !timeReceived)
             {
-                if (success && !timeReceived)
-                {
-                    timeReceived = true;
-                    _currentServerTime = serverTime;
-                    _timeDataLoaded = true;
-                    UpdateLevelUnlockTexts();
-                    OnTimeDataLoaded?.Invoke();
-                    
-                    // Anuluj pozostałe zapytania
-                    foreach (var req in requests)
-                    {
-                        if (req != null && !req.isDone)
-                            req.Abort();
-                    }
-                }
-            }));
-        }
-
-        // Czekaj na pierwszą odpowiedź lub timeout wszystkich
-        float maxWaitTime = timeoutSeconds;
+                timeReceived = true;
+                _currentServerTime = serverTime;
+                _timeDataLoaded = true;
+                UpdateLevelUnlockTexts();
+                OnTimeDataLoaded?.Invoke();
+            }
+        }));
+        
+        // Czekaj na odpowiedź lub timeout
         float waitTime = 0f;
         
-        while (!timeReceived && waitTime < maxWaitTime)
+        while (!timeReceived && waitTime < timeoutSeconds)
         {
             yield return new WaitForSeconds(0.1f);
             waitTime += 0.1f;
         }
 
-        // Jeśli nie otrzymano żadnej odpowiedzi, użyj czasu lokalnego
+        // Jeśli nie otrzymano odpowiedzi, użyj czasu lokalnego
         if (!timeReceived)
         {
             _currentServerTime = DateTime.Now;
@@ -116,35 +97,36 @@ public class GlobalTimeManager : MonoBehaviour
             UpdateLevelUnlockTexts();
             OnTimeDataLoaded?.Invoke();
         }
-
-        // Wyczyść zasoby
-        foreach (var request in requests)
-        {
-            request?.Dispose();
-        }
+        
+        CharacterMovement.CanMove = true;
     }
 
-    private IEnumerator SendRequest(UnityWebRequest request, string url, Action<bool, DateTime> callback)
+    private IEnumerator SendRequest(Action<bool, DateTime> callback)
     {
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest request = UnityWebRequest.Get(timeServerUrl))
         {
-            try
+            request.timeout = timeoutSeconds;
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
-                DateTime serverTime = DateTime.Parse(response.dateTime);
-                callback(true, serverTime);
+                try
+                {
+                    TimeApiResponse response = JsonUtility.FromJson<TimeApiResponse>(request.downloadHandler.text);
+                    DateTime serverTime = DateTime.Parse(response.dateTime);
+                    callback(true, serverTime);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Error parsing time response: {ex.Message}");
+                    callback(false, DateTime.MinValue);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Debug.LogError($"Error parsing time response from {url}: {ex.Message}");
+                Debug.LogError($"Time request failed: {request.error}");
                 callback(false, DateTime.MinValue);
             }
-        }
-        else
-        {
-            callback(false, DateTime.MinValue);
         }
     }
     

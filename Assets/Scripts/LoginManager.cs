@@ -32,6 +32,8 @@ public class LoginManager : MonoBehaviour
     private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
     
+    [SerializeField] private GameObject player;
+    
     [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
@@ -118,6 +120,7 @@ public class LoginManager : MonoBehaviour
     public void ShowSavePlayerPanel(bool show = true)
     {
         if (saveScorePanel) saveScorePanel.SetActive(show);
+        if (player) player.SetActive(!show);
     }
     
     #region Player Data Management
