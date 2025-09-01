@@ -13,12 +13,12 @@ public class ComboScript : MonoBehaviour
     
     [Header("Combo Settings")]
     [SerializeField] private float comboTimer = 3f;
-    [SerializeField] private int platformComboCount;
+    [SerializeField] private int streakComboCount;
     [SerializeField] private int currentComboCount;
+    [SerializeField] private int currentStreak;
     
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
-    [SerializeField] private TMP_Text platformText;
     [SerializeField] private TMP_Text comboText;
 
     [SerializeField] private int totalPlatformPassed;
@@ -31,11 +31,13 @@ public class ComboScript : MonoBehaviour
     
     private bool _wasHittingPlatform;
     private bool _timerStarted;
+    private bool _firstCombo;
     
     private void Start()
     {
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
+       _firstCombo = true;
     }
 
     private void Update()
@@ -48,10 +50,9 @@ public class ComboScript : MonoBehaviour
         }
         
         ComboTimer();
-
-        if(comboImage && platformText){
-            comboImage.fillAmount = _currentComboTime / comboTimer;
-        }
+        
+        comboImage.fillAmount = _currentComboTime / comboTimer;
+        comboText.text = currentStreak > 0 ? streakComboCount.ToString() : null;
     }
 
     private void HandleRaycastCombo()
@@ -96,21 +97,33 @@ public class ComboScript : MonoBehaviour
 
         if (_lastPlatform == null || currentPlatform != _lastPlatform)
         {
-            if (currentComboCount > 1)
+            if (_lastPlatform == null)
             {
+                _lastPlatform = currentPlatform;
+            }
+            
+            if (currentComboCount > 1 && currentPlatform.transform.position.y > _lastPlatform.transform.position.y)
+            {
+                if (_firstCombo)
+                {
+                    currentComboCount = 0;
+                    ResetCombo();
+                    _firstCombo = false;
+                }
+                
                 _timerStarted = true;
-                //platformComboCount += currentComboCount;
-                platformComboCount ++;
+                streakComboCount += currentComboCount;
+                currentStreak++;
                 _currentComboTime = comboTimer;
             }
             else
             {
+                currentComboCount = 0;
                 ResetCombo();
             }
             
-            platformText.text = platformComboCount <= 1 ? null : totalPlatformPassed.ToString();
-            comboText.text = platformComboCount <= 1 ? null : $"x{platformComboCount}";
             _lastPlatform = currentPlatform;
+            currentComboCount = 0;
         }
     }
 
@@ -127,24 +140,24 @@ public class ComboScript : MonoBehaviour
 
     private void ResetCombo()
     {
-        //CalculateBonus();
         HighScoreManager.Instance.AddScore(CalculateBonus());
-        platformComboCount = 0;
+        streakComboCount = 0;
         currentComboCount = 0;
+        currentStreak = 0;
         _currentComboTime = 0;
-        totalPlatformPassed = 0;
-        
-        platformText.text = platformComboCount <= 1 ? null : totalPlatformPassed.ToString();
-        comboText.text = platformComboCount <= 1 ? null : $"x{platformComboCount}";
         
         _timerStarted = false;
     }
 
     private int CalculateBonus()
     {
-        int bonus = platformComboCount > 1 ? totalPlatformPassed * 10 + totalPlatformPassed * platformComboCount : totalPlatformPassed * 10;
+        if (_firstCombo)
+        {
+            return 0;
+        }
         
-        Debug.Log($"total platform passed: {totalPlatformPassed}, combo: {platformComboCount}, total: {bonus}");
+        int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
+        Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
     }
 }
