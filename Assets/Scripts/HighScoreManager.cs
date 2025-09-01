@@ -76,10 +76,10 @@ public class HighScoreManager : MonoBehaviour
 
     public void NewLeaderboardEntry(string email, string playerName, int score, int level)
     {
-        StartCoroutine(SendEmailCoroutine(email, playerName, score, level));
+        StartCoroutine(SendDataCoroutine(email, playerName, score, level));
     }
     
-    private IEnumerator SendEmailCoroutine(string playerEmail, string playerName, int score, int level)
+    private IEnumerator SendDataCoroutine(string playerEmail, string playerName, int score, int level)
     {
         // 1. Logowanie anonimowe i pobranie ID Token
         string idToken = null;
@@ -140,23 +140,6 @@ public class HighScoreManager : MonoBehaviour
             callback?.Invoke(null);
         }
     }
-    
-    /*private void GetLeaderboard()
-    {
-        LeaderboardCreator.GetLeaderboard(PublicLeaderboardKey, leaderboard =>
-        {
-            int loopLenght = leaderboard.Length < highScoreText.Count ? leaderboard.Length : highScoreText.Count;
-            for (int i  = 0; i < loopLenght; i++)
-            {
-                highScoreText[i].text = leaderboard[i].Username + ": " + leaderboard[i].Score;
-            }
-        });
-    }
-
-    public void NewLeaderboardEntry(string playerName, string playerEmail, int score)
-    {
-        LeaderboardCreator.UploadNewEntry(PublicLeaderboardKey, playerName, score, playerEmail);
-    }*/
     
     #endregion
     

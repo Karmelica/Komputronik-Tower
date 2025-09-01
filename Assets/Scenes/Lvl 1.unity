@@ -228,7 +228,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
+  m_AllowXRRendering: 0
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -253,7 +253,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -831,6 +831,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1132914648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6216678310457940148, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+  m_PrefabInstance: {fileID: 44157103773865775}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1255503421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,17 +1241,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5880032983555164730, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
   m_PrefabInstance: {fileID: 44157103773865775}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452399070 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5567129490945919250, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
-  m_PrefabInstance: {fileID: 44157103773865775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1632096623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   currentComboCount: 0
   currentStreak: 0
   comboImage: {fileID: 578378790}
-  comboText: {fileID: 1452399070}
+  comboText: {fileID: 1132914648}
   totalPlatformPassed: 0
 --- !u!1001 &44157103773865775
 PrefabInstance:
@@ -1365,6 +1365,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1265812543749530784, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1632096623}
     - target: {fileID: 2314767636078092875, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1460,6 +1464,14 @@ PrefabInstance:
     - target: {fileID: 7127073206413244687, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7268451032721059251, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 7719282821482594009, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_ControlPath
+      value: <Joystick>/{PrimaryAction}
       objectReference: {fileID: 0}
     - target: {fileID: 8467516601683815046, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_Name
@@ -1890,12 +1902,12 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1019059719}
+  - {fileID: 44157103773865775}
   - {fileID: 519420032}
   - {fileID: 4785186044936941308}
   - {fileID: 645041296749227965}
   - {fileID: 654761700}
   - {fileID: 1275921193}
-  - {fileID: 44157103773865775}
   - {fileID: 946918610}
   - {fileID: 1367255113}
   - {fileID: 288798616}
