@@ -7,15 +7,14 @@ using DG.Tweening;
 [RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
+    public SpriteRenderer spriteRenderer;
     public PlatformSO platformSo;
     
-    [SerializeField] private GameObject visual;
-    
-    private Collider2D _platformCollider;
+    private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer _spriteRenderer;
-    private float _initialPosition;
     
+    private float _initialPosition;
+    private GameObject _visual;
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D _effector2D;
     private Coroutine _coroutine;
@@ -23,12 +22,12 @@ public class Platform : MonoBehaviour
     private void Awake()
     {
         var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        visual = spriteRenderer.gameObject;
-        _spriteRenderer = spriteRenderer;
+        _visual = spriteRenderer.gameObject;
+        this.spriteRenderer = spriteRenderer;
         
         /*if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
             Debug.Log("No sprite renderer", this);*/
-        if (!TryGetComponent<Collider2D>(out _platformCollider))
+        if (!TryGetComponent<BoxCollider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
             Debug.LogError("No Rigidbody2D component found on the character.", this);
@@ -46,11 +45,12 @@ public class Platform : MonoBehaviour
         };
         
         _platformCollider.sharedMaterial = material;
+        _platformCollider.size = spriteRenderer.bounds.size;
     }
 
     private void OnEnable()
     {
-        _spriteRenderer.color = platformSo.debugColor; 
+        spriteRenderer.color = platformSo.debugColor; 
         
         DisableFall();
     }
@@ -83,11 +83,11 @@ public class Platform : MonoBehaviour
         Vector3 initialPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
         
         transform.localPosition = initialPosition;
-        visual.transform.localPosition = Vector3.zero;
+        _visual.transform.localPosition = Vector3.zero;
     }
 
     private void StartShake()
     {
-        visual.transform.DOShakePosition(1.5f, 0.01f, 10);
+        _visual.transform.DOShakePosition(1.5f, 0.01f, 10);
     }
 }

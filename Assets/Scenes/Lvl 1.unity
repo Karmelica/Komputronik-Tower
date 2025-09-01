@@ -1241,17 +1241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1610837615 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6216678310457940148, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
-  m_PrefabInstance: {fileID: 44157103773865775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1632096623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
@@ -1362,10 +1351,10 @@ MonoBehaviour:
   yPositionOffset: -0.5
   platformRaycastLength: 20
   comboTimer: 3
-  platformComboCount: 0
+  streakComboCount: 0
   currentComboCount: 0
+  currentStreak: 0
   comboImage: {fileID: 578378790}
-  platformText: {fileID: 1610837615}
   comboText: {fileID: 1452399070}
   totalPlatformPassed: 0
 --- !u!1001 &44157103773865775
@@ -1489,9 +1478,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 167137630562254249, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 167137630562254249, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 167137630562254249, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 167137630562254249, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6704244149142735569, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
       propertyPath: m_Name
       value: OriginalPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6948947933750544611, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6948947933750544611, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6948947933750544611, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948947933750544611, guid: a0da2d817ab370a4390087a1b2184005, type: 3}
       propertyPath: m_LocalPosition.x
