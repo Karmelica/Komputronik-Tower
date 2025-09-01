@@ -113,11 +113,7 @@ public class HighScoreManager : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            //Debug.Log("Email wysłany: " + www.downloadHandler.text);
-        }
-        else
+        if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
         }

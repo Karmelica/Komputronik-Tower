@@ -108,10 +108,9 @@ public class ComboScript : MonoBehaviour
                 ResetCombo();
             }
             
-            platformText.text = platformComboCount == 0 ? null : totalPlatformPassed.ToString();
-            comboText.text = platformComboCount == 0 ? null : $"x{platformComboCount}";
+            platformText.text = platformComboCount <= 1 ? null : totalPlatformPassed.ToString();
+            comboText.text = platformComboCount <= 1 ? null : $"x{platformComboCount}";
             _lastPlatform = currentPlatform;
-            currentComboCount = 0;
         }
     }
 
@@ -135,12 +134,15 @@ public class ComboScript : MonoBehaviour
         _currentComboTime = 0;
         totalPlatformPassed = 0;
         
+        platformText.text = platformComboCount <= 1 ? null : totalPlatformPassed.ToString();
+        comboText.text = platformComboCount <= 1 ? null : $"x{platformComboCount}";
+        
         _timerStarted = false;
     }
 
     private int CalculateBonus()
     {
-        int bonus = totalPlatformPassed * platformComboCount;
+        int bonus = platformComboCount > 1 ? totalPlatformPassed * 10 + totalPlatformPassed * platformComboCount : totalPlatformPassed * 10;
         
         Debug.Log($"total platform passed: {totalPlatformPassed}, combo: {platformComboCount}, total: {bonus}");
         return bonus;
