@@ -18,6 +18,7 @@ public class ComboScript : MonoBehaviour
     
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
+    [SerializeField] private TMP_Text platformText;
     [SerializeField] private TMP_Text comboText;
 
     [SerializeField] private int totalPlatformPassed;
@@ -48,9 +49,8 @@ public class ComboScript : MonoBehaviour
         
         ComboTimer();
 
-        if(comboImage && comboText){
+        if(comboImage && platformText){
             comboImage.fillAmount = _currentComboTime / comboTimer;
-            comboText.text = platformComboCount.ToString();
         }
     }
 
@@ -99,7 +99,8 @@ public class ComboScript : MonoBehaviour
             if (currentComboCount > 1)
             {
                 _timerStarted = true;
-                platformComboCount += currentComboCount;
+                //platformComboCount += currentComboCount;
+                platformComboCount ++;
                 _currentComboTime = comboTimer;
             }
             else
@@ -107,6 +108,8 @@ public class ComboScript : MonoBehaviour
                 ResetCombo();
             }
             
+            platformText.text = platformComboCount == 0 ? null : totalPlatformPassed.ToString();
+            comboText.text = platformComboCount == 0 ? null : $"x{platformComboCount}";
             _lastPlatform = currentPlatform;
             currentComboCount = 0;
         }
@@ -130,6 +133,7 @@ public class ComboScript : MonoBehaviour
         platformComboCount = 0;
         currentComboCount = 0;
         _currentComboTime = 0;
+        totalPlatformPassed = 0;
         
         _timerStarted = false;
     }
