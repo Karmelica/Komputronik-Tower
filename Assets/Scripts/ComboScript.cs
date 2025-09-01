@@ -50,7 +50,7 @@ public class ComboScript : MonoBehaviour
         ComboTimer();
         
         comboImage.fillAmount = _currentComboTime / comboTimer;
-        comboText.text = currentStreak > 1 ? streakComboCount.ToString() : null;
+        comboText.text = currentStreak > 0 ? streakComboCount.ToString() : null;
     }
 
     private void HandleRaycastCombo()
@@ -141,14 +141,9 @@ public class ComboScript : MonoBehaviour
     }
 
     private int CalculateBonus()
-    {
-        if (currentStreak > 1)
-        {
-            int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak);
-            Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}");
-            return bonus;
-        }
-        
-        return 0;
+    { 
+        int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
+        Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
+        return bonus;
     }
 }
