@@ -31,11 +31,13 @@ public class ComboScript : MonoBehaviour
     
     private bool _wasHittingPlatform;
     private bool _timerStarted;
+    private bool _firstCombo;
     
     private void Start()
     {
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
+       _firstCombo = true;
     }
 
     private void Update()
@@ -102,6 +104,13 @@ public class ComboScript : MonoBehaviour
             
             if (currentComboCount > 1 && currentPlatform.transform.position.y > _lastPlatform.transform.position.y)
             {
+                if (_firstCombo)
+                {
+                    currentComboCount = 0;
+                    ResetCombo();
+                    _firstCombo = false;
+                }
+                
                 _timerStarted = true;
                 streakComboCount += currentComboCount;
                 currentStreak++;
@@ -141,7 +150,12 @@ public class ComboScript : MonoBehaviour
     }
 
     private int CalculateBonus()
-    { 
+    {
+        if (_firstCombo)
+        {
+            return 0;
+        }
+        
         int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
         Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
