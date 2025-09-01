@@ -52,7 +52,7 @@ public class ComboScript : MonoBehaviour
         ComboTimer();
         
         comboImage.fillAmount = _currentComboTime / comboTimer;
-        comboText.text = currentStreak > 0 ? streakComboCount.ToString() : null;
+        comboText.text = currentStreak > 0 ? $"{streakComboCount} x{currentStreak}" : null;
     }
 
     private void HandleRaycastCombo()
