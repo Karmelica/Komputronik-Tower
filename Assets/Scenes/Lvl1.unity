@@ -1980,8 +1980,9 @@ MonoBehaviour:
   yPositionOffset: -0.5
   platformRaycastLength: 20
   comboTimer: 3
-  platformComboCount: 0
+  streakComboCount: 0
   currentComboCount: 0
+  currentStreak: 0
   comboImage: {fileID: 578378790}
   comboText: {fileID: 1610837615}
   totalPlatformPassed: 0
@@ -2396,7 +2397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7719282821482594009, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_ControlPath
-      value: <Joystick>/stick/down
+      value: <Joystick>/{PrimaryAction}
       objectReference: {fileID: 0}
     - target: {fileID: 7747029680232610257, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_IsActive

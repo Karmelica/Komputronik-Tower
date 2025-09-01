@@ -13,8 +13,9 @@ public class ComboScript : MonoBehaviour
     
     [Header("Combo Settings")]
     [SerializeField] private float comboTimer = 3f;
-    [SerializeField] private int platformComboCount;
+    [SerializeField] private int streakComboCount;
     [SerializeField] private int currentComboCount;
+    [SerializeField] private int currentStreak;
     
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
@@ -49,7 +50,7 @@ public class ComboScript : MonoBehaviour
         ComboTimer();
         
         comboImage.fillAmount = _currentComboTime / comboTimer;
-        comboText.text = platformComboCount.ToString();
+        comboText.text = currentStreak > 1 ? streakComboCount.ToString() : null;
     }
 
     private void HandleRaycastCombo()
@@ -94,14 +95,21 @@ public class ComboScript : MonoBehaviour
 
         if (_lastPlatform == null || currentPlatform != _lastPlatform)
         {
-            if (currentComboCount > 1)
+            if (_lastPlatform == null)
+            {
+                _lastPlatform = currentPlatform;
+            }
+            
+            if (currentComboCount > 1 && currentPlatform.transform.position.y > _lastPlatform.transform.position.y)
             {
                 _timerStarted = true;
-                platformComboCount += currentComboCount;
+                streakComboCount += currentComboCount;
+                currentStreak++;
                 _currentComboTime = comboTimer;
             }
             else
             {
+                currentComboCount = 0;
                 ResetCombo();
             }
             
@@ -123,10 +131,10 @@ public class ComboScript : MonoBehaviour
 
     private void ResetCombo()
     {
-        //CalculateBonus();
         HighScoreManager.Instance.AddScore(CalculateBonus());
-        platformComboCount = 0;
+        streakComboCount = 0;
         currentComboCount = 0;
+        currentStreak = 0;
         _currentComboTime = 0;
         
         _timerStarted = false;
@@ -134,9 +142,13 @@ public class ComboScript : MonoBehaviour
 
     private int CalculateBonus()
     {
-        int bonus = totalPlatformPassed * platformComboCount;
+        if (currentStreak > 1)
+        {
+            int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak);
+            Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}");
+            return bonus;
+        }
         
-        Debug.Log($"total platform passed: {totalPlatformPassed}, combo: {platformComboCount}, total: {bonus}");
-        return bonus;
+        return 0;
     }
 }

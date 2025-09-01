@@ -515,7 +515,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b33594ce-17f2-4a7a-83b1-02a664111936"",
-                    ""path"": ""<Joystick>/stick/down"",
+                    ""path"": ""<Joystick>/{PrimaryAction}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
