@@ -1,13 +1,18 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
     #region Variables
-    
+
+    public Collider2D CurrentHit;
+    public bool Grounded => _isGrounded;
     public static bool CanMove = true;
+
+    [SerializeField] private Transform raycastOrigin;
+    [SerializeField] private float rDistance;
+    [SerializeField] private float secondDistance;
+    [SerializeField] private float secondOffset;
     
     [Header("Max move and jump settings")]
     [SerializeField] private float moveSpeed;
@@ -33,7 +38,9 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector2 _preCollisionVelocity;
     private Vector2 _moveInput;
+    private Collider2D _lastGroundCollider = null;
     private bool _isGrounded;
+    private bool _wasGrounded;
     
     private float _gameStartTimer;
     private bool _gameOver;
@@ -41,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
-    
+
     #endregion
 
     #region Unity Functions
@@ -55,30 +62,72 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         CanMove = true;
+        _gameStartTimer = 2f;
     }
     
     private void Update()
     {
-        // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
-        if (_gameStartTimer <= 0 && segmentDetector.segments.Count <= 0)
+        if (_gameStartTimer > -1f)
         {
-            if (!_gameOver)
+            _gameStartTimer -= Time.deltaTime;
+        }
+
+        if(segmentDetector != null){
+            // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
+            if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
             {
-                _gameOver = true;
-                Debug.Log("You Died!");
-                HighScoreManager.Instance.GameOver();
+                if (!_gameOver)
+                {
+                    _gameOver = true;
+                    //Debug.Log("You Died!");
+                    HighScoreManager.Instance.GameOver();
+                }
             }
         }
         
         // sprawdzamy czy postac jest na ziemi tylko jesli opada lub velocity jest na 0
         if (_body.linearVelocity.y <= 0)
         {
-            _isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
+            Vector2 secondPos = new Vector2(raycastOrigin.position.x, raycastOrigin.position.y + secondOffset);
+            RaycastHit2D secondHit = Physics2D.Raycast(secondPos, Vector2.down, secondDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(secondPos, Vector2.down * secondDistance, Color.blue);
+            
+            RaycastHit2D hit = Physics2D.Raycast(raycastOrigin.position, Vector2.down, rDistance, LayerMask.GetMask("Ground"));
+            Debug.DrawRay(raycastOrigin.position, Vector2.down * rDistance, Color.red);
+
+            if (hit.collider != null && secondHit.collider == null)
+            {
+                _isGrounded =  true;
+                CurrentHit = hit.collider;
+            }
+            else
+            {
+                _isGrounded = false;
+            }
+            
+            //Debug.Log(_isGrounded);
         }
         
-        _animator.SetFloat("Velocity", _moveInput.x);
-    }
+        if (_isGrounded && !_wasGrounded)
+        {
+            if (_lastGroundCollider == null)
+            {
+                _lastGroundCollider = CurrentHit;
+            }
 
+            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y)
+            {
+                _lastGroundCollider = CurrentHit;
+                HighScoreManager.Instance.AddScore(10);
+            }
+        }
+        
+        _wasGrounded = _isGrounded;
+        
+        _animator.SetFloat("Velocity", _moveInput.x);
+        _animator.SetFloat("YVelocity", _body.linearVelocity.y);
+    }
+    
     private void FixedUpdate()
     {
         if (!CanMove) return;
@@ -145,26 +194,9 @@ public class CharacterMovement : MonoBehaviour
                 // normal acceleration
                 _body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
             }
-            
-            // apply movement force
-            //_body.AddForce(new Vector2(_moveInput.x * acceleration * accelFactor, 0), ForceMode2D.Force);
         }
         else
         {
-            // deacceleration
-            /*if (Mathf.Abs(_body.linearVelocity.x) > 0.01f)
-            {
-                float decelStep = deceleration * Time.fixedDeltaTime * Mathf.Sign(_body.linearVelocity.x);
-                float newVelocity = _body.linearVelocity.x - decelStep;
-
-                if (Mathf.Sign(newVelocity) != Mathf.Sign(_body.linearVelocity.x))
-                {
-                    newVelocity = 0f;
-                }
-                
-                _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
-            }*/
-            
             float newVelocity = Mathf.MoveTowards(_body.linearVelocity.x, 0, deceleration * Time.fixedDeltaTime);
             _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
         }
@@ -182,16 +214,15 @@ public class CharacterMovement : MonoBehaviour
         // additional gravity when jumping and falling to reach top speed quicker
         if (_body.linearVelocity.y < 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * fallMultiplier * Time.fixedDeltaTime);
         }
 
         if (_body.linearVelocity.y > 0)
         {
-            _body.linearVelocity += Vector2.up * Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime;
+            _body.linearVelocity += Vector2.up * (Physics2D.gravity.y * upwardMultiplier * Time.fixedDeltaTime);
         }
     }
     
-                
     private bool CheckVelocity(Rigidbody2D body, float velocity)
     {
         return Mathf.Abs(body.linearVelocity.x) >= velocity;
@@ -225,12 +256,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && CanMove)
         {
+            _animator.SetTrigger("Jump");
+            
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
-            Debug.Log(velocityBoost);
+            //Debug.Log(velocityBoost);
 
             _body.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
 
-            Debug.Log(_body.linearVelocity);
+            //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }
     }

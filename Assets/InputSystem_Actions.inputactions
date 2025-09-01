@@ -241,17 +241,6 @@
                 },
                 {
                     "name": "",
-                    "id": "70679a5f-a55b-40ad-939a-6df08adc584e",
-                    "path": "<Touchscreen>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touch",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -439,8 +428,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3bc7d937-cb71-4d1c-bc29-31768291821a",
-                    "path": "<Touchscreen>/touch1/tap",
+                    "id": "b33594ce-17f2-4a7a-83b1-02a664111936",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

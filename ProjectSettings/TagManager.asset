@@ -8,6 +8,8 @@ TagManager:
   - Segment
   - Wall
   - PDetector
+  - Background
+  - LobbyTrigger
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Background
   - 
   - 
   - 
@@ -42,8 +44,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1924454121
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 3265697705
     locked: 0
   m_RenderingLayers:
   - Default

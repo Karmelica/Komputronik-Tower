@@ -22,6 +22,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlatformSO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@978211393e28/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@978211393e28/InputSystem/Actions/InputActionState.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -124,6 +125,11 @@
       <workItem from="1755713715865" duration="8748000" />
       <workItem from="1755762248852" duration="12354000" />
       <workItem from="1755850273638" duration="346000" />
+      <workItem from="1756109145344" duration="11648000" />
+      <workItem from="1756184448980" duration="4582000" />
+      <workItem from="1756210195292" duration="751000" />
+      <workItem from="1756277790156" duration="15928000" />
+      <workItem from="1756454085367" duration="13091000" />
     </task>
     <servers />
   </component>

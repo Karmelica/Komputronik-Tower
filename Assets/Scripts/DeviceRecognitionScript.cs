@@ -9,7 +9,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     [SerializeField] private GameObject mobileMoveController;
     [SerializeField] private GameObject mobileJumpController;
     
-    private bool usingTouch;
+    private bool _usingTouch;
     
     private void Start()
     {

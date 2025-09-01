@@ -18,11 +18,11 @@ public class SegmentScript : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
     [SerializeField] private List<PlatformType> platformTypes;
     
-    private System.Random rng;
+    private System.Random _rng;
 
     public void InitializeSegment(System.Random rng)
     {
-        this.rng = rng;
+        this._rng = rng;
         
         if (platforms.Count == 0) return;
         foreach (var platform in platforms)
@@ -66,13 +66,13 @@ public class SegmentScript : MonoBehaviour
     
     private Vector3 GetRandomPosition(Vector3 position)
     {
-        float range = (float)(rng.NextDouble() * (maxPlatformRange - minPlatformRange) + minPlatformRange);
+        float range = (float)(_rng.NextDouble() * (maxPlatformRange - minPlatformRange) + minPlatformRange);
         return new Vector3(range, position.y, position.z);
     }
     
     private Vector3 GetRandomScale(Vector3 scale)
     {
-        float range = (float)(rng.NextDouble() * (maxPlatformLength - minPlatformLength) + minPlatformLength);
+        float range = (float)(_rng.NextDouble() * (maxPlatformLength - minPlatformLength) + minPlatformLength);
         return new Vector3(range, scale.y, scale.z);
     }
     
