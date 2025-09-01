@@ -1,12 +1,40 @@
 using System;
+using System.Collections;
+using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
+
+[System.Serializable]
+public class FirebaseAuthResponse
+{
+    public string idToken;
+}
+
+[System.Serializable]
+public class PlayerEmailData
+{
+    public string playerID;
+    public string email;
+    public string name;
+    public int score1;
+    public int score2;
+    public int score3;
+    public int score4;
+    public int score5;
+}
 
 public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
+    private string playerId;
+
+    private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
+    private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
     
-    [Header("Login Panel")]
+    [SerializeField] private GameObject player;
+    
+    [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
@@ -26,6 +54,8 @@ public class LoginManager : MonoBehaviour
             Destroy(Instance.gameObject);
             Instance = this;
         }
+        
+        playerId = GetOrCreatePlayerId();
     }
 
     private void Start()
@@ -39,13 +69,13 @@ public class LoginManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("PlayerEmail"))
         {
-            Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
+            //Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
         }
         else
         {
-            Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
+            //Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
             ShowSavePlayerPanel();
         }
     }
@@ -69,12 +99,28 @@ public class LoginManager : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayerName");
         PlayerPrefs.Save();
     }
+    
+    private string GetOrCreatePlayerId()
+    {
+        string player = PlayerPrefs.GetString("PlayerId", "");
+        
+        if (string.IsNullOrEmpty(player))
+        {
+            // Generuj nowe ID używając System.Guid
+            player = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString("PlayerId", player);
+            PlayerPrefs.Save();
+        }
+        
+        return player;
+    }
 
     #endregion
     
     public void ShowSavePlayerPanel(bool show = true)
     {
         if (saveScorePanel) saveScorePanel.SetActive(show);
+        if (player) player.SetActive(!show);
     }
     
     #region Player Data Management
@@ -106,7 +152,7 @@ public class LoginManager : MonoBehaviour
         currentPlayerName = playerName;
         
         SavePlayerPrefs();
-        ShowSavePlayerPanel(false);
+        SendPlayerEmail(currentPlayerEmail, currentPlayerName);
     }
     
     
@@ -120,6 +166,69 @@ public class LoginManager : MonoBehaviour
         catch
         {
             return false;
+        }
+    }
+    
+    public void SendPlayerEmail(string email, string playerName)
+    {
+        StartCoroutine(SendEmailCoroutine(email, playerName));
+    }
+    
+    private IEnumerator SendEmailCoroutine(string email, string name)
+    {
+        // 1. Logowanie anonimowe i pobranie ID Token
+        string idToken = null;
+        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+
+        if (string.IsNullOrEmpty(idToken))
+        {
+            //Debug.LogError("Nie udało się pobrać ID Token.");
+            yield break;
+        }
+
+        // 2. Wysyłka danych do funkcji Firebase
+        PlayerEmailData data = new PlayerEmailData {playerID = playerId, email = email, name = name };
+        string json = JsonUtility.ToJson(data);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        UnityWebRequest www = new UnityWebRequest(firebaseFunctionUrl, "POST");
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + idToken);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            //Debug.Log("Email wysłany: " + www.downloadHandler.text);
+            ShowSavePlayerPanel(false);
+        }
+        else
+        {
+            Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+        }
+    }
+    
+    private IEnumerator GetFirebaseAnonymousToken(System.Action<string> callback)
+    {
+        string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={apiKey}";
+
+        UnityWebRequest www = UnityWebRequest.PostWwwForm(url, ""); // POST z pustym body
+        www.downloadHandler = new DownloadHandlerBuffer();
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            var json = www.downloadHandler.text;
+            var response = JsonUtility.FromJson<FirebaseAuthResponse>(json);
+            callback?.Invoke(response.idToken);
+        }
+        else
+        {
+            Debug.LogError("Błąd logowania anonimowego: " + www.error + " / " + www.downloadHandler.text);
+            callback?.Invoke(null);
         }
     }
     

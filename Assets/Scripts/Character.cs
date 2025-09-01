@@ -133,7 +133,7 @@ public class Character : MonoBehaviour, InputSystemActions.IPlayerActions
     private void Update()
     {
         // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
-        if (_gameStartTimer <= 0 && segmentDetector.segments.Count <= 0)
+        if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
         {
             if (!_gameOver)
             {
