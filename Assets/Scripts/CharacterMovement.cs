@@ -71,15 +71,17 @@ public class CharacterMovement : MonoBehaviour
         {
             _gameStartTimer -= Time.deltaTime;
         }
-        
-        // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
-        if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
-        {
-            if (!_gameOver)
+
+        if(segmentDetector != null){
+            // Sprawdzanie segmentów tylko po upływie opóźnienia startowego
+            if (_gameStartTimer <= 0 && segmentDetector.platforms.Count <= 0)
             {
-                _gameOver = true;
-                Debug.Log("You Died!");
-                HighScoreManager.Instance.GameOver();
+                if (!_gameOver)
+                {
+                    _gameOver = true;
+                    //Debug.Log("You Died!");
+                    HighScoreManager.Instance.GameOver();
+                }
             }
         }
         

@@ -32,6 +32,8 @@ public class LoginManager : MonoBehaviour
     private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
     
+    [SerializeField] private GameObject player;
+    
     [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
     [SerializeField] private TMP_InputField emailInputField;
@@ -67,13 +69,13 @@ public class LoginManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("PlayerEmail"))
         {
-            Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
+            //Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
         }
         else
         {
-            Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
+            //Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
             ShowSavePlayerPanel();
         }
     }
@@ -118,6 +120,7 @@ public class LoginManager : MonoBehaviour
     public void ShowSavePlayerPanel(bool show = true)
     {
         if (saveScorePanel) saveScorePanel.SetActive(show);
+        if (player) player.SetActive(!show);
     }
     
     #region Player Data Management
@@ -179,7 +182,7 @@ public class LoginManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(idToken))
         {
-            Debug.LogError("Nie udało się pobrać ID Token.");
+            //Debug.LogError("Nie udało się pobrać ID Token.");
             yield break;
         }
 
@@ -198,7 +201,7 @@ public class LoginManager : MonoBehaviour
 
         if (www.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("Email wysłany: " + www.downloadHandler.text);
+            //Debug.Log("Email wysłany: " + www.downloadHandler.text);
             ShowSavePlayerPanel(false);
         }
         else
