@@ -81,8 +81,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 20, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -114,8 +114,8 @@ Transform:
   m_GameObject: {fileID: 3909521590172185720}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.2, z: 0}
-  m_LocalScale: {x: 11.3, y: 2.235621, z: 1}
+  m_LocalPosition: {x: -0.00068, y: -4.1587, z: 0}
+  m_LocalScale: {x: 20, y: 7.949662, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 167137630562254249}
@@ -205,7 +205,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -12.6, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 167137630562254249}
@@ -315,5 +315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  animator: {fileID: 0}
+  isDynamic: 0
+  platformOff: {fileID: 6308365456881935141}
+  platformOn: {fileID: 0}
+  platformOnHighlight: {fileID: 0}
+  platformFunctional: {fileID: 0}
   visual: {fileID: 1123740187973985572}
+  platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}

@@ -22,6 +22,7 @@ public class PlayerEmailData
     public int score3;
     public int score4;
     public int score5;
+    public int score6;
 }
 
 public class LoginManager : MonoBehaviour
