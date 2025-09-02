@@ -36,11 +36,9 @@ public class Platform : MonoBehaviour
         {
             animator.enabled = false;
         }
-        
-        if (!TryGetComponent<BoxCollider2D>(out _platformCollider))
-            Debug.LogError("No Collider2D component found on the character.", this);
-        if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
-            Debug.LogError("No Rigidbody2D component found on the character.", this);
+
+        _platformCollider = GetComponent<BoxCollider2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         
         // set initial position
         _initialPosition = transform.localPosition.y;
@@ -62,11 +60,11 @@ public class Platform : MonoBehaviour
         if (isDynamic)
         {
             //mozliwe ze do przeniesienia albo do onEnable albo do initializePlatform
-            Vector2 size = platformOff.size;
+            /*Vector2 size = platformOff.size;
             
             platformOn.size = size;
             platformOnHighlight.size = size;
-            platformFunctional.size = size;
+            platformFunctional.size = size;*/
         }
     }
 
@@ -75,6 +73,12 @@ public class Platform : MonoBehaviour
         //sprite assigner
         if (isDynamic)
         {
+            Vector2 size = platformOff.size;
+            
+            platformOn.size = size;
+            platformOnHighlight.size = size;
+            platformFunctional.size = size;
+            
             platformOff.sprite = platformSo.platformOff;
             platformOn.sprite = platformSo.platformOn;
             platformOnHighlight.sprite = platformSo.platformHighlight;

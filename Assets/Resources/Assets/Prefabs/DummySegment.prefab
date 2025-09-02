@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3043890920031423982}
   - component: {fileID: 808428712905838536}
-  - component: {fileID: 5227399882434506109}
+  - component: {fileID: 7165515513844237324}
   m_Layer: 0
   m_Name: Square_01
   m_TagString: Untagged
@@ -222,7 +222,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5227399882434506109
+--- !u!114 &7165515513844237324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2397794079323318358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c4e93a322df6a4e9ef69b68e15f88f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d04e376202ac104c9ec080fdc1e3c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315313616738583407}
   - component: {fileID: 8574244931800191365}
-  - component: {fileID: 4937945842009084688}
+  - component: {fileID: 1961585837239488337}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -326,7 +326,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4937945842009084688
+--- !u!114 &1961585837239488337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3433031868197715819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c4e93a322df6a4e9ef69b68e15f88f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d04e376202ac104c9ec080fdc1e3c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
