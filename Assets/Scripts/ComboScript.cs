@@ -160,7 +160,27 @@ public class ComboScript : MonoBehaviour
             return 0;
         }
         
-        int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
+        int bonus = 0;
+        
+        if (streakComboCount <= 1)
+        {
+            if (_lastPlatform != null && _characterMovement.CurrentHit != null)
+            {
+                float lastY = _lastPlatform.transform.position.y;
+                float currentY = _characterMovement.CurrentHit.transform.position.y;
+                
+                if (currentY > lastY)
+                {
+                    bonus = streakComboCount * currentStreak;
+                }
+            }
+        }
+        else
+        {
+            bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak);
+        }
+        
+        //int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
         Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
     }

@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d04e376202ac104c9ec080fdc1e3c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1632096637}
+  target: {fileID: 519420032}
   parallaxMultiplier: {x: 0.5, y: 0.5}
   offset: {x: 0, y: -23.75}
   despawnOffset: 100
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d04e376202ac104c9ec080fdc1e3c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1632096637}
+  target: {fileID: 519420032}
   parallaxMultiplier: {x: 0.5, y: 0.5}
   offset: {x: 0, y: -47.5}
   despawnOffset: 100
