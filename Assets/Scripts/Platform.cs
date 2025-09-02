@@ -54,36 +54,29 @@ public class Platform : MonoBehaviour
         
         _platformCollider.sharedMaterial = material;
         
-        // collider bounds adjustment
+        // collider bounds adjustment for milestone platforms
         _platformCollider.size = platformOff.size;
-        
-        if (isDynamic)
-        {
-            //mozliwe ze do przeniesienia albo do onEnable albo do initializePlatform
-            /*Vector2 size = platformOff.size;
-            
-            platformOn.size = size;
-            platformOnHighlight.size = size;
-            platformFunctional.size = size;*/
-        }
     }
 
-    private void OnEnable()
+    public void ChangePlatform()
     {
+        gameObject.SetActive(true);
+        _platformCollider.size = platformOff.size;
+        
         //sprite assigner
         if (isDynamic)
         {
+            platformOff.sprite = platformSo.platformOff;
+            platformOn.sprite = platformSo.platformOn;
+            platformOnHighlight.sprite = platformSo.platformHighlight;
+            platformFunctional.sprite = platformSo.platformFunctional;
+            
             Vector2 size = platformOff.size;
             
             platformOn.size = size;
             platformOnHighlight.size = size;
             platformFunctional.size = size;
             
-            platformOff.sprite = platformSo.platformOff;
-            platformOn.sprite = platformSo.platformOn;
-            platformOnHighlight.sprite = platformSo.platformHighlight;
-            platformFunctional.sprite = platformSo.platformFunctional;
-
             if (platformFunctional.sprite != null)
             {
                 platformFunctional.transform.position = new Vector2(
@@ -91,6 +84,21 @@ public class Platform : MonoBehaviour
                     platformFunctional.transform.position.y + platformSo.functionalSpriteOffset);
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        animator.enabled = false;
+        
+        // color adjustments
+        Color onColor = platformOn.color;
+        Color highlightColor = platformOnHighlight.color;
+        
+        onColor.a = 0;
+        highlightColor.a = 0;
+        
+        platformOn.color = onColor;
+        platformOnHighlight.color = highlightColor;
         
         DisableFall();
     }
