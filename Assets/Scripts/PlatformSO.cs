@@ -13,6 +13,7 @@ public class PlatformSO : ScriptableObject
     public Sprite platformFunctional;
 
     public float functionalSpriteOffset;
+    public float platformModifierValue;
     
     [Header("Material settigns")]
     [Range(0f,1f)] public float friction;

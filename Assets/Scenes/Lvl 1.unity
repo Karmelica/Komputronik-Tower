@@ -1376,7 +1376,6 @@ MonoBehaviour:
   moveSpeed: 20
   jumpSpeed: 30
   jumpForce: 5
-  fanBoostForce: 3
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1440,6 +1439,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   bounceX: 1
   bounceY: 1
+  fanBoostForce: 3
+  icyDeacceleration: 3
   segmentDetector: {fileID: 1400990649}
 --- !u!4 &1632096637 stripped
 Transform:
