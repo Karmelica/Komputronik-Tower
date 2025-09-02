@@ -3449,6 +3449,7 @@ MonoBehaviour:
   moveSpeed: 20
   jumpSpeed: 30
   jumpForce: 5
+  fanBoostForce: 0
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
