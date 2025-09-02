@@ -1563,10 +1563,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1265812543749530784, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1632096623}
     - target: {fileID: 2314767636078092875, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1667,10 +1663,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 7719282821482594009, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
-      propertyPath: m_ControlPath
-      value: <Joystick>/{PrimaryAction}
-      objectReference: {fileID: 0}
     - target: {fileID: 8467516601683815046, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_Name
       value: Canvas
