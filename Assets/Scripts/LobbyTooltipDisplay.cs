@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class LobbyTooltipDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI coolTooltip;
+    [SerializeField] private Animator coolTooltip;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip.enabled = true;
+        coolTooltip.SetBool("Show", true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip.enabled = false;
+        coolTooltip.SetBool("Show", false);
     }
 }

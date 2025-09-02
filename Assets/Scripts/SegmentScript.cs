@@ -35,11 +35,13 @@ public class SegmentScript : MonoBehaviour
             
             platform.transform.position = GetRandomPosition(platform.transform.position);
             platformObj.platformOff.size = GetRandomScale(platformObj.platformOff.size);
+            platformObj.ChangePlatform();
             
             platform.SetActive(true);
         }
         
         milestonePlatform.SetActive(true);
+        
     }
 
     private PlatformType InitializePlatforms(System.Random rng)

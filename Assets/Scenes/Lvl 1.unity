@@ -1392,8 +1392,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   bounceX: 1
   bounceY: 1
-  fanBoostForce: 3
-  icyDeacceleration: 3
   segmentDetector: {fileID: 1400990649}
 --- !u!4 &1632096637 stripped
 Transform:
