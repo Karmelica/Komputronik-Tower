@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cc0b3b65e8381b46ba2d72f75b881d6, type: 3}
-  m_Name: Sticky
+  m_Name: Fan
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  debugColor: {r: 0.058021523, g: 0.9433962, b: 0, a: 1}
-  durationToFall: 2
+  platformEnum: 2
+  platformOff: {fileID: 21300000, guid: 01c0b074d7871f24da838e9f2fd1d83b, type: 3}
+  platformOn: {fileID: 21300000, guid: a8a615359cebb7e42ba6bff5b07c04b2, type: 3}
+  platformHighlight: {fileID: 21300000, guid: f3029f21a2da1d04c8d8ae7379d2e638, type: 3}
+  platformFunctional: {fileID: 21300000, guid: 9e18acb5ace162e42a263890df35d960, type: 3}
+  functionalSpriteOffset: 0.36
   friction: 0.9
   bounciness: 0

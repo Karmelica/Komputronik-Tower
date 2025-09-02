@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float fanBoostForce;
 
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
@@ -261,7 +262,17 @@ public class CharacterMovement : MonoBehaviour
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             //Debug.Log(velocityBoost);
 
-            _body.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
+            float currentJumpForce = jumpForce;
+
+            if (CurrentHit != null && CurrentHit.TryGetComponent(out Platform platform))
+            {
+                if (platform.platformSo.platformEnum == PlatformEnum.fanPlatform)
+                {
+                    currentJumpForce += fanBoostForce; // fan boost
+                }
+            }
+
+            _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
 
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
