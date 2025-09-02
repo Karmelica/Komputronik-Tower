@@ -1392,8 +1392,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   bounceX: 1
   bounceY: 1
-  fanBoostForce: 3
-  icyDeacceleration: 3
   segmentDetector: {fileID: 1400990649}
 --- !u!4 &1632096637 stripped
 Transform:
@@ -1955,7 +1953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: useSegmentLimit
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: lowerColliderScript
