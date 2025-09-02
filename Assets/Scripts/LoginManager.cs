@@ -69,13 +69,11 @@ public class LoginManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("PlayerEmail"))
         {
-            //Debug.Log("1. Znaleziono dane gracza w PlayerPrefs.");
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
         }
         else
         {
-            //Debug.Log("2. Brak danych gracza w PlayerPrefs. Przechodzenie do ekranu logowania.");
             ShowSavePlayerPanel();
         }
     }
@@ -102,17 +100,17 @@ public class LoginManager : MonoBehaviour
     
     private string GetOrCreatePlayerId()
     {
-        string player = PlayerPrefs.GetString("PlayerId", "");
+        string newPlayer = PlayerPrefs.GetString("PlayerId", "");
         
-        if (string.IsNullOrEmpty(player))
+        if (string.IsNullOrEmpty(newPlayer))
         {
             // Generuj nowe ID używając System.Guid
-            player = Guid.NewGuid().ToString();
-            PlayerPrefs.SetString("PlayerId", player);
+            newPlayer = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString("PlayerId", newPlayer);
             PlayerPrefs.Save();
         }
         
-        return player;
+        return newPlayer;
     }
 
     #endregion
@@ -152,7 +150,7 @@ public class LoginManager : MonoBehaviour
         currentPlayerName = playerName;
         
         SavePlayerPrefs();
-        SendPlayerEmail(currentPlayerEmail, currentPlayerName);
+        SendPlayerData(currentPlayerEmail, currentPlayerName);
     }
     
     
@@ -169,12 +167,12 @@ public class LoginManager : MonoBehaviour
         }
     }
     
-    public void SendPlayerEmail(string email, string playerName)
+    public void SendPlayerData(string email, string playerName)
     {
-        StartCoroutine(SendEmailCoroutine(email, playerName));
+        StartCoroutine(SendDataCoroutine(email, playerName));
     }
     
-    private IEnumerator SendEmailCoroutine(string email, string name)
+    private IEnumerator SendDataCoroutine(string email, string name)
     {
         // 1. Logowanie anonimowe i pobranie ID Token
         string idToken = null;
@@ -182,11 +180,9 @@ public class LoginManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(idToken))
         {
-            //Debug.LogError("Nie udało się pobrać ID Token.");
             yield break;
         }
 
-        // 2. Wysyłka danych do funkcji Firebase
         PlayerEmailData data = new PlayerEmailData {playerID = playerId, email = email, name = name };
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
@@ -201,7 +197,6 @@ public class LoginManager : MonoBehaviour
 
         if (www.result == UnityWebRequest.Result.Success)
         {
-            //Debug.Log("Email wysłany: " + www.downloadHandler.text);
             ShowSavePlayerPanel(false);
         }
         else

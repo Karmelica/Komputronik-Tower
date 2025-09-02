@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cc0b3b65e8381b46ba2d72f75b881d6, type: 3}
-  m_Name: Default
+  m_Name: Fan
   m_EditorClassIdentifier: 
-  platformOff: {fileID: 21300000, guid: 9c234f7cf531fb44a810d9fb6a47b64e, type: 3}
-  platformOn: {fileID: 21300000, guid: 7570a61abe2d16349bec06a9d318f331, type: 3}
-  platformHighlight: {fileID: 21300000, guid: fecba3f0bbae613469f65a8d70712dd3, type: 3}
-  platformFunctional: {fileID: 0}
-  debugColor: {r: 1, g: 1, b: 1, a: 1}
+  platformEnum: 2
+  platformOff: {fileID: 21300000, guid: 01c0b074d7871f24da838e9f2fd1d83b, type: 3}
+  platformOn: {fileID: 21300000, guid: a8a615359cebb7e42ba6bff5b07c04b2, type: 3}
+  platformHighlight: {fileID: 21300000, guid: f3029f21a2da1d04c8d8ae7379d2e638, type: 3}
+  platformFunctional: {fileID: 21300000, guid: 9e18acb5ace162e42a263890df35d960, type: 3}
+  functionalSpriteOffset: 0.36
   friction: 0.8
   bounciness: 0

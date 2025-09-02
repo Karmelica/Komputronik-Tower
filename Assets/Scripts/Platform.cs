@@ -7,13 +7,21 @@ using DG.Tweening;
 [RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
-    public PlatformSO platformSo;
+    [HideInInspector] public Animator animator;
+    public bool isDynamic = true;
+    
+    public SpriteRenderer platformOff;
+    [SerializeField] private SpriteRenderer platformOn;
+    [SerializeField] private SpriteRenderer platformOnHighlight;
+    [SerializeField] private SpriteRenderer platformFunctional;
     
     [SerializeField] private GameObject visual;
     
-    private Collider2D _platformCollider;
+    public PlatformSO platformSo;
+    
+    private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer _spriteRenderer;
+    
     private float _initialPosition;
     
     private Coroutine _gravityCoroutine;
@@ -22,13 +30,14 @@ public class Platform : MonoBehaviour
     
     private void Awake()
     {
-        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        visual = spriteRenderer.gameObject;
-        _spriteRenderer = spriteRenderer;
+        animator = GetComponentInChildren<Animator>();
         
-        /*if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
-            Debug.Log("No sprite renderer", this);*/
-        if (!TryGetComponent<Collider2D>(out _platformCollider))
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+        
+        if (!TryGetComponent<BoxCollider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
             Debug.LogError("No Rigidbody2D component found on the character.", this);
@@ -46,11 +55,38 @@ public class Platform : MonoBehaviour
         };
         
         _platformCollider.sharedMaterial = material;
+        
+        // collider bounds adjustment
+        _platformCollider.size = platformOff.size;
+        
+        if (isDynamic)
+        {
+            //mozliwe ze do przeniesienia albo do onEnable albo do initializePlatform
+            Vector2 size = platformOff.size;
+            
+            platformOn.size = size;
+            platformOnHighlight.size = size;
+            platformFunctional.size = size;
+        }
     }
 
     private void OnEnable()
     {
-        _spriteRenderer.color = platformSo.debugColor; 
+        //sprite assigner
+        if (isDynamic)
+        {
+            platformOff.sprite = platformSo.platformOff;
+            platformOn.sprite = platformSo.platformOn;
+            platformOnHighlight.sprite = platformSo.platformHighlight;
+            platformFunctional.sprite = platformSo.platformFunctional;
+
+            if (platformFunctional.sprite != null)
+            {
+                platformFunctional.transform.position = new Vector2(
+                    platformFunctional.transform.position.x, 
+                    platformFunctional.transform.position.y + platformSo.functionalSpriteOffset);
+            }
+        }
         
         DisableFall();
     }

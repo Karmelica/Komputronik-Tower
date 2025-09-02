@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboScript : MonoBehaviour
@@ -13,8 +11,9 @@ public class ComboScript : MonoBehaviour
     
     [Header("Combo Settings")]
     [SerializeField] private float comboTimer = 3f;
-    [SerializeField] private int platformComboCount;
+    [SerializeField] private int streakComboCount;
     [SerializeField] private int currentComboCount;
+    [SerializeField] private int currentStreak;
     
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
@@ -30,11 +29,13 @@ public class ComboScript : MonoBehaviour
     
     private bool _wasHittingPlatform;
     private bool _timerStarted;
+    private bool _firstCombo;
     
     private void Start()
     {
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
+       _firstCombo = true;
     }
 
     private void Update()
@@ -47,11 +48,9 @@ public class ComboScript : MonoBehaviour
         }
         
         ComboTimer();
-
-        if(comboImage && comboText){
-            comboImage.fillAmount = _currentComboTime / comboTimer;
-            comboText.text = platformComboCount.ToString();
-        }
+        
+        comboImage.fillAmount = _currentComboTime / comboTimer;
+        comboText.text = currentStreak > 0 ? $"{streakComboCount} x{currentStreak}" : null;
     }
 
     private void HandleRaycastCombo()
@@ -65,6 +64,12 @@ public class ComboScript : MonoBehaviour
             new Vector2(xPositionOffset, transform.position.y + yPositionOffset),
             Vector2.right * platformRaycastLength, 
             Color.red);
+
+        // platform animator activator
+        if (hit.collider != null && hit.collider.TryGetComponent(out Platform platform))
+        {
+            platform.animator.enabled = true;
+        }
         
         bool isHittingPlatform = hit;
         
@@ -96,14 +101,28 @@ public class ComboScript : MonoBehaviour
 
         if (_lastPlatform == null || currentPlatform != _lastPlatform)
         {
-            if (currentComboCount > 1)
+            if (_lastPlatform == null)
             {
+                _lastPlatform = currentPlatform;
+            }
+            
+            if (currentComboCount > 1 && currentPlatform.transform.position.y > _lastPlatform.transform.position.y)
+            {
+                if (_firstCombo)
+                {
+                    currentComboCount = 0;
+                    ResetCombo();
+                    _firstCombo = false;
+                }
+                
                 _timerStarted = true;
-                platformComboCount += currentComboCount;
+                streakComboCount += currentComboCount;
+                currentStreak++;
                 _currentComboTime = comboTimer;
             }
             else
             {
+                currentComboCount = 0;
                 ResetCombo();
             }
             
@@ -125,10 +144,10 @@ public class ComboScript : MonoBehaviour
 
     private void ResetCombo()
     {
-        //CalculateBonus();
         HighScoreManager.Instance.AddScore(CalculateBonus());
-        platformComboCount = 0;
+        streakComboCount = 0;
         currentComboCount = 0;
+        currentStreak = 0;
         _currentComboTime = 0;
         
         _timerStarted = false;
@@ -136,9 +155,33 @@ public class ComboScript : MonoBehaviour
 
     private int CalculateBonus()
     {
-        int bonus = totalPlatformPassed * platformComboCount;
+        if (_firstCombo)
+        {
+            return 0;
+        }
         
-        Debug.Log($"total platform passed: {totalPlatformPassed}, combo: {platformComboCount}, total: {bonus}");
+        int bonus = 0;
+        
+        if (streakComboCount <= 1)
+        {
+            if (_lastPlatform != null && _characterMovement.CurrentHit != null)
+            {
+                float lastY = _lastPlatform.transform.position.y;
+                float currentY = _characterMovement.CurrentHit.transform.position.y;
+                
+                if (currentY > lastY)
+                {
+                    bonus = streakComboCount * currentStreak;
+                }
+            }
+        }
+        else
+        {
+            bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak);
+        }
+        
+        //int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
+        Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
     }
 }

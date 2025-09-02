@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float fanBoostForce;
 
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
@@ -46,6 +48,8 @@ public class CharacterMovement : MonoBehaviour
     private bool _gameOver;
     
     private Animator _animator;
+
+    private bool canEndLevel;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
 
@@ -145,6 +149,18 @@ public class CharacterMovement : MonoBehaviour
         GiveVelocityBounce(contact.normal, bounceX, bounceY);
     }
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("LevelEnd"))
+        {
+            int level = SceneManager.GetActiveScene().buildIndex;
+            if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
+            canEndLevel = true;
+            
+            SceneManager.LoadScene(0);
+        }
+    }
+    
     private void OnEnable()
     {
         _inputActions.Enable();
@@ -153,6 +169,8 @@ public class CharacterMovement : MonoBehaviour
         _inputActions.Player.Move.canceled += OnMove;
         
         _inputActions.Player.Jump.performed += OnJump;
+        
+        _inputActions.Player.Interact.performed += OnInteract;
     }
 
     private void OnDisable()
@@ -163,6 +181,8 @@ public class CharacterMovement : MonoBehaviour
         _inputActions.Player.Move.canceled -= OnMove;
         
         _inputActions.Player.Jump.performed -= OnJump;
+        
+        _inputActions.Player.Interact.performed -= OnInteract;
     }
     
     #endregion
@@ -261,11 +281,30 @@ public class CharacterMovement : MonoBehaviour
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             //Debug.Log(velocityBoost);
 
-            _body.AddForce(Vector2.up * jumpForce * velocityBoost, ForceMode2D.Impulse);
+            float currentJumpForce = jumpForce;
+
+            if (CurrentHit != null && CurrentHit.TryGetComponent(out Platform platform))
+            {
+                if (platform.platformSo.platformEnum == PlatformEnum.fanPlatform)
+                {
+                    currentJumpForce += fanBoostForce; // fan boost
+                }
+            }
+
+            _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
 
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }
     }
+    
+    private void OnInteract(InputAction.CallbackContext context)
+    {
+        /*if (canEndLevel)
+        {
+            SceneManager.LoadScene(0);
+        }*/
+    }
+    
     #endregion
 }
