@@ -156,9 +156,14 @@ public class CharacterMovement : MonoBehaviour
             int level = SceneManager.GetActiveScene().buildIndex;
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
             canEndLevel = true;
+            Invoke(nameof(EndLevel), 2f);
             
-            SceneManager.LoadScene(0);
         }
+    }
+
+    private void EndLevel()
+    {
+        SceneManager.LoadScene(0);
     }
     
     private void OnEnable()

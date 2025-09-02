@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class LevelTrigger : MonoBehaviour
 {
     private BoxCollider2D _boxCollider;
-    [SerializeField] private Image image;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject outlet;
+    private Animator _panelAnimator;
     [SerializeField] private int levelIndex;
     [SerializeField] private GlobalTimeManager globalTimeManager;
 
@@ -22,6 +24,8 @@ public class LevelTrigger : MonoBehaviour
     private void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        _panelAnimator = panel.GetComponent<Animator>();
+        
         if (globalTimeManager == null)
         {
             Debug.LogError("GlobalTimeManager is not assigned in LevelButton.");
@@ -45,24 +49,26 @@ public class LevelTrigger : MonoBehaviour
     
     private void UpdateTriggerState()
     {
-        if (!globalTimeManager || !globalTimeManager.IsTimeDataLoaded) return;
-        if (PlayerPrefs.GetInt("LevelsCompleted", 0) > levelIndex)
-        {
-            image.color = Color.green;
+
+        if (levelIndex != 5){
+            if (!globalTimeManager || !globalTimeManager.IsTimeDataLoaded ||
+                !globalTimeManager.IsLevelUnlocked(levelIndex)) return;
+            panel.gameObject.SetActive(true);
+            outlet.gameObject.SetActive(true);
             _boxCollider.isTrigger = globalTimeManager.IsLevelUnlocked(levelIndex);
+            if (PlayerPrefs.GetInt("LevelsCompleted", 0) > levelIndex)
+                _panelAnimator.SetBool("LevelCompleted", true);
         }
         else
         {
-            if (globalTimeManager.IsLevelUnlocked(levelIndex))
-            {
-                image.color = Color.gray;
-                _boxCollider.isTrigger = globalTimeManager.IsLevelUnlocked(levelIndex);
-            }
-            else
-                image.color = Color.darkRed;
+            panel.gameObject.SetActive(true);
+            outlet.gameObject.SetActive(true);
+            _boxCollider.isTrigger = globalTimeManager.IsLevelUnlocked(levelIndex);
+            _panelAnimator.SetBool("LevelCompleted", true);
         }
+        
     }
-
+    
     private void LoadLevel()
     {
         SceneManager.LoadScene(levelIndex + 1);

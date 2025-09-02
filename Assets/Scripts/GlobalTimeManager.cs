@@ -63,6 +63,7 @@ public class GlobalTimeManager : MonoBehaviour
             _timeDataLoaded = true;
             UpdateLevelUnlockTexts();
             OnTimeDataLoaded?.Invoke();
+            CharacterMovement.CanMove = true;
             yield break;
         }
 
