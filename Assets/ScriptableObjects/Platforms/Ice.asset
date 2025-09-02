@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc0b3b65e8381b46ba2d72f75b881d6, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  debugColor: {r: 0, g: 0.8648515, b: 1, a: 1}
-  durationToFall: 5
+  platformEnum: 1
+  platformOff: {fileID: 21300000, guid: 9c234f7cf531fb44a810d9fb6a47b64e, type: 3}
+  platformOn: {fileID: 21300000, guid: 7570a61abe2d16349bec06a9d318f331, type: 3}
+  platformHighlight: {fileID: 21300000, guid: fecba3f0bbae613469f65a8d70712dd3, type: 3}
+  platformFunctional: {fileID: 21300000, guid: 2841a8e7f4ff9f3449e30fdafec98bf0, type: 3}
+  functionalSpriteOffset: 0.1
   friction: 0.2
   bounciness: 0

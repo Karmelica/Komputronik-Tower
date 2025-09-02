@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ComboScript : MonoBehaviour
@@ -66,6 +64,12 @@ public class ComboScript : MonoBehaviour
             new Vector2(xPositionOffset, transform.position.y + yPositionOffset),
             Vector2.right * platformRaycastLength, 
             Color.red);
+
+        // platform animator activator
+        if (hit.collider != null && hit.collider.TryGetComponent(out Platform platform))
+        {
+            platform.animator.enabled = true;
+        }
         
         bool isHittingPlatform = hit;
         

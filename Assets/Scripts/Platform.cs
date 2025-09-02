@@ -7,26 +7,36 @@ using DG.Tweening;
 [RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
+    [HideInInspector] public Animator animator;
+    public bool isDynamic = true;
+    
+    public SpriteRenderer platformOff;
+    [SerializeField] private SpriteRenderer platformOn;
+    [SerializeField] private SpriteRenderer platformOnHighlight;
+    [SerializeField] private SpriteRenderer platformFunctional;
+    
+    [SerializeField] private GameObject visual;
+    
     public PlatformSO platformSo;
     
     private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     
     private float _initialPosition;
-    private GameObject _visual;
+    
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D _effector2D;
     private Coroutine _coroutine;
     
     private void Awake()
     {
-        var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _visual = spriteRenderer.gameObject;
-        this.spriteRenderer = spriteRenderer;
+        animator = GetComponentInChildren<Animator>();
         
-        /*if (!TryGetComponent<SpriteRenderer>(out _spriteRenderer))
-            Debug.Log("No sprite renderer", this);*/
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+        
         if (!TryGetComponent<BoxCollider2D>(out _platformCollider))
             Debug.LogError("No Collider2D component found on the character.", this);
         if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
@@ -45,12 +55,38 @@ public class Platform : MonoBehaviour
         };
         
         _platformCollider.sharedMaterial = material;
-        _platformCollider.size = spriteRenderer.bounds.size;
+        
+        // collider bounds adjustment
+        _platformCollider.size = platformOff.size;
+        
+        if (isDynamic)
+        {
+            //mozliwe ze do przeniesienia albo do onEnable albo do initializePlatform
+            Vector2 size = platformOff.size;
+            
+            platformOn.size = size;
+            platformOnHighlight.size = size;
+            platformFunctional.size = size;
+        }
     }
 
     private void OnEnable()
     {
-        spriteRenderer.color = platformSo.debugColor; 
+        //sprite assigner
+        if (isDynamic)
+        {
+            platformOff.sprite = platformSo.platformOff;
+            platformOn.sprite = platformSo.platformOn;
+            platformOnHighlight.sprite = platformSo.platformHighlight;
+            platformFunctional.sprite = platformSo.platformFunctional;
+
+            if (platformFunctional.sprite != null)
+            {
+                platformFunctional.transform.position = new Vector2(
+                    platformFunctional.transform.position.x, 
+                    platformFunctional.transform.position.y + platformSo.functionalSpriteOffset);
+            }
+        }
         
         DisableFall();
     }
@@ -83,11 +119,11 @@ public class Platform : MonoBehaviour
         Vector3 initialPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
         
         transform.localPosition = initialPosition;
-        _visual.transform.localPosition = Vector3.zero;
+        visual.transform.localPosition = Vector3.zero;
     }
 
     private void StartShake()
     {
-        _visual.transform.DOShakePosition(1.5f, 0.01f, 10);
+        visual.transform.DOShakePosition(1.5f, 0.01f, 10);
     }
 }
