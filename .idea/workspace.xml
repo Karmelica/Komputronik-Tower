@@ -5,15 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd4dfb39-a06d-48f2-a3c3-ece3498d6d37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/PlayerPrefsManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InputSystemActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystemActions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/character_run_sheet_0.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/character_run_sheet_0.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/FinalSegment.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/FinalSegment.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Segment.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Segment.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby_tests.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby_tests.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl Arcade.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl Arcade.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CharacterMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CharacterMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GlobalTimeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GlobalTimeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Platform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Outlet/Hatch.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Outlet/Hatch.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Outlet/Hatch.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Outlet/Hatch.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Outlet/Portal.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Outlet/Portal.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Outlet/lobby_outlet_portal.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Outlet/lobby_outlet_portal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Hologrami/Hologram.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Hologrami/Hologram.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/UI/Main Button/Button.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/UI/Main Button/Button.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,6 +90,8 @@
       <workItem from="1756739728412" duration="6091000" />
       <workItem from="1756748689595" duration="1831000" />
       <workItem from="1756801898431" duration="326000" />
+      <workItem from="1756817126573" duration="24000" />
+      <workItem from="1756817163900" duration="1439000" />
     </task>
     <servers />
   </component>

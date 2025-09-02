@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float fanBoostForce;
+
 
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
@@ -156,9 +156,14 @@ public class CharacterMovement : MonoBehaviour
             int level = SceneManager.GetActiveScene().buildIndex;
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
             canEndLevel = true;
+            Invoke(nameof(EndLevel), 2f);
             
-            SceneManager.LoadScene(0);
         }
+    }
+
+    private void EndLevel()
+    {
+        SceneManager.LoadScene(0);
     }
     
     private void OnEnable()
@@ -193,6 +198,16 @@ public class CharacterMovement : MonoBehaviour
     {
         float currentVelocityX = _body.linearVelocity.x;
         
+        float currentDeacceleration = deceleration;
+
+        if (CurrentHit != null && CurrentHit.TryGetComponent(out Platform platform))
+        {
+            if (platform.platformSo.platformEnum == PlatformEnum.icyPlatform)
+            {
+                currentDeacceleration = platform.platformSo.platformModifierValue;
+            }
+        }
+        
         if (_moveInput != Vector2.zero)
         {
             // normalizing speed to 0 and 1
@@ -217,7 +232,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            float newVelocity = Mathf.MoveTowards(_body.linearVelocity.x, 0, deceleration * Time.fixedDeltaTime);
+            float newVelocity = Mathf.MoveTowards(_body.linearVelocity.x, 0, currentDeacceleration * Time.fixedDeltaTime);
             _body.linearVelocity = new Vector2(newVelocity, _body.linearVelocity.y);
         }
         
@@ -287,7 +302,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (platform.platformSo.platformEnum == PlatformEnum.fanPlatform)
                 {
-                    currentJumpForce += fanBoostForce; // fan boost
+                    currentJumpForce += platform.platformSo.platformModifierValue; // fan boost
                 }
             }
 

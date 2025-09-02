@@ -6,23 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: da11b03aacc7bd54aa6e6377cf478eb3
+    path: Assets/Scenes/Lobby_tests.unity
+    guid: 3d984749d6f937c41bad2b35815987b7
   - enabled: 1
     path: Assets/Scenes/Lvl 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Lvl 2.unity
-    guid: 9a7dbbee6af5f0f44b8ed3b200ec23db
+    guid: 791bb9139d896bd47bdc60a35c2ece08
   - enabled: 1
     path: Assets/Scenes/Lvl 3.unity
-    guid: cf1bb070c48093c42b7976f7b597a1ec
+    guid: 24d483ddc570e4043b9ca1324b000176
   - enabled: 1
     path: Assets/Scenes/Lvl 4.unity
-    guid: 82299c99003d7824c98f4b6b199ec0bd
+    guid: 696a19bd94cd5cb46a53949348873ee1
+  - enabled: 1
+    path: Assets/Scenes/Lvl 5.unity
+    guid: 1afd07e4ef8f07b4da30ced3fa456109
   - enabled: 1
     path: Assets/Scenes/Lvl Arcade.unity
-    guid: 4fa7bb7d801b504418703c2c1b3272bf
+    guid: 7a30c73af0f9ce24bb7ac17020f6b583
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b9167651a1ceb3f4a8fcd04fbf288000, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
