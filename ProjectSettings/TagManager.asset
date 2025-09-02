@@ -10,6 +10,7 @@ TagManager:
   - PDetector
   - Background
   - LobbyTrigger
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
