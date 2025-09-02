@@ -5,30 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd4dfb39-a06d-48f2-a3c3-ece3498d6d37" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComboScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComboScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/jump_deafult.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/jump_deafult.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/jump_selected.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/jump_selected.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/left_selected.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/left_selected.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/right_selected.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/right_selected.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +66,8 @@
       <workItem from="1756199787152" duration="9365000" />
       <workItem from="1756739202848" duration="515000" />
       <workItem from="1756739728412" duration="6091000" />
-      <workItem from="1756748689595" duration="1332000" />
+      <workItem from="1756748689595" duration="1831000" />
+      <workItem from="1756801898431" duration="326000" />
     </task>
     <servers />
   </component>
