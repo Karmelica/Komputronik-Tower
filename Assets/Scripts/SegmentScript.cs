@@ -33,11 +33,8 @@ public class SegmentScript : MonoBehaviour
                 
             platformObj.platformSo = chosenPlatform.platformType;
             
-            
-                
             platform.transform.position = GetRandomPosition(platform.transform.position);
-            platformObj.spriteRenderer.size = GetRandomScale(platformObj.spriteRenderer.size);
-            //platform.transform.localScale = GetRandomScale(platform.transform.localScale);
+            platformObj.platformOff.size = GetRandomScale(platformObj.platformOff.size);
             
             platform.SetActive(true);
         }
