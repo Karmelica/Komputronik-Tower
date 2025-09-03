@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a892d763c6728db4c98b073ff5b888b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infiniteGeneration: 1
+  infiniteGeneration: 0
   segmentLimit: 2
   segmentHeight: 47.5
 --- !u!4 &271954313
@@ -2104,7 +2104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: seed
-      value: 0
+      value: 15665
       objectReference: {fileID: 0}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: gizmoSize.x
