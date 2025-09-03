@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class GenerationManager : MonoBehaviour
 {
-    public static event Action<bool> OnGeneration;
-    
     [Header("Generation Settings")]
     public bool infiniteGeneration = false;
     
