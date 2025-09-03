@@ -73,7 +73,7 @@ public class LoginManager : MonoBehaviour
         {
             ShowEmailConfirmationPanel();
         }
-        if(PlayerPrefs.HasKey("PlayerEmail"))
+        else if(PlayerPrefs.HasKey("PlayerEmail"))
         {
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
