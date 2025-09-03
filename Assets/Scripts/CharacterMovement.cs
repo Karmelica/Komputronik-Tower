@@ -52,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
     private bool canEndLevel;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
+    [SerializeField] private GenerationManager generationManager;
 
     #endregion
 
@@ -119,7 +120,7 @@ public class CharacterMovement : MonoBehaviour
                 _lastGroundCollider = CurrentHit;
             }
 
-            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y)
+            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y && generationManager.infiniteGeneration)
             {
                 _lastGroundCollider = CurrentHit;
                 HighScoreManager.Instance.AddScore(10);

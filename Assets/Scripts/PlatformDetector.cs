@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlatformDetector : MonoBehaviour
 {
     [Header("Dependencies")]
+    [SerializeField] private GenerationManager generationManager;
     [SerializeField] private GameObject player;
     [SerializeField] private Transform startPoint;
     
@@ -10,9 +11,10 @@ public class PlatformDetector : MonoBehaviour
     [SerializeField] private float maxDistance;
     [SerializeField] private float graceTime;
     public float speed;
-
+    
     private bool _moveStarted;
     private float _graceTimer;
+    private bool _infiniteGeneration;
 
     private Collider2D _collider;
     private Rigidbody2D _body;
@@ -26,37 +28,45 @@ public class PlatformDetector : MonoBehaviour
         transform.position = startPoint.position;
         _moveStarted = false;
     }
+
+    private void Start()
+    {
+        _infiniteGeneration = generationManager.infiniteGeneration;
+    }
     
     private void Update()
     {
-        if (player.transform.position.y >= startPoint.position.y && !_moveStarted)
+        if (_infiniteGeneration)
         {
-            _moveStarted = true;
-            _graceTimer = graceTime;
-        }
+            if (player.transform.position.y >= startPoint.position.y && !_moveStarted)
+            {
+                _moveStarted = true;
+                _graceTimer = graceTime;
+            }
         
-        HighScoreManager.Instance.moveStarted =  _moveStarted;
+            HighScoreManager.Instance.moveStarted =  _moveStarted;
         
-        if (_moveStarted)
-        {
-            if (_graceTimer > 0)
+            if (_moveStarted)
             {
-                _graceTimer -= Time.deltaTime;
-                return;
-            }
+                if (_graceTimer > 0)
+                {
+                    _graceTimer -= Time.deltaTime;
+                    return;
+                }
             
-            float targetY = player.transform.position.y - maxDistance;
+                float targetY = player.transform.position.y - maxDistance;
             
-            if (Mathf.Abs(transform.position.y - player.transform.position.y) < maxDistance)
-            {
-                _body.linearVelocity = new Vector2(0, speed);
+                if (Mathf.Abs(transform.position.y - player.transform.position.y) < maxDistance)
+                {
+                    _body.linearVelocity = new Vector2(0, speed);
+                }
+                else
+                {
+                    _body.linearVelocity = Vector2.zero;
+                    transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
+                }
+                _collider.enabled = true;
             }
-            else
-            {
-                _body.linearVelocity = Vector2.zero;
-                transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
-            }
-            _collider.enabled = true;
         }
     }
 }

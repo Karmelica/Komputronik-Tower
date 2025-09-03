@@ -8,7 +8,8 @@ public class ProgressUIScript : MonoBehaviour
     
     [Header("Dependencies")]
     [SerializeField] private Transform player;
-    [SerializeField] private SegmentGen segmentGen;
+    //[SerializeField] private SegmentGen segmentGen;
+    [SerializeField] private GenerationManager generationManager;
     
     private Slider _slider; 
     
@@ -16,9 +17,9 @@ public class ProgressUIScript : MonoBehaviour
     {
         _slider = GetComponentInChildren<Slider>();
 
-        if (segmentGen.UseSegmentLimit)
+        if (generationManager.infiniteGeneration == false)
         {
-            _slider.maxValue = (segmentGen.SegmentLimit * segmentGen.segmentHeight) - heightOffset;
+            _slider.maxValue = (generationManager.segmentLimit * generationManager.segmentHeight) - heightOffset;
         }
         else
         {
@@ -33,7 +34,7 @@ public class ProgressUIScript : MonoBehaviour
 
     private void ShowPosition()
     {
-        if (!segmentGen.UseSegmentLimit) return;
+        if (!generationManager.infiniteGeneration == false) return;
         _slider.value = player.position.y;
     }
 }
