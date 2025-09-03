@@ -27,6 +27,7 @@ public class ComboScript : MonoBehaviour
     private Rigidbody2D _body;
     private CharacterMovement _characterMovement;
     private Collider2D _lastPlatform;
+    private SoundPlayer _soundPlayer;
     
     private bool _wasHittingPlatform;
     private bool _timerStarted;
@@ -36,6 +37,8 @@ public class ComboScript : MonoBehaviour
     {
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
+       _soundPlayer = GetComponent<SoundPlayer>();
+       
        _firstCombo = true;
     }
 
@@ -122,6 +125,7 @@ public class ComboScript : MonoBehaviour
                 streakComboCount += currentComboCount;
                 currentStreak++;
                 _currentComboTime = comboTimer;
+                _soundPlayer.PlayRandom("Combo");
             }
             else
             {
