@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class SegmentGen : MonoBehaviour
 {
-    public bool UseSegmentLimit => useSegmentLimit;
-    public int SegmentLimit => segmentLimit;
+    //public bool UseSegmentLimit => useSegmentLimit;
+    //public int SegmentLimit => segmentLimit;
     
     [Header("Generation Seed")]
     public int seed;
     
     [Header("Generation Settings")]
-    [SerializeField] private bool useSegmentLimit;
-    [SerializeField, ShowIf("useSegmentLimit")] private int segmentLimit = 5;
-    [SerializeField, ShowIf("useSegmentLimit")] private GameObject finalSegment;
+    //[SerializeField] private bool useSegmentLimit;
+    //[SerializeField, ShowIf("useSegmentLimit")] private int segmentLimit = 5;
+    //[SerializeField, ShowIf("useSegmentLimit")] private GameObject finalSegment;
+    [SerializeField] private GameObject finalSegment;
     
     [Header("Dependencies")]
+    [SerializeField] private GenerationManager generationManager;
     [SerializeField] private GameObject previousSegment; // Reference to the last segment, if needed
     [SerializeField] private GameObject segmentPrefab;
     
@@ -31,8 +33,8 @@ public class SegmentGen : MonoBehaviour
     private readonly HashSet<SegmentScript> _segments = new();
     private bool _canGenerate;
 
-    [SerializeField, ShowIf("useSegmentLimit")]
-    private int segmentPassed;
+    //[SerializeField, ShowIf("useSegmentLimit")]
+    [SerializeField] private int segmentPassed;
     
     private void Awake()
     {
@@ -42,7 +44,7 @@ public class SegmentGen : MonoBehaviour
     
     private void Start()
     {
-        HighScoreManager.Instance.segmentLimited = useSegmentLimit;
+        //HighScoreManager.Instance.segmentLimited = _infiniteGeneration;
         
         if (segmentPrefab == null)
         {
@@ -72,7 +74,7 @@ public class SegmentGen : MonoBehaviour
             
             Vector3 newPosition = segScript.transform.position + new Vector3(0f, segmentHeight, 0f);
 
-            if (useSegmentLimit && segmentPassed >= segmentLimit)
+            if (!generationManager.infiniteGeneration && segmentPassed >= generationManager.segmentLimit)
             {
                 Instantiate(finalSegment, newPosition, Quaternion.identity);
                 return;

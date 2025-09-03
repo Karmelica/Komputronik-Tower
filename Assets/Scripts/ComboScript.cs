@@ -18,6 +18,7 @@ public class ComboScript : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
     [SerializeField] private TMP_Text comboText;
+    [SerializeField] private GenerationManager generationManager;
 
     [SerializeField] private int totalPlatformPassed;
     
@@ -41,6 +42,8 @@ public class ComboScript : MonoBehaviour
     private void Update()
     {
         HandleRaycastCombo();
+        
+        if (!generationManager.infiniteGeneration) return;
         
         if (_characterMovement.Grounded)
         {
