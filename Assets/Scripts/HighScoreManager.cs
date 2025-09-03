@@ -10,7 +10,7 @@ public class HighScoreManager : MonoBehaviour
 {
     #region Variables
 
-    public bool segmentLimited;
+    public bool infiniteGeneration;
     public bool moveStarted;
     
     public static HighScoreManager Instance;
@@ -63,11 +63,11 @@ public class HighScoreManager : MonoBehaviour
     
     private void Update()
     {
-        // Zwiększaj wynik w czasie (punkty za przetrwanie)
+        /*// Zwiększaj wynik w czasie (punkty za przetrwanie)
         if (CharacterMovement.CanMove && !segmentLimited && moveStarted)
         {
             AddScore(Time.deltaTime * scoreMultiplier);
-        }
+        }*/
     }
     
     #endregion
@@ -156,7 +156,17 @@ public class HighScoreManager : MonoBehaviour
     {
         if (scoreText)
         {
-            scoreText.text = $"Wynik: {currentScore:F0} | {lvlIndex} poziom";
+            if (infiniteGeneration)
+            {
+                scoreText.text = $"Wynik: {currentScore:F0} | {lvlIndex} poziom";
+            }
+            else
+            {
+                int minutes = Mathf.FloorToInt(currentScore / 60f);
+                int seconds = Mathf.FloorToInt(currentScore % 60f);
+            
+                scoreText.text = $"Czas: {minutes:D2}:{seconds:D2} | {lvlIndex} poziom";
+            }
         }
     }
     
