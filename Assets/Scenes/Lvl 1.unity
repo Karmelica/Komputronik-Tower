@@ -1672,6 +1672,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5562917570790729086, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_fontSize
+      value: 42.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562917570790729086, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_margin.w
+      value: 4.548746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562917570790729086, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_margin.x
+      value: 15.04216
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562917570790729086, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_margin.y
+      value: 8.064617
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562917570790729086, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_margin.z
+      value: 19.83342
+      objectReference: {fileID: 0}
     - target: {fileID: 6903120466421220333, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: player
       value: 
@@ -1956,7 +1976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.91
+      value: -11.087
       objectReference: {fileID: 0}
     - target: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_LocalPosition.z
