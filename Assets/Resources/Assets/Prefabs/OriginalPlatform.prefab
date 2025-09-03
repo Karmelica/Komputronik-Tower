@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3383276810687145240}
   - component: {fileID: 7051300877206366657}
   - component: {fileID: 7388219121648331209}
-  - component: {fileID: 3998683663580929428}
+  - component: {fileID: 8849340192347296899}
   m_Layer: 6
   m_Name: OriginalPlatform
   m_TagString: Ground
@@ -303,7 +303,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3998683663580929428
+--- !u!114 &8849340192347296899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,14 +312,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6704244149142735569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
+  m_Script: {fileID: 11500000, guid: a1db31606b799ec459cbc4a51951cbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  isDynamic: 0
-  platformOff: {fileID: 6308365456881935141}
-  platformOn: {fileID: 0}
-  platformOnHighlight: {fileID: 0}
-  platformFunctional: {fileID: 0}
-  visual: {fileID: 1123740187973985572}
   platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  platformOff: {fileID: 6308365456881935141}
+  visual: {fileID: 1123740187973985572}
