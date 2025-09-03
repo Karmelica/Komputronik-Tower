@@ -88,22 +88,22 @@ public class Platform : MonoBehaviour
 
     private void OnEnable()
     {
-        if(isDynamic){
+        if (animator != null)
+        {
             animator.enabled = false;
-
-
-            // color adjustments
-            Color onColor = platformOn.color;
-            Color highlightColor = platformOnHighlight.color;
-
-            onColor.a = 0;
-            highlightColor.a = 0;
-
-            platformOn.color = onColor;
-            platformOnHighlight.color = highlightColor;
-
-            DisableFall();
         }
+        
+        // color adjustments
+        Color onColor = platformOn.color;
+        Color highlightColor = platformOnHighlight.color;
+
+        onColor.a = 0;
+        highlightColor.a = 0;
+
+        platformOn.color = onColor;
+        platformOnHighlight.color = highlightColor;
+        
+        DisableFall();
     }
     
     private void OnTriggerEnter2D(Collider2D collision)

@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a892d763c6728db4c98b073ff5b888b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infiniteGeneration: 0
+  infiniteGeneration: 1
   segmentLimit: 2
   segmentHeight: 47.5
 --- !u!4 &271954313
