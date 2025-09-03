@@ -37,6 +37,7 @@ public class LoginManager : MonoBehaviour
     
     [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
+    [SerializeField] private GameObject emailConfirmationPanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
 
@@ -68,6 +69,10 @@ public class LoginManager : MonoBehaviour
 
     public void PrefsCheck()
     {
+        if (PlayerPrefs.GetInt("EmailConfirmed", 0) == 0)
+        {
+            ShowEmailConfirmationPanel();
+        }
         if(PlayerPrefs.HasKey("PlayerEmail"))
         {
             LoadPlayerPrefs();
@@ -78,7 +83,18 @@ public class LoginManager : MonoBehaviour
             ShowSavePlayerPanel();
         }
     }
-    
+
+    public void ShowEmailConfirmationPanel(bool b = true)
+    {
+        if(emailConfirmationPanel) emailConfirmationPanel.SetActive(b);
+        ShowSavePlayerPanel();
+        if(b == false)
+        {
+            PlayerPrefs.SetInt("EmailConfirmed", 1);
+            PlayerPrefs.Save();
+        }
+    }
+
     public void SavePlayerPrefs()
     {
         PlayerPrefs.SetString("PlayerEmail", currentPlayerEmail);

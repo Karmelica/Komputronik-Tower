@@ -63,7 +63,6 @@ public class LevelTrigger : MonoBehaviour
         {
             panel.gameObject.SetActive(true);
             outlet.gameObject.SetActive(true);
-            _boxCollider.isTrigger = globalTimeManager.IsLevelUnlocked(levelIndex);
             _panelAnimator.SetBool("LevelCompleted", true);
         }
         
