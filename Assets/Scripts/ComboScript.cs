@@ -125,7 +125,7 @@ public class ComboScript : MonoBehaviour
                 streakComboCount += currentComboCount;
                 currentStreak++;
                 _currentComboTime = comboTimer;
-                _soundPlayer.PlayRandom("Combo");
+                //_soundPlayer.PlayRandom("Combo");
             }
             else
             {
