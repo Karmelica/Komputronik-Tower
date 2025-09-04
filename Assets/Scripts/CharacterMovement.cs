@@ -53,6 +53,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
 
     public static bool levelEnded;
+    public static bool startCounting;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
     [SerializeField] private GenerationManager generationManager;
@@ -70,6 +71,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
+        startCounting = false;
         CanMove = true;
         levelEnded = false;
         _gameStartTimer = 2f;
@@ -305,6 +307,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && CanMove)
         {
+            if(startCounting == false){
+                startCounting = true;
+            }
+            
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             //Debug.Log(velocityBoost);
 
