@@ -151,8 +151,11 @@ public class HighScoreManager : MonoBehaviour
 
     public void AddScore(float points)
     {
-        currentScore += points;
-        UpdateScoreDisplay();
+        if(!CharacterMovement.levelEnded)
+        {
+            currentScore += points;
+            UpdateScoreDisplay();
+        }
     }
     
     private void UpdateScoreDisplay()
@@ -196,7 +199,7 @@ public class HighScoreManager : MonoBehaviour
     private void ShowGameUI(bool show)
     {
         //Debug.Log("4. Wyświetlanie panelu gry.");
-        Character.CanMove = true;
+        CharacterMovement.CanMove = true;
         Time.timeScale = 1f;
         if (gameOverPanel) gameOverPanel.SetActive(!show);
         if (gameUI) gameUI.SetActive(show);
@@ -205,7 +208,7 @@ public class HighScoreManager : MonoBehaviour
     private void ShowGameOverPanel(bool show)
     {
         //Debug.Log("5. Wyświetlanie panelu końca gry.");
-        Character.CanMove = false;
+        CharacterMovement.CanMove = false;
         Time.timeScale = 0f;
         if (gameOverPanel) gameOverPanel.SetActive(show);
         if (gameUI) gameUI.SetActive(!show);
@@ -218,9 +221,26 @@ public class HighScoreManager : MonoBehaviour
     public void GameOver()
     {
         // Zatrzymaj dodawanie punktów
-        Character.CanMove = false;
+        CharacterMovement.CanMove = false;
         
         _soundPlayer.PlayRandom("Fall");
+        
+        // Pokaż panel końca gry
+        ShowPanel(GameState.GameOver);
+        
+        // Zaktualizuj wyświetlany wynik końcowy
+        if (gameOverScoreText)
+        {
+            gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
+        }
+        
+        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
+    }
+    
+    public void LevelEnd()
+    {
+        // Zatrzymaj dodawanie punktów
+        CharacterMovement.CanMove = false;
         
         // Pokaż panel końca gry
         ShowPanel(GameState.GameOver);

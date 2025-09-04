@@ -62,6 +62,7 @@ public class LoginManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 0f;
         PrefsCheck();
     }
 
@@ -77,6 +78,7 @@ public class LoginManager : MonoBehaviour
         {
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
+            Time.timeScale = 1f;
         }
         else
         {
@@ -84,16 +86,6 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    public void ShowEmailConfirmationPanel(bool b = true)
-    {
-        if(emailConfirmationPanel) emailConfirmationPanel.SetActive(b);
-        ShowSavePlayerPanel();
-        if(b == false)
-        {
-            PlayerPrefs.SetInt("EmailConfirmed", 1);
-            PlayerPrefs.Save();
-        }
-    }
 
     public void SavePlayerPrefs()
     {
@@ -138,6 +130,17 @@ public class LoginManager : MonoBehaviour
         if (player) player.SetActive(!show);
     }
     
+    public void ShowEmailConfirmationPanel(bool show = true)
+    {
+        if(emailConfirmationPanel) emailConfirmationPanel.SetActive(show);
+        ShowSavePlayerPanel();
+        if(show == false)
+        {
+            PlayerPrefs.SetInt("EmailConfirmed", 1);
+            PlayerPrefs.Save();
+        }
+    }
+    
     #region Player Data Management
     
     public void SetPlayerData()
@@ -168,6 +171,7 @@ public class LoginManager : MonoBehaviour
         
         SavePlayerPrefs();
         SendPlayerData(currentPlayerEmail, currentPlayerName);
+        Time.timeScale = 1f;
     }
     
     
