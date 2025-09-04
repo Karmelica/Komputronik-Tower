@@ -315,14 +315,16 @@ public class CharacterMovement : MonoBehaviour
 
             if (_soundPlayer != null)
             {
-                _soundPlayer.PlayRandom("Jump");
+                if (velocityBoost > 3f)
+                {
+                    _soundPlayer.PlayRandom("Combo");
+                }
+                else
+                {
+                    _soundPlayer.PlayRandom("Jump");
+                }
             }
             
-            if (velocityBoost > 3f)
-            {
-                _soundPlayer.PlayRandom("Combo");
-            }
-
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }
