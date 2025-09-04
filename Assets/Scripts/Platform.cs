@@ -81,9 +81,9 @@ public class Platform : MonoBehaviour
             
             if (platformFunctional.sprite != null)
             {
-                platformFunctional.transform.position = new Vector2(
-                    platformFunctional.transform.position.x, 
-                    platformFunctional.transform.position.y + platformSo.functionalSpriteOffset);
+                platformFunctional.transform.localPosition = new Vector2(
+                    0, 
+                    platformSo.functionalSpriteOffset);
             }
         }
     }
