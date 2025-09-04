@@ -33,6 +33,8 @@ public class HighScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private GameObject gameOverPanel;
     
+    private SoundPlayer _soundPlayer;
+    
     #endregion
     
     #region Unity Methods
@@ -51,6 +53,7 @@ public class HighScoreManager : MonoBehaviour
         lvlIndex = SceneManager.GetActiveScene().buildIndex;
         loginManager = LoginManager.Instance;
         playerId = GetOrCreatePlayerId();
+        _soundPlayer = GetComponent<SoundPlayer>();
     }
     
     private void Start()
@@ -216,6 +219,8 @@ public class HighScoreManager : MonoBehaviour
     {
         // Zatrzymaj dodawanie punktów
         Character.CanMove = false;
+        
+        _soundPlayer.PlayRandom("Fall");
         
         // Pokaż panel końca gry
         ShowPanel(GameState.GameOver);
