@@ -38,6 +38,12 @@ public class ComboScript : MonoBehaviour
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
        _soundPlayer = GetComponent<SoundPlayer>();
+
+       if (!generationManager.infiniteGeneration)
+       {
+           comboImage.enabled = false;
+           comboText.enabled = false;
+       }
        
        _firstCombo = true;
     }
