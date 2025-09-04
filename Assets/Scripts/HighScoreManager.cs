@@ -233,6 +233,12 @@ public class HighScoreManager : MonoBehaviour
         
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
     }
+    
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
 
     public void RestartGame()
     {
