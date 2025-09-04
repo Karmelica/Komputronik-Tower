@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class HighScoreManager : MonoBehaviour
 
     public bool infiniteGeneration;
     public bool moveStarted;
+
+
+    private InputSystemActions _inputActions;
     
     public static HighScoreManager Instance;
     [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
@@ -50,6 +54,7 @@ public class HighScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _inputActions = new InputSystemActions();
         lvlIndex = SceneManager.GetActiveScene().buildIndex;
         loginManager = LoginManager.Instance;
         playerId = GetOrCreatePlayerId();
@@ -62,6 +67,18 @@ public class HighScoreManager : MonoBehaviour
         //GetLeaderboard();
         UpdateScoreDisplay();
         ShowPanel(GameState.Playing);
+    }
+    
+    private void OnEnable()
+    {
+        _inputActions.Enable();
+        _inputActions.Player.Escape.performed += OnEscape;
+    }
+
+    private void OnDisable()
+    {
+        _inputActions.Disable();
+        _inputActions.Player.Escape.performed -= OnEscape;
     }
     
     private void Update()
@@ -151,7 +168,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void AddScore(float points)
     {
-        if(!CharacterMovement.levelEnded)
+        if(!CharacterMovement.levelEnded && CharacterMovement.startCounting)
         {
             currentScore += points;
             UpdateScoreDisplay();
@@ -290,6 +307,15 @@ public class HighScoreManager : MonoBehaviour
         
         return player;
     }
+    
+    #region Input Actions
+
+    private void OnEscape(InputAction.CallbackContext context)
+    {
+        ShowPanel(gameOverPanel.activeInHierarchy ? GameState.Playing : GameState.GameOver);
+    }
+    
+    #endregion
 }
 
 public enum GameState
