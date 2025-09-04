@@ -167,7 +167,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void EndLevel()
     {
-        SceneManager.LoadScene(0);
+        HighScoreManager.Instance.GameOver();
     }
     
     private void OnEnable()
