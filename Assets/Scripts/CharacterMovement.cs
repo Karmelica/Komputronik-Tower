@@ -313,6 +313,11 @@ public class CharacterMovement : MonoBehaviour
             _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
             _soundPlayer.PlayRandom("Jump");
 
+            if (velocityBoost > 3f)
+            {
+                _soundPlayer.PlayRandom("Combo");
+            }
+
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }

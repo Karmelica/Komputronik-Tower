@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class SoundPlayer : MonoBehaviour
 {
     [Header("Volume")]
-    [Range(0f, 1f)] public float volume;
+    //[Range(0f, 1f)] public float volume;
     
     [Header("Sound Clips")]
     public List<SoundClips> soundClips;
@@ -21,7 +21,7 @@ public class SoundPlayer : MonoBehaviour
     public bool useSoundDistance;
     public Vector2 soundDistance;
 
-    private Dictionary<string, AudioClip[]> _soundLibrary;
+    private Dictionary<string, SoundClips> _soundLibrary;
     private AudioSource _audioSource;
     private int _lastIndex = -1;
 
@@ -32,17 +32,17 @@ public class SoundPlayer : MonoBehaviour
             _audioSource = GetComponent<AudioSource>();
         }
         
-        _soundLibrary = new Dictionary<string, AudioClip[]>();
+        _soundLibrary = new Dictionary<string, SoundClips>();
         foreach (var soundClip in soundClips)
         {
             if (!_soundLibrary.ContainsKey(soundClip.key))
             {
-                _soundLibrary.Add(soundClip.key, soundClip.audioClips);
+                _soundLibrary.Add(soundClip.key, soundClip);
             }
         }
     }
 
-    public void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip, float volume)
     {
         _audioSource.clip = clip;
         
@@ -66,9 +66,9 @@ public class SoundPlayer : MonoBehaviour
     [Button]
     public void PlayRandom(string key)
     {
-        if (_soundLibrary.TryGetValue(key, out var clips))
+        if (_soundLibrary.TryGetValue(key, out var soundGroup))
         {
-            PlayRandomSound(clips);
+            PlayRandomSound(soundGroup.audioClips, soundGroup.volume);
         }
         else
         {
@@ -76,7 +76,7 @@ public class SoundPlayer : MonoBehaviour
         }
     }
     
-    private void PlayRandomSound(AudioClip[] clips)
+    private void PlayRandomSound(AudioClip[] clips, float volume)
     {
         if (clips.Length == 0) return;
         
@@ -112,5 +112,6 @@ public class SoundPlayer : MonoBehaviour
 public class SoundClips
 {
     public string key;
+    [Range(0f,1f)] public float volume;
     public AudioClip[] audioClips;
 }
