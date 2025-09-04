@@ -51,7 +51,7 @@ public class CharacterMovement : MonoBehaviour
     
     private Animator _animator;
 
-    private bool canEndLevel;
+    public static bool levelEnded;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
     [SerializeField] private GenerationManager generationManager;
@@ -70,6 +70,7 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         CanMove = true;
+        levelEnded = false;
         _gameStartTimer = 2f;
     }
     
@@ -159,7 +160,7 @@ public class CharacterMovement : MonoBehaviour
         {
             int level = SceneManager.GetActiveScene().buildIndex;
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
-            canEndLevel = true;
+            levelEnded = true;
             Invoke(nameof(EndLevel), 2f);
             
         }
@@ -167,7 +168,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void EndLevel()
     {
-        HighScoreManager.Instance.GameOver();
+        HighScoreManager.Instance.LevelEnd();
     }
     
     private void OnEnable()
