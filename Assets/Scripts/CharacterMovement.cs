@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +36,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float bounceX = 1f;
     [SerializeField] private float bounceY = 1f;
     
+    private SoundPlayer _soundPlayer;
     private InputSystemActions _inputActions;
     private Rigidbody2D _body;
 
@@ -62,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
         _inputActions = new InputSystemActions();
         _body = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _soundPlayer = GetComponent<SoundPlayer>();
     }
 
     private void Start()
@@ -308,6 +311,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
+            _soundPlayer.PlayRandom("Jump");
 
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;

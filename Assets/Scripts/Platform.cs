@@ -27,6 +27,7 @@ public class Platform : MonoBehaviour
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D _effector2D;
     private Coroutine _coroutine;
+    private SoundPlayer _soundPlayer;
     
     private void Awake()
     {
@@ -36,9 +37,10 @@ public class Platform : MonoBehaviour
         {
             animator.enabled = false;
         }
-
+        
         _platformCollider = GetComponent<BoxCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _soundPlayer = GetComponent<SoundPlayer>();
         
         // set initial position
         _initialPosition = transform.localPosition.y;
@@ -119,6 +121,7 @@ public class Platform : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         _rigidbody2D.linearVelocity = new Vector2(0, -2f);
+        _soundPlayer.PlayRandom("Fall");
         
         // how long the platform will drop until disabling 
         yield return new WaitForSeconds(5f);
