@@ -307,8 +307,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_isGrounded && CanMove)
         {
-            _animator.SetTrigger("Jump");
-            
             if(startCounting == false){
                 startCounting = true;
             }
