@@ -1049,37 +1049,11 @@ MonoBehaviour:
     poolObject: {fileID: 3744980825617945928, guid: 1c0e6f7de5bf97b408f44f0db0af1be8, type: 3}
     initialSize: 3
     parent: {fileID: 0}
---- !u!1 &812283793
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 812283794}
-  m_Layer: 0
-  m_Name: RaycastOrigin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &812283794
+--- !u!4 &812283794 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6404231382638909287, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+  m_PrefabInstance: {fileID: 4785186044936941308}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 812283793}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1632096637}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935338665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,17 +1872,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367255112}
   m_CullTransparentMesh: 1
---- !u!114 &1400990649 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2975588726882583896, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-  m_PrefabInstance: {fileID: 4785186044936941308}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0d9a78e3a3a27419315870bef10a6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1406742660 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5880032983555164730, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
@@ -2066,91 +2029,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
   m_PrefabInstance: {fileID: 4785186044936941308}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1632096632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632096623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0482515e1943e944a9d12a8819210dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHit: {fileID: 0}
-  raycastOrigin: {fileID: 812283794}
-  rDistance: 0.05
-  secondDistance: -0.01
-  secondOffset: 0
-  moveSpeed: 20
-  jumpSpeed: 30
-  jumpForce: 5
-  accelerationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.35
-      value: 1
-      inSlope: 0.006040942
-      outSlope: 0.006040942
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.99999994
-      value: 0.002610548
-      inSlope: -3.6096413
-      outSlope: -3.6096413
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.10181286
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  acceleration: 10
-  deceleration: 15
-  upwardMultiplier: 2
-  fallMultiplier: 2
-  bounceCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0.1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  bounceX: 1
-  bounceY: 1
-  segmentDetector: {fileID: 1400990649}
-  generationManager: {fileID: 271954312}
 --- !u!4 &1632096637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
@@ -3179,6 +3057,14 @@ PrefabInstance:
       propertyPath: m_AngularDamping
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: raycastOrigin
+      value: 
+      objectReference: {fileID: 812283794}
+    - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: generationManager
+      value: 
+      objectReference: {fileID: 271954312}
     - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3255,24 +3141,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 935338666}
-    - targetCorrespondingSourceObject: {fileID: 681124701534724114, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 812283794}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1632096632}
-    - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
+      insertIndex: 6
       addedObject: {fileID: 1632096643}
-    - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1632096645}
-    - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1632096644}
   m_SourcePrefab: {fileID: 100100000, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
 --- !u!114 &4785186044936941309 stripped
 MonoBehaviour:
