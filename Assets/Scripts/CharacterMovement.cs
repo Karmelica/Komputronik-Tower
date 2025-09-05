@@ -20,8 +20,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
-
-
+    
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
     [SerializeField] private float acceleration;
@@ -57,6 +56,9 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
     [SerializeField] private GenerationManager generationManager;
+    
+    
+    [SerializeField] private ParticleSystem particleSystem;
 
     #endregion
 
@@ -132,6 +134,11 @@ public class CharacterMovement : MonoBehaviour
                 _lastGroundCollider = CurrentHit;
                 HighScoreManager.Instance.AddScore(10);
             }
+        }
+
+        if (Mathf.Abs(_body.linearVelocity.y) <= 3f && particleSystem != null)
+        {
+            particleSystem.Stop();
         }
         
         _wasGrounded = _isGrounded;
@@ -330,6 +337,10 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (velocityBoost > 3f)
                 {
+                    if (particleSystem != null)
+                    {
+                        particleSystem.Play();
+                    }
                     _soundPlayer.PlayRandom("Combo");
                 }
                 else

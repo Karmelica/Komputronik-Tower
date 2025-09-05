@@ -19,6 +19,8 @@ public class Platform : MonoBehaviour
     
     public PlatformSO platformSo;
     
+    [SerializeField] private ParticleSystem particleSystem;
+    
     private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     
@@ -126,6 +128,7 @@ public class Platform : MonoBehaviour
         // how long the platform will drop until disabling 
         yield return new WaitForSeconds(5f);
         
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
 
