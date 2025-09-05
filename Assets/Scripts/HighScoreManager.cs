@@ -260,7 +260,6 @@ public class HighScoreManager : MonoBehaviour
         if (currentScore > bestScore)
         {
             PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
-            Debug.Log(PlayerPrefs.GetInt("ArcadeScore").ToString());
         }
         
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);

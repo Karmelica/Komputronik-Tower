@@ -10,6 +10,5 @@ public class LobbyScoreScript : MonoBehaviour
         _scoreText = GetComponent<TMP_Text>();
         
         _scoreText.text = PlayerPrefs.GetInt("ArcadeScore").ToString();
-        Debug.Log(PlayerPrefs.GetInt("ArcadeScore").ToString());
     }
 }
