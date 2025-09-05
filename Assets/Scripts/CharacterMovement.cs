@@ -94,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     _gameOver = true;
                     //Debug.Log("You Died!");
-                    HighScoreManager.Instance.GameOver();
+                    HighScoreManager.Instance.GameOver(true);
                 }
             }
         }
@@ -173,13 +173,13 @@ public class CharacterMovement : MonoBehaviour
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
             levelEnded = true;
             Invoke(nameof(EndLevel), 2f);
-            
         }
     }
 
     private void EndLevel()
     {
-        HighScoreManager.Instance.LevelEnd();
+        //HighScoreManager.Instance.LevelEnd();
+        HighScoreManager.Instance.GameOver(false);
     }
     
     private void OnEnable()

@@ -235,12 +235,15 @@ public class HighScoreManager : MonoBehaviour
     
     #region Game Over Management
     
-    public void GameOver()
+    public void GameOver(bool fallen)
     {
         // Zatrzymaj dodawanie punktów
         CharacterMovement.CanMove = false;
-        
-        _soundPlayer.PlayRandom("Fall");
+
+        if (fallen)
+        {
+            _soundPlayer.PlayRandom("Fall");
+        }
         
         // Pokaż panel końca gry
         ShowPanel(GameState.GameOver);
@@ -249,12 +252,23 @@ public class HighScoreManager : MonoBehaviour
         if (gameOverScoreText)
         {
             gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
+        }
+        
+        // save aracde level highest score
+        int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
+
+        if (currentScore > bestScore)
+        {
+            PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
+            Debug.Log(PlayerPrefs.GetInt("ArcadeScore").ToString());
         }
         
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
     }
     
-    public void LevelEnd()
+    // metoda game over robi teraz to samo co level end wiec narazie to zakomentowalem zeby nie powtarzac kodu
+    
+    /*public void LevelEnd()
     {
         // Zatrzymaj dodawanie punktów
         CharacterMovement.CanMove = false;
@@ -267,9 +281,19 @@ public class HighScoreManager : MonoBehaviour
         {
             gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
         }
+
+        // save aracde level highest score
+        int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
+
+        if (currentScore > bestScore)
+        {
+            PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
+            Debug.Log(PlayerPrefs.GetInt("ArcadeScore").ToString());
+        }
+        
         
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
-    }
+    }*/
     
     public void ReturnToMainMenu()
     {
