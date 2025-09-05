@@ -32,6 +32,8 @@ public class ComboScript : MonoBehaviour
     private bool _wasHittingPlatform;
     private bool _timerStarted;
     private bool _firstCombo;
+
+    [SerializeField] private Transform startingPoint;
     
     private void Start()
     {
@@ -85,7 +87,7 @@ public class ComboScript : MonoBehaviour
         
         bool isHittingPlatform = hit;
         
-        if (_body.linearVelocity.y > 0)
+        if (_body.linearVelocity.y > 0 && _body.transform.position.y >= startingPoint.position.y)
         {
             if (isHittingPlatform && !_wasHittingPlatform)
             {

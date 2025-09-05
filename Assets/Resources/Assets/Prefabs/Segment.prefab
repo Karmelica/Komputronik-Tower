@@ -346,6 +346,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 355617271347279807}
   visual: {fileID: 8147727419643537241}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &8192079098319958926
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1115,6 +1116,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 5261953302498873892}
   visual: {fileID: 3763819481573292250}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &359325872233888482
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2563,6 +2565,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 6968043223042141645}
   visual: {fileID: 6440858863431202891}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &2776268809893573496
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2833,6 +2836,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 7046520066322189751}
   visual: {fileID: 3038200688169804232}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &7843639456171484009
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -3788,6 +3792,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 8650195279865715035}
   visual: {fileID: 2527581228873155809}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &1409301557444161724
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -4493,6 +4498,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 7365073356378240515}
   visual: {fileID: 6921265965609683354}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &387605015105778283
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -5611,6 +5617,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 2146530454717654556}
   visual: {fileID: 2989830310367065754}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &2942822095459242796
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6316,6 +6323,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 2891688913016485133}
   visual: {fileID: 4952528265154496312}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &8075957430948568518
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6731,6 +6739,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 7117931345489695185}
   visual: {fileID: 4421330537102503797}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &1780875375102235115
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7378,6 +7387,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 9024543596941900020}
   visual: {fileID: 7022530605907283883}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &8711538664946703178
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7735,6 +7745,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 3064179593795841156}
   visual: {fileID: 7706005629330118629}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &5349730999551141528
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8516,6 +8527,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 8541752766662445113}
   visual: {fileID: 2635585870160915345}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &975818660295078898
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8873,6 +8885,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 1389000996745035082}
   visual: {fileID: 6675414076209944374}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &8976672614401831567
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -10078,6 +10091,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 2364328073469279944}
   visual: {fileID: 4984056361116444986}
   platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!114 &6887629980701185012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11131,6 +11145,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 8679396072720782266}
   visual: {fileID: 8890917272743034933}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &4325336965455475006
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11488,6 +11503,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 8417627070585266128}
   visual: {fileID: 3263368414624845008}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &7910745140446990347
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11950,6 +11966,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 1380229685880419218}
   visual: {fileID: 4615903694590093891}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &5126088490300706542
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -12945,6 +12962,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 6171863928035466147}
   visual: {fileID: 8040231908135433387}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &2396734813780098987
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13563,6 +13581,7 @@ MonoBehaviour:
   platformFunctional: {fileID: 8050720659485965577}
   visual: {fileID: 4710257842254210060}
   platformSo: {fileID: 0}
+  particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
 --- !u!251 &4538755804724839749
 PlatformEffector2D:
   m_ObjectHideFlags: 0
