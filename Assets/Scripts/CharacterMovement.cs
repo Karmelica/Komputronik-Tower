@@ -20,8 +20,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
-
-
+    
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
     [SerializeField] private float acceleration;
@@ -40,6 +39,7 @@ public class CharacterMovement : MonoBehaviour
     private InputSystemActions _inputActions;
     private Rigidbody2D _body;
 
+    private Vector2 _lastInput;
     private Vector2 _preCollisionVelocity;
     private Vector2 _moveInput;
     private Collider2D _lastGroundCollider = null;
@@ -56,6 +56,9 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
     [SerializeField] private GenerationManager generationManager;
+    
+    
+    [SerializeField] private ParticleSystem particleSystem;
 
     #endregion
 
@@ -91,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     _gameOver = true;
                     //Debug.Log("You Died!");
-                    HighScoreManager.Instance.GameOver();
+                    HighScoreManager.Instance.GameOver(true);
                 }
             }
         }
@@ -132,11 +135,17 @@ public class CharacterMovement : MonoBehaviour
                 HighScoreManager.Instance.AddScore(10);
             }
         }
+
+        if (Mathf.Abs(_body.linearVelocity.y) <= 3f && particleSystem != null)
+        {
+            particleSystem.Stop();
+        }
         
         _wasGrounded = _isGrounded;
         
         _animator.SetFloat("Velocity", _moveInput.x);
         _animator.SetFloat("YVelocity", _body.linearVelocity.y);
+        _animator.SetBool("Grounded", _isGrounded);
     }
     
     private void FixedUpdate()
@@ -164,13 +173,13 @@ public class CharacterMovement : MonoBehaviour
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
             levelEnded = true;
             Invoke(nameof(EndLevel), 2f);
-            
         }
     }
 
     private void EndLevel()
     {
-        HighScoreManager.Instance.LevelEnd();
+        //HighScoreManager.Instance.LevelEnd();
+        HighScoreManager.Instance.GameOver(false);
     }
     
     private void OnEnable()
@@ -292,14 +301,19 @@ public class CharacterMovement : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = _inputActions.Player.Move.ReadValue<Vector2>();
+
+        if (_moveInput != Vector2.zero)
+        {
+            _lastInput = _moveInput;
+        }
+        
+        _animator.SetFloat("LastInputX", _lastInput.x);
     }
 
     private void OnJump(InputAction.CallbackContext context)
     {
         if (_isGrounded && CanMove)
         {
-            _animator.SetTrigger("Jump");
-            
             if(startCounting == false){
                 startCounting = true;
             }
@@ -321,14 +335,20 @@ public class CharacterMovement : MonoBehaviour
 
             if (_soundPlayer != null)
             {
-                _soundPlayer.PlayRandom("Jump");
+                if (velocityBoost > 3f)
+                {
+                    if (particleSystem != null)
+                    {
+                        particleSystem.Play();
+                    }
+                    _soundPlayer.PlayRandom("Combo");
+                }
+                else
+                {
+                    _soundPlayer.PlayRandom("Jump");
+                }
             }
             
-            if (velocityBoost > 3f)
-            {
-                _soundPlayer.PlayRandom("Combo");
-            }
-
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }

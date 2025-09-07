@@ -8,6 +8,7 @@ public class OriginalPlatform : MonoBehaviour
     public SpriteRenderer platformOff;
     
     [SerializeField] private GameObject visual;
+    [SerializeField] private ParticleSystem particleSystem;
     
     private Rigidbody2D _rigidbody2D;
     private Coroutine _coroutine;
@@ -61,6 +62,7 @@ public class OriginalPlatform : MonoBehaviour
         // how long the platform will drop until disabling 
         yield return new WaitForSeconds(5f);
         
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
     
