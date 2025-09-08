@@ -1448,7 +1448,16 @@ MonoBehaviour:
   startPoint: {fileID: 288798616}
   maxDistance: 10
   graceTime: 2
-  speed: 1
+  heightSpeeds:
+  - height: 100
+    speed: 1
+  - height: 200
+    speed: 2
+  - height: 300
+    speed: 3
+  - height: 400
+    speed: 4
+  currentSpeed: 1
 --- !u!61 &1255503425
 BoxCollider2D:
   m_ObjectHideFlags: 0
