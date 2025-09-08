@@ -17,12 +17,12 @@ public class PlayerEmailData
     public string playerID;
     public string email;
     public string name;
-    public int score1;
-    public int score2;
-    public int score3;
-    public int score4;
-    public int score5;
-    public int score6;
+    public float score1;
+    public float score2;
+    public float score3;
+    public float score4;
+    public float score5;
+    public float score6;
 }
 
 public class LoginManager : MonoBehaviour
