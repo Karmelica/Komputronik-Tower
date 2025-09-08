@@ -60,6 +60,9 @@ public class Platform : MonoBehaviour
         
         // collider bounds adjustment for milestone platforms
         _platformCollider.size = platformOff.size;
+        
+        // set level color to all platforms
+        platformOnHighlight.color = ColorPicker.GetColor();
     }
 
     public void ChangePlatform()
