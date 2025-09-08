@@ -1451,11 +1451,11 @@ MonoBehaviour:
   heightSpeeds:
   - height: 100
     speed: 1
-  - height: 200
-    speed: 2
   - height: 300
+    speed: 2
+  - height: 600
     speed: 3
-  - height: 400
+  - height: 900
     speed: 4
   currentSpeed: 1
 --- !u!61 &1255503425
@@ -2306,6 +2306,10 @@ PrefabInstance:
       propertyPath: generationManager
       value: 
       objectReference: {fileID: 271954312}
+    - target: {fileID: 6973862168206955256, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: infiniteGeneration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7119839392399315358, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

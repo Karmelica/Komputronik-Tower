@@ -1448,7 +1448,8 @@ MonoBehaviour:
   startPoint: {fileID: 288798616}
   maxDistance: 10
   graceTime: 2
-  speed: 1
+  heightSpeeds: []
+  currentSpeed: 0
 --- !u!61 &1255503425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2134,7 +2135,7 @@ SpriteRenderer:
   m_SortingLayerID: 1924454121
   m_SortingLayer: -1
   m_SortingOrder: -1
-  m_Sprite: {fileID: 4195695431125059524, guid: 43e58c5cde2325c45acbf79c47ff8666, type: 3}
+  m_Sprite: {fileID: -5980049991147739076, guid: 8f4843e5cd3a314469fd739b331d381c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
