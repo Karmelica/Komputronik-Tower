@@ -16,13 +16,13 @@ public class LobbyTooltipDisplay : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip.SetBool("Show", true);
-        _audioSource.Play();
+        coolTooltip?.SetBool("Show", true);
+        _audioSource?.Play();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip.SetBool("Show", false);
+        coolTooltip?.SetBool("Show", false);
     }
 }
