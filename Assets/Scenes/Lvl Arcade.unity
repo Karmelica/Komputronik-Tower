@@ -2592,6 +2592,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerComboTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 4116000602280693505, guid: 78e20ab695f1d614aa73e78503b73048, type: 3}
+      propertyPath: UVModule.tilesX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116000602280693505, guid: 78e20ab695f1d614aa73e78503b73048, type: 3}
+      propertyPath: UVModule.tilesY
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116000602280693505, guid: 78e20ab695f1d614aa73e78503b73048, type: 3}
+      propertyPath: UVModule.startFrame.scalar
+      value: 0.7777778
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116000602280693505, guid: 78e20ab695f1d614aa73e78503b73048, type: 3}
+      propertyPath: UVModule.startFrame.minScalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5568745177705736074, guid: 78e20ab695f1d614aa73e78503b73048, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
