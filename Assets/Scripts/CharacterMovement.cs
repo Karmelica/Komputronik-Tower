@@ -146,6 +146,11 @@ public class CharacterMovement : MonoBehaviour
         _animator.SetFloat("Velocity", _moveInput.x);
         _animator.SetFloat("YVelocity", _body.linearVelocity.y);
         _animator.SetBool("Grounded", _isGrounded);
+
+        if (_isGrounded)
+        {
+            _animator.SetBool("Combo", false);
+        }
     }
     
     private void FixedUpdate()
@@ -342,6 +347,7 @@ public class CharacterMovement : MonoBehaviour
                         particleSystem.Play();
                     }
                     _soundPlayer.PlayRandom("Combo");
+                    _animator.SetBool("Combo", true);
                 }
                 else
                 {
