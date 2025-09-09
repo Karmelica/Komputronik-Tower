@@ -181,7 +181,7 @@ public class HighScoreManager : MonoBehaviour
         {
             if (infiniteGeneration)
             {
-                scoreText.text = $"Wynik: {currentScore:F0} | {lvlIndex} poziom";
+                scoreText.text = $"Wynik: {currentScore:F0}";
             }
             else
             {
@@ -189,7 +189,7 @@ public class HighScoreManager : MonoBehaviour
                 int seconds = Mathf.FloorToInt(currentScore % 60f);
                 int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
             
-                scoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} | {lvlIndex} poziom";
+                scoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
             }
         }
     }
@@ -254,14 +254,14 @@ public class HighScoreManager : MonoBehaviour
         {
             if(infiniteGeneration)
             {
-                gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
+                gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
             }
             else
             {
                 int minutes = Mathf.FloorToInt(currentScore / 60f);
                 int seconds = Mathf.FloorToInt(currentScore % 60f);
                 int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
-                gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} | {lvlIndex} poziom";
+                gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
             }
         }
 
