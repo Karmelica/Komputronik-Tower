@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -19,8 +20,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float jumpForce;
-
-
+    
     [Header("Acceleration settings")]
     [SerializeField] private AnimationCurve accelerationCurve;
     [SerializeField] private float acceleration;
@@ -35,9 +35,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float bounceX = 1f;
     [SerializeField] private float bounceY = 1f;
     
+    private SoundPlayer _soundPlayer;
     private InputSystemActions _inputActions;
     private Rigidbody2D _body;
 
+    private Vector2 _lastInput;
     private Vector2 _preCollisionVelocity;
     private Vector2 _moveInput;
     private Collider2D _lastGroundCollider = null;
@@ -49,9 +51,14 @@ public class CharacterMovement : MonoBehaviour
     
     private Animator _animator;
 
-    private bool canEndLevel;
+    public static bool levelEnded;
+    public static bool startCounting;
     
     [SerializeField] private SegmentDetectorScript segmentDetector;
+    [SerializeField] private GenerationManager generationManager;
+    
+    
+    [SerializeField] private ParticleSystem particleSystem;
 
     #endregion
 
@@ -61,11 +68,14 @@ public class CharacterMovement : MonoBehaviour
         _inputActions = new InputSystemActions();
         _body = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _soundPlayer = GetComponent<SoundPlayer>();
     }
 
     private void Start()
     {
+        startCounting = false;
         CanMove = true;
+        levelEnded = false;
         _gameStartTimer = 2f;
     }
     
@@ -84,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     _gameOver = true;
                     //Debug.Log("You Died!");
-                    HighScoreManager.Instance.GameOver();
+                    HighScoreManager.Instance.GameOver(true);
                 }
             }
         }
@@ -119,17 +129,28 @@ public class CharacterMovement : MonoBehaviour
                 _lastGroundCollider = CurrentHit;
             }
 
-            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y)
+            if (_lastGroundCollider != null && CurrentHit.transform.position.y > _lastGroundCollider.transform.position.y && generationManager.infiniteGeneration)
             {
                 _lastGroundCollider = CurrentHit;
                 HighScoreManager.Instance.AddScore(10);
             }
+        }
+
+        if (Mathf.Abs(_body.linearVelocity.y) <= 3f && particleSystem != null)
+        {
+            particleSystem.Stop();
         }
         
         _wasGrounded = _isGrounded;
         
         _animator.SetFloat("Velocity", _moveInput.x);
         _animator.SetFloat("YVelocity", _body.linearVelocity.y);
+        _animator.SetBool("Grounded", _isGrounded);
+
+        if (_isGrounded)
+        {
+            _animator.SetBool("Combo", false);
+        }
     }
     
     private void FixedUpdate()
@@ -155,15 +176,15 @@ public class CharacterMovement : MonoBehaviour
         {
             int level = SceneManager.GetActiveScene().buildIndex;
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
-            canEndLevel = true;
+            levelEnded = true;
             Invoke(nameof(EndLevel), 2f);
-            
         }
     }
 
     private void EndLevel()
     {
-        SceneManager.LoadScene(0);
+        //HighScoreManager.Instance.LevelEnd();
+        HighScoreManager.Instance.GameOver(false);
     }
     
     private void OnEnable()
@@ -285,13 +306,22 @@ public class CharacterMovement : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         _moveInput = _inputActions.Player.Move.ReadValue<Vector2>();
+
+        if (_moveInput != Vector2.zero)
+        {
+            _lastInput = _moveInput;
+        }
+        
+        _animator.SetFloat("LastInputX", _lastInput.x);
     }
 
     private void OnJump(InputAction.CallbackContext context)
     {
         if (_isGrounded && CanMove)
         {
-            _animator.SetTrigger("Jump");
+            if(startCounting == false){
+                startCounting = true;
+            }
             
             float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
             //Debug.Log(velocityBoost);
@@ -308,6 +338,23 @@ public class CharacterMovement : MonoBehaviour
 
             _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
 
+            if (_soundPlayer != null)
+            {
+                if (velocityBoost > 3f)
+                {
+                    if (particleSystem != null)
+                    {
+                        particleSystem.Play();
+                    }
+                    _soundPlayer.PlayRandom("Combo");
+                    _animator.SetBool("Combo", true);
+                }
+                else
+                {
+                    _soundPlayer.PlayRandom("Jump");
+                }
+            }
+            
             //Debug.Log(_body.linearVelocity);
             _isGrounded = false;
         }

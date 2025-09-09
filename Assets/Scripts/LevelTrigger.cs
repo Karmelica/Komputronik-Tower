@@ -13,11 +13,15 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private int levelIndex;
     [SerializeField] private GlobalTimeManager globalTimeManager;
 
+    [SerializeField] private GameObject loadingScreen;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            LoadLevel();
+            CharacterMovement.CanMove = false;
+            loadingScreen.SetActive(true);
+            Invoke("LoadLevel", 2f);
         }
     }
 
@@ -63,7 +67,6 @@ public class LevelTrigger : MonoBehaviour
         {
             panel.gameObject.SetActive(true);
             outlet.gameObject.SetActive(true);
-            _boxCollider.isTrigger = globalTimeManager.IsLevelUnlocked(levelIndex);
             _panelAnimator.SetBool("LevelCompleted", true);
         }
         

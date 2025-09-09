@@ -17,12 +17,12 @@ public class PlayerEmailData
     public string playerID;
     public string email;
     public string name;
-    public int score1;
-    public int score2;
-    public int score3;
-    public int score4;
-    public int score5;
-    public int score6;
+    public float score1;
+    public float score2;
+    public float score3;
+    public float score4;
+    public float score5;
+    public float score6;
 }
 
 public class LoginManager : MonoBehaviour
@@ -37,6 +37,7 @@ public class LoginManager : MonoBehaviour
     
     [Header("Login Panel")] 
     [SerializeField] private GameObject saveScorePanel;
+    [SerializeField] private GameObject emailConfirmationPanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
 
@@ -61,6 +62,7 @@ public class LoginManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 0f;
         PrefsCheck();
     }
 
@@ -68,17 +70,23 @@ public class LoginManager : MonoBehaviour
 
     public void PrefsCheck()
     {
-        if(PlayerPrefs.HasKey("PlayerEmail"))
+        if (PlayerPrefs.GetInt("EmailConfirmed", 0) == 0)
+        {
+            ShowEmailConfirmationPanel();
+        }
+        else if(PlayerPrefs.HasKey("PlayerEmail"))
         {
             LoadPlayerPrefs();
             ShowSavePlayerPanel(false);
+            Time.timeScale = 1f;
         }
         else
         {
             ShowSavePlayerPanel();
         }
     }
-    
+
+
     public void SavePlayerPrefs()
     {
         PlayerPrefs.SetString("PlayerEmail", currentPlayerEmail);
@@ -122,6 +130,17 @@ public class LoginManager : MonoBehaviour
         if (player) player.SetActive(!show);
     }
     
+    public void ShowEmailConfirmationPanel(bool show = true)
+    {
+        if(emailConfirmationPanel) emailConfirmationPanel.SetActive(show);
+        ShowSavePlayerPanel();
+        if(show == false)
+        {
+            PlayerPrefs.SetInt("EmailConfirmed", 1);
+            PlayerPrefs.Save();
+        }
+    }
+    
     #region Player Data Management
     
     public void SetPlayerData()
@@ -152,6 +171,7 @@ public class LoginManager : MonoBehaviour
         
         SavePlayerPrefs();
         SendPlayerData(currentPlayerEmail, currentPlayerName);
+        Time.timeScale = 1f;
     }
     
     

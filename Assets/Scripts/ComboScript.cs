@@ -18,6 +18,7 @@ public class ComboScript : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Image comboImage;
     [SerializeField] private TMP_Text comboText;
+    [SerializeField] private GenerationManager generationManager;
 
     [SerializeField] private int totalPlatformPassed;
     
@@ -26,21 +27,34 @@ public class ComboScript : MonoBehaviour
     private Rigidbody2D _body;
     private CharacterMovement _characterMovement;
     private Collider2D _lastPlatform;
+    private SoundPlayer _soundPlayer;
     
     private bool _wasHittingPlatform;
     private bool _timerStarted;
     private bool _firstCombo;
+
+    [SerializeField] private Transform startingPoint;
     
     private void Start()
     {
         _characterMovement = GetComponent<CharacterMovement>();
        _body = GetComponent<Rigidbody2D>();
+       _soundPlayer = GetComponent<SoundPlayer>();
+
+       if (!generationManager.infiniteGeneration)
+       {
+           comboImage.enabled = false;
+           comboText.enabled = false;
+       }
+       
        _firstCombo = true;
     }
 
     private void Update()
     {
         HandleRaycastCombo();
+        
+        if (!generationManager.infiniteGeneration) return;
         
         if (_characterMovement.Grounded)
         {
@@ -73,7 +87,7 @@ public class ComboScript : MonoBehaviour
         
         bool isHittingPlatform = hit;
         
-        if (_body.linearVelocity.y > 0)
+        if (_body.linearVelocity.y > 0 && _body.transform.position.y >= startingPoint.position.y)
         {
             if (isHittingPlatform && !_wasHittingPlatform)
             {
@@ -119,6 +133,7 @@ public class ComboScript : MonoBehaviour
                 streakComboCount += currentComboCount;
                 currentStreak++;
                 _currentComboTime = comboTimer;
+                //_soundPlayer.PlayRandom("Combo");
             }
             else
             {
@@ -181,7 +196,8 @@ public class ComboScript : MonoBehaviour
         }
         
         //int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
-        Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
+        
+        //Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
     }
 }

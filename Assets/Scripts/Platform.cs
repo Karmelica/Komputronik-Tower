@@ -19,6 +19,8 @@ public class Platform : MonoBehaviour
     
     public PlatformSO platformSo;
     
+    [SerializeField] private ParticleSystem particleSystem;
+    
     private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
     
@@ -27,6 +29,7 @@ public class Platform : MonoBehaviour
     private Coroutine _gravityCoroutine;
     private PlatformEffector2D _effector2D;
     private Coroutine _coroutine;
+    private SoundPlayer _soundPlayer;
     
     private void Awake()
     {
@@ -36,9 +39,10 @@ public class Platform : MonoBehaviour
         {
             animator.enabled = false;
         }
-
+        
         _platformCollider = GetComponent<BoxCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _soundPlayer = GetComponent<SoundPlayer>();
         
         // set initial position
         _initialPosition = transform.localPosition.y;
@@ -56,6 +60,9 @@ public class Platform : MonoBehaviour
         
         // collider bounds adjustment for milestone platforms
         _platformCollider.size = platformOff.size;
+        
+        // set level color to all platforms
+        platformOnHighlight.color = ColorPicker.GetColor();
     }
 
     public void ChangePlatform()
@@ -79,31 +86,31 @@ public class Platform : MonoBehaviour
             
             if (platformFunctional.sprite != null)
             {
-                platformFunctional.transform.position = new Vector2(
-                    platformFunctional.transform.position.x, 
-                    platformFunctional.transform.position.y + platformSo.functionalSpriteOffset);
+                platformFunctional.transform.localPosition = new Vector2(
+                    0, 
+                    platformSo.functionalSpriteOffset);
             }
         }
     }
 
     private void OnEnable()
     {
-        if(isDynamic){
+        if (animator != null)
+        {
             animator.enabled = false;
-
-
-            // color adjustments
-            Color onColor = platformOn.color;
-            Color highlightColor = platformOnHighlight.color;
-
-            onColor.a = 0;
-            highlightColor.a = 0;
-
-            platformOn.color = onColor;
-            platformOnHighlight.color = highlightColor;
-
-            DisableFall();
         }
+        
+        // color adjustments
+        Color onColor = platformOn.color;
+        Color highlightColor = platformOnHighlight.color;
+
+        onColor.a = 0;
+        highlightColor.a = 0;
+
+        platformOn.color = onColor;
+        platformOnHighlight.color = highlightColor;
+        
+        DisableFall();
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -119,10 +126,12 @@ public class Platform : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         _rigidbody2D.linearVelocity = new Vector2(0, -2f);
+        _soundPlayer.PlayRandom("Fall");
         
         // how long the platform will drop until disabling 
         yield return new WaitForSeconds(5f);
         
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
 

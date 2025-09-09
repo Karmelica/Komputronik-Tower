@@ -41,7 +41,6 @@ public class SegmentScript : MonoBehaviour
         }
         
         milestonePlatform.SetActive(true);
-        
     }
 
     private PlatformType InitializePlatforms(System.Random rng)
