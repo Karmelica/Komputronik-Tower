@@ -175,7 +175,7 @@ public class GlobalTimeManager : MonoBehaviour
             {
                 if (IsLevelUnlocked(i))
                 {
-                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName}";
+                    levelUnlockTimeText[i].text = $"{levelUnlockDates[i].levelName} \nNaciśnij spację aby rozpocząć";
                 }
                 else
                 {

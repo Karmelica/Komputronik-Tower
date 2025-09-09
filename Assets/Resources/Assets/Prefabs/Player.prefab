@@ -307,6 +307,7 @@ MonoBehaviour:
   bounceY: 1
   segmentDetector: {fileID: 2975588726882583896}
   generationManager: {fileID: 0}
+  particleSystem: {fileID: 0}
 --- !u!114 &4926672755928866335
 MonoBehaviour:
   m_ObjectHideFlags: 0
