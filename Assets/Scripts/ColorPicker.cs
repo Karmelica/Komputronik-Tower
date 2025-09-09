@@ -4,24 +4,44 @@ using UnityEngine.SceneManagement;
 
 public static class ColorPicker
 {
-    private static Dictionary<int, Color> colors = new();
+    private static Dictionary<int, Color> outerColors = new();
+    private static Dictionary<int, Color> innerColors = new();
 
     static ColorPicker()
     {
-        colors = new Dictionary<int, Color>
+        outerColors = new Dictionary<int, Color>
         {
-            { 1, new Color(0f, 0f, 1f, 0f) },             // Blue (R=0, G=0, B=1, A=1)
-            { 2, new Color(0f, 1f, 0f, 0f) },             // Green
-            { 3, new Color(1f, 0f, 0f, 0f) },             // Red
-            { 4, new Color(1f, 0.08f, 0.58f, 0f) },       // DeepPink (approx: #FF1493)
-            { 5, new Color(1f, 0.65f, 0f, 0f) },          // Orange (approx: #FFA500)
-            { 6, new Color(0f, 0f, 1f, 0f) },
+            { 1, new Color32(  0,  90, 255, 0) },          // Blue (R=0, G=0, B=1, A=1)
+            { 2, new Color32(  0, 255,   7, 0) },          // Green
+            { 3, new Color32(255,  68,   0, 0) },          // Red
+            { 4, new Color32(255,   0, 219, 0) },          // DeepPink (approx: #FF1493)
+            { 5, new Color32(255, 203,   0, 0) },          // Orange (approx: #FFA500)
+            { 6, new Color32(  0,   0,   1, 0) },          // Blue for arcade level 
+        };
+        
+        innerColors = new Dictionary<int, Color>
+        {
+            { 1, new Color32(220, 233, 255, 0) },          // Blue (R=0, G=0, B=1, A=1)
+            { 2, new Color32(220, 255, 221, 0) },          // Green
+            { 3, new Color32(255, 234, 220, 0) },          // Red
+            { 4, new Color32(255, 220, 250, 0) },          // DeepPink (approx: #FF1493)
+            { 5, new Color32(255, 250, 220, 0) },          // Orange (approx: #FFA500)
+            { 6, new Color32(220, 233, 255, 0) },          // Blue for arcade level   
         };
     }
     
-    public static Color GetColor()
+    public static Color GetOuterColor()
     {
-        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        return colors[sceneIndex];
+        return outerColors[SceneIndex()];
+    }
+
+    public static Color GetInnerColor()
+    {
+        return innerColors[SceneIndex()];
+    }
+
+    private static int SceneIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 }
