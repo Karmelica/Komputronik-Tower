@@ -62,7 +62,8 @@ public class Platform : MonoBehaviour
         _platformCollider.size = platformOff.size;
         
         // set level color to all platforms
-        platformOnHighlight.color = ColorPicker.GetColor();
+        platformOnHighlight.color = ColorPicker.GetOuterColor();
+        platformOn.color = ColorPicker.GetInnerColor();
     }
 
     public void ChangePlatform()
