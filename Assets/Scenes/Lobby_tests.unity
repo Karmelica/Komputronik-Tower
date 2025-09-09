@@ -9900,20 +9900,20 @@ MonoBehaviour:
     day: 5
     hour: 16
   - levelName: Level 2
-    month: 9
-    day: 6
+    month: 8
+    day: 29
     hour: 16
   - levelName: Level 3
-    month: 9
-    day: 7
+    month: 8
+    day: 4
     hour: 16
   - levelName: Level 4
-    month: 9
-    day: 8
+    month: 8
+    day: 9
     hour: 16
   - levelName: Level 5
-    month: 9
-    day: 9
+    month: 8
+    day: 14
     hour: 16
   useServerTime: 1
   timeoutSeconds: 5

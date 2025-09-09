@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd4dfb39-a06d-48f2-a3c3-ece3498d6d37" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Assets/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby_tests.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby_tests.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 4.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lvl 5.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lvl 5.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComboScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComboScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoginManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/Build Profiles/Przegladarka.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +34,7 @@
     "Node.js.setrole.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "Karmelica",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,6 +75,7 @@
       <workItem from="1756817126573" duration="24000" />
       <workItem from="1756817163900" duration="1439000" />
       <workItem from="1756980070845" duration="1111000" />
+      <workItem from="1757332529308" duration="338000" />
     </task>
     <servers />
   </component>

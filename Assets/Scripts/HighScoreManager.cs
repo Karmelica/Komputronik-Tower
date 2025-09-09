@@ -94,12 +94,12 @@ public class HighScoreManager : MonoBehaviour
 
     #region Leaderboard Management
 
-    public void NewLeaderboardEntry(string email, string playerName, int score, int level)
+    public void NewLeaderboardEntry(string email, string playerName, float score, int level)
     {
         StartCoroutine(SendDataCoroutine(email, playerName, score, level));
     }
     
-    private IEnumerator SendDataCoroutine(string playerEmail, string playerName, int score, int level)
+    private IEnumerator SendDataCoroutine(string playerEmail, string playerName, float score, int level)
     {
         // 1. Logowanie anonimowe i pobranie ID Token
         string idToken = null;
@@ -119,7 +119,7 @@ public class HighScoreManager : MonoBehaviour
             3 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score3 = score },
             4 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score4 = score },
             5 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score5 = score },
-            6 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score6 = score },
+            6 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? score : 0 },
             _ => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName }
         };
 
@@ -187,8 +187,9 @@ public class HighScoreManager : MonoBehaviour
             {
                 int minutes = Mathf.FloorToInt(currentScore / 60f);
                 int seconds = Mathf.FloorToInt(currentScore % 60f);
+                int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
             
-                scoreText.text = $"Czas: {minutes:D2}:{seconds:D2} | {lvlIndex} poziom";
+                scoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} | {lvlIndex} poziom";
             }
         }
     }
@@ -251,7 +252,17 @@ public class HighScoreManager : MonoBehaviour
         // Zaktualizuj wyświetlany wynik końcowy
         if (gameOverScoreText)
         {
-            gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
+            if(infiniteGeneration)
+            {
+                gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
+            }
+            else
+            {
+                int minutes = Mathf.FloorToInt(currentScore / 60f);
+                int seconds = Mathf.FloorToInt(currentScore % 60f);
+                int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} | {lvlIndex} poziom";
+            }
         }
         
         // save aracde level highest score
@@ -261,8 +272,8 @@ public class HighScoreManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
         }
-        
-        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
+
+        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, currentScore, lvlIndex);
     }
     
     // metoda game over robi teraz to samo co level end wiec narazie to zakomentowalem zeby nie powtarzac kodu

@@ -196,7 +196,8 @@ public class ComboScript : MonoBehaviour
         }
         
         //int bonus = totalPlatformPassed * 10 + (streakComboCount * currentStreak); 
-        Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
+        
+        //Debug.Log($"total platform passed: {totalPlatformPassed}, combo steak: {currentStreak}, combo: {streakComboCount}, total: {bonus}"); 
         return bonus;
     }
 }
