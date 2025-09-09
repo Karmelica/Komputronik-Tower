@@ -264,15 +264,18 @@ public class HighScoreManager : MonoBehaviour
                 gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
             }
         }
-        
-        // save aracde level highest score
-        int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
 
-        if (currentScore > bestScore)
+        if (SceneManager.GetActiveScene().buildIndex == 6)
         {
-            PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
-        }
+            // save aracde level highest score
+            int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
 
+            if (currentScore > bestScore)
+            {
+                PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
+            }
+        }
+        
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, currentScore, lvlIndex);
     }
     

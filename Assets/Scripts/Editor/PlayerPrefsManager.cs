@@ -75,6 +75,17 @@ public class PlayerPrefsManager : EditorWindow
         
         EditorGUILayout.EndHorizontal();
         
+        EditorGUILayout.Space();
+        
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Reset Arcade Score", GUILayout.Height(30)))
+        {
+            DeleteArcadeScore();
+        }
+        
+        EditorGUILayout.EndHorizontal();
+        
         // Sekcja do ustawiania konkretnej wartości
         /*GUILayout.Label("Set Custom Value", EditorStyles.boldLabel);
         int newValue = EditorGUILayout.IntField("New Value:", levelsCompleted);
@@ -113,6 +124,14 @@ public class PlayerPrefsManager : EditorWindow
     {
         levelsCompleted = PlayerPrefs.GetInt("LevelsCompleted", 0);
         statusMessage = "Values refreshed.";
+        Repaint();
+    }
+
+    private void DeleteArcadeScore()
+    {
+        PlayerPrefs.SetInt("ArcadeScore", 0);
+        PlayerPrefs.Save();
+        statusMessage = "Arcade score deleted.";
         Repaint();
     }
     
