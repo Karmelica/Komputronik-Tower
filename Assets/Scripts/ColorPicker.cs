@@ -15,6 +15,7 @@ public static class ColorPicker
             { 3, new Color(1f, 0f, 0f, 0f) },             // Red
             { 4, new Color(1f, 0.08f, 0.58f, 0f) },       // DeepPink (approx: #FF1493)
             { 5, new Color(1f, 0.65f, 0f, 0f) },          // Orange (approx: #FFA500)
+            { 6, new Color(0f, 0f, 1f, 0f) },
         };
     }
     
