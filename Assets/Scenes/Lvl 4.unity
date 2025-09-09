@@ -2156,7 +2156,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 216356203070041160, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 226.838
+      objectReference: {fileID: 0}
+    - target: {fileID: 216356203070041160, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 45.3676
       objectReference: {fileID: 0}
     - target: {fileID: 216356203070041160, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_LocalScale.x
