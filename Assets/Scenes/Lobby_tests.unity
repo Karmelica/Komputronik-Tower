@@ -1217,11 +1217,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1766,11 +1766,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1863,6 +1863,81 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3817899359728139817, guid: 535f2f1c00070fd4e878a84399ab66e2, type: 3}
   m_PrefabInstance: {fileID: 1485955158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &365998050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365998051}
+  - component: {fileID: 365998053}
+  - component: {fileID: 365998052}
+  m_Layer: 5
+  m_Name: LoadingScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &365998051
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365998050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1937411580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &365998052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365998050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 655440332502395156, guid: 1da245fa30351924980a7296be3de197, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &365998053
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365998050}
+  m_CullTransparentMesh: 1
 --- !u!1 &392257691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,11 +2663,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -3771,11 +3846,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -4867,6 +4942,7 @@ MonoBehaviour:
   outlet: {fileID: 739636228}
   levelIndex: 0
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!1 &1100995258
 GameObject:
   m_ObjectHideFlags: 0
@@ -6368,11 +6444,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -8469,6 +8545,7 @@ MonoBehaviour:
   outlet: {fileID: 988211114}
   levelIndex: 3
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!1 &1746014093
 GameObject:
   m_ObjectHideFlags: 0
@@ -9127,6 +9204,7 @@ MonoBehaviour:
   outlet: {fileID: 70153539}
   levelIndex: 5
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!61 &1829131658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9379,6 +9457,7 @@ MonoBehaviour:
   outlet: {fileID: 346027098}
   levelIndex: 1
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!1 &1857121352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3674228416139261286, guid: 535f2f1c00070fd4e878a84399ab66e2, type: 3}
@@ -9869,6 +9948,7 @@ RectTransform:
   - {fileID: 766051652}
   - {fileID: 243190981}
   - {fileID: 650298699}
+  - {fileID: 365998051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10170,6 +10250,7 @@ MonoBehaviour:
   outlet: {fileID: 251383228}
   levelIndex: 4
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!1001 &2042392562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10185,11 +10266,11 @@ PrefabInstance:
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4869373528442470468, guid: 83d8f8f3da19d9c4d8ffb196c853f729, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -10674,6 +10755,7 @@ MonoBehaviour:
   outlet: {fileID: 1317645217}
   levelIndex: 2
   globalTimeManager: {fileID: 1937411581}
+  loadingScreen: {fileID: 365998050}
 --- !u!1 &2094727989
 GameObject:
   m_ObjectHideFlags: 0
