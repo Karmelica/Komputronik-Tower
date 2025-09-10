@@ -16,7 +16,7 @@ public static class ColorPicker
             { 3, new Color32(255,  68,   0, 0) },          // Red
             { 4, new Color32(255,   0, 219, 0) },          // DeepPink (approx: #FF1493)
             { 5, new Color32(255, 203,   0, 0) },          // Orange (approx: #FFA500)
-            { 6, new Color32(  0,   0,   1, 0) },          // Blue for arcade level 
+            { 6, new Color32(255,  68,   0, 0) },          // Red for arcade level 
         };
         
         innerColors = new Dictionary<int, Color>
@@ -26,7 +26,7 @@ public static class ColorPicker
             { 3, new Color32(255, 234, 220, 0) },          // Red
             { 4, new Color32(255, 220, 250, 0) },          // DeepPink (approx: #FF1493)
             { 5, new Color32(255, 250, 220, 0) },          // Orange (approx: #FFA500)
-            { 6, new Color32(220, 233, 255, 0) },          // Blue for arcade level   
+            { 6, new Color32(255, 234, 220, 0) },          // Red for arcade level   
         };
     }
     
