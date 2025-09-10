@@ -43,8 +43,9 @@ public class ComboScript : MonoBehaviour
 
        if (!generationManager.infiniteGeneration)
        {
-           comboImage.enabled = false;
-           comboText.enabled = false;
+           comboImage.transform.parent.gameObject.SetActive(false);
+           //comboImage.enabled = false;
+           //comboText.enabled = false;
        }
        
        _firstCombo = true;
