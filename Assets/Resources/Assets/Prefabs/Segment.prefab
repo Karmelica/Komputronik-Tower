@@ -347,6 +347,9 @@ MonoBehaviour:
   visual: {fileID: 8147727419643537241}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &8192079098319958926
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1117,6 +1120,9 @@ MonoBehaviour:
   visual: {fileID: 3763819481573292250}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &359325872233888482
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2566,6 +2572,9 @@ MonoBehaviour:
   visual: {fileID: 6440858863431202891}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &2776268809893573496
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2837,6 +2846,9 @@ MonoBehaviour:
   visual: {fileID: 3038200688169804232}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &7843639456171484009
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -3793,6 +3805,9 @@ MonoBehaviour:
   visual: {fileID: 2527581228873155809}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &1409301557444161724
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -4499,6 +4514,9 @@ MonoBehaviour:
   visual: {fileID: 6921265965609683354}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &387605015105778283
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -5618,6 +5636,9 @@ MonoBehaviour:
   visual: {fileID: 2989830310367065754}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &2942822095459242796
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6228,7 +6249,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7570a61abe2d16349bec06a9d318f331, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.2924528, g: 0.040005345, b: 0.040005345, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -6324,6 +6345,9 @@ MonoBehaviour:
   visual: {fileID: 4952528265154496312}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &8075957430948568518
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6740,6 +6764,9 @@ MonoBehaviour:
   visual: {fileID: 4421330537102503797}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &1780875375102235115
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7388,6 +7415,9 @@ MonoBehaviour:
   visual: {fileID: 7022530605907283883}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &8711538664946703178
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7746,6 +7776,9 @@ MonoBehaviour:
   visual: {fileID: 7706005629330118629}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &5349730999551141528
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8528,6 +8561,9 @@ MonoBehaviour:
   visual: {fileID: 2635585870160915345}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &975818660295078898
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8886,6 +8922,9 @@ MonoBehaviour:
   visual: {fileID: 6675414076209944374}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &8976672614401831567
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -10092,6 +10131,9 @@ MonoBehaviour:
   visual: {fileID: 4984056361116444986}
   platformSo: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!114 &6887629980701185012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11146,6 +11188,9 @@ MonoBehaviour:
   visual: {fileID: 8890917272743034933}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &4325336965455475006
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11504,6 +11549,9 @@ MonoBehaviour:
   visual: {fileID: 3263368414624845008}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &7910745140446990347
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11967,6 +12015,9 @@ MonoBehaviour:
   visual: {fileID: 4615903694590093891}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &5126088490300706542
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -12963,6 +13014,9 @@ MonoBehaviour:
   visual: {fileID: 8040231908135433387}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &2396734813780098987
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13582,6 +13636,9 @@ MonoBehaviour:
   visual: {fileID: 4710257842254210060}
   platformSo: {fileID: 0}
   particleSystem: {fileID: 9114094074706998740, guid: 6866f18d6b66a3845a898ecfdf2465d0, type: 3}
+  runtimeAnimatorController:
+  - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
+  - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
 --- !u!251 &4538755804724839749
 PlatformEffector2D:
   m_ObjectHideFlags: 0
