@@ -1,25 +1,29 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
-    [HideInInspector] public Animator animator;
+    [Header("Dynamic Setting")]
     public bool isDynamic = true;
     
+    [Header("Renderers")]
     public SpriteRenderer platformOff;
     [SerializeField] private SpriteRenderer platformOn;
     [SerializeField] private SpriteRenderer platformOnHighlight;
     [SerializeField] private SpriteRenderer platformFunctional;
     
+    [Header("Dependencies")]
     [SerializeField] private GameObject visual;
-    
     public PlatformSO platformSo;
-    
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private RuntimeAnimatorController[] runtimeAnimatorController;
+    
+    [HideInInspector] public Animator animator;
     
     private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
@@ -34,6 +38,7 @@ public class Platform : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        animator.runtimeAnimatorController = animator.runtimeAnimatorController;
         
         if (animator != null)
         {
@@ -60,6 +65,15 @@ public class Platform : MonoBehaviour
         
         // collider bounds adjustment for milestone platforms
         _platformCollider.size = platformOff.size;
+
+        if (SceneManager.GetActiveScene().buildIndex != 6)
+        {
+            animator.runtimeAnimatorController = runtimeAnimatorController[0];
+        }
+        else
+        {
+            animator.runtimeAnimatorController = runtimeAnimatorController[1];
+        }
         
         // set level color to all platforms
         platformOnHighlight.color = ColorPicker.GetOuterColor();
