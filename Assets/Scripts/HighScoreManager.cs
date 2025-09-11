@@ -258,14 +258,26 @@ public class HighScoreManager : MonoBehaviour
             }
             else
             {
-                float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", 0);
-                int minutes = Mathf.FloorToInt(currentScore / 60f);
-                int seconds = Mathf.FloorToInt(currentScore % 60f);
-                int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
-                int bestMinutes = Mathf.FloorToInt(bestScore / 60f);
-                int bestSeconds = Mathf.FloorToInt(bestScore % 60f);
-                int bestMiliseconds = Mathf.FloorToInt(bestScore * 1000f % 1000f);
-                gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} \nNajlepszy czas: {bestMinutes:D2}:{bestSeconds:D2}:{bestMiliseconds:D3}";
+
+                if (PlayerPrefs.HasKey($"{lvlIndex}_HighestScore"))
+                {
+                    float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
+                    int bestMinutes = Mathf.FloorToInt(bestScore / 60f);
+                    int bestSeconds = Mathf.FloorToInt(bestScore % 60f);
+                    int bestMiliseconds = Mathf.FloorToInt(bestScore * 1000f % 1000f);
+                    
+                    int minutes = Mathf.FloorToInt(currentScore / 60f);
+                    int seconds = Mathf.FloorToInt(currentScore % 60f);
+                    int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                    
+                    gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} \nNajlepszy czas: {bestMinutes:D2}:{bestSeconds:D2}:{bestMiliseconds:D3}";
+                }
+                else {
+                    int minutes = Mathf.FloorToInt(currentScore / 60f);
+                    int seconds = Mathf.FloorToInt(currentScore % 60f);
+                    int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                    gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
+                }
             }
         }
 
@@ -277,15 +289,16 @@ public class HighScoreManager : MonoBehaviour
             if (currentScore > bestScore)
             {
                 PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
+                PlayerPrefs.Save();
             }
         }
         else {
             // save other level highest score
             float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
-
             if (currentScore < bestScore)
             {
                 PlayerPrefs.SetFloat($"{lvlIndex}_HighestScore", currentScore);
+                PlayerPrefs.Save();
             }
         }
         

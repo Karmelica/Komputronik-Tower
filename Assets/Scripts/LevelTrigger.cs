@@ -22,6 +22,7 @@ public class LevelTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CharacterMovement.CanMove = false;
+            other.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             loadingScreen.gameObject.SetActive(true);
             loadingScreen.sprite = loadingScreenSprite;
             Invoke("LoadLevel", 2f);
