@@ -809,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - poolKey: Segment
-    poolObject: {fileID: 2685432862969191356, guid: 41bca464a1aec4d478a7fdc0beafb35d, type: 3}
+    poolObject: {fileID: 2685432862969191356, guid: ba9f20ba6a6bbd34ebfe73bc3f5e2d75, type: 3}
     initialSize: 4
     parent: {fileID: 0}
   - poolKey: Background
@@ -2519,6 +2519,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 812283794}
     - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: particleSystem
       value: 
       objectReference: {fileID: 1028304272177185025}
@@ -2574,6 +2578,10 @@ PrefabInstance:
       propertyPath: segmentHeight
       value: 47.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: segmentPrefab
+      value: 
+      objectReference: {fileID: 801729709675963615, guid: ba9f20ba6a6bbd34ebfe73bc3f5e2d75, type: 3}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: previousSegment
       value: 

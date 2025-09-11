@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 1970426420128807371}
   - component: {fileID: 2685432862969191356}
   m_Layer: 0
-  m_Name: Segment
+  m_Name: Level2
   m_TagString: Segment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,11 +768,11 @@ MonoBehaviour:
   spawnPoints: []
   platformTypes:
   - platformType: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
-    spawningChance: 80
+    spawningChance: 70
   - platformType: {fileID: 11400000, guid: f59d48a7ec49e7f418b427cece4fc0b8, type: 2}
-    spawningChance: 15
+    spawningChance: 30
   - platformType: {fileID: 11400000, guid: 2aa74e1c410c3e3499e5ce466f14951a, type: 2}
-    spawningChance: 5
+    spawningChance: 0
 --- !u!1 &934297583721676617
 GameObject:
   m_ObjectHideFlags: 0
