@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 9005721979433240795}
   platformOn: {fileID: 6877669217561971487}
@@ -350,6 +349,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &8192079098319958926
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 1970426420128807371}
   - component: {fileID: 2685432862969191356}
   m_Layer: 0
-  m_Name: Segment
+  m_Name: Level2
   m_TagString: Segment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -768,11 +768,11 @@ MonoBehaviour:
   spawnPoints: []
   platformTypes:
   - platformType: {fileID: 11400000, guid: c6a783fa4d99cfc46b978c329445efac, type: 2}
-    spawningChance: 80
+    spawningChance: 70
   - platformType: {fileID: 11400000, guid: f59d48a7ec49e7f418b427cece4fc0b8, type: 2}
-    spawningChance: 15
+    spawningChance: 30
   - platformType: {fileID: 11400000, guid: 2aa74e1c410c3e3499e5ce466f14951a, type: 2}
-    spawningChance: 5
+    spawningChance: 0
 --- !u!1 &934297583721676617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 1324113676478416683}
   platformOn: {fileID: 8285493258837586941}
@@ -1123,6 +1122,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &359325872233888482
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -2563,7 +2563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 7831248267283727184}
   platformOn: {fileID: 2338780165193371101}
@@ -2575,6 +2574,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &2776268809893573496
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2590,7 +2590,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -2837,7 +2837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 7846852195862369774}
   platformOn: {fileID: 4304954154103417804}
@@ -2849,6 +2848,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &7843639456171484009
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -2864,7 +2864,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -3796,7 +3796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 1508089170538543799}
   platformOn: {fileID: 660364665054104839}
@@ -3808,6 +3807,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &1409301557444161724
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -3823,7 +3823,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -4505,7 +4505,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 708501321573172377}
   platformOn: {fileID: 8934853226427469146}
@@ -4517,6 +4516,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &387605015105778283
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -4532,7 +4532,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -5627,7 +5627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 6221426327631952706}
   platformOn: {fileID: 8147698985621563984}
@@ -5639,6 +5638,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &2942822095459242796
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -5654,7 +5654,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -6336,7 +6336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 2917712876264806920}
   platformOn: {fileID: 2195671770366399075}
@@ -6348,6 +6347,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &8075957430948568518
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6363,7 +6363,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -6755,7 +6755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 5100066257019589063}
   platformOn: {fileID: 638381795820104507}
@@ -6767,6 +6766,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &1780875375102235115
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -6782,7 +6782,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -7406,7 +7406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 8107179029698038940}
   platformOn: {fileID: 6368994457669345495}
@@ -7418,6 +7417,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &8711538664946703178
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7433,7 +7433,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -7767,7 +7767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 9033117177083742749}
   platformOn: {fileID: 2331079596257905925}
@@ -7779,6 +7778,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &5349730999551141528
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -7794,7 +7794,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -8552,7 +8552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 3456891806942195193}
   platformOn: {fileID: 6113956411656763015}
@@ -8564,6 +8563,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &975818660295078898
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8579,7 +8579,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -8913,7 +8913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 1714105460318399490}
   platformOn: {fileID: 5720961692159028145}
@@ -8925,6 +8924,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &8976672614401831567
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8940,7 +8940,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -10122,7 +10122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 0
   platformOff: {fileID: 6654193047337149017}
   platformOn: {fileID: 7672798299324331069}
@@ -10134,6 +10133,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!114 &6887629980701185012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11179,7 +11179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 1140055393962863471}
   platformOn: {fileID: 8806438316375499184}
@@ -11191,6 +11190,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &4325336965455475006
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11206,7 +11206,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -11540,7 +11540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 2573635457230227526}
   platformOn: {fileID: 5678371154462373263}
@@ -11552,6 +11551,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &7910745140446990347
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -11567,7 +11567,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -12006,7 +12006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 443456632486536787}
   platformOn: {fileID: 3844015945295022965}
@@ -12018,6 +12017,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &5126088490300706542
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -12033,7 +12033,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -13005,7 +13005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 346546343202753570}
   platformOn: {fileID: 2945185403369168149}
@@ -13017,6 +13016,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &2396734813780098987
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13032,7 +13032,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
@@ -13627,7 +13627,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87ec76aa0b7d8c4cacbc512555ec7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   isDynamic: 1
   platformOff: {fileID: 8861699474985731109}
   platformOn: {fileID: 4248959727234462150}
@@ -13639,6 +13638,7 @@ MonoBehaviour:
   runtimeAnimatorController:
   - {fileID: 9100000, guid: 10fa21d39d158e340b5f131574aa376a, type: 2}
   - {fileID: 9100000, guid: 1eb76a3e49bba1c4b8b68184e22e1acf, type: 2}
+  animator: {fileID: 0}
 --- !u!251 &4538755804724839749
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -13654,7 +13654,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 120
+  m_SurfaceArc: 150
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
