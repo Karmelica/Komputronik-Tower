@@ -35,6 +35,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float bounceX = 1f;
     [SerializeField] private float bounceY = 1f;
     
+    [Header("Jump Buffer Settings")]
+    [SerializeField] private float jumpBufferTime;
+
+    private float _jumpBufferCounter;
+    
     private SoundPlayer _soundPlayer;
     private InputSystemActions _inputActions;
     private Rigidbody2D _body;
@@ -81,6 +86,11 @@ public class CharacterMovement : MonoBehaviour
     
     private void Update()
     {
+        if (_jumpBufferCounter > 0)
+        {
+            _jumpBufferCounter -= Time.deltaTime;
+        }
+        
         if (_gameStartTimer > -1f)
         {
             _gameStartTimer -= Time.deltaTime;
@@ -134,6 +144,12 @@ public class CharacterMovement : MonoBehaviour
                 _lastGroundCollider = CurrentHit;
                 HighScoreManager.Instance.AddScore(10);
             }
+        }
+        
+        if (_isGrounded && _jumpBufferCounter > 0f)
+        {
+            PerformJump();
+            _jumpBufferCounter = 0f; // consume buffered input
         }
 
         if (Mathf.Abs(_body.linearVelocity.y) <= 3f && particleSystem != null)
@@ -317,47 +333,57 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        if (_isGrounded && CanMove)
+        /*if (_isGrounded && CanMove)
         {
-            if(startCounting == false){
-                startCounting = true;
-            }
             
-            float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
-            //Debug.Log(velocityBoost);
+        }*/
 
-            float currentJumpForce = jumpForce;
-
-            if (CurrentHit != null && CurrentHit.TryGetComponent(out Platform platform))
-            {
-                if (platform.platformSo.platformEnum == PlatformEnum.fanPlatform)
-                {
-                    currentJumpForce += platform.platformSo.platformModifierValue; // fan boost
-                }
-            }
-
-            _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
-
-            if (_soundPlayer != null)
-            {
-                if (velocityBoost > 3f)
-                {
-                    if (particleSystem != null)
-                    {
-                        particleSystem.Play();
-                    }
-                    _soundPlayer.PlayRandom("Combo");
-                    _animator.SetBool("Combo", true);
-                }
-                else
-                {
-                    _soundPlayer.PlayRandom("Jump");
-                }
-            }
-            
-            //Debug.Log(_body.linearVelocity);
-            _isGrounded = false;
+        if (context.performed && CanMove)
+        {
+            _jumpBufferCounter = jumpBufferTime;
         }
+    }
+
+    private void PerformJump()
+    {
+        if(startCounting == false){
+            startCounting = true;
+        }
+            
+        float velocityBoost = CheckVelocity(_body, 8f) ? Mathf.Abs(_body.linearVelocity.x) * 0.33f : 2.75f;
+        //Debug.Log(velocityBoost);
+
+        float currentJumpForce = jumpForce;
+
+        if (CurrentHit != null && CurrentHit.TryGetComponent(out Platform platform))
+        {
+            if (platform.platformSo.platformEnum == PlatformEnum.fanPlatform)
+            {
+                currentJumpForce += platform.platformSo.platformModifierValue; // fan boost
+            }
+        }
+
+        _body.AddForce(Vector2.up * currentJumpForce * velocityBoost, ForceMode2D.Impulse);
+
+        if (_soundPlayer != null)
+        {
+            if (velocityBoost > 3f)
+            {
+                if (particleSystem != null)
+                {
+                    particleSystem.Play();
+                }
+                _soundPlayer.PlayRandom("Combo");
+                _animator.SetBool("Combo", true);
+            }
+            else
+            {
+                _soundPlayer.PlayRandom("Jump");
+            }
+        }
+            
+        //Debug.Log(_body.linearVelocity);
+        _isGrounded = false;
     }
     
     private void OnInteract(InputAction.CallbackContext context)

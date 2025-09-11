@@ -2698,9 +2698,17 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: rDistance
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: raycastOrigin
       value: 
       objectReference: {fileID: 812283794}
+    - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1472928890147289658, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: particleSystem
       value: 
@@ -2716,6 +2724,10 @@ PrefabInstance:
     - target: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167763122015908916, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.04428023
       objectReference: {fileID: 0}
     - target: {fileID: 2167763122015908916, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: m_Offset.y
