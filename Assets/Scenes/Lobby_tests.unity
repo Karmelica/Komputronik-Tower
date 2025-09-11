@@ -1604,7 +1604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42.2, y: -49.5}
+  m_AnchoredPosition: {x: 42.19995, y: -49.5}
   m_SizeDelta: {x: 111.05, y: 36.89}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &312241015
@@ -12406,6 +12406,34 @@ PrefabInstance:
     - target: {fileID: 3218226650058434316, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.9853184
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8160377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294966224
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723222488794031438, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4120468725997418515, guid: 307c787806d3f024b8ad7cbbfc61c9c4, type: 3}
       propertyPath: m_Pivot.x
