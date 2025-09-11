@@ -67,7 +67,8 @@ public class LevelTrigger : MonoBehaviour
         {
             panel.gameObject.SetActive(true);
             outlet.gameObject.SetActive(true);
-            _panelAnimator.SetBool("LevelCompleted", true);
+            if (PlayerPrefs.GetInt("LevelsCompleted", 0) > levelIndex - 1)
+            	_panelAnimator.SetBool("LevelCompleted", true);
         }
         
     }
