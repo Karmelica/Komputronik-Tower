@@ -12028,6 +12028,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   bounceX: 1
   bounceY: 1
+  jumpBufferTime: 0.15
   segmentDetector: {fileID: 0}
   generationManager: {fileID: 0}
   particleSystem: {fileID: 0}
