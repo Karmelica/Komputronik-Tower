@@ -2022,6 +2022,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2314767636078092875, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3086071008821138646, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2038,8 +2042,28 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3929611370870417937, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929611370870417937, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929611370870417937, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.54901963
+      objectReference: {fileID: 0}
     - target: {fileID: 4307333338173589772, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307333338173589772, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307333338173589772, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4805519692796379785, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
@@ -2110,6 +2134,10 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 19.83342
       objectReference: {fileID: 0}
+    - target: {fileID: 5717110935816942164, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6943535168657398750, guid: 77947cbce55498541b2f895b3f8f562d, type: 3}
     - target: {fileID: 6903120466421220333, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: player
       value: 
@@ -2126,6 +2154,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 44157103773865776}
+    - target: {fileID: 7083557451737114364, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7119839392399315358, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2226,6 +2258,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 7706187990723708170, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706187990723708170, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.23137255
+      objectReference: {fileID: 0}
     - target: {fileID: 8117795279612024002, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2245,6 +2285,22 @@ PrefabInstance:
     - target: {fileID: 8467516601683815046, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980591531672000376, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980591531672000376, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980591531672000376, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980591531672000376, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9085513936123364910, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_AnchorMax.y
