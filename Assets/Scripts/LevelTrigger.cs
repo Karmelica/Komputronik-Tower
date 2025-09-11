@@ -13,14 +13,17 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private int levelIndex;
     [SerializeField] private GlobalTimeManager globalTimeManager;
 
-    [SerializeField] private GameObject loadingScreen;
+    [Header("Loading Screen")]
+    [SerializeField] private Image loadingScreen;
+    [SerializeField] private Sprite loadingScreenSprite;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             CharacterMovement.CanMove = false;
-            loadingScreen.SetActive(true);
+            loadingScreen.gameObject.SetActive(true);
+            loadingScreen.sprite = loadingScreenSprite;
             Invoke("LoadLevel", 2f);
         }
     }
