@@ -5475,7 +5475,8 @@ MonoBehaviour:
   outlet: {fileID: 739636228}
   levelIndex: 0
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: -4409489182487313296, guid: e595cae23a899bf408206acb9c2d4cee, type: 3}
 --- !u!1 &1086349814
 GameObject:
   m_ObjectHideFlags: 0
@@ -9632,7 +9633,8 @@ MonoBehaviour:
   outlet: {fileID: 988211114}
   levelIndex: 3
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: 1285291752972593751, guid: c321382881e049e44a0291a76d8ce371, type: 3}
 --- !u!1 &1746014093
 GameObject:
   m_ObjectHideFlags: 0
@@ -10015,7 +10017,8 @@ MonoBehaviour:
   outlet: {fileID: 70153539}
   levelIndex: 5
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: 655440332502395156, guid: 1da245fa30351924980a7296be3de197, type: 3}
 --- !u!61 &1829131658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10379,7 +10382,8 @@ MonoBehaviour:
   outlet: {fileID: 346027098}
   levelIndex: 1
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: -1874822982535915848, guid: 25b0a9dfe77419a449dd21bd09023fb4, type: 3}
 --- !u!1 &1857121352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3674228416139261286, guid: 535f2f1c00070fd4e878a84399ab66e2, type: 3}
@@ -10631,81 +10635,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1150b31cd15054343a51a786084b4690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1923294964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1923294965}
-  - component: {fileID: 1923294967}
-  - component: {fileID: 1923294966}
-  m_Layer: 5
-  m_Name: LoadingScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1923294965
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923294964}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1937411580}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1923294966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923294964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 655440332502395156, guid: 1da245fa30351924980a7296be3de197, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1923294967
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923294964}
-  m_CullTransparentMesh: 1
 --- !u!1 &1923976511
 GameObject:
   m_ObjectHideFlags: 0
@@ -10898,7 +10827,6 @@ RectTransform:
   - {fileID: 650298699}
   - {fileID: 2087555901}
   - {fileID: 365998051}
-  - {fileID: 1923294965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -11205,7 +11133,8 @@ MonoBehaviour:
   outlet: {fileID: 251383228}
   levelIndex: 4
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: 7627235850358003111, guid: 7af09e441db62f149ba09d1c168c6660, type: 3}
 --- !u!1001 &2042392562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11710,7 +11639,8 @@ MonoBehaviour:
   outlet: {fileID: 1317645217}
   levelIndex: 2
   globalTimeManager: {fileID: 1937411581}
-  loadingScreen: {fileID: 1923294964}
+  loadingScreen: {fileID: 365998052}
+  loadingScreenSprite: {fileID: -6876700430603898751, guid: 21e31381a8cb79e4d9b46aaf87f7e6dc, type: 3}
 --- !u!1 &2087555900
 GameObject:
   m_ObjectHideFlags: 0
