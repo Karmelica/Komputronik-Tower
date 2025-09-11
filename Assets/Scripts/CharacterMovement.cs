@@ -82,6 +82,7 @@ public class CharacterMovement : MonoBehaviour
         CanMove = true;
         levelEnded = false;
         _gameStartTimer = 2f;
+        _animator.SetFloat("LastInputX", 1f);
     }
     
     private void Update()
