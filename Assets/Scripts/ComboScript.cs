@@ -65,7 +65,7 @@ public class ComboScript : MonoBehaviour
         ComboTimer();
         
         comboImage.fillAmount = _currentComboTime / comboTimer;
-        comboText.text = currentStreak > 0 ? $"{CalculateBonus()}" : null;
+        comboText.text = currentStreak > 0 ? $"{totalPlatformPassed}" : null;
     }
 
     private void HandleRaycastCombo()
