@@ -8,6 +8,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     [Header("Mobile Controllers")]
     [SerializeField] private GameObject mobileMoveController;
     [SerializeField] private GameObject mobileJumpController;
+    [SerializeField] private GameObject pauseButton;
     
     private bool _usingTouch;
     
@@ -15,6 +16,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     {
         mobileMoveController.SetActive(false);
         mobileJumpController.SetActive(false);
+        pauseButton.SetActive(false);
         //startText.SetActive(true);
         //Time.timeScale = 0;
     }
@@ -40,6 +42,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     {
         mobileMoveController.SetActive(isTouch);
         mobileJumpController.SetActive(isTouch);
+        pauseButton.SetActive(isTouch);
 
         //Debug.Log(isTouch ? "Switched to TOUCH" : "Switched to KEY/MOUSE/CONTROLLER");
     }
