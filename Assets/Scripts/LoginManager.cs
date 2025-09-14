@@ -171,7 +171,6 @@ public class LoginManager : MonoBehaviour
         
         SavePlayerPrefs();
         SendPlayerData(currentPlayerEmail, currentPlayerName);
-        Time.timeScale = 1f;
     }
     
     
@@ -219,6 +218,7 @@ public class LoginManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             ShowSavePlayerPanel(false);
+            Time.timeScale = 1f;
         }
         else
         {
