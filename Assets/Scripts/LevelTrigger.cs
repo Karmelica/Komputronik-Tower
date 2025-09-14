@@ -14,8 +14,7 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private GlobalTimeManager globalTimeManager;
 
     [Header("Loading Screen")]
-    [SerializeField] private Image loadingScreen;
-    [SerializeField] private Sprite loadingScreenSprite;
+    [SerializeField] private GameObject loadingScreen;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,9 +22,8 @@ public class LevelTrigger : MonoBehaviour
         {
             CharacterMovement.CanMove = false;
             other.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            loadingScreen.gameObject.SetActive(true);
-            loadingScreen.sprite = loadingScreenSprite;
-            Invoke("LoadLevel", 2f);
+            loadingScreen.SetActive(true);
+            Invoke("LoadLevel", 3.2f);
         }
     }
 
