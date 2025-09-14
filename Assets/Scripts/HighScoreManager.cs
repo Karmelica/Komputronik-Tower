@@ -37,6 +37,9 @@ public class HighScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private GameObject gameOverPanel;
     
+    [Header("Pause menu panel")]
+    [SerializeField] private GameObject pauseMenu;
+    
     private SoundPlayer _soundPlayer;
     
     #endregion
@@ -213,6 +216,14 @@ public class HighScoreManager : MonoBehaviour
                 break;
         }
     }
+
+    public void ShowPauseMenu(bool show)
+    {
+        Time.timeScale = show ? 0f : 1f;
+        CharacterMovement.CanMove = !show;
+        if (pauseMenu) pauseMenu.SetActive(show);
+        if (gameUI) gameUI.SetActive(!show);
+    }
     
     private void ShowGameUI(bool show)
     {
@@ -223,7 +234,7 @@ public class HighScoreManager : MonoBehaviour
         if (gameUI) gameUI.SetActive(show);
     }
     
-    private void ShowGameOverPanel(bool show)
+    public void ShowGameOverPanel(bool show)
     {
         //Debug.Log("5. Wyświetlanie panelu końca gry.");
         CharacterMovement.CanMove = false;
