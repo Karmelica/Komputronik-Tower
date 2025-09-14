@@ -5,13 +5,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[System.Serializable]
+[Serializable]
 public class FirebaseAuthResponse
 {
     public string idToken;
 }
 
-[System.Serializable]
+[Serializable]
 public class PlayerEmailData
 {
     public string playerID;
@@ -25,6 +25,21 @@ public class PlayerEmailData
     public float score6;
 }
 
+[Serializable]
+public class CheckResponse
+{
+    public bool emailExists;
+    public bool nameExists;
+}
+
+[SerializeField]
+public class CheckRequest
+{
+    public string email;
+    public string name;
+    public string playerID;
+}
+
 public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
@@ -32,7 +47,7 @@ public class LoginManager : MonoBehaviour
 
     private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
-    
+
     [SerializeField] private GameObject player;
     
     [Header("Login Panel")] 
@@ -40,6 +55,8 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private GameObject emailConfirmationPanel;
     [SerializeField] private TMP_InputField emailInputField;
     [SerializeField] private TMP_InputField nameInputField;
+    [SerializeField] private TMP_Text debugText;
+    private Coroutine _debugCoroutine;
 
     [HideInInspector] public string currentPlayerEmail = "";
     [HideInInspector] public string currentPlayerName = "";
@@ -123,7 +140,9 @@ public class LoginManager : MonoBehaviour
     }
 
     #endregion
-    
+
+    #region UI
+
     public void ShowSavePlayerPanel(bool show = true)
     {
         if (saveScorePanel) saveScorePanel.SetActive(show);
@@ -140,6 +159,17 @@ public class LoginManager : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    private IEnumerator ShowDebugInfo(string message)
+    {
+        if (!debugText) yield break;
+        debugText.gameObject.SetActive(true);
+        debugText.text = message;
+        yield return new WaitForSeconds(3f);
+        debugText.gameObject.SetActive(false);
+    }
+
+    #endregion
     
     #region Player Data Management
     
@@ -147,32 +177,52 @@ public class LoginManager : MonoBehaviour
     {
         string playerEmail = emailInputField.text.Trim();
         string playerName = nameInputField.text.Trim();
-
+        
         if (string.IsNullOrEmpty(playerEmail))
         {
-            Debug.LogWarning("Email nie może być pusty!");
+            StopCoroutine(_debugCoroutine);
+            _debugCoroutine = StartCoroutine(ShowDebugInfo("Email nie może być pusty!"));
             return;
         }
 
         if (!IsEmailValid(playerEmail))
         {
-            Debug.LogWarning("Nieprawidłowy format email!");
+            StopCoroutine(_debugCoroutine);
+            _debugCoroutine = StartCoroutine(ShowDebugInfo("Nieprawidłowy format email!"));
             return;
         }
         
         if(string.IsNullOrEmpty(playerName))
         {
-            Debug.LogWarning("Nazwa gracza nie może być pusta!");
+            StopCoroutine(_debugCoroutine);
+            _debugCoroutine = StartCoroutine(ShowDebugInfo("Nazwa gracza nie może być pusta!"));
             return;
         }
-
-        currentPlayerEmail = playerEmail;
-        currentPlayerName = playerName;
         
-        SavePlayerPrefs();
-        SendPlayerData(currentPlayerEmail, currentPlayerName);
+        CheckEmailAndNameAvailability(playerEmail, playerName, (emailExists, nameExists) =>
+        {
+            if (emailExists)
+            {
+                StopCoroutine(_debugCoroutine);
+                _debugCoroutine = StartCoroutine(ShowDebugInfo("Email jest już zajęty!"));
+                return;
+            }
+            if (nameExists)
+            {
+                StopCoroutine(_debugCoroutine);
+                _debugCoroutine = StartCoroutine(ShowDebugInfo("Nazwa jest już zajęta!"));
+                return;
+            }
+            if (!emailExists && !nameExists)
+            {
+                currentPlayerEmail = playerEmail;
+                currentPlayerName = playerName;
+                
+                SavePlayerPrefs();
+                SendPlayerData(currentPlayerEmail, currentPlayerName);
+            }
+        });
     }
-    
     
     private static bool IsEmailValid(string email)
     {
@@ -187,9 +237,53 @@ public class LoginManager : MonoBehaviour
         }
     }
     
+    public void CheckEmailAndNameAvailability(string email, string playerName, Action<bool, bool> callback)
+    {
+        StartCoroutine(CheckEmailAndNameCoroutine(email, playerName, callback));
+    }
+    
     public void SendPlayerData(string email, string playerName)
     {
         StartCoroutine(SendDataCoroutine(email, playerName));
+    }
+    
+    private IEnumerator CheckEmailAndNameCoroutine(string playerEmail, string playerName, System.Action<bool, bool> callback)
+    {
+        // Pobierz token Firebase
+        string idToken = null;
+        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+
+        if (string.IsNullOrEmpty(idToken))
+        {
+            callback?.Invoke(false, false);
+            yield break;
+        }
+
+        // Przygotuj dane do sprawdzenia
+        var checkData = new CheckRequest { email = playerEmail, name = playerName, playerID = playerId };
+        string json = JsonUtility.ToJson(checkData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        // Wywołaj funkcję check w Firebase
+        string checkUrl = "https://check-zblptdvtpq-lm.a.run.app";
+        UnityWebRequest www = new UnityWebRequest(checkUrl, "POST");
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("Authorization", "Bearer " + idToken);
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            CheckResponse response = JsonUtility.FromJson<CheckResponse>(www.downloadHandler.text);
+            callback?.Invoke(response.emailExists, response.nameExists);
+        }
+        else
+        {
+            Debug.LogError("Błąd sprawdzania dostępności: " + www.error);
+            callback?.Invoke(false, false);
+        }
     }
     
     private IEnumerator SendDataCoroutine(string email, string name)
@@ -247,6 +341,6 @@ public class LoginManager : MonoBehaviour
             callback?.Invoke(null);
         }
     }
-    
+
     #endregion
 }
