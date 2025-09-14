@@ -160,7 +160,13 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowDebugInfo(string message)
+    private void ShowDebugMessage(string message)
+    {
+        if(_debugCoroutine != null) StopCoroutine(_debugCoroutine);
+        _debugCoroutine = StartCoroutine(ShowDebugInfoCoroutine(message));
+    }
+
+    private IEnumerator ShowDebugInfoCoroutine(string message)
     {
         if (!debugText) yield break;
         debugText.gameObject.SetActive(true);
@@ -180,22 +186,19 @@ public class LoginManager : MonoBehaviour
         
         if (string.IsNullOrEmpty(playerEmail))
         {
-            StopCoroutine(_debugCoroutine);
-            _debugCoroutine = StartCoroutine(ShowDebugInfo("Email nie może być pusty!"));
+            ShowDebugMessage("Email nie może być pusty!");
             return;
         }
 
         if (!IsEmailValid(playerEmail))
         {
-            StopCoroutine(_debugCoroutine);
-            _debugCoroutine = StartCoroutine(ShowDebugInfo("Nieprawidłowy format email!"));
+            ShowDebugMessage("Nieprawidłowy format email!");
             return;
         }
         
         if(string.IsNullOrEmpty(playerName))
         {
-            StopCoroutine(_debugCoroutine);
-            _debugCoroutine = StartCoroutine(ShowDebugInfo("Nazwa gracza nie może być pusta!"));
+            ShowDebugMessage("Nazwa gracza nie może być pusta!");
             return;
         }
         
@@ -203,14 +206,12 @@ public class LoginManager : MonoBehaviour
         {
             if (emailExists)
             {
-                StopCoroutine(_debugCoroutine);
-                _debugCoroutine = StartCoroutine(ShowDebugInfo("Email jest już zajęty!"));
+                ShowDebugMessage("Email jest już zajęty!");
                 return;
             }
             if (nameExists)
             {
-                StopCoroutine(_debugCoroutine);
-                _debugCoroutine = StartCoroutine(ShowDebugInfo("Nazwa jest już zajęta!"));
+                ShowDebugMessage("Nazwa jest już zajęta!");
                 return;
             }
             if (!emailExists && !nameExists)
