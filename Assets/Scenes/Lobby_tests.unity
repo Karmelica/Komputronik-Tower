@@ -5988,10 +5988,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1128656987}
-  outlet: {fileID: 739636228}
   levelIndex: 0
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 1128656987}
+  outlet: {fileID: 739636228}
   loadingScreen: {fileID: 34503977}
 --- !u!1 &1086349814
 GameObject:
@@ -10153,10 +10153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 776561098}
-  outlet: {fileID: 988211114}
   levelIndex: 3
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 776561098}
+  outlet: {fileID: 988211114}
   loadingScreen: {fileID: 712876390}
 --- !u!1 &1746014093
 GameObject:
@@ -10647,10 +10647,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 979582121}
-  outlet: {fileID: 70153539}
   levelIndex: 5
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 979582121}
+  outlet: {fileID: 70153539}
   loadingScreen: {fileID: 365998050}
 --- !u!61 &1829131658
 BoxCollider2D:
@@ -11011,10 +11011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 913989641}
-  outlet: {fileID: 346027098}
   levelIndex: 1
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 913989641}
+  outlet: {fileID: 346027098}
   loadingScreen: {fileID: 671407486}
 --- !u!1 &1857121352 stripped
 GameObject:
@@ -11762,10 +11762,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 104439356}
-  outlet: {fileID: 251383228}
   levelIndex: 4
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 104439356}
+  outlet: {fileID: 251383228}
   loadingScreen: {fileID: 1755452724}
 --- !u!1001 &2042392562
 PrefabInstance:
@@ -12275,10 +12275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d297550e4e7e34188c141e7941935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 109903281}
-  outlet: {fileID: 1317645217}
   levelIndex: 2
   globalTimeManager: {fileID: 1937411581}
+  panel: {fileID: 109903281}
+  outlet: {fileID: 1317645217}
   loadingScreen: {fileID: 786750153}
 --- !u!1 &2087555900
 GameObject:
