@@ -6,12 +6,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(BoxCollider2D))]
 public class LevelTrigger : MonoBehaviour
 {
+    [SerializeField] private int levelIndex;
+    [SerializeField] private GlobalTimeManager globalTimeManager;
     private BoxCollider2D _boxCollider;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject outlet;
     private Animator _panelAnimator;
-    [SerializeField] private int levelIndex;
-    [SerializeField] private GlobalTimeManager globalTimeManager;
 
     [Header("Loading Screen")]
     [SerializeField] private GameObject loadingScreen;
@@ -23,7 +23,7 @@ public class LevelTrigger : MonoBehaviour
             CharacterMovement.CanMove = false;
             other.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             loadingScreen.SetActive(true);
-            Invoke("LoadLevel", 3.2f);
+            Invoke(nameof(LoadLevel), 3.2f);
         }
     }
 

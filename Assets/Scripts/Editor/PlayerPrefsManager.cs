@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEditor;
 
 public class PlayerPrefsManager : EditorWindow
 {
     private int levelsCompleted;
-    private string statusMessage = "";
     
+    private List<int> animationPlayed = new List<int> {0, 0, 0, 0, 0, 0};
+    private string statusMessage = "";
+    private int infoScreenShown;
+
     [MenuItem("Tools/PlayerPrefs Manager")]
     public static void ShowWindow()
     {
@@ -26,6 +31,37 @@ public class PlayerPrefsManager : EditorWindow
         GUILayout.Label("Levels Completed Management", EditorStyles.boldLabel);
         EditorGUILayout.Space();
         
+        EditorGUILayout.BeginHorizontal();
+        // Wyświetl aktualną wartość
+        EditorGUI.BeginDisabledGroup(true);
+        EditorGUILayout.IntField("Info Screen Shown:", infoScreenShown);
+        EditorGUI.EndDisabledGroup();
+        
+        if (GUILayout.Button("Set to 0", GUILayout.Height(30)))
+        {
+            infoScreenShown = 0;
+            PlayerPrefs.SetInt("EmailConfirmed", infoScreenShown);
+            PlayerPrefs.Save();
+            statusMessage = "InfoScreenShown set to 0.";
+            Repaint();
+        }
+        
+        if (GUILayout.Button("Set to 1", GUILayout.Height(30)))
+        {
+            infoScreenShown = 1;
+            PlayerPrefs.SetInt("EmailConfirmed", infoScreenShown);
+            PlayerPrefs.Save();
+            statusMessage = "InfoScreenShown set to 1.";
+            Repaint();
+        }
+        
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.Space();
+        
+        // Sekcja LevelsCompleted
+        GUILayout.Label("Levels Completed Management", EditorStyles.boldLabel);
+        EditorGUILayout.Space();
+        
         // Wyświetl aktualną wartość
         EditorGUI.BeginDisabledGroup(true);
         EditorGUILayout.IntField("Current LevelsCompleted:", levelsCompleted);
@@ -33,24 +69,12 @@ public class PlayerPrefsManager : EditorWindow
         
         EditorGUILayout.Space();
         
-        // Przyciski akcji
         EditorGUILayout.BeginHorizontal();
         
-        if (GUILayout.Button("Reset to 0", GUILayout.Height(30)))
+        if (GUILayout.Button("Set to 0", GUILayout.Height(30)))
         {
-            ResetLevelsCompleted();
+            SetLevelsCompleted(0);
         }
-        
-        if (GUILayout.Button("Refresh Values", GUILayout.Height(30)))
-        {
-            RefreshValues();
-        }
-        
-        EditorGUILayout.EndHorizontal();
-        
-        EditorGUILayout.Space();
-        
-        EditorGUILayout.BeginHorizontal();
         
         if (GUILayout.Button("Set to 1", GUILayout.Height(30)))
         {
@@ -77,6 +101,43 @@ public class PlayerPrefsManager : EditorWindow
         
         EditorGUILayout.Space();
         
+        // Sekcja LevelsCompleted
+        GUILayout.Label("Animations Played Managment", EditorStyles.boldLabel);
+        EditorGUILayout.Space();
+
+        for (int i = 0; i < animationPlayed.Count; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+            
+            EditorGUI.BeginDisabledGroup(true);
+            EditorGUILayout.IntField($"AnimationPlayed_{i}:", animationPlayed[i]);
+            EditorGUI.EndDisabledGroup();
+            
+            if (GUILayout.Button("Set to 0 (false)", GUILayout.Height(30)))
+            {
+                SetAnimationPlayed(i, 0);
+            }
+        
+            if (GUILayout.Button("Set to 1 (true)", GUILayout.Height(30)))
+            {
+                SetAnimationPlayed(i, 1);
+            }
+            
+            EditorGUILayout.EndHorizontal();
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        
+        
+        
+        EditorGUILayout.EndHorizontal();
+        
+        EditorGUILayout.Space();
+        
+        // Sekcja LevelsCompleted
+        GUILayout.Label("Arcade Score Managment", EditorStyles.boldLabel);
+        EditorGUILayout.Space();
+        
         EditorGUILayout.BeginHorizontal();
 
         if (GUILayout.Button("Reset Arcade Score", GUILayout.Height(30)))
@@ -86,16 +147,14 @@ public class PlayerPrefsManager : EditorWindow
         
         EditorGUILayout.EndHorizontal();
         
-        // Sekcja do ustawiania konkretnej wartości
-        /*GUILayout.Label("Set Custom Value", EditorStyles.boldLabel);
-        int newValue = EditorGUILayout.IntField("New Value:", levelsCompleted);
+        EditorGUILayout.Space();
         
-        if (GUILayout.Button("Set Value", GUILayout.Height(25)) && newValue != levelsCompleted)
+        if (GUILayout.Button("Refresh Values", GUILayout.Height(30)))
         {
-            SetLevelsCompleted(newValue);
+            RefreshValues();
         }
         
-        EditorGUILayout.Space()*/;
+        EditorGUILayout.Space();
         
         // Przycisk do usunięcia wszystkich PlayerPrefs (ostrożnie!)
         EditorGUILayout.Space();
@@ -123,6 +182,11 @@ public class PlayerPrefsManager : EditorWindow
     private void RefreshValues()
     {
         levelsCompleted = PlayerPrefs.GetInt("LevelsCompleted", 0);
+        infoScreenShown = PlayerPrefs.GetInt("EmailConfirmed", 0);
+        for (var i = 0; i < animationPlayed.Count; i++)
+        {
+            animationPlayed[i] = PlayerPrefs.GetInt($"AnimationPlayed_{i}", 0);
+        }
         statusMessage = "Values refreshed.";
         Repaint();
     }
@@ -134,16 +198,16 @@ public class PlayerPrefsManager : EditorWindow
         statusMessage = "Arcade score deleted.";
         Repaint();
     }
-    
-    private void ResetLevelsCompleted()
+
+    private void SetAnimationPlayed(int i, int value)
     {
-        PlayerPrefs.SetInt("LevelsCompleted", 0);
+        PlayerPrefs.SetInt($"AnimationPlayed_{i}", value);
+        animationPlayed[i] = value;
         PlayerPrefs.Save();
-        levelsCompleted = 0;
-        statusMessage = "LevelsCompleted reset to 0.";
+        statusMessage = $"AnimationPlayed_{i} set to {value}.";
         Repaint();
     }
-    
+
     private void SetLevelsCompleted(int value)
     {
         PlayerPrefs.SetInt("LevelsCompleted", value);
