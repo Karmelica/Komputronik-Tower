@@ -155,20 +155,6 @@ public class PlayerPrefsManager : EditorWindow
         }
         
         EditorGUILayout.Space();
-        
-        // Przycisk do usunięcia wszystkich PlayerPrefs (ostrożnie!)
-        EditorGUILayout.Space();
-        GUILayout.Label("Danger Zone", EditorStyles.boldLabel);
-        GUI.backgroundColor = Color.red;
-        if (GUILayout.Button("DELETE ALL PLAYERPREFS", GUILayout.Height(30)))
-        {
-            if (EditorUtility.DisplayDialog("Confirm Deletion", 
-                "Are you sure you want to delete ALL PlayerPrefs? This action cannot be undone!", 
-                "Yes, Delete All", "Cancel"))
-            {
-                DeleteAllPlayerPrefs();
-            }
-        }
         GUI.backgroundColor = Color.white;
         
         // Status message

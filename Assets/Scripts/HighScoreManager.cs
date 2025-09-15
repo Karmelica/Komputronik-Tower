@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections.Generic; // percentyl
+using System.Linq; // percentyl
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -40,6 +42,10 @@ public class HighScoreManager : MonoBehaviour
     [Header("Pause menu panel")]
     [SerializeField] private GameObject pauseMenu;
     
+    // --- Percentyl ---
+    [Header("Percentyl wyniku")]
+    [SerializeField] private TextMeshProUGUI percentileText; // przypisz w Inspector (panel GameOver)
+    
     private SoundPlayer _soundPlayer;
     
     #endregion
@@ -70,6 +76,7 @@ public class HighScoreManager : MonoBehaviour
         //GetLeaderboard();
         UpdateScoreDisplay();
         ShowPanel(GameState.Playing);
+        if (percentileText) percentileText.text = ""; // wyczysc na starcie
     }
     
     private void OnEnable()
@@ -140,6 +147,11 @@ public class HighScoreManager : MonoBehaviour
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+        }
+        else
+        {
+            // po udanej wysyłce oblicz percentyl
+            if (percentileText) StartCoroutine(UpdatePercentileDisplay(score, level));
         }
     }
     
@@ -265,7 +277,8 @@ public class HighScoreManager : MonoBehaviour
         {
             if(infiniteGeneration)
             {
-                gameOverScoreText.text = $"Twój wynik: {currentScore:F0}";
+                var bestArcadeScore = PlayerPrefs.GetInt("ArcadeScore", Int32.MinValue);
+                gameOverScoreText.text = $"Twój wynik: {currentScore:F0}\nNajlepszy wynik: {bestArcadeScore}";
             }
             else
             {
@@ -314,6 +327,7 @@ public class HighScoreManager : MonoBehaviour
         }
         
         NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, currentScore, lvlIndex);
+        if (percentileText) percentileText.text = "Sprawdzanie wyników..."; // wstępny komunikat
     }
     
     // metoda game over robi teraz to samo co level end wiec narazie to zakomentowalem zeby nie powtarzac kodu
@@ -390,6 +404,56 @@ public class HighScoreManager : MonoBehaviour
     }
     
     #endregion
+
+    // ===== Percentyl =====
+    [Serializable]
+    private class ScoreListDto { public List<float> scores; }
+
+    private IEnumerator UpdatePercentileDisplay(float playerScore, int level)
+    {
+        if (percentileText) percentileText.text = "Sprawdzanie wyników...";
+        yield return new WaitForSecondsRealtime(1.0f); // krótka zwłoka na propagację nowego wyniku
+        string url = $"https://scores-zblptdvtpq-lm.a.run.app?level={level}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        {
+            yield return www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                if (percentileText) percentileText.text = "Percentyl: brak danych";
+                yield break;
+            }
+            ScoreListDto dto = null;
+            try { dto = JsonUtility.FromJson<ScoreListDto>(www.downloadHandler.text); }
+            catch { if (percentileText) percentileText.text = "Percentyl: błąd danych"; yield break; }
+            if (dto?.scores == null || dto.scores.Count == 0)
+            {
+                if (percentileText) percentileText.text = "Percentyl: brak";
+                yield break;
+            }
+
+            if (infiniteGeneration)
+            {
+                float bestScore = PlayerPrefs.GetInt("ArcadeScore", Int32.MinValue);
+                float percentile = CalculatePercentile(dto.scores, bestScore, false);
+                if (percentileText) percentileText.text = $"Twój wynik jest lepszy od {percentile:F1}% graczy";
+            }
+            else
+            {
+                float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
+                float percentile = CalculatePercentile(dto.scores, bestScore, true);
+                if (percentileText) percentileText.text = $"Twój wynik jest lepszy od {percentile:F1}% graczy";
+            }
+            
+        }
+    }
+
+    private float CalculatePercentile(List<float> allScores, float playerScore, bool lowerIsBetter)
+    {
+        if (allScores == null || allScores.Count == 0) return 0f;
+        int worse = lowerIsBetter ? allScores.Count(s => s > playerScore) : allScores.Count(s => s < playerScore);
+        return (float)worse / allScores.Count * 100f;
+    }
+    // ===== Koniec percentyla =====
 }
 
 public enum GameState
