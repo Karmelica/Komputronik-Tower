@@ -195,7 +195,7 @@ public class CharacterMovement : MonoBehaviour
             int level = SceneManager.GetActiveScene().buildIndex;
             if(PlayerPrefs.GetInt("LevelsCompleted") < level) PlayerPrefs.SetInt("LevelsCompleted", level);
             levelEnded = true;
-            Invoke(nameof(EndLevel), 2f);
+            Invoke(nameof(EndLevel), 3f);
         }
     }
 

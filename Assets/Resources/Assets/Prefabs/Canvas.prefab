@@ -2134,8 +2134,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1029269591
   m_SortingOrder: 0
@@ -2201,7 +2201,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 7747029680232610257}
   pauseMenu: {fileID: 0}
   percentileText: {fileID: 7854441013376843139}
-  scoresFetchUrl: https://your-cloud-function/scores
 --- !u!1 &8586236188036807368
 GameObject:
   m_ObjectHideFlags: 0
