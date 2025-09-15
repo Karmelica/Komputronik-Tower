@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b96db22bb1f1b74aaee9151c8dcbbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialOffset: 5
   offset: 3
   smoothTime: 0.05
   target: {fileID: 1632096623}
