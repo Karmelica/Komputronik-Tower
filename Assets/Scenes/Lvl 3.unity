@@ -2230,6 +2230,43 @@ MonoBehaviour:
   generationManager: {fileID: 271954312}
   totalPlatformPassed: 0
   startingPoint: {fileID: 288798616}
+--- !u!70 &1632096644
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632096623}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.06}
+  m_Size: {x: 0.7, y: 1.9750743}
+  m_Direction: 0
 --- !u!1 &1835250140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,7 +3127,7 @@ PrefabInstance:
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: finalSegment
       value: 
-      objectReference: {fileID: 1989397852544320890, guid: 71b66878ea0e75c428fd5b25a447f803, type: 3}
+      objectReference: {fileID: 1989397852544320890, guid: 76f3f5418f602fd44bde81ca75a3611a, type: 3}
     - target: {fileID: 5344242050437666294, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       propertyPath: gizmoColor.b
       value: 1
@@ -3156,6 +3193,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 9021502305395897286}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1632096644}
     - targetCorrespondingSourceObject: {fileID: 1879127709170278839, guid: da5cb4d8c55574c41ab35c4eacc2111c, type: 3}
       insertIndex: 6
       addedObject: {fileID: 1632096643}
