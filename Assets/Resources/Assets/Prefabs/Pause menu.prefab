@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 3474590858160897131}
   - component: {fileID: 7514455087586915580}
   - component: {fileID: 3582801467417527307}
+  - component: {fileID: 3525593572182132841}
   m_Layer: 5
   m_Name: Zamknij
   m_TagString: Untagged
@@ -404,6 +405,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3525593572182132841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2207367362531549599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce06f949b317cc498f61fb9fae0bef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7514455087586915580}
 --- !u!1 &2705001111306389514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,8 +1435,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
-  m_sharedMaterial: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1636,10 +1650,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1415663837924355818}
     m_Modifications:
-    - target: {fileID: 999919363267990552, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2763213623074742186, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_Name
       value: Restart
@@ -1679,7 +1689,7 @@ PrefabInstance:
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontSizeBase
       value: 16
@@ -1687,7 +1697,7 @@ PrefabInstance:
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -1784,7 +1794,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3997334055723581636, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1841,11 +1852,11 @@ PrefabInstance:
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
