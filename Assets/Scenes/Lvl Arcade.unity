@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b96db22bb1f1b74aaee9151c8dcbbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialOffset: 5
   offset: 3
   smoothTime: 0.05
   target: {fileID: 1632096623}
@@ -2083,6 +2084,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5880032983555164730, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
   m_PrefabInstance: {fileID: 44157103773865775}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1409420934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3555479421643133592, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+  m_PrefabInstance: {fileID: 1044060731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1468432972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2783,6 +2789,10 @@ PrefabInstance:
       propertyPath: generationManager
       value: 
       objectReference: {fileID: 271954312}
+    - target: {fileID: 6973862168206955256, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1409420934}
     - target: {fileID: 6973862168206955256, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: infiniteGeneration
       value: 1
