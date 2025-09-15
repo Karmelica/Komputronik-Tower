@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: caf301b3b9e85d04a8952bba52ecca3d
+guid: 1d050fa7494680f4f86fe23adb4c36b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9056157064065973097
-    second: lobby_light_0
+      213: -1653378074954064560
+    second: loading_screen_on5_glow_0
   - first:
-      213: -4642928849921231306
-    second: lobby_light_1
+      213: 7257413518884429318
+    second: loading_screen_on5_glow_1
   - first:
-      213: -2317015652115414360
-    second: lobby_light_2
+      213: -9118443297300300419
+    second: loading_screen_on5_glow_2
   - first:
-      213: -2200546625810813769
-    second: lobby_light_3
+      213: 1452317041216384733
+    second: loading_screen_on5_glow_3
+  - first:
+      213: -8355817350411874494
+    second: loading_screen_on5_glow_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -84,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,88 +108,115 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobby_light_0
+      name: loading_screen_on5_glow_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 416
+        x: 906
+        y: 840
+        width: 30
+        height: 159
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96bfbc14edeedad70800000000000000
-      internalID: 9056157064065973097
+      spriteID: 05d91fa96650e09e0800000000000000
+      internalID: -1653378074954064560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lobby_light_1
+      name: loading_screen_on5_glow_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 183
-        width: 344
-        height: 21
+        x: 1144
+        y: 919
+        width: 17
+        height: 28
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 636380f6fc0019fb0800000000000000
-      internalID: -4642928849921231306
+      spriteID: 60e593dd42387b460800000000000000
+      internalID: 7257413518884429318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_screen_on5_glow_2
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 630
+        width: 17
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7dbfd7f128c47180800000000000000
+      internalID: -9118443297300300419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_screen_on5_glow_3
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 102
+        width: 328
+        height: 729
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddee2fe77aaa72410800000000000000
+      internalID: 1452317041216384733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loading_screen_on5_glow_4
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 459
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f87ac046c2a0c80800000000000000
+      internalID: -8355817350411874494
       vertices: []
       indices: 
       edges: []
@@ -195,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f9c1815c183bcda43992a34ea22b8bf1
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -205,10 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobby_light_0: 9056157064065973097
-      lobby_light_1: -4642928849921231306
-      lobby_light_2: -2317015652115414360
-      lobby_light_3: -2200546625810813769
+      loading_screen_on5_glow_0: -1653378074954064560
+      loading_screen_on5_glow_1: 7257413518884429318
+      loading_screen_on5_glow_2: -9118443297300300419
+      loading_screen_on5_glow_3: 1452317041216384733
+      loading_screen_on5_glow_4: -8355817350411874494
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
