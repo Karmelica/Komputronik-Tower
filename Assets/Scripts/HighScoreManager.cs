@@ -7,7 +7,8 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic; // percentyl
-using System.Linq; // percentyl
+using System.Linq;
+using UnityEngine.EventSystems; // percentyl
 
 public class HighScoreManager : MonoBehaviour
 {
@@ -400,7 +401,10 @@ public class HighScoreManager : MonoBehaviour
 
     private void OnEscape(InputAction.CallbackContext context)
     {
-        ShowPanel(gameOverPanel.activeInHierarchy ? GameState.Playing : GameState.GameOver);
+        //ShowPanel(gameOverPanel.activeInHierarchy ? GameState.Playing : GameState.GameOver);
+        bool isActive = pauseMenu.activeInHierarchy;
+
+        ShowPauseMenu(!isActive);
     }
     
     #endregion

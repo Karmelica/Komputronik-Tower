@@ -2225,6 +2225,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142228738375124783, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142228738375124783, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3929611370870417937, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_Color.b
       value: 0.5471698
@@ -2300,6 +2308,10 @@ PrefabInstance:
     - target: {fileID: 4930979772809980199, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030832416479587809, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5689297110454222392, guid: 58dabeb814936084b838290f40dd88dd, type: 3}
       propertyPath: m_IsActive
@@ -2736,6 +2748,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 44157103773865780}
     m_Modifications:
+    - target: {fileID: 489532245676947180, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 604791996733343163, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1264080615575888952, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -2871,6 +2891,10 @@ PrefabInstance:
     - target: {fileID: 3555479421643133592, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582801467417527307, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3604462854945463015, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
       propertyPath: m_AnchorMax.y
