@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: caf301b3b9e85d04a8952bba52ecca3d
+guid: 2e86b7fbee445a340af3eacd0e1d07c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9056157064065973097
-    second: lobby_light_0
+      213: -4624547588984540896
+    second: literki_GLOW_fixed_0
   - first:
-      213: -4642928849921231306
-    second: lobby_light_1
-  - first:
-      213: -2317015652115414360
-    second: lobby_light_2
-  - first:
-      213: -2200546625810813769
-    second: lobby_light_3
+      213: -834392113019455361
+    second: literki_GLOW_fixed_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -55,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,88 +99,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lobby_light_0
+      name: literki_GLOW_fixed_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 416
+        x: 72
+        y: 728
+        width: 98
+        height: 74
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96bfbc14edeedad70800000000000000
-      internalID: 9056157064065973097
+      spriteID: 021ffaf387e42dfb0800000000000000
+      internalID: -4624547588984540896
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lobby_light_1
+      name: literki_GLOW_fixed_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 183
-        width: 344
-        height: 21
+        x: 111
+        y: 54
+        width: 764
+        height: 784
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 636380f6fc0019fb0800000000000000
-      internalID: -4642928849921231306
+      spriteID: f7876144bc4ab64f0800000000000000
+      internalID: -834392113019455361
       vertices: []
       indices: 
       edges: []
@@ -195,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f9c1815c183bcda43992a34ea22b8bf1
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -205,10 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lobby_light_0: 9056157064065973097
-      lobby_light_1: -4642928849921231306
-      lobby_light_2: -2317015652115414360
-      lobby_light_3: -2200546625810813769
+      literki_GLOW_fixed_0: -4624547588984540896
+      literki_GLOW_fixed_1: -834392113019455361
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

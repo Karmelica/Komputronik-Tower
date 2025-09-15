@@ -5,6 +5,7 @@ using UnityEngine;
 public class LobbyTooltipDisplay : MonoBehaviour
 {
     [SerializeField] private Animator coolTooltip;
+    private bool _isDestroyed;
     
     private AudioSource _audioSource;
 
@@ -12,17 +13,24 @@ public class LobbyTooltipDisplay : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>(); 
     }
-    
+
+    private void OnDestroy()
+    {
+        _isDestroyed = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip?.SetBool("Show", true);
+        if(coolTooltip && !_isDestroyed)
+            coolTooltip.SetBool("Show", true);
         _audioSource?.Play();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        coolTooltip?.SetBool("Show", false);
+        if(coolTooltip && !_isDestroyed)
+            coolTooltip.SetBool("Show", false);
     }
 }

@@ -131,7 +131,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
   m_sharedMaterial: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3407526881660136995
@@ -426,7 +426,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
   m_sharedMaterial: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3967798639913883951
@@ -1114,8 +1114,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
-  m_sharedMaterial: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
+  m_sharedMaterial: {fileID: -5459636643220683962, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1250,7 +1250,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Dotknij ekranu lub naci\u015Bnij dowolny przycisk aby rozpocz\u0105\u0107"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5880032983555164730
@@ -2134,7 +2134,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1029269591
@@ -2201,7 +2201,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 7747029680232610257}
   pauseMenu: {fileID: 0}
   percentileText: {fileID: 7854441013376843139}
-  scoresFetchUrl: https://your-cloud-function/scores
 --- !u!1 &8586236188036807368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,7 +2288,7 @@ PrefabInstance:
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontSizeBase
       value: 16
@@ -2300,7 +2299,7 @@ PrefabInstance:
       objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4120468725997418515, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_Pivot.x
@@ -2451,14 +2450,14 @@ PrefabInstance:
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
+      objectReference: {fileID: 11400000, guid: 5b48c258802a1a2b7be71eb1fa3ae44f, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 8482829818454857485, guid: f83ca11c447964b4e8d2697a05e2be20, type: 2}
     - target: {fileID: 3723222488794031438, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4120468725997418515, guid: 6dd9578aa94ad724cb115b87134f20b9, type: 3}
       propertyPath: m_Pivot.x
