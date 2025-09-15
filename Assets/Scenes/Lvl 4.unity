@@ -293,6 +293,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -676.51495
       objectReference: {fileID: 0}
+    - target: {fileID: 2846899149702317560, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44157103773865780}
+    - target: {fileID: 2846899149702317560, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967232613551994543, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44157103773865780}
+    - target: {fileID: 2967232613551994543, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 3467101006847955343, guid: 3f76118f00f0dc44e826127ddfa85b63, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
