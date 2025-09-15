@@ -23,7 +23,7 @@ public class LevelTrigger : MonoBehaviour
             CharacterMovement.CanMove = false;
             other.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             loadingScreen.SetActive(true);
-            Invoke(nameof(LoadLevel), 3.2f);
+            Invoke(nameof(LoadLevel), 4f);
         }
     }
 

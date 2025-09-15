@@ -161,6 +161,7 @@ public class CharacterMovement : MonoBehaviour
         _wasGrounded = _isGrounded;
         
         if (CanMove) _animator.SetFloat("Velocity", _moveInput.x);
+        _animator.SetFloat("XVelocity", _body.linearVelocity.x);
         _animator.SetFloat("YVelocity", _body.linearVelocity.y);
         _animator.SetBool("Grounded", _isGrounded);
 
