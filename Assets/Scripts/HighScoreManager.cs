@@ -21,20 +21,23 @@ public class HighScoreManager : MonoBehaviour
     private InputSystemActions _inputActions;
     
     public static HighScoreManager Instance;
-    [SerializeField] int lvlIndex = 0; // Index of the level, used for leaderboard management
+    [SerializeField] int lvlIndex; // Index of the level, used for leaderboard management
     private LoginManager loginManager;
     private string playerId;
+
+    private const string FIREBASE_FUNCTION_URL = "https://addemail-zblptdvtpq-lm.a.run.app";
     
-    private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
-    private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
+    [Header("Leaderboard Cache")]
+    private List<float> _cachedScores = new List<float>();
+    private int _cachedLevel = -1;
+    private bool _scoresReady;
     
     [Header("Game UI")]
     [SerializeField] private GameObject gameUI;
     //[SerializeField] private List<TextMeshProUGUI> highScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
     
-    private float currentScore = 0f;
-    private float scoreMultiplier = 1f;
+    private float _currentScore;
 
     [Header("Game Over Panel")]
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
@@ -69,6 +72,12 @@ public class HighScoreManager : MonoBehaviour
         loginManager = LoginManager.Instance;
         playerId = GetOrCreatePlayerId();
         _soundPlayer = GetComponent<SoundPlayer>();
+        
+        // Inicjalizuj FirebaseAuthManager jeśli LoginManager nie jest dostępny
+        if (loginManager == null)
+        {
+            FirebaseAuthManager.Initialize(this);
+        }
     }
     
     private void Start()
@@ -78,6 +87,7 @@ public class HighScoreManager : MonoBehaviour
         UpdateScoreDisplay();
         ShowPanel(GameState.Playing);
         if (percentileText) percentileText.text = ""; // wyczysc na starcie
+        StartCoroutine(PreloadScores(lvlIndex));
     }
     
     private void OnEnable()
@@ -92,14 +102,14 @@ public class HighScoreManager : MonoBehaviour
         _inputActions.Player.Escape.performed -= OnEscape;
     }
     
-    private void Update()
+    /*private void Update()
     {
-        /*// Zwiększaj wynik w czasie (punkty za przetrwanie)
+        // Zwiększaj wynik w czasie (punkty za przetrwanie)
         if (CharacterMovement.CanMove && !segmentLimited && moveStarted)
         {
             AddScore(Time.deltaTime * scoreMultiplier);
-        }*/
-    }
+        }
+    }*/
     
     #endregion
 
@@ -112,13 +122,16 @@ public class HighScoreManager : MonoBehaviour
     
     private IEnumerator SendDataCoroutine(string playerEmail, string playerName, float score, int level)
     {
-        // 1. Logowanie anonimowe i pobranie ID Token
+        // Użyj nowego FirebaseAuthManager zamiast własnej implementacji
         string idToken = null;
-        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+        FirebaseAuthManager.GetValidToken(token => idToken = token);
+        
+        // Poczekaj na token
+        yield return new WaitUntil(() => idToken != null || !FirebaseAuthManager.IsAuthenticated());
 
         if (string.IsNullOrEmpty(idToken))
         {
-            Debug.LogError("Nie udało się pobrać ID Token.");
+            Debug.LogError("Nie udało się pobrać ID Token z FirebaseAuthManager.");
             yield break;
         }
 
@@ -137,46 +150,96 @@ public class HighScoreManager : MonoBehaviour
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
-        UnityWebRequest www = new UnityWebRequest(firebaseFunctionUrl, "POST");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("Authorization", "Bearer " + idToken);
-
-        yield return www.SendWebRequest();
-
-        if (www.result != UnityWebRequest.Result.Success)
+        using (UnityWebRequest www = new UnityWebRequest(FIREBASE_FUNCTION_URL, "POST"))
         {
-            Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
-        }
-        else
-        {
-            // po udanej wysyłce oblicz percentyl
-            if (percentileText) StartCoroutine(UpdatePercentileDisplay(score, level));
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + idToken);
+            www.timeout = 10; // Dodaj timeout
+
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+            }
+            else
+            {
+                // po udanej wysyłce oblicz percentyl
+                StartCoroutine(RefreshScoresAfterSubmit(level));
+            }
         }
     }
     
-    private IEnumerator GetFirebaseAnonymousToken(System.Action<string> callback)
+    // ===== Percentyl =====
+    [Serializable]
+    private class ScoreListDto { public List<float> scores; }
+
+   private IEnumerator PreloadScores(int level)
     {
-        string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={apiKey}";
-
-        UnityWebRequest www = UnityWebRequest.PostWwwForm(url, ""); // POST z pustym body
-        www.downloadHandler = new DownloadHandlerBuffer();
-
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
+        _scoresReady = false;
+        _cachedLevel = level;
+        string url = $"https://scores-zblptdvtpq-lm.a.run.app?level={level}";
+        using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
-            var json = www.downloadHandler.text;
-            var response = JsonUtility.FromJson<FirebaseAuthResponse>(json);
-            callback?.Invoke(response.idToken);
-        }
-        else
-        {
-            Debug.LogError("Błąd logowania anonimowego: " + www.error + " / " + www.downloadHandler.text);
-            callback?.Invoke(null);
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                try
+                {
+                    var dto = JsonUtility.FromJson<ScoreListDto>(www.downloadHandler.text);
+                    _cachedScores = dto?.scores ?? new List<float>();
+                    _scoresReady = _cachedScores.Count > 0;
+                }
+                catch
+                {
+                    _cachedScores = new List<float>();
+                    _scoresReady = false;
+                }
+            }
+            else
+            {
+                _cachedScores = new List<float>();
+                _scoresReady = false;
+            }
         }
     }
+   
+    private void ComputeAndShowPercentileFromCache(int level, float scoreToCompare)
+    {
+        if (!percentileText) return;
+
+        if (!_scoresReady || _cachedLevel != level || _cachedScores == null || _cachedScores.Count == 0)
+        {
+            percentileText.text = "brak danych";
+            return;
+        }
+
+        bool lowerIsBetter = !infiniteGeneration;
+        float percentile = CalculatePercentile(_cachedScores, scoreToCompare, lowerIsBetter);
+        percentileText.text = $"Twój najlepszy wynik jest lepszy od {percentile:F1}% graczy";
+    }
+    
+    private IEnumerator RefreshScoresAfterSubmit(int level)
+    {
+        yield return new WaitForSecondsRealtime(1.0f); // czas na propagację
+        yield return StartCoroutine(PreloadScores(level));
+
+        float scoreForComparison = infiniteGeneration
+            ? PlayerPrefs.GetInt("ArcadeScore", 0)
+            : PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
+
+        ComputeAndShowPercentileFromCache(level, scoreForComparison);
+    }
+
+    private float CalculatePercentile(List<float> allScores, float playerScore, bool lowerIsBetter)
+    {
+        if (allScores == null || allScores.Count == 0) return 0f;
+        int worse = lowerIsBetter ? allScores.Count(s => s > playerScore) : allScores.Count(s => s < playerScore);
+        return (float)worse / allScores.Count * 100f;
+    }
+    // ===== Koniec percentyla =====
     
     #endregion
     
@@ -186,7 +249,7 @@ public class HighScoreManager : MonoBehaviour
     {
         if(!CharacterMovement.levelEnded && CharacterMovement.startCounting)
         {
-            currentScore += points;
+            _currentScore += points;
             UpdateScoreDisplay();
         }
     }
@@ -197,13 +260,13 @@ public class HighScoreManager : MonoBehaviour
         {
             if (infiniteGeneration)
             {
-                scoreText.text = $"Wynik: {currentScore:F0}";
+                scoreText.text = $"Wynik: {_currentScore:F0}";
             }
             else
             {
-                int minutes = Mathf.FloorToInt(currentScore / 60f);
-                int seconds = Mathf.FloorToInt(currentScore % 60f);
-                int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                int minutes = Mathf.FloorToInt(_currentScore / 60f);
+                int seconds = Mathf.FloorToInt(_currentScore % 60f);
+                int miliseconds = Mathf.FloorToInt(_currentScore * 1000f % 1000f);
             
                 scoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
             }
@@ -265,21 +328,46 @@ public class HighScoreManager : MonoBehaviour
         // Zatrzymaj dodawanie punktów
         CharacterMovement.CanMove = false;
 
-        if (fallen)
-        {
-            _soundPlayer.PlayRandom("Fall");
-        }
+        if (fallen) { _soundPlayer.PlayRandom("Fall"); }
         
         // Pokaż panel końca gry
         ShowPanel(GameState.GameOver);
+
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            // save aracde level highest score
+            int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
+
+            if (_currentScore > bestScore)
+            {
+                PlayerPrefs.SetInt("ArcadeScore", (int)_currentScore);
+                PlayerPrefs.Save();
+            }
+        }
+        else {
+            // save other level highest score
+            float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
+            if (_currentScore < bestScore)
+            {
+                PlayerPrefs.SetFloat($"{lvlIndex}_HighestScore", _currentScore);
+                PlayerPrefs.Save();
+            }
+        }
         
         // Zaktualizuj wyświetlany wynik końcowy
         if (gameOverScoreText)
         {
             if(infiniteGeneration)
             {
-                var bestArcadeScore = PlayerPrefs.GetInt("ArcadeScore", Int32.MinValue);
-                gameOverScoreText.text = $"Twój wynik: {currentScore:F0}\nNajlepszy wynik: {bestArcadeScore}";
+                if(PlayerPrefs.HasKey("ArcadeScore"))
+                {
+                    var bestArcadeScore = PlayerPrefs.GetInt("ArcadeScore", 0);
+                    gameOverScoreText.text = $"Twój wynik: {_currentScore:F0}\nNajlepszy wynik: {bestArcadeScore}";
+                }
+                else
+                {
+                    gameOverScoreText.text = $"Twój wynik: {_currentScore:F0}";
+                }
             }
             else
             {
@@ -291,74 +379,29 @@ public class HighScoreManager : MonoBehaviour
                     int bestSeconds = Mathf.FloorToInt(bestScore % 60f);
                     int bestMiliseconds = Mathf.FloorToInt(bestScore * 1000f % 1000f);
                     
-                    int minutes = Mathf.FloorToInt(currentScore / 60f);
-                    int seconds = Mathf.FloorToInt(currentScore % 60f);
-                    int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                    int minutes = Mathf.FloorToInt(_currentScore / 60f);
+                    int seconds = Mathf.FloorToInt(_currentScore % 60f);
+                    int miliseconds = Mathf.FloorToInt(_currentScore * 1000f % 1000f);
                     
-                    gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3} \nNajlepszy czas: {bestMinutes:D2}:{bestSeconds:D2}:{bestMiliseconds:D3}";
+                    gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}\nNajlepszy czas: {bestMinutes:D2}:{bestSeconds:D2}:{bestMiliseconds:D3}";
                 }
                 else {
-                    int minutes = Mathf.FloorToInt(currentScore / 60f);
-                    int seconds = Mathf.FloorToInt(currentScore % 60f);
-                    int miliseconds = Mathf.FloorToInt(currentScore * 1000f % 1000f);
+                    int minutes = Mathf.FloorToInt(_currentScore / 60f);
+                    int seconds = Mathf.FloorToInt(_currentScore % 60f);
+                    int miliseconds = Mathf.FloorToInt(_currentScore * 1000f % 1000f);
                     gameOverScoreText.text = $"Czas: {minutes:D2}:{seconds:D2}:{miliseconds:D3}";
                 }
             }
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 6)
-        {
-            // save aracde level highest score
-            int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
-
-            if (currentScore > bestScore)
-            {
-                PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
-                PlayerPrefs.Save();
-            }
-        }
-        else {
-            // save other level highest score
-            float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
-            if (currentScore < bestScore)
-            {
-                PlayerPrefs.SetFloat($"{lvlIndex}_HighestScore", currentScore);
-                PlayerPrefs.Save();
-            }
-        }
+        if (percentileText) percentileText.text = "Sprawdzanie wyników...";
+        float scoreForComparison = infiniteGeneration
+            ? PlayerPrefs.GetInt("ArcadeScore", 0)
+            : PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
+        ComputeAndShowPercentileFromCache(lvlIndex, scoreForComparison);
         
-        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, currentScore, lvlIndex);
-        if (percentileText) percentileText.text = "Sprawdzanie wyników..."; // wstępny komunikat
+        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, _currentScore, lvlIndex);
     }
-    
-    // metoda game over robi teraz to samo co level end wiec narazie to zakomentowalem zeby nie powtarzac kodu
-    
-    /*public void LevelEnd()
-    {
-        // Zatrzymaj dodawanie punktów
-        CharacterMovement.CanMove = false;
-        
-        // Pokaż panel końca gry
-        ShowPanel(GameState.GameOver);
-        
-        // Zaktualizuj wyświetlany wynik końcowy
-        if (gameOverScoreText)
-        {
-            gameOverScoreText.text = $"Twój wynik: {currentScore:F0} | {lvlIndex} poziom";
-        }
-
-        // save aracde level highest score
-        int bestScore = PlayerPrefs.GetInt("ArcadeScore", 0);
-
-        if (currentScore > bestScore)
-        {
-            PlayerPrefs.SetInt("ArcadeScore", (int)currentScore);
-            Debug.Log(PlayerPrefs.GetInt("ArcadeScore").ToString());
-        }
-        
-        
-        NewLeaderboardEntry(loginManager.currentPlayerEmail, loginManager.currentPlayerName, Mathf.RoundToInt(currentScore), lvlIndex);
-    }*/
     
     public void ReturnToMainMenu()
     {
@@ -368,8 +411,7 @@ public class HighScoreManager : MonoBehaviour
 
     public void RestartGame()
     {
-        currentScore = 0f;
-        scoreMultiplier = 1f;
+        _currentScore = 0f;
         SceneManager.LoadScene(lvlIndex);
     }
     
@@ -409,55 +451,6 @@ public class HighScoreManager : MonoBehaviour
     
     #endregion
 
-    // ===== Percentyl =====
-    [Serializable]
-    private class ScoreListDto { public List<float> scores; }
-
-    private IEnumerator UpdatePercentileDisplay(float playerScore, int level)
-    {
-        if (percentileText) percentileText.text = "Sprawdzanie wyników...";
-        yield return new WaitForSecondsRealtime(1.0f); // krótka zwłoka na propagację nowego wyniku
-        string url = $"https://scores-zblptdvtpq-lm.a.run.app?level={level}";
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
-        {
-            yield return www.SendWebRequest();
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                if (percentileText) percentileText.text = "Percentyl: brak danych";
-                yield break;
-            }
-            ScoreListDto dto = null;
-            try { dto = JsonUtility.FromJson<ScoreListDto>(www.downloadHandler.text); }
-            catch { if (percentileText) percentileText.text = "Percentyl: błąd danych"; yield break; }
-            if (dto?.scores == null || dto.scores.Count == 0)
-            {
-                if (percentileText) percentileText.text = "Percentyl: brak";
-                yield break;
-            }
-
-            if (infiniteGeneration)
-            {
-                float bestScore = PlayerPrefs.GetInt("ArcadeScore", Int32.MinValue);
-                float percentile = CalculatePercentile(dto.scores, bestScore, false);
-                if (percentileText) percentileText.text = $"Twój wynik jest lepszy od {percentile:F1}% graczy";
-            }
-            else
-            {
-                float bestScore = PlayerPrefs.GetFloat($"{lvlIndex}_HighestScore", Mathf.Infinity);
-                float percentile = CalculatePercentile(dto.scores, bestScore, true);
-                if (percentileText) percentileText.text = $"Twój wynik jest lepszy od {percentile:F1}% graczy";
-            }
-            
-        }
-    }
-
-    private float CalculatePercentile(List<float> allScores, float playerScore, bool lowerIsBetter)
-    {
-        if (allScores == null || allScores.Count == 0) return 0f;
-        int worse = lowerIsBetter ? allScores.Count(s => s > playerScore) : allScores.Count(s => s < playerScore);
-        return (float)worse / allScores.Count * 100f;
-    }
-    // ===== Koniec percentyla =====
 }
 
 public enum GameState
