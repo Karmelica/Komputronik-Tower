@@ -45,8 +45,8 @@ public class LoginManager : MonoBehaviour
     public static LoginManager Instance;
     private string playerId;
 
-    private string apiKey = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
-    private string firebaseFunctionUrl = "https://addemail-zblptdvtpq-lm.a.run.app";
+    private const string API_KEY = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
+    private const string FIREBASE_FUNCTION_URL = "https://addemail-zblptdvtpq-lm.a.run.app";
 
     [SerializeField] private GameObject player;
     
@@ -75,12 +75,21 @@ public class LoginManager : MonoBehaviour
         }
         
         playerId = GetOrCreatePlayerId();
+        
+        // Inicjalizuj statyczny menedżer uwierzytelniania
+        FirebaseAuthManager.Initialize(this);
     }
 
     private void Start()
     {
         Time.timeScale = 0f;
         PrefsCheck();
+        
+        // Preemptywne uwierzytelnianie przy starcie
+        FirebaseAuthManager.PreAuthenticate(success =>
+        {
+            
+        });
     }
 
     #region PlayerPrefs
@@ -250,12 +259,16 @@ public class LoginManager : MonoBehaviour
     
     private IEnumerator CheckEmailAndNameCoroutine(string playerEmail, string playerName, System.Action<bool, bool> callback)
     {
-        // Pobierz token Firebase
+        // Użyj nowego FirebaseAuthManager
         string idToken = null;
-        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+        FirebaseAuthManager.GetValidToken(token => idToken = token);
+        
+        // Poczekaj na token
+        yield return new WaitUntil(() => idToken != null || !FirebaseAuthManager.IsAuthenticated());
 
         if (string.IsNullOrEmpty(idToken))
         {
+            ShowDebugMessage("Nie udało się uwierzytelnić!");
             callback?.Invoke(false, false);
             yield break;
         }
@@ -289,12 +302,16 @@ public class LoginManager : MonoBehaviour
     
     private IEnumerator SendDataCoroutine(string email, string name)
     {
-        // 1. Logowanie anonimowe i pobranie ID Token
+        // Użyj nowego FirebaseAuthManager
         string idToken = null;
-        yield return StartCoroutine(GetFirebaseAnonymousToken(token => idToken = token));
+        FirebaseAuthManager.GetValidToken(token => idToken = token);
+        
+        // Poczekaj na token
+        yield return new WaitUntil(() => idToken != null || !FirebaseAuthManager.IsAuthenticated());
 
         if (string.IsNullOrEmpty(idToken))
         {
+            ShowDebugMessage("Nie udało się uwierzytelnić!");
             yield break;
         }
 
@@ -302,46 +319,26 @@ public class LoginManager : MonoBehaviour
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
-        UnityWebRequest www = new UnityWebRequest(firebaseFunctionUrl, "POST");
-        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        www.downloadHandler = new DownloadHandlerBuffer();
-        www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("Authorization", "Bearer " + idToken);
-
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest www = new UnityWebRequest(FIREBASE_FUNCTION_URL, "POST"))
         {
-            ShowSavePlayerPanel(false);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
-        }
-    }
-    
-    private IEnumerator GetFirebaseAnonymousToken(System.Action<string> callback)
-    {
-        string url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={apiKey}";
+            www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            www.downloadHandler = new DownloadHandlerBuffer();
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.SetRequestHeader("Authorization", "Bearer " + idToken);
+            www.timeout = 10; // Dodaj timeout
 
-        UnityWebRequest www = UnityWebRequest.PostWwwForm(url, ""); // POST z pustym body
-        www.downloadHandler = new DownloadHandlerBuffer();
+            yield return www.SendWebRequest();
 
-        yield return www.SendWebRequest();
-
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            var json = www.downloadHandler.text;
-            var response = JsonUtility.FromJson<FirebaseAuthResponse>(json);
-            callback?.Invoke(response.idToken);
-        }
-        else
-        {
-            Debug.LogError("Błąd logowania anonimowego: " + www.error + " / " + www.downloadHandler.text);
-            callback?.Invoke(null);
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                ShowSavePlayerPanel(false);
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                Debug.LogError("Błąd wysyłki: " + www.error + " / " + www.downloadHandler.text);
+            }
         }
     }
-
     #endregion
 }

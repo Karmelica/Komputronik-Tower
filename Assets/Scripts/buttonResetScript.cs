@@ -17,6 +17,7 @@ public class buttonResetScript : MonoBehaviour
     
     private void OnDisable()
     {
+        if(button == null || _animator == null) return;
         button.animator.SetTrigger(button.animationTriggers.normalTrigger);
         _animator.keepAnimatorStateOnDisable = true;
     }
