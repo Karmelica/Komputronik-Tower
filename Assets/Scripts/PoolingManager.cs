@@ -72,20 +72,36 @@ public class Pool<T> where T : MonoBehaviour
     
     public T Get()
     {
-        if (_objects.Count == 0)
+        T obj = null;
+        
+        // Sprawdzaj obiekty w kolejce dopóki nie znajdziesz prawidłowego lub kolejka się nie opróżni
+        while (_objects.Count > 0)
         {
-            AddObject();
+            obj = _objects.Dequeue();
+            
+            // Sprawdź czy obiekt nadal istnieje (nie został zniszczony)
+            if (obj != null)
+            {
+                obj.gameObject.SetActive(true);
+                return obj;
+            }
         }
         
-        T obj = _objects.Dequeue();
+        // Jeśli nie ma prawidłowych obiektów, utwórz nowy
+        AddObject();
+        obj = _objects.Dequeue();
         obj.gameObject.SetActive(true);
         return obj;
     }
     
     public void ReturnToPool(T obj)
     {
-        _objects.Enqueue(obj);
-        obj.gameObject.SetActive(false);
+        // Sprawdź czy obiekt nadal istnieje przed dodaniem z powrotem do pool'a
+        if (obj != null)
+        {
+            _objects.Enqueue(obj);
+            obj.gameObject.SetActive(false);
+        }
     }
 
     private void AddObject()
@@ -95,5 +111,3 @@ public class Pool<T> where T : MonoBehaviour
         _objects.Enqueue(obj);
     }
 }
-
-
