@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 390bba721e81ef146bad1a1ad8fbe341
+guid: d8007a801b03e5e4a951f46916c18940
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5729574180589561452
-    second: Blue_button_0
+      213: 1107129026563120988
+    second: Round_white_default_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -139,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Blue_button_0
+      name: Round_white_default_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 329
-        height: 70
+        width: 536
+        height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 90, y: 0, z: 90, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49995bba3a67c70b0800000000000000
-      internalID: -5729574180589561452
+      spriteID: c5f91dcdbff4d5f00800000000000000
+      internalID: 1107129026563120988
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: be2d0b65b6ef45e4e8464142d04f33f3
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Blue_button_0: -5729574180589561452
+      Round_white_default_0: 1107129026563120988
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
