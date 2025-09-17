@@ -8,10 +8,11 @@ public class LevelTrigger : MonoBehaviour
 {
     [SerializeField] private int levelIndex;
     [SerializeField] private GlobalTimeManager globalTimeManager;
-    private BoxCollider2D _boxCollider;
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject outlet;
+    [SerializeField] private Animator playerAnimator;
     private Animator _panelAnimator;
+    private BoxCollider2D _boxCollider;
 
     [Header("Loading Screen")]
     [SerializeField] private GameObject loadingScreen;
@@ -21,10 +22,24 @@ public class LevelTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CharacterMovement.CanMove = false;
-            other.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            loadingScreen.SetActive(true);
-            Invoke(nameof(LoadLevel), 4f);
+            playerAnimator.SetTrigger("LobbyAnim");
+            Invoke(nameof(LevelStarter), 2f);
+            Invoke(nameof(LoadLevel), 6f);
+            
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+    }
+
+    private void LevelStarter()
+    {
+        loadingScreen.SetActive(true);
     }
 
     private void Start()

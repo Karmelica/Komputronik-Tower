@@ -5623,8 +5623,8 @@ Transform:
   m_GameObject: {fileID: 1078549910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4481, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: -2.4481, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -5746,6 +5746,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 1128656987}
   outlet: {fileID: 739636228}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 34503977}
 --- !u!1 &1086349814
 GameObject:
@@ -8447,7 +8448,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1161, y: 614.71}
+  m_SizeDelta: {x: 1161, y: 1570.91}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1578474452
 CanvasRenderer:
@@ -8477,29 +8478,51 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor
-    sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-    id est laborum.""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum
-    dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-    mollit anim id est laborum."'
+  m_text: "KLAUZULA INFORMACYJNA KOMPUTRONIK S.A.\r\n\r\nZgodnie z art. 13 ust. 1
+    i ust. 2 Rozporz\u0105dzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z
+    dnia 27 kwietnia 2016 r. w sprawie ochrony os\xF3b fizycznych w zwi\u0105zku
+    z przetwarzaniem danych osobowych i w sprawie swobodnego przep\u0142ywu takich
+    danych oraz uchylenia dyrektywy 95/46/WE (zwane dalej RODO) uprzejmie informujemy,
+    \u017Ce:\_\r\n    1. Administratorem Twoich danych osobowych (ADO) jest:\_Komputronik
+    S.A. z siedzib\u0105 w Poznaniu ul. Wo\u0142czy\u0144ska 37, (60-003) Pozna\u0144,
+    wpisan\u0105 do rejestru przedsi\u0119biorc\xF3w Krajowego Rejestru S\u0105dowego
+    pod numerem KRS 0000270885, kt\xF3rej akta rejestrowe przechowywane s\u0105 w
+    S\u0105dzie Rejonowym Pozna\u0144 \u2013 Nowe Miasto i Wilda w Poznaniu, VIII
+    Wydzia\u0142 Gospodarczy KRS, posiadaj\u0105c\u0105 numer NIP 972-09-02-729,
+    REGON 634404229; kapita\u0142 zak\u0142adowy w pe\u0142ni op\u0142acony: 979.397,40
+    z\u0142, posiadaj\u0105ca status du\u017Cego przedsi\u0119biorcy.\_\_\r\n   
+    2. Nasze dane kontaktowe to:\_Komputronik S.A., ul. Wo\u0142czy\u0144ska 37,
+    (60-003) Pozna\u0144, office@komputronik.pl\_\r\n    3. Z inspektorem ochrony
+    danych \u2013 Krzysztofem Jankowskim mo\u017Cesz skontaktowa\u0107 si\u0119 pod
+    adresem e-mail:\_IODO@komputronik.pl\_lub korespondencyjnie na adres ADO (pkt
+    2)\_z dopiskiem \u201EInspektor Ochrony Danych Osobowych \u2013 Krzysztof Jankowski\u201D.\_\r\n   
+    4. Dane osobowe przetwarzane b\u0119d\u0105 w celu\_zawarcia umowy o wsp\xF3\u0142pracy,
+    w celu realizacji jej warunk\xF3w oraz w celach archiwalnych i dowodowych, a
+    tak\u017Ce w celach podatkowych rachunkowych oraz reklamacyjnych.\_\r\n    5.
+    B\u0119dziemy przetwarza\u0107 nast\u0119puj\u0105ce kategorie Twoich danych:\_\r\n   
+    \ta) nazwa u\u017Cytkownika (login);\_\r\n    \tb) adres mailowy,\r\n    6. Dane
+    osobowe przetwarzane b\u0119d\u0105\_w spos\xF3b\_niezautomatyzowany\_na podstawie
+    art. 6 ust.\_1 lit.\_b\_RODO tj.\_w celu\_wype\u0142nienia\_postanowie\u0144
+    Regulaminu Gry .\_\u201EElektronik\u201D.\r\n    7. Podanie danych jest\_dobrowolne,
+    ale konieczne do realizacji umowy.\_\r\n    8. Odbiorc\u0105 danych osobowych
+    mog\u0105 zosta\u0107:\_\_\r\n    \ta) tw\xF3rcom gry \u201EElektronik\u201D;\r\n   
+    \tb) uprawnione organy publiczne;\_\r\n    \tc) pozosta\u0142e podmioty grupy\_Komputronik;\_\r\n   
+    \td) podmioty dostarczaj\u0105ce korespondencj\u0119;\_\_\r\n    \te) podmioty
+    wykonuj\u0105ce us\u0142ugi niszczenia dokumentacji;\_\r\n    \tf) podmioty \u015Bwiadcz\u0105ce
+    us\u0142ugi serwisu.\_\r\n    9. Dane\_b\u0119d\u0105 przetwarzanie przez okres
+    niezb\u0119dny do\_dochodzenia i ochrony\_przed roszczeniami,\_a tak\u017Ce do
+    momentu wyga\u015Bni\u0119cia obowi\u0105zk\xF3w przechowywania danych wynikaj\u0105cych
+    z przepis\xF3w podatkowych i przepis\xF3w o rachunkowo\u015Bci.\_\r\n    10.
+    Dane osobowe nie b\u0119d\u0105 przetwarzane poza Europejskim Obszarem Gospodarczym.\_\r\n   
+    11. Informujemy o przys\u0142uguj\u0105cym prawie\_do \u017C\u0105dania:\_\r\n   
+    \ta) dost\u0119pu do swoich danych osobowych i \u017C\u0105dania ich kopii,\_\_\r\n   
+    \tb) sprostowania swoich danych osobowych,\_\r\n    \tc) ograniczenia przetwarzania
+    swoich danych,\_\r\n    \td) przenoszenia danych,\_\r\n    \te) usuni\u0119cia
+    danych\_w przypadku zaistnienia przes\u0142anek okre\u015Blonych w RODO.\_\r\n   
+    12. Z uprawnie\u0144 mo\u017Cesz skorzysta\u0107 kontaktuj\u0105c si\u0119 pisemnie
+    lub e-mail z IOD (pkt\_3).\_\r\n    13. Informujemy o prawie wniesienia skargi
+    do organu nadzorczego. W Polsce organem takim jest Prezes Urz\u0119du Ochrony
+    Danych Osobowych.\_"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8aff7b7a0419da145b8057f3df381e0d, type: 2}
   m_sharedMaterial: {fileID: 8443840882463060145, guid: 8aff7b7a0419da145b8057f3df381e0d, type: 2}
@@ -8532,8 +8555,8 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_fontStyle: 1
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9151,8 +9174,8 @@ Transform:
   m_GameObject: {fileID: 1739075974}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4666, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: 6.4666, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -9274,6 +9297,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 776561098}
   outlet: {fileID: 988211114}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 712876390}
 --- !u!1 &1746014093
 GameObject:
@@ -9747,8 +9771,8 @@ Transform:
   m_GameObject: {fileID: 1829131655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.4099, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: 12.4099, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -9769,6 +9793,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 979582121}
   outlet: {fileID: 70153539}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 4837272604571234846}
 --- !u!61 &1829131658
 BoxCollider2D:
@@ -9899,8 +9924,8 @@ Transform:
   m_GameObject: {fileID: 1851813599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5236, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: 0.5236, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -10022,6 +10047,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 913989641}
   outlet: {fileID: 346027098}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 671407486}
 --- !u!1 &1857121352 stripped
 GameObject:
@@ -10185,15 +10211,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b13a36a2e4ca724fb6a27f9c4e4a7b0, type: 2}
+  m_sharedMaterial: {fileID: 3629881358283394689, guid: 5b13a36a2e4ca724fb6a27f9c4e4a7b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10216,7 +10242,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 50
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -10495,22 +10521,22 @@ MonoBehaviour:
   levelUnlockDates:
   - levelName: Poziom 1
     month: 8
-    day: 5
+    day: 24
     hour: 16
   - levelName: Poziom 2
-    month: 8
+    month: 9
     day: 29
     hour: 16
   - levelName: Poziom 3
-    month: 8
+    month: 10
     day: 4
     hour: 16
   - levelName: Poziom 4
-    month: 8
+    month: 10
     day: 9
     hour: 16
   - levelName: Poziom 5
-    month: 8
+    month: 10
     day: 14
     hour: 16
   useServerTime: 1
@@ -10662,8 +10688,8 @@ Transform:
   m_GameObject: {fileID: 2026559932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.4382, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: 9.4382, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -10785,6 +10811,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 104439356}
   outlet: {fileID: 251383228}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 1755452724}
 --- !u!1001 &2042392562
 PrefabInstance:
@@ -11179,8 +11206,8 @@ Transform:
   m_GameObject: {fileID: 2067913100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4951, y: 2.5254, z: 0}
-  m_LocalScale: {x: 2.85, y: 5.781514, z: 1}
+  m_LocalPosition: {x: 3.4951, y: 2.7054, z: 0}
+  m_LocalScale: {x: 2.85, y: 5.4213257, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1724608537}
@@ -11302,6 +11329,7 @@ MonoBehaviour:
   globalTimeManager: {fileID: 1937411581}
   panel: {fileID: 109903281}
   outlet: {fileID: 1317645217}
+  playerAnimator: {fileID: 221835517275200725}
   loadingScreen: {fileID: 786750153}
 --- !u!1 &2087555900
 GameObject:
@@ -11740,7 +11768,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.48, y: -1.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6404231381564900055}
   - {fileID: 477032800}
