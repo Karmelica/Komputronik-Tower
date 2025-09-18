@@ -10520,7 +10520,7 @@ MonoBehaviour:
   - {fileID: 1486704486}
   levelUnlockDates:
   - levelName: Poziom 1
-    month: 8
+    month: 9
     day: 24
     hour: 16
   - levelName: Poziom 2
