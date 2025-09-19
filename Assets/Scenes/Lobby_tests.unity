@@ -1879,7 +1879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobileMoveController: {fileID: 893623859}
   mobileJumpController: {fileID: 2139576087}
-  pauseButton: {fileID: 0}
 --- !u!4 &392257693
 Transform:
   m_ObjectHideFlags: 0
@@ -10520,23 +10519,23 @@ MonoBehaviour:
   - {fileID: 1486704486}
   levelUnlockDates:
   - levelName: Poziom 1
-    month: 9
+    month: 8
     day: 24
     hour: 16
   - levelName: Poziom 2
-    month: 9
+    month: 8
     day: 29
     hour: 16
   - levelName: Poziom 3
-    month: 10
+    month: 8
     day: 4
     hour: 16
   - levelName: Poziom 4
-    month: 10
+    month: 8
     day: 9
     hour: 16
   - levelName: Poziom 5
-    month: 10
+    month: 8
     day: 14
     hour: 16
   useServerTime: 1
