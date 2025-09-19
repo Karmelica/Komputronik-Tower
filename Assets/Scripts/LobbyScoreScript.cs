@@ -8,7 +8,6 @@ public class LobbyScoreScript : MonoBehaviour
     private void Start()
     {
         _scoreText = GetComponent<TMP_Text>();
-        
         _scoreText.text = PlayerPrefs.GetInt("ArcadeScore").ToString();
     }
 }

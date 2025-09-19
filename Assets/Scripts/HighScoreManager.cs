@@ -143,7 +143,7 @@ public class HighScoreManager : MonoBehaviour
             3 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score3 = score },
             4 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score4 = score },
             5 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score5 = score },
-            6 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? score : 0 },
+            6 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? PlayerPrefs.GetInt("ArcadeScore", 0) : 0 },
             _ => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName }
         };
 
