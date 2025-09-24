@@ -1929,8 +1929,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.00001335144, y: 0}
-  m_SizeDelta: {x: 650, y: 1512.11}
+  m_AnchoredPosition: {x: -0.00001335144, y: 0.000015258789}
+  m_SizeDelta: {x: 650, y: 10500.49}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &419074463
 MonoBehaviour:
@@ -1952,40 +1952,189 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-    in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-    amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-    id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor
-    sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-    id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor
-    sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-    id est laborum. '
+  m_text: "OPIS GRY\r\n\r\nMasz dost\u0119p do 6 poziom\xF3w.\r\nPoziomy 1\u20135
+    polegaj\u0105 na uko\u0144czeniu mapy w jak najkr\xF3tszym czasie:\r\nmaj\u0105
+    sko\u0144czon\u0105 wysoko\u015B\u0107,\r\npo przej\u015Bciu odpowiedniej liczby
+    platform zbierasz literk\u0119,\r\nzebranie literki ko\u0144czy poziom i wracasz
+    do lobby.\r\nPoziom 6 (ARCADE): polega na zdobyciu jak najwi\u0119kszej liczby
+    punkt\xF3w.\r\n \r\n\r\nPORUSZANIE SI\u0118\r\n\nSterujesz postaci\u0105 klawiszami:\r\nA
+    / D lub strza\u0142ki lewo/prawo \u2013 ruch,\r\nSpacja \u2013 skok.\r\nNa telefonie
+    u\u017Cywasz przycisk\xF3w na ekranie.\r\nMo\u017Cesz:\r\nrozp\u0119dza\u0107
+    posta\u0107, aby skaka\u0142a wy\u017Cej,\r\nodbija\u0107 si\u0119 od \u015Bcian
+    i zmienia\u0107 kierunek, aby utrzyma\u0107 pr\u0119dko\u015B\u0107,\r\naktywowa\u0107
+    COMBO, pokonuj\u0105c wiele platform naraz i zdobywaj\u0105c wi\u0119cej punkt\xF3w.\r\n
+    \r\n\r\nODBLOKOWYWANIE POZIOM\xD3W 1\u20135\r\n\r\nPoziomy odblokowuj\u0105 si\u0119
+    w okre\u015Blonych terminach:\r\n26.09 (start),\r\n02.10,\r\n08.10,\r\n13.10,\r\n18.10.\r\nAby
+    wej\u015B\u0107 na nowy poziom, musisz uko\u0144czy\u0107 wszystkie wcze\u015Bniejsze.\r\n
+    \r\n\r\nRANKINGI\r\n\r\nKa\u017Cdy poziom ma w\u0142asny ranking, obejmuj\u0105cy
+    5 dni.\r\nGdy ranking jest aktywny, mo\u017Cesz rywalizowa\u0107 o nagrody.\r\n
+    \r\n\nPOZIOM ARCADE\r\n\r\nW Arcade rywalizujesz o nagrod\u0119 g\u0142\xF3wn\u0105.\r\nPoziom
+    dost\u0119pny jest przez ca\u0142y czas trwania wydarzenia.\r\n \r\n\r\nNAGRODY\r\n\r\nNajlepszy
+    wynik z ka\u017Cdego poziomu wygrywa kart\u0119 podarunkow\u0105 do sklepu Komputronik
+    o warto\u015Bci 500z\u0142\r\nW poziomie Arcade: za 1. miejsce \u2013 nagroda
+    g\u0142\xF3wna \u2013 PC o warto\u015Bci 10 000 z\u0142\n\nREGULAMIN\n\nRegulamin
+    Gry \u201EElektronik\u201D\r\nzwany dalej \u201ERegulaminem\u201D\r\nI. Postanowienia
+    Og\xF3lne\r\n1. Niniejszy Regulamin okre\u015Bla zasady uczestnictwa w grze pod
+    nazw\u0105\r\n\u201EElektronik\u201D (dalej: \u201EGra lub Konkurs\u201D), organizowanym
+    przez Komputronik S.A.\r\nz siedzib\u0105 w Poznaniu, ul. Wo\u0142czy\u0144ska
+    37, 60-003 Pozna\u0144, wpisan\u0105 do rejestru\r\nprzedsi\u0119biorc\xF3w prowadzonego
+    przez S\u0105d Rejonowy Pozna\u0144 - VIII Wydzia\u0142\r\nGospodarczy Krajowego
+    Rejestru S\u0105dowego pod numerem KRS 0000270885,\r\nposiadaj\u0105c\u0105 numer
+    REGON 634404229, NIP 972-09-02-729, posiadaj\u0105c\u0105\r\nstatus du\u017Cego
+    przedsi\u0119biorcy, o kapitale zak\u0142adowym 979.397,40 z\u0142otych, w\r\nca\u0142o\u015Bci
+    wp\u0142aconym (dalej: \u201EOrganizator\u201D).\r\n2. Gra prowadzona jest w
+    formie gry przegl\u0105darkowej dost\u0119pnej w sieci Internet\r\npod adresem
+    https://www.komputronik.pl/lp/level/ (\u201EStrona Konkursu\u201D).\r\n3. Regulamin
+    udost\u0119pniany jest nieodp\u0142atnie wszystkim Uczestnikom w formie\r\numo\u017Cliwiaj\u0105cej
+    jego pozyskanie, odtwarzanie i utrwalenie pod adresem\r\nhttps://www.komputronik.pl/lp/level/.\r\nII.
+    Czas trwania\r\n1. Gra zostanie udost\u0119pniona przez Organizatora w okresie
+    od dnia 26 wrze\u015Bnia\r\n2025 roku do dnia 23 pa\u017Adziernika 2025 roku.\r\n2.
+    Poszczeg\xF3lne poziomy Gry b\u0119d\u0105 udost\u0119pniane przez Organizatora
+    zgodnie z\r\nharmonogramem wskazanym w pkt IV ust. 5 Regulaminu, po ich uprzednim\r\nodblokowaniu
+    przez Uczestnika.\r\nIII. Uczestnicy\r\n1. Uczestnikiem Gry (dalej: \u201EUczestnik\u201D)
+    mo\u017Ce by\u0107:\r\na. pe\u0142noletnia osoba fizyczna zamieszkuj\u0105ca
+    na terytorium Rzeczypospolitej\r\nPolskiej, posiadaj\u0105ca pe\u0142n\u0105
+    zdolno\u015B\u0107 do czynno\u015Bci prawnych lub\r\nb. ma\u0142oletnia osoba
+    fizyczna, kt\xF3ra uko\u0144czy\u0142a 13. rok \u017Cycia za zgod\u0105\r\nprzedstawiciela
+    ustawowego tj. rodzica lub opiekuna prawnego kt\xF3ry\r\nzaakceptuje Regulamin.\r\n2.
+    Udzia\u0142 w Grze Uczestnika jest dobrowolny i nieodp\u0142atny.\r\n3. W celu
+    wzi\u0119cia udzia\u0142u w Grze Uczestnik musi dokona\u0107 rejestracji, podaj\u0105c
+    w\r\nformularzu rejestracyjnym sw\xF3j unikalny adres e-mail oraz nazw\u0119
+    u\u017Cytkownika\r\n(login).\r\n4. Organizator o\u015Bwiadcza, i\u017C ze wzgl\u0119d\xF3w
+    technicznych nazwy u\u017Cytkownik\xF3w\r\n(loginy) mog\u0105 nie by\u0107 unikalne.
+    W przypadku u\u017Cywania identycznych nazw\r\nu\u017Cytkownik\xF3w (login\xF3w)
+    przez dw\xF3ch lub wi\u0119ksz\u0105 liczb\u0119 Uczestnik\xF3w,\r\nidentyfikacja
+    Zwyci\u0119zcy lub Zwyci\u0119zc\xF3w nast\u0105pi na podstawie wskazanego w\r\nformularzu
+    rejestracyjnym unikalnego adresu e-mail powi\u0105zanego z nazw\u0105\r\nu\u017Cytkownika
+    (loginem).\r\nIV. Zasady oraz przebieg Gry\r\n1. Gra na ka\u017Cdym z poziom\xF3w
+    polega na pokonywaniu wirtualn\u0105 postaci\u0105 przez\r\nUczestnika platform
+    i zdobywaniu punkt\xF3w, a w przypadku poziom\xF3w 1-5\r\nr\xF3wnie\u017C zebraniu
+    liter na ko\u0144cu ka\u017Cdego z nich.\r\n2. Gra sk\u0142ada si\u0119 z 6 (sze\u015Bciu)
+    poziom\xF3w:\r\na. Poziomy 1-5 \u2013 poziomy o sko\u0144czonej d\u0142ugo\u015Bci,
+    kt\xF3rych celem jest\r\npokonywanie przez Uczestnika wirtualn\u0105 postaci\u0105
+    platform w jak\r\nnajkr\xF3tszym czasie oraz dotarcie do ko\u0144ca ka\u017Cdego
+    poziomu i zebranie na\r\nka\u017Cdym z nich liter, kt\xF3re pozwol\u0105 utworzy\u0107
+    has\u0142o \u201ELEVEL\u201D;\r\nb. Poziom 6 (ARCADE) \u2013 poziom o niesko\u0144czonej
+    d\u0142ugo\u015Bci, kt\xF3rego celem jest\r\npokonywanie przez Uczestnika wirtualn\u0105
+    postaci\u0105 platform i zdobycie przez\r\nUczestnika jak najwi\u0119kszej liczby
+    punkt\xF3w poprzez wspinanie si\u0119 jak\r\nnajwy\u017Cej.\r\n3. Sterowanie
+    postaci\u0105:\r\na. Ruch w lewo/prawo \u2013 klawisze A (lewo)/D (prawo) lub
+    strza\u0142ki;\r\nb. Skok \u2013 spacja;\r\nc. Wersja mobilna \u2013 przyciski
+    ekranowe odpowiadaj\u0105ce ruchowi w lewo/prawo\r\ni skoku;\r\nd. Rozp\u0119d
+    zwi\u0119ksza wysoko\u015B\u0107 skoku, a odbijanie si\u0119 od \u015Bcian umo\u017Cliwia\r\nutrzymanie
+    pr\u0119dko\u015Bci.\r\n4. Punktacja:\r\na. Punkty przyznawane s\u0105 za pokonywanie
+    poszczeg\xF3lnych platform;\r\nb. Mechanizm tzw. \u201ECOMBO\u201D (pokonywanie
+    wielu platform jednym skokiem)\r\npowoduje zwi\u0119kszenie zdobytej liczby punkt\xF3w.\r\n5.
+    Harmonogram udost\u0119pniania poziom\xF3w:\r\na. Poziom 1 \u2013 od 26.09.2025
+    roku;\r\nb. Poziom 2 \u2013 od 02.10.2025 roku;\r\nc. Poziom 3 \u2013 od 08.10.2025
+    roku;\r\nd. Poziom 4 \u2013 od 13.10.2025 roku;\r\ne. Poziom 5 \u2013 od 18.10.2025
+    roku;\r\n6. Warunkiem uzyskania dost\u0119pu do ka\u017Cdego kolejnego poziomu
+    jest\r\nwcze\u015Bniejsze uko\u0144czenie wszystkich poziom\xF3w poprzedzaj\u0105cych.\r\n7.
+    Organizator ostrzega, \u017Ce Gra \u201EElektronik\u201D zawiera dynamiczne efekty
+    wizualne,\r\nw tym zmiany obraz\xF3w, migotanie oraz szybkie sekwencje ruch\xF3w,
+    kt\xF3re u\r\nniekt\xF3rych os\xF3b mog\u0105 wywo\u0142a\u0107 uczucie dyskomfortu
+    a w skrajnym przypadku\r\nnapad padaczkowy, nawet je\u015Bli wcze\u015Bniej nie
+    wyst\u0119powa\u0142y u nich objawy\r\nepilepsji. Uczestnik cierpi\u0105cy na
+    epilepsj\u0119, padaczk\u0119 fotosensytywn\u0105 lub inne\r\nschorzenia neurologiczne
+    powinien skonsultowa\u0107 si\u0119 z lekarzem przed\r\nprzyst\u0105pieniem do
+    korzystania z Gry. W przypadku wyst\u0105pienia takich objaw\xF3w\r\njak: zawroty
+    g\u0142owy, problemy ze wzrokiem, drgawki, utrata przytomno\u015Bci,\r\ndezorientacja,
+    nudno\u015Bci b\u0105d\u017A inne nietypowe reakcje podczas korzystania z\r\nGry,
+    Uczestnik powinien niezw\u0142ocznie przerwa\u0107 gr\u0119 i skonsultowa\u0107
+    si\u0119 z\r\nlekarzem. Organizator nie ponosi odpowiedzialno\u015Bci za ewentualne
+    skutki\r\nzdrowotne zwi\u0105zane z udzia\u0142em w Grze przez osoby, kt\xF3re
+    zignorowa\u0142y\r\npowy\u017Csze ostrze\u017Cenia.\r\nV. Rankingi i nagrody\r\n1.
+    Dla ka\u017Cdego z poziom\xF3w 1\u20135 prowadzony jest odr\u0119bny ranking,
+    trwaj\u0105cy\r\nmaksymalnie przez 6 (sze\u015B\u0107) dni od momentu odblokowania
+    i udost\u0119pnienia\r\ndanego poziomu.\r\n2. Ranking poziom\xF3w 1\u20135 s\u0142u\u017Cy
+    wy\u0142onieniu zwyci\u0119zc\xF3w nagr\xF3d przypisanych do\r\nposzczeg\xF3lnych
+    etap\xF3w.\r\n3. Ranking poziomu 6 (ARCADE) prowadzony jest przez ca\u0142y okres
+    trwania\r\nKonkursu.\r\n4. Nagrody w Konkursie:\r\na. Nagrody za poziomy 1-5
+    (etapowe) \u2013 za najlepszy wynik w rankingach\r\npoziom\xF3w 1\u20135 przewidziana
+    jest nagroda w postaci karty podarunkowej\r\n(vouchera) o warto\u015Bci 500 z\u0142
+    (s\u0142ownie: pi\u0119\u0107set z\u0142otych, 00/100) ka\u017Cdy, do\r\nwykorzystania
+    w sieci sklep\xF3w Komputronik. Nagrody zostan\u0105 przyznane\r\nZwyci\u0119zcy
+    ka\u017Cdego z poziom\xF3w 1-5.\r\nb. Nagroda za poziom 6 (nagroda g\u0142\xF3wna)
+    \u2013 komputer stacjonarny, kt\xF3ry\r\nzostanie przygotowany przez Organizatora
+    o r\xF3wnowarto\u015Bci oko\u0142o\r\n10.000,00 z\u0142 (s\u0142ownie: dziesi\u0119\u0107
+    tysi\u0119cy z\u0142otych, 00/100).\r\n5. Nagrody nie podlegaj\u0105 wymianie
+    na ekwiwalent pieni\u0119\u017Cny ani rzeczowy.\r\n6. Organizator zastrzega sobie
+    prawo do opublikowania listy Zwyci\u0119zc\xF3w (w\r\nformie nazw u\u017Cytkownik\xF3w
+    (login\xF3w) u\u017Cytych w Grze na stronie Konkursu.\r\n7. Zwyci\u0119zca, pod
+    rygorem utraty prawa do Nagrody, jest zobowi\u0105zany poda\u0107\r\ndane niezb\u0119dne
+    do wydania Nagrody w terminie 14 dni od og\u0142oszenia wynik\xF3w\r\nKonkursu
+    przez Organizatora, zawieraj\u0105ce prawdziwe i aktualne dane osobowe\r\nUczestnika
+    niezb\u0119dne do zako\u0144czenia procesu wydania Nagrody, w tym m.in.\r\nimienia
+    i nazwiska, adresu do wysy\u0142ki Nagrody, daty urodzenia, numeru\r\nkontaktowego.
+    Uczestnik b\u0119dzie r\xF3wnie\u017C zobowi\u0105zany do odes\u0142ania\r\npodpisanego
+    o\u015Bwiadczenia o zrzeczeniu si\u0119 nagrody pieni\u0119\u017Cnej na rzecz\r\npodatku,
+    o kt\xF3rym mowa w ust. 8 poni\u017Cej.\r\n8. Nagrody zostan\u0105 powi\u0119kszone
+    o dodatkow\u0105 nagrod\u0119 pieni\u0119\u017Cn\u0105, w wysoko\u015Bci\r\nustalonej
+    w nast\u0119puj\u0105cy spos\xF3b:\r\n(A\xF70,9) \u2013 A\r\ngdzie A oznacza
+    warto\u015B\u0107 Nagrody.\r\nPrzed wydaniem Nagrody zrycza\u0142towany podatek
+    dochodowy od nagr\xF3d w\r\nKonkursie zostanie pobrany z kwoty nagrody pieni\u0119\u017Cnej.
+    Poprzez odebranie\r\nNagrody Zwyci\u0119zca wyra\u017Ca zgod\u0119 na pobranie
+    przyznanej dodatkowo nagrody\r\npieni\u0119\u017Cnej przez Organizatora i przeznaczenie
+    jej na zap\u0142at\u0119 podatku\r\ndochodowego.\r\nVI. Dyskwalifikacja\r\n1.
+    Organizator zastrzega sobie prawo do dyskwalifikacji Uczestnika w przypadku\r\nstwierdzenia:\r\na.
+    korzystania z nazwy u\u017Cytkownika (loginu) lub adresu e-mail, kt\xF3ry zawiera\r\ns\u0142owa
+    powszechnie uwa\u017Cane za wulgarne lub obra\u017Aliwe, b\u0105d\u017A mog\u0105ce\r\nnarusza\u0107
+    czyje\u015B dobre imi\u0119 lub og\xF3lne normy i zasady wsp\xF3\u0142\u017Cycia\r\nspo\u0142ecznego,\r\nb.
+    korzystania z niedozwolonego oprogramowania (bot\xF3w, skrypt\xF3w\r\nautomatyzuj\u0105cych),\r\nc.
+    posiadania wi\u0119cej ni\u017C jednego konta w Grze,\r\nd. podejmowania innych
+    dzia\u0142a\u0144 mog\u0105cych wp\u0142yn\u0105\u0107 na nieuczciwe uzyskanie\r\nwyniku
+    w Grze.\r\n2. Decyzja Organizatora w zakresie dyskwalifikacji jest ostateczna
+    i nie podlega\r\nzaskar\u017Ceniu.\r\nVII. Ochrona danych osobowych\r\n1. Administratorem
+    danych osobowych jest Komputronik S.A. z siedzib\u0105 w Poznaniu\r\nprzy ulicy
+    Wo\u0142czy\u0144skiej 37, wpisan\u0105 do rejestru przedsi\u0119biorc\xF3w prowadzonego\r\nprzez
+    S\u0105d Rejonowy Pozna\u0144 \u2013 Nowe Miasto w Poznaniu, VIII Wydzia\u0142\r\nGospodarczy
+    pod numerem KRS 0000270885, posiadaj\u0105ca NIP 972-09-02-729,\r\nkapita\u0142
+    zak\u0142adowy w pe\u0142ni op\u0142acony 979.397,40 z\u0142, z kt\xF3rym mo\u017Cesz
+    kontaktowa\u0107\r\nsi\u0119 pod adresem e-mailowym: iodo@komputronik.pl;\r\n2.
+    Inspektorem ochrony danych jest Krzysztof Jankowski, iodo@komputronik.pl.\r\n3.
+    Dane przetwarzane b\u0119d\u0105 w celu:\r\na. wype\u0142nienia postanowie\u0144
+    niniejszego Regulaminu (na podstawie art. 6 ust. 1 lit. a\r\noraz b RODO)\r\nb.
+    wype\u0142nienia obowi\u0105zku prawnego ci\u0105\u017C\u0105cego na Administratorze
+    (na podstawie art.\r\n6 ust. 1 lit. c RODO);\r\nc. marketingu produkt\xF3w lub
+    us\u0142ug w\u0142asnych, w tym spersonalizowanych (na\r\npodstawie art. 6 ust.
+    1 lit. f RODO);\r\nd. dochodzenia lub zabezpieczenia roszcze\u0144 (na podstawie
+    art. 6 ust. 1 lit. f RODO);\r\n4. Ka\u017Cdy Uczestnik posiada prawo dost\u0119pu
+    do tre\u015Bci swoich danych oraz prawo ich\r\nsprostowania, usuni\u0119cia,
+    ograniczenia przetwarzania, prawo do przenoszenia\r\ndanych, prawo wniesienia
+    sprzeciwu wobec przetwarzania danych na podstawie\r\nuzasadnionego interesu Administratora
+    lub wobec przetwarzania w celu\r\nmarketingu bezpo\u015Bredniego, prawo do cofni\u0119cia
+    zgody w dowolnym momencie\r\nbez wp\u0142ywu na zgodno\u015B\u0107 z prawem przetwarzania
+    (je\u017Celi przetwarzanie odbywa\r\nsi\u0119 na podstawie zgody), kt\xF3rego
+    dokonano na podstawie zgody przed jej\r\ncofni\u0119ciem;\r\n5. Ka\u017Cdy Uczestnik
+    ma prawo wniesienia skargi do organu nadzorczego, gdy uzna,\r\n\u017Ce przetwarzanie
+    jego danych osobowych narusza przepisy RODO;\r\n6. Dane nie b\u0119d\u0105 przetwarzane
+    w spos\xF3b zautomatyzowany.\r\n7. Dane osobowe nie b\u0119d\u0105 przekazywane
+    do pa\u0144stwa trzeciego/organizacji\r\nmi\u0119dzynarodowej.\r\n8. Zg\u0142oszenie
+    b\u0119dzie zamieszczone na platformie TikTok, kt\xF3rej administrator b\u0119dzie\r\nprzetwarza\u0142
+    dane osobowe Uczestnika podane przez niego we w\u0142asnym zakresie\r\ndla w\u0142asnych
+    cel\xF3w.\r\n9. \u0179r\xF3d\u0142em danych osobowych jest informacja od Uczestnika
+    bior\u0105cego udzia\u0142 w\r\nKonkursie na zasadach opisanych w niniejszym
+    Regulaminie.\r\n10. Uczestnik wyra\u017Ca zgod\u0119 na przetwarzanie podanych
+    danych osobowych przez\r\nAdministratora.\r\n11. W zwi\u0105zku z konkursem opisanym
+    niniejszym Regulaminem\r\nzbierane b\u0119d\u0105 nast\u0119puj\u0105ce dane
+    osobowe Uczestnik\xF3w: imi\u0119, nazwisko, adres,\r\nadres e-mail, numer telefonu,
+    numer IP, g\u0142os, wizerunek, dane niezb\u0119dne dla cel\xF3w\r\npodatkowych.\r\n12.
+    Dane osobowe b\u0119d\u0105 przetwarzane przez okres niezb\u0119dny do realizacji
+    celu\r\nwskazanego w ust.3 nie d\u0142u\u017Cej ni\u017C przez okres 3 lat.\r\nVIII.
+    Reklamacje\r\n1. Reklamacje dotycz\u0105ce przebiegu Konkursu mog\u0105 by\u0107
+    zg\u0142aszane w formie w formie\r\nelektronicznej przez formularz kontaktowy
+    na stronie www.komputronik.pl.\r\n2. Reklamacje nale\u017Cy zg\u0142osi\u0107
+    w terminie 7 (siedmiu) dni do od dnia zaistnienia\r\nzdarzenia stanowi\u0105cego
+    podstaw\u0119 reklamacji.\r\n3. Organizator rozpatrzy reklamacj\u0119 w terminie
+    21 (dwudziestu jeden) dni od dnia\r\notrzymania reklamacji.\r\nIX. Postanowienia
+    Ko\u0144cowe\r\n1. Organizator zastrzega sobie prawo do zmiany Regulaminu w przypadku
+    zaistnienia\r\nistotnych przyczyn, o czym poinformuje Uczestnik\xF3w poprzez
+    publikacj\u0119 zmian na\r\nstronie internetowej Gry.\r\n2. W sprawach nieuregulowanych
+    niniejszym Regulaminem zastosowanie maj\u0105\r\nprzepisy prawa polskiego, w
+    szczeg\xF3lno\u015Bci Kodeksu cywilnego, ustawy o\r\n\u015Bwiadczeniu us\u0142ug
+    drog\u0105 elektroniczn\u0105 oraz ustawy o podatku dochodowym od\r\nos\xF3b
+    fizycznych.\r\n3. Regulamin wchodzi w \u017Cycie z dniem 26.09.2025 roku i obowi\u0105zuje
+    do dnia\r\nzako\u0144czenia Konkursu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b13a36a2e4ca724fb6a27f9c4e4a7b0, type: 2}
   m_sharedMaterial: {fileID: 3629881358283394689, guid: 5b13a36a2e4ca724fb6a27f9c4e4a7b0, type: 2}
@@ -2012,8 +2161,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.28
-  m_fontSizeBase: 25.28
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7800,7 +7949,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1086349815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7783395}
+  m_AnchorMin: {x: 0, y: 0.96808004}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 15.6757, y: 14}
@@ -10381,8 +10530,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1442721019}
   m_HandleRect: {fileID: 1442721018}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.22166045
+  m_Value: 0.99999994
+  m_Size: 0.031919938
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10519,25 +10668,25 @@ MonoBehaviour:
   - {fileID: 1486704486}
   levelUnlockDates:
   - levelName: Poziom 1
-    month: 8
+    month: 9
     day: 24
-    hour: 16
+    hour: 0
   - levelName: Poziom 2
-    month: 8
-    day: 29
-    hour: 16
+    month: 10
+    day: 2
+    hour: 0
   - levelName: Poziom 3
-    month: 8
-    day: 4
-    hour: 16
+    month: 10
+    day: 8
+    hour: 0
   - levelName: Poziom 4
-    month: 8
-    day: 9
-    hour: 16
+    month: 10
+    day: 13
+    hour: 0
   - levelName: Poziom 5
-    month: 8
-    day: 14
-    hour: 16
+    month: 10
+    day: 18
+    hour: 0
   useServerTime: 1
   timeoutSeconds: 5
   timeServerUrl: https://getservertime-zblptdvtpq-lm.a.run.app
