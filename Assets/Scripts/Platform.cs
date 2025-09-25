@@ -1,71 +1,168 @@
-using System;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-
+[RequireComponent(typeof(PlatformEffector2D))]
 public class Platform : MonoBehaviour
 {
-    private Collider2D _platformCollider;
+    [Header("Dynamic Setting")]
+    public bool isDynamic = true;
+    
+    [Header("Renderers")]
+    public SpriteRenderer platformOff;
+    [SerializeField] private SpriteRenderer platformOn;
+    [SerializeField] private SpriteRenderer platformOnHighlight;
+    [SerializeField] private SpriteRenderer platformFunctional;
+    
+    [Header("Dependencies")]
+    [SerializeField] private GameObject visual;
+    public PlatformSO platformSo;
+    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private RuntimeAnimatorController[] runtimeAnimatorController;
+    
+    [HideInInspector] public Animator animator;
+    
+    private BoxCollider2D _platformCollider;
     private Rigidbody2D _rigidbody2D;
-    private bool _isGravityEnabled;
-    private float _posY;
-    private bool _isFalling;
-
-    private Transform _cameraTransform;
+    
+    private float _initialPosition;
+    
     private Coroutine _gravityCoroutine;
-
+    private PlatformEffector2D _effector2D;
+    private Coroutine _coroutine;
+    private SoundPlayer _soundPlayer;
+    
     private void Awake()
     {
-        _cameraTransform = Camera.main.transform;
-        if (!TryGetComponent<Collider2D>(out _platformCollider))
-            Debug.LogError("No Collider2D component found on the character.", this);
-        if (!TryGetComponent<Rigidbody2D>(out _rigidbody2D))
-            Debug.LogError("No Rigidbody2D component found on the character.", this);
-        _posY = transform.localPosition.y;
+        animator = GetComponentInChildren<Animator>();
+        animator.runtimeAnimatorController = animator.runtimeAnimatorController;
+        
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+        
+        _platformCollider = GetComponent<BoxCollider2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _soundPlayer = GetComponent<SoundPlayer>();
+        
+        // set initial position
+        _initialPosition = transform.localPosition.y;
     }
-    
+    private void Start()
+    {
+        // new material instance
+        PhysicsMaterial2D material = new PhysicsMaterial2D
+        {
+            friction = platformSo.friction,
+            bounciness = platformSo.bounciness
+        };
+        
+        _platformCollider.sharedMaterial = material;
+        
+        // collider bounds adjustment for milestone platforms
+        _platformCollider.size = platformOff.size;
+
+        if (SceneManager.GetActiveScene().buildIndex != 6)
+        {
+            animator.runtimeAnimatorController = runtimeAnimatorController[0];
+        }
+        else
+        {
+            animator.runtimeAnimatorController = runtimeAnimatorController[1];
+        }
+        
+        // set level color to all platforms
+        platformOnHighlight.color = ColorPicker.GetOuterColor();
+        platformOn.color = ColorPicker.GetInnerColor();
+    }
+
+    public void ChangePlatform()
+    {
+        gameObject.SetActive(true);
+        _platformCollider.size = platformOff.size;
+        
+        //sprite assigner
+        if (isDynamic)
+        {
+            platformOff.sprite = platformSo.platformOff;
+            platformOn.sprite = platformSo.platformOn;
+            platformOnHighlight.sprite = platformSo.platformHighlight;
+            platformFunctional.sprite = platformSo.platformFunctional;
+            
+            Vector2 size = platformOff.size;
+            
+            platformOn.size = size;
+            platformOnHighlight.size = size;
+            platformFunctional.size = size;
+            
+            if (platformFunctional.sprite != null)
+            {
+                platformFunctional.transform.localPosition = new Vector2(
+                    0, 
+                    platformSo.functionalSpriteOffset);
+            }
+        }
+    }
+
     private void OnEnable()
     {
-        DisableGravity();
-    }
-
-    private void Update()
-    {
-            if (_cameraTransform.position.y - 1f < transform.position.y) {
-                _platformCollider.enabled = false;
-            }
-            else if (_cameraTransform.transform.position.y - 1.1f >= transform.position.y && !_isFalling) {
-                _platformCollider.enabled = true;
-                if (!_isGravityEnabled)
-                    _gravityCoroutine = StartCoroutine(EnableGravity());
-            }
-    }
-
-    private void DisableGravity()
-    {
-        if(_gravityCoroutine != null) {
-            StopCoroutine(_gravityCoroutine);
-            _gravityCoroutine = null;
+        if (animator != null)
+        {
+            animator.enabled = false;
         }
-        _isFalling = false;
-        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-        _rigidbody2D.gravityScale = 0f;
-        transform.localPosition = new Vector3(transform.localPosition.x, _posY, transform.localPosition.z);
-        _platformCollider.enabled = false;
-        _isGravityEnabled = false;
+        
+        // color adjustments
+        Color onColor = platformOn.color;
+        Color highlightColor = platformOnHighlight.color;
+
+        onColor.a = 0;
+        highlightColor.a = 0;
+
+        platformOn.color = onColor;
+        platformOnHighlight.color = highlightColor;
+        
+        DisableFall();
     }
     
-    private IEnumerator EnableGravity()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isGravityEnabled = true;
-        yield return new WaitForSeconds(10f);
-        _isFalling = true;
-        _platformCollider.enabled = false;
-        _rigidbody2D.gravityScale = 1f;
-        _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        _rigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        // yield return new WaitForSeconds(3f);
+        if (!collision.gameObject.CompareTag("PDetector")) return;
+        
+        if (_coroutine != null) return;
+        _coroutine = StartCoroutine(EnableFall());
+        StartShake();
+    }
+    
+    private IEnumerator EnableFall()
+    {
+        yield return new WaitForSeconds(2);
+        _rigidbody2D.linearVelocity = new Vector2(0, -2f);
+        _soundPlayer.PlayRandom("Fall");
+        
+        // how long the platform will drop until disabling 
+        yield return new WaitForSeconds(5f);
+        
+        Instantiate(particleSystem, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
+
+    private void DisableFall()
+    {
+        _coroutine = null;
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        
+        Vector3 initialPosition = new Vector3(transform.localPosition.x, _initialPosition, transform.localPosition.z);
+        
+        transform.localPosition = initialPosition;
+        visual.transform.localPosition = Vector3.zero;
+    }
+
+    private void StartShake()
+    {
+        visual.transform.DOShakePosition(1.5f, 0.01f, 10);
     }
 }

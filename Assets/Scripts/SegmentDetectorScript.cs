@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class SegmentDetectorScript : MonoBehaviour
 {
-    public List<GameObject> segments;
+    public List<GameObject> platforms;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Segment"))
+        if (other.CompareTag("Ground"))
         {
-            segments.Add(other.gameObject);
+            platforms.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Segment") && segments.Count > 0)
+        if (other.CompareTag("Ground") && platforms.Count > 0)
         {
-            segments.Remove(other.gameObject);
+            platforms.Remove(other.gameObject);
         }   
     }
 }

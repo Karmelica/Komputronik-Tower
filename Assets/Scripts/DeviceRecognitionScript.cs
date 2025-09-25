@@ -9,7 +9,7 @@ public class DeviceRecognitionScript : MonoBehaviour
     [SerializeField] private GameObject mobileMoveController;
     [SerializeField] private GameObject mobileJumpController;
     
-    private bool usingTouch;
+    private bool _usingTouch;
     
     private void Start()
     {
@@ -40,7 +40,6 @@ public class DeviceRecognitionScript : MonoBehaviour
     {
         mobileMoveController.SetActive(isTouch);
         mobileJumpController.SetActive(isTouch);
-
         //Debug.Log(isTouch ? "Switched to TOUCH" : "Switched to KEY/MOUSE/CONTROLLER");
     }
 }

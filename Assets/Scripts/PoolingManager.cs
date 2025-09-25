@@ -6,7 +6,7 @@ public class PoolingManager : MonoBehaviour
     public static PoolingManager Instance;
     public List<Pool<MonoBehaviour>> pools = new();
 
-    private Dictionary<string, Pool<MonoBehaviour>> poolDict = new();
+    private Dictionary<string, Pool<MonoBehaviour>> _poolDict = new();
 
     private void Awake()
     {
@@ -20,13 +20,13 @@ public class PoolingManager : MonoBehaviour
         foreach (var pool in pools)
         {
             pool.CreatePool();
-            poolDict[pool.poolKey] = pool;
+            _poolDict[pool.poolKey] = pool;
         }
     }
     
     public T Get<T>(string key) where T : MonoBehaviour
     {
-        if (poolDict.TryGetValue(key, out var pool))
+        if (_poolDict.TryGetValue(key, out var pool))
         {
             return pool.Get() as T;
         }
@@ -37,7 +37,7 @@ public class PoolingManager : MonoBehaviour
 
     public void Return(string key, MonoBehaviour obj)
     {
-        if (poolDict.TryGetValue(key, out var pool))
+        if (_poolDict.TryGetValue(key, out var pool))
         {
             pool.ReturnToPool(obj);
         }
@@ -52,7 +52,7 @@ public class Pool<T> where T : MonoBehaviour
     public int initialSize = 5;
     public Transform parent;
     
-    private Queue<T> objects = new();
+    private Queue<T> _objects = new();
     
     public void CreatePool()
     {
@@ -66,34 +66,48 @@ public class Pool<T> where T : MonoBehaviour
             }
             
             obj.gameObject.SetActive(false);
-            objects.Enqueue(obj);
+            _objects.Enqueue(obj);
         }
     }
     
     public T Get()
     {
-        if (objects.Count == 0)
+        T obj = null;
+        
+        // Sprawdzaj obiekty w kolejce dopóki nie znajdziesz prawidłowego lub kolejka się nie opróżni
+        while (_objects.Count > 0)
         {
-            AddObject();
+            obj = _objects.Dequeue();
+            
+            // Sprawdź czy obiekt nadal istnieje (nie został zniszczony)
+            if (obj != null)
+            {
+                obj.gameObject.SetActive(true);
+                return obj;
+            }
         }
         
-        T obj = objects.Dequeue();
+        // Jeśli nie ma prawidłowych obiektów, utwórz nowy
+        AddObject();
+        obj = _objects.Dequeue();
         obj.gameObject.SetActive(true);
         return obj;
     }
     
     public void ReturnToPool(T obj)
     {
-        objects.Enqueue(obj);
-        obj.gameObject.SetActive(false);
+        // Sprawdź czy obiekt nadal istnieje przed dodaniem z powrotem do pool'a
+        if (obj != null)
+        {
+            _objects.Enqueue(obj);
+            obj.gameObject.SetActive(false);
+        }
     }
 
     private void AddObject()
     {
         T obj = GameObject.Instantiate(poolObject);
         obj.gameObject.SetActive(false);
-        objects.Enqueue(obj);
+        _objects.Enqueue(obj);
     }
 }
-
-

@@ -1,0 +1,323 @@
+fileFormatVersion: 2
+guid: bfd98dd205f400c4cb2746b97abf7347
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7169782960398969975
+    second: lobby_outlet_portal_0
+  - first:
+      213: -392354187283552660
+    second: lobby_outlet_portal_1
+  - first:
+      213: -6942577046896770083
+    second: lobby_outlet_portal_2
+  - first:
+      213: -5111851613652864677
+    second: lobby_outlet_portal_3
+  - first:
+      213: 3354650282956265917
+    second: lobby_outlet_portal_4
+  - first:
+      213: -6606818107595859221
+    second: lobby_outlet_portal_5
+  - first:
+      213: -391111752565983367
+    second: lobby_outlet_portal_6
+  - first:
+      213: 8100131231249087000
+    second: lobby_outlet_portal_7
+  - first:
+      213: -2779866628124422532
+    second: lobby_outlet_portal_8
+  - first:
+      213: -5527865850145162235
+    second: lobby_outlet_portal_9
+  - first:
+      213: -4742206261331290603
+    second: lobby_outlet_portal_10
+  - first:
+      213: -9020385902569036154
+    second: lobby_outlet_portal_11
+  - first:
+      213: -3147113292424137342
+    second: lobby_outlet_portal_12
+  - first:
+      213: -6482249446186863379
+    second: lobby_outlet_portal_13
+  - first:
+      213: 6506963277210463166
+    second: lobby_outlet_portal_14
+  - first:
+      213: 2351439095606748941
+    second: lobby_outlet_portal_15
+  - first:
+      213: -6638803388942539356
+    second: lobby_outlet_portal_16
+  - first:
+      213: 1050779873430570351
+    second: lobby_outlet_portal_17
+  - first:
+      213: 2072912181878087980
+    second: lobby_outlet_portal_18
+  - first:
+      213: 1478531587106965822
+    second: lobby_outlet_portal_19
+  - first:
+      213: 9126603187044524621
+    second: lobby_outlet_portal_20
+  - first:
+      213: -2764012697427776858
+    second: lobby_outlet_portal_21
+  - first:
+      213: 6912801397376630715
+    second: lobby_outlet_portal_22
+  - first:
+      213: 6082526520405426643
+    second: lobby_outlet_portal_23
+  - first:
+      213: -5502210399948638405
+    second: lobby_outlet_portal_24
+  - first:
+      213: -6926039534615253169
+    second: lobby_outlet_portal_25
+  - first:
+      213: 2628395084330065694
+    second: lobby_outlet_portal_26
+  - first:
+      213: 8491888236331429950
+    second: lobby_outlet_portal_27
+  - first:
+      213: -1845635865069962775
+    second: lobby_outlet_portal_28
+  - first:
+      213: -3602219165850523859
+    second: lobby_outlet_portal_29
+  - first:
+      213: -364940817969736997
+    second: lobby_outlet_portal_30
+  - first:
+      213: -1022112840546402348
+    second: lobby_outlet_portal_31
+  - first:
+      213: 8774276660732355091
+    second: lobby_outlet_portal_32
+  - first:
+      213: -1590488464545543408
+    second: lobby_outlet_portal_33
+  - first:
+      213: 2843743469652261871
+    second: lobby_outlet_portal_34
+  - first:
+      213: -8391883408767717198
+    second: lobby_outlet_portal_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lobby_outlet_portal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1411
+        height: 1316
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77caa378d9f208360800000000000000
+      internalID: 7169782960398969975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 538a594555820e44f9fd21cc6b295825
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      lobby_outlet_portal_0: 7169782960398969975
+      lobby_outlet_portal_1: -392354187283552660
+      lobby_outlet_portal_10: -4742206261331290603
+      lobby_outlet_portal_11: -9020385902569036154
+      lobby_outlet_portal_12: -3147113292424137342
+      lobby_outlet_portal_13: -6482249446186863379
+      lobby_outlet_portal_14: 6506963277210463166
+      lobby_outlet_portal_15: 2351439095606748941
+      lobby_outlet_portal_16: -6638803388942539356
+      lobby_outlet_portal_17: 1050779873430570351
+      lobby_outlet_portal_18: 2072912181878087980
+      lobby_outlet_portal_19: 1478531587106965822
+      lobby_outlet_portal_2: -6942577046896770083
+      lobby_outlet_portal_20: 9126603187044524621
+      lobby_outlet_portal_21: -2764012697427776858
+      lobby_outlet_portal_22: 6912801397376630715
+      lobby_outlet_portal_23: 6082526520405426643
+      lobby_outlet_portal_24: -5502210399948638405
+      lobby_outlet_portal_25: -6926039534615253169
+      lobby_outlet_portal_26: 2628395084330065694
+      lobby_outlet_portal_27: 8491888236331429950
+      lobby_outlet_portal_28: -1845635865069962775
+      lobby_outlet_portal_29: -3602219165850523859
+      lobby_outlet_portal_3: -5111851613652864677
+      lobby_outlet_portal_30: -364940817969736997
+      lobby_outlet_portal_31: -1022112840546402348
+      lobby_outlet_portal_32: 8774276660732355091
+      lobby_outlet_portal_33: -1590488464545543408
+      lobby_outlet_portal_34: 2843743469652261871
+      lobby_outlet_portal_35: -8391883408767717198
+      lobby_outlet_portal_36: -284910595
+      lobby_outlet_portal_4: 3354650282956265917
+      lobby_outlet_portal_5: -6606818107595859221
+      lobby_outlet_portal_6: -391111752565983367
+      lobby_outlet_portal_7: 8100131231249087000
+      lobby_outlet_portal_8: -2779866628124422532
+      lobby_outlet_portal_9: -5527865850145162235
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
