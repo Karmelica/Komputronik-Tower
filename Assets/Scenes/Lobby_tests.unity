@@ -10669,24 +10669,24 @@ MonoBehaviour:
   levelUnlockDates:
   - levelName: Poziom 1
     month: 9
-    day: 24
-    hour: 0
+    day: 26
+    hour: 9
   - levelName: Poziom 2
     month: 10
     day: 2
-    hour: 0
+    hour: 9
   - levelName: Poziom 3
     month: 10
     day: 8
-    hour: 0
+    hour: 9
   - levelName: Poziom 4
     month: 10
     day: 13
-    hour: 0
+    hour: 9
   - levelName: Poziom 5
     month: 10
     day: 18
-    hour: 0
+    hour: 9
   useServerTime: 1
   timeoutSeconds: 5
   timeServerUrl: https://getservertime-zblptdvtpq-lm.a.run.app
