@@ -70,7 +70,7 @@ public class HighScoreManager : MonoBehaviour
         _inputActions = new InputSystemActions();
         lvlIndex = SceneManager.GetActiveScene().buildIndex;
         loginManager = LoginManager.Instance;
-        playerId = GetOrCreatePlayerId();
+        //playerId = GetOrCreatePlayerId();
         _soundPlayer = GetComponent<SoundPlayer>();
         
         // Inicjalizuj FirebaseAuthManager jeśli LoginManager nie jest dostępny
@@ -138,13 +138,13 @@ public class HighScoreManager : MonoBehaviour
         // 2. Wysyłka danych do funkcji Firebase
         PlayerEmailData data = level switch
         {
-            1 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score1 = score },
-            2 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score2 = score },
-            3 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score3 = score },
-            4 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score4 = score },
-            5 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score5 = score },
-            6 => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? PlayerPrefs.GetInt("ArcadeScore", 0) : 0 },
-            _ => new PlayerEmailData { playerID = playerId, email = playerEmail, name = playerName }
+            1 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score1 = score },
+            2 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score2 = score },
+            3 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score3 = score },
+            4 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score4 = score },
+            5 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score5 = score },
+            6 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? PlayerPrefs.GetInt("ArcadeScore", 0) : 0 },
+            _ => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName }
         };
 
         string json = JsonUtility.ToJson(data);
@@ -218,7 +218,15 @@ public class HighScoreManager : MonoBehaviour
 
         bool lowerIsBetter = !infiniteGeneration;
         float percentile = CalculatePercentile(_cachedScores, scoreToCompare, lowerIsBetter);
-        percentileText.text = $"Twój najlepszy wynik jest lepszy od {percentile:F1}% graczy";
+        
+        if (percentile == -1f)
+        {
+            percentileText.text = "Jesteś jedynym graczem na tym poziomie!";
+        }
+        else
+        {
+            percentileText.text = $"Twój najlepszy wynik jest lepszy od {percentile:F1}% graczy";
+        }
     }
     
     private IEnumerator RefreshScoresAfterSubmit(int level)
@@ -236,6 +244,13 @@ public class HighScoreManager : MonoBehaviour
     private float CalculatePercentile(List<float> allScores, float playerScore, bool lowerIsBetter)
     {
         if (allScores == null || allScores.Count == 0) return 0f;
+        
+        // Jeśli gracz jest jedyny w rankingu
+        if (allScores.Count == 1)
+        {
+            return -1f; // Specjalna wartość oznaczająca, że gracz jest jedyny
+        }
+        
         int worse = lowerIsBetter ? allScores.Count(s => s > playerScore) : allScores.Count(s => s < playerScore);
         return (float)worse / allScores.Count * 100f;
     }
@@ -424,10 +439,10 @@ public class HighScoreManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private string GetOrCreatePlayerId()
+    /*private string GetOrCreatePlayerId()
     {
         string player = PlayerPrefs.GetString("PlayerId", "");
-        
+
         if (string.IsNullOrEmpty(player))
         {
             // Generuj nowe ID używając System.Guid
@@ -435,10 +450,10 @@ public class HighScoreManager : MonoBehaviour
             PlayerPrefs.SetString("PlayerId", player);
             PlayerPrefs.Save();
         }
-        
+
         return player;
-    }
-    
+    }*/
+
     #region Input Actions
 
     private void OnEscape(InputAction.CallbackContext context)

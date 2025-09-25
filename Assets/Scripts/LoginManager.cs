@@ -28,7 +28,6 @@ public class PlayerEmailData
 [Serializable]
 public class CheckResponse
 {
-    public bool emailExists;
     public bool nameExists;
 }
 
@@ -45,7 +44,6 @@ public class LoginManager : MonoBehaviour
     public static LoginManager Instance;
     private string playerId;
 
-    private const string API_KEY = "AIzaSyDyi7jzBfePmYyPj_rSsf7rIMADP-3fUb4";
     private const string FIREBASE_FUNCTION_URL = "https://addemail-zblptdvtpq-lm.a.run.app";
 
     [SerializeField] private GameObject player;
@@ -74,7 +72,7 @@ public class LoginManager : MonoBehaviour
             Instance = this;
         }
         
-        playerId = GetOrCreatePlayerId();
+        //playerId = GetOrCreatePlayerId();
         
         // Inicjalizuj statyczny menedżer uwierzytelniania
         FirebaseAuthManager.Initialize(this);
@@ -156,6 +154,11 @@ public class LoginManager : MonoBehaviour
     {
         if (saveScorePanel) saveScorePanel.SetActive(show);
         if (player) player.SetActive(!show);
+        
+        if (show) {
+            emailInputField.text = currentPlayerEmail;
+            nameInputField.text = currentPlayerName;
+        }
     }
     
     public void ShowEmailConfirmationPanel(bool show = true)
@@ -211,19 +214,20 @@ public class LoginManager : MonoBehaviour
             return;
         }
         
-        CheckEmailAndNameAvailability(playerEmail, playerName, (emailExists, nameExists) =>
+        currentPlayerEmail = playerEmail;
+        currentPlayerName = playerName;
+                
+        SavePlayerPrefs();
+        SendPlayerData(currentPlayerEmail, currentPlayerName);
+        
+        /*CheckEmailAndNameAvailability(playerName, (nameExists) =>
         {
-            if (emailExists)
-            {
-                ShowDebugMessage("Email jest już zajęty!");
-                return;
-            }
             if (nameExists)
             {
                 ShowDebugMessage("Nazwa jest już zajęta!");
                 return;
             }
-            if (!emailExists && !nameExists)
+            if (!nameExists)
             {
                 currentPlayerEmail = playerEmail;
                 currentPlayerName = playerName;
@@ -231,7 +235,7 @@ public class LoginManager : MonoBehaviour
                 SavePlayerPrefs();
                 SendPlayerData(currentPlayerEmail, currentPlayerName);
             }
-        });
+        });*/
     }
     
     private static bool IsEmailValid(string email)
@@ -247,17 +251,17 @@ public class LoginManager : MonoBehaviour
         }
     }
     
-    public void CheckEmailAndNameAvailability(string email, string playerName, Action<bool, bool> callback)
+    /*public void CheckEmailAndNameAvailability(string playerName, Action<bool> callback)
     {
-        StartCoroutine(CheckEmailAndNameCoroutine(email, playerName, callback));
-    }
+        StartCoroutine(CheckEmailAndNameCoroutine(playerName, callback));
+    }*/
     
     public void SendPlayerData(string email, string playerName)
     {
         StartCoroutine(SendDataCoroutine(email, playerName));
     }
     
-    private IEnumerator CheckEmailAndNameCoroutine(string playerEmail, string playerName, System.Action<bool, bool> callback)
+    /*private IEnumerator CheckEmailAndNameCoroutine(string playerName, Action<bool> callback)
     {
         // Użyj nowego FirebaseAuthManager
         string idToken = null;
@@ -269,12 +273,12 @@ public class LoginManager : MonoBehaviour
         if (string.IsNullOrEmpty(idToken))
         {
             ShowDebugMessage("Nie udało się uwierzytelnić!");
-            callback?.Invoke(false, false);
+            callback?.Invoke(false);
             yield break;
         }
 
         // Przygotuj dane do sprawdzenia
-        var checkData = new CheckRequest { email = playerEmail, name = playerName, playerID = playerId };
+        var checkData = new CheckRequest {name = playerName, playerID = playerId };
         string json = JsonUtility.ToJson(checkData);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
@@ -291,14 +295,14 @@ public class LoginManager : MonoBehaviour
         if (www.result == UnityWebRequest.Result.Success)
         {
             CheckResponse response = JsonUtility.FromJson<CheckResponse>(www.downloadHandler.text);
-            callback?.Invoke(response.emailExists, response.nameExists);
+            callback?.Invoke(response.nameExists);
         }
         else
         {
             Debug.LogError("Błąd sprawdzania dostępności: " + www.error);
-            callback?.Invoke(false, false);
+            callback?.Invoke(false);
         }
-    }
+    }*/
     
     private IEnumerator SendDataCoroutine(string email, string name)
     {
@@ -315,7 +319,7 @@ public class LoginManager : MonoBehaviour
             yield break;
         }
 
-        PlayerEmailData data = new PlayerEmailData {playerID = playerId, email = email, name = name };
+        PlayerEmailData data = new PlayerEmailData {playerID = email, email = email, name = name };
         string json = JsonUtility.ToJson(data);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
