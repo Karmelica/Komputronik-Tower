@@ -143,7 +143,7 @@ public class HighScoreManager : MonoBehaviour
             3 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score3 = score },
             4 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score4 = score },
             5 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score5 = score },
-            6 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score6 = PlayerPrefs.GetInt("LevelsCompleted", 0) >= 5 ? PlayerPrefs.GetInt("ArcadeScore", 0) : 0 },
+            6 => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName, score6 = score },
             _ => new PlayerEmailData { playerID = playerEmail, email = playerEmail, name = playerName }
         };
 
@@ -212,7 +212,7 @@ public class HighScoreManager : MonoBehaviour
 
         if (!_scoresReady || _cachedLevel != level || _cachedScores == null || _cachedScores.Count == 0)
         {
-            percentileText.text = "brak danych";
+            percentileText.text = "brak wyników innych graczy";
             return;
         }
 
@@ -221,7 +221,7 @@ public class HighScoreManager : MonoBehaviour
         
         if (percentile == -1f)
         {
-            percentileText.text = "Jesteś jedynym graczem na tym poziomie!";
+            percentileText.text = "Jesteś pierwszym graczem na tym poziomie!";
         }
         else
         {
@@ -421,13 +421,17 @@ public class HighScoreManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
+        OnGameRestart?.Invoke();
         SceneManager.LoadScene(0);
     }
+    
+    public event Action OnGameRestart;
 
     public void RestartGame()
     {
         _currentScore = 0f;
-        SceneManager.LoadScene(lvlIndex);
+        OnGameRestart?.Invoke();
+        SceneManager.LoadScene(lvlIndex, LoadSceneMode.Single);
     }
     
     #endregion

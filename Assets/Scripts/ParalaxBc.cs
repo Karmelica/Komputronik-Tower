@@ -49,4 +49,15 @@ public class ParallaxBc : MonoBehaviour
         
         gameObject.SetActive(true);
     }
+    
+    private void Start()
+    {
+        HighScoreManager.Instance.OnGameRestart += DestroySegment;
+    }
+
+    private void DestroySegment()
+    {
+        HighScoreManager.Instance.OnGameRestart -= DestroySegment;
+        Destroy(gameObject);
+    }
 }

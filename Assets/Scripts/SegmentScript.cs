@@ -85,6 +85,17 @@ public class SegmentScript : MonoBehaviour
             PoolingManager.Instance.Return("Segment", this);
         }
     }
+    
+    private void Start()
+    {
+        HighScoreManager.Instance.OnGameRestart += DestroySegment;
+    }
+
+    private void DestroySegment()
+    {
+        HighScoreManager.Instance.OnGameRestart -= DestroySegment;
+        Destroy(gameObject);
+    }
 }
 
 [Serializable]
